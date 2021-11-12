@@ -1,0 +1,156 @@
+/*added this:  gte's rid of extra space on top header*/
+*{
+	font-family: 'Playfair Display', serif;
+	margin:  0;
+	padding:  0;
+	box-sizing: border-box;
+}
+
+body {
+	padding: 30;
+}
+
+.topnav {
+	background-color: #000000;
+	overflow: hidden;
+	padding-left: 80px;
+	position: sticky;
+	height: 35px;
+	line-height: 35px;
+}
+
+.topnav p{
+	font-size:  20px;
+	text-transform: uppercase;
+	font-weight: 70;
+	color: #FFFFFF;
+	margin: auto;
+}
+
+.header {
+	background-color: rgb(150, 38, 38);
+	overflow: hidden;
+	padding-left: 80px;
+	position: sticky;
+	height: 70px;
+	line-height: 70px;
+}
+
+.header p{
+	font-size:  40px;
+	font-weight: 100;
+	color: #FFFFFF;
+	margin: auto;
+}
+
+/*home*/
+#bttnBox {
+	align-self: center;
+	border-style: groove;
+	margin: auto;
+	text-align: center;
+	width: 300px;
+	height: 350px;
+}
+
+/*public_catalog*/
+.mainArea{
+	width:  500px;
+	margin:  20px 50px;
+}
+
+.mainArea .search_box{
+	position:  fixed;
+	margin: auto 200px;
+	width: 70%;
+	height: 60px;
+	color: #000000;
+}
+
+.mainArea .search_box .input{
+	position:  absolute;
+	width: 100%;
+	height: 100%;
+	padding: 10px 20px;
+	font-size: 18px;
+	background-color: #f2f2f2;
+}
+
+.mainArea .search_box .btn{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 60px;
+	height: 100%;
+	background: rgb(150, 38, 38);
+	z-index: 1;
+	cursor: pointer;
+}
+
+.mainArea .search_box .btn:hover{
+	background:  #000000;
+}
+
+.mainArea .search_box .btn .fa{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	color: #ffffff;
+}
+
+.sidebar {
+	height: unset;
+  	width: 180px;
+  	background-color: black;
+  overflow-x: hidden;
+	position: sticky;
+}
+
+.sidebar p{
+	color:  white;
+	text-align: center;
+}
+
+.sidebar a, .dropdown{
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width:100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+.sidebar a:hover, .dropdown:hover {
+  color: #f1f1f1;
+}
+
+/* Dropdown container (hidden by default).*/
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: black;
+	text-align: center;
+}
+
+.footer p{
+  	color: white;
+}

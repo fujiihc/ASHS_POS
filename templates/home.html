@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Main Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+
+</head>
+<body>
+    <div class="topnav">
+        <p>Abington Senior High School</p>
+    </div>
+
+    <div class="header">
+        <p>Course Directory</p>
+    </div>
+
+    <div id="bttnBox">
+        <form method="post" action="/">
+            <input type="submit" value="Course Catalog" name="catalogButton" />
+            <input type="submit" value="Button2" name="Button_2"/>
+        </form>
+
+        <a class="button" href=""> Student Access </a>
+        <a class="button" href=""> Teacher Access </a>
+    </div>
+
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
