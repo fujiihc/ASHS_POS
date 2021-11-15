@@ -1,0 +1,8 @@
+Course #
+Course Name
+Course Description
+Grade Level-->i.e. 9 10 11 12
+Related Pathway-->STEM CS/IT
+Pre-Requisite(s)-->Course#
+Credits-->
+Level -->i.e. AP CP Honors
