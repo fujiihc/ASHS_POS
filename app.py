@@ -17,7 +17,7 @@ def home():
             return redirect(url_for('catalog'))
         elif request.form.get('Button_2'):
             return redirect(url_for('button2'))
-    return render_template('home.html')
+    return render_template('search.html')
 
 
 
