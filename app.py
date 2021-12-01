@@ -24,7 +24,7 @@ def home():
 
 @app.route('/catalog')
 def catalog():
-    return render_template('search.html')
+    return render_template('public_catalog.html')
 
 @app.route('/button2')
 def button2():
