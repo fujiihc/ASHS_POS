@@ -59,6 +59,7 @@ body {
 	margin:  20px 50px;
 }
 
+/*SEARCH BOX*/
 .mainArea .search_box{
 	position:  fixed;
 	margin: auto 200px;
@@ -99,11 +100,12 @@ body {
 	color: #ffffff;
 }
 
+/*SIDEBAR*/
 .sidebar {
 	height: unset;
   	width: 180px;
   	background-color: black;
-  overflow-x: hidden;
+  	overflow-x: hidden;
 	position: sticky;
 }
 
@@ -112,7 +114,7 @@ body {
 	text-align: center;
 }
 
-.sidebar a, .dropdown{
+.sidebar .filterType, .dropdown, .sidebar p{
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 20px;
@@ -142,6 +144,7 @@ body {
   padding-right: 8px;
 }
 
+/*FOOTER*/
 .footer {
 	position: fixed;
 	left: 0;
