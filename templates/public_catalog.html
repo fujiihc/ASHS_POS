@@ -9,72 +9,104 @@
 </head>
 <body>
 <div class="wrapper">
-	<div class="topnav">
-		<p>Abington Senior High School</p>
-	</div>
-
-	<div class="header">
-		<p>Course Catalog</p>
-	</div>
-
-	<div class="mainArea">
-		<div class="search_box">
-			<input type="text" class="input" placeholder="Search...">
-			<div class="btn">
-				<i class="fa fa-search"></i>
-				<!--https://fontawesome.com/v4.7/icon/search-->
-			</div>
-		</div>
-
-		<div class="sidebar">
-			<p>Filter by Category</p>
-			<button class="dropdown">Pathway
-			    <i class="fa fa-caret-down"></i>
-			</button>
-			<div class="dropdown-container">
-			    <a href="#">Business</a>
-			    <a href="#">Computer Science</a>
-			    <a href="#">Medicine</a>
-			    <a href="#">Law</a>
-			</div>
-
-			<button class="dropdown">Days per Week
-			    <i class="fa fa-caret-down"></i>
-			</button>
-			<div class="dropdown-container">
-			    <a href="#">2</a>
-			    <a href="#">5</a>
-			    <a href="#">6</a>
-			</div>
-
-			<button class="dropdown">Course Level
-			    <i class="fa fa-caret-down"></i>
-			</button>
-			<div class="dropdown-container">
-			    <a href="#">AP</a>
-			    <a href="#">Honors</a>
-			    <a href="#">College Preparation</a>
-			    <a href="#">Standard</a>
-			</div>
-
-			<button class="dropdown">Length
-			    <i class="fa fa-caret-down"></i>
-			</button>
-			<div class="dropdown-container">
-			    <a href="#">Semester</a>
-			    <a href="#">Full Year</a>
-			</div>
-		</div>
-
-		<div class="results">
-
-		</div>
-	</div>
-
-	<div class="footer">
-		<p>Abington School District © 2021. All Rights Reserved.</p>
-	</div>
-</div>
+    	<div class="topnav">
+    		<p id="yeah">Abington Senior High School</p>
+    	</div>
+    
+    	<div class="header">
+    		<p>Course Catalog</p>
+    	</div>
+    
+    	<div class="mainArea">
+    		<div class="search_box">
+    			<input type="text" class="input" placeholder="Search...">
+    			<div class="btn">
+    				<i class="fas fa-search"></i>
+    				<!--https://fontawesome.com/v4.7/icon/search-->
+    			</div>
+    		</div>
+    
+    		<div class="sidebar">
+    			<p>Filter by Category</p>
+    			<button class="dropdown" id="pathwayBttn">Pathway
+    			    <i class="fa fa-caret-down"></i>
+    			</button>
+    			<div class="dropdown-container" id="pathwayDDs">
+    			</div>
+    
+    			<button class="dropdown">Days per Week
+    			    <i class="fa fa-caret-down"></i>
+    			</button>
+    			<div class="dropdown-container">
+    			</div>
+    
+    			<button class="dropdown">Course Level
+    			    <i class="fa fa-caret-down"></i>
+    			</button>
+    			<div class="dropdown-container">
+    			</div>
+    
+    			<button class="dropdown">Length
+    			    <i class="fa fa-caret-down"></i>
+    			</button>
+    			<div class="dropdown-container">
+    			</div>
+    		</div>
+    
+    		<div class="results">
+    
+    		</div>
+    	</div>
+    	
+    	<p id="tester"></p>
+    
+        <div class="footer">
+        		<p id="footer">Abington School District © 2021. All Rights Reserved.</p>
+        	</div>
+    </div>
+	
+    <script>
+    //VARIABLES
+        var theseContainers = document.getElementsByClassName("dropdown-container");
+        var pathways = ["Buisness", "Computer Science", "Medicine", "Law"];
+        var daysPerWeek = [2, 5, 6];
+        var courseLevel = ["AP", "Honors", "College Preparation", "Standard"];
+        var lengths = ["Semester", "Full Year"];
+        var filters = [pathways, daysPerWeek, courseLevel, lengths, "1"];
+        var dropdownBttns = document.getElementsByClassName("dropdown");
+	    const map1 = new Map();
+	    var filterTypes = document.getElementsByClassName("filterType");
+        
+    //CLICKING ON DROPDOWNS
+        var onButtonClick = function(event) {
+            var thisBttn = event.currentTarget;
+            var container = map1.get(thisBttn);
+            var style = container.style.getPropertyValue("display");
+            if(style == "block")
+                container.style.display = "none";
+            else
+                container.style.display = "block";
+        };
+        
+        
+        for(var i = 0; i < dropdownBttns.length; i++) {
+            map1.set(dropdownBttns[i], theseContainers[i]);
+            dropdownBttns[i].addEventListener("click", onButtonClick);
+        }
+    
+    //MAKE BUTTONS IN DROPDOWNS
+        for(var d = 0; d <= theseContainers.length; d++) {
+            var filter = filters[d];
+            for(var i = 0; i < filter.length; i++) {
+                const ddBttn = document.createElement("button");
+                ddBttn.className = "filterType";
+                ddBttn.innerHTML = filter[i];
+                
+                theseContainers[d].appendChild(ddBttn);
+            }
+        }
+	</script>
+	
 	
 </body>
 </html>
