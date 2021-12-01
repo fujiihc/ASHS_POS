@@ -17,14 +17,14 @@ def home():
             return redirect(url_for('catalog'))
         elif request.form.get('Button_2'):
             return redirect(url_for('button2'))
-    return render_template('search.html')
+    return render_template('home.html')
 
 
 
 
 @app.route('/catalog')
 def catalog():
-    return render_template('public_catalog.html')
+    return render_template('search.html')
 
 @app.route('/button2')
 def button2():
