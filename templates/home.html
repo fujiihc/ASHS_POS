@@ -4,28 +4,44 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Main Page</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
-
-
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
+    <script src="https://use.fontawesome.com/2361e506b1.js"></script>
 </head>
 <body>
     <div class="topnav">
-        <p>Abington Senior High</p>
+        <p>Abington Senior High School</p>
     </div>
-
     <div class="header">
         <p>Course Directory</p>
     </div>
 
-    <div id="bttnBox">
-        <form method="post" action="/">
-            <input type="submit" value="Course Catalog" name="catalogButton" />
-            <input type="submit" value="Button2" name="Button_2"/>
-        </form>
-
-        <a class="button" href=""> Student Access </a>
-        <a class="button" href=""> Teacher Access </a>
+    <div class="wrapper">
+        <div id="bttnBox">
+            <form method="post" action="/">
+                <input type="submit" value="Course Catalog" name="catalogButton" />
+                <input type="submit" value="Button2" name="Button_2" />
+            </form>
+            <h1 style="margin-bottom:20px; font-size: 40px;">Welcome</h1>
+            <p style="font-weight: bold;">Sign in to select courses</p>
+            <div>
+                <a href="C:\Users\nilee\OneDrive\Desktop\Tester Website\Tpublic_catalog.html" class="button">Student Access</a>
+                <!--https://fontawesome.com/v4.7/icon/graduation-cap-->
+            </div>
+            <div>
+                <a href="" style="margin-top: 10px;" class="button">Administrative Access</a>
+                <!--https://fontawesome.com/v4.7/icon/key-->
+            </div>
+            <p style="font-weight: bold;margin-top: 50px;">Browse Courses</p>
+            <div>
+                <a href="C:\Users\nilee\OneDrive\Desktop\Tester Website\Tpublic_catalog.html" class="button">Course Catalog</a>
+            </div>
+        </div>
     </div>
+
+    <footer class="footer">
+        <p>Abington School District © 2021. All Rights Reserved.</p>
+    </footer>
+
 
     <script type="text/javascript" src="script.js"></script>
 </body>
