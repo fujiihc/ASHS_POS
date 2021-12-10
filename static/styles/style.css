@@ -208,9 +208,9 @@
 		outline: none;
 	}
 
-		.sidebar a:hover, .dropdown:hover {
-			color: #f1f1f1;
-		}
+	.sidebar a:hover, .sidebar .filterType:hover, .dropdown:hover {
+		color: #f1f1f1;
+	}
 
 /* Dropdown container (hidden by default).*/
 .dropdown-container {
