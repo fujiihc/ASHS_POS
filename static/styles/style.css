@@ -180,23 +180,7 @@
 		height: 60px;
 	}
 
-.footer {
-	position: static;
-	z-index: 997;
-	/*unset, inherit, initial*/
-	bottom: 0px;
-	height: 20px;
-	width: 100%;
-	background-color: black;
-	text-align: center;
-	margin-top: 100%;
-	margin-bottom: 0%;
-}
-
-	.footer p {
-		color: white;
-	}
-
+/*SIDEBAR*/
 .sidebar {
 	height: unset;
 	width: 180px;
@@ -210,7 +194,7 @@
 		text-align: center;
 	}
 
-	.sidebar a, .dropdown {
+	.sidebar .filterType, .dropdown, .sidebar p {
 		padding: 6px 8px 6px 16px;
 		text-decoration: none;
 		font-size: 20px;
@@ -239,3 +223,21 @@
 	float: right;
 	padding-right: 8px;
 }
+
+/*FOOTER*/
+.footer {
+	position: static;
+	z-index: 997;
+	/*unset, inherit, initial*/
+	bottom: 0px;
+	height: 20px;
+	width: 100%;
+	background-color: black;
+	text-align: center;
+	margin-top: 100%;
+	margin-bottom: 0%;
+}
+
+	.footer p {
+		color: white;
+	}
