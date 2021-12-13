@@ -17,10 +17,7 @@
 
     <div class="wrapper">
         <div id="bttnBox">
-            <form method="post" action="/">
-                <input type="submit" value="Course Catalog" name="catalogButton" />
-                <input type="submit" value="Button2" name="Button_2" />
-            </form>
+            
             <h1 style="margin-bottom:20px; font-size: 40px;">Welcome</h1>
             <p style="font-weight: bold;margin-bottom: 10px;">Sign in to select courses</p>
             <div>
@@ -29,26 +26,32 @@
                     <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                   </div>
                   <!--https://fontawesome.com/v4.7/icon/graduation-cap--> 
-                  <a href="C:\Users\nilee\OneDrive\Desktop\Tester Website\Tpublic_catalog.html" class="mytext">Student Access</a>
+                  <form method="post" action="/">
+                      <input type="submit" value="Student Access" style="border:none;"class="mytext" name="studentAccess" />
+                  </form>
                 </div>
             </div>
             <div>
-               <div class="homebtn">
-                  <div class="btn">
-                    <i class="fa fa-key" aria-hidden="true"></i>
-                  </div>
-                  <!--https://fontawesome.com/v4.7/icon/key--> 
-                  <a href="C:\Users\nilee\OneDrive\Desktop\Tester Website\Tpublic_catalog.html" class="mytext">Adminstrative Access</a>
+                <div class="homebtn">
+                    <div class="btn">
+                        <i class="fa fa-key" aria-hidden="true"></i>
+                    </div>
+                    <!--https://fontawesome.com/v4.7/icon/key-->
+                    <form method="post" action="/">
+                        <input type="submit" value="Administrative Access" style="border:none;"class="mytext" name="adminAccess" />
+                    </form>
                 </div>
             </div>
             <p style="font-weight: bold;margin-top: 30px;margin-bottom: 10px;">Browse Courses</p>
             <div>
-               <div class="homebtn">
-                  <div class="btn">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                  </div>
-                  <!--https://fontawesome.com/v4.7/icon/search--> 
-                  <a href="C:\Users\nilee\OneDrive\Desktop\Tester Website\Tpublic_catalog.html" class="mytext">Course Catalog</a>
+                <div class="homebtn">
+                    <div class="btn">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+                    <!--https://fontawesome.com/v4.7/icon/search-->
+                    <form method="post" action="/">
+                        <input type="submit" value="Course Catalog" style="border:none;"class="mytext" name="catalogButton" />
+                    </form>
                 </div>
             </div>
         </div>
@@ -62,3 +65,4 @@
     <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
+
