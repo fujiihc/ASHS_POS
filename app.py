@@ -15,8 +15,10 @@ def home():
     if request.method == 'POST':
         if request.form.get('catalogButton'):
             return redirect(url_for('catalog'))
-        elif request.form.get('Button_2'):
-            return redirect(url_for('button2'))
+        elif request.form.get('studentAccess'):
+            return redirect(url_for('student'))
+        elif request.form.get('adminAccess'):
+            return redirect(url_for('admin'))
     return render_template('home.html')
 
 
@@ -26,9 +28,15 @@ def home():
 def catalog():
     return render_template('public_catalog.html')
 
-@app.route('/button2')
-def button2():
-    return 'button 2 pressed'
+@app.route('/student')
+def student():
+    #need to add google authentication in here somehow, which will then send information to the python script that'll store data somewhere?
+    return 'student access'
+
+@app.route('/admin')
+def admin():
+    #need to add google authentication in here somehow, which will then send information to the python script that'll store data somewhere?
+    return 'administrator access'
 
 if __name__ == '__main__':
     import os
@@ -38,3 +46,4 @@ if __name__ == '__main__':
     except ValueError:
         PORT = 5555
     app.run(HOST, PORT)
+
