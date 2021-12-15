@@ -137,14 +137,8 @@
 		right: 0;
 		width: 60px;
 		height: 60px;
-		background: rgb(150, 38, 38);
 		z-index: 1;
-		cursor: pointer;
 	}
-
-		.mainArea .search_box .btn:hover {
-			background: #000000;
-		}
 
 		.mainArea .search_box .btn .fas {
 			position: absolute;
@@ -152,6 +146,15 @@
 			left: 50%;
 			transform: translate(-50%,-50%);
 			color: #ffffff;
+			width: 60px;
+			height: 60px;
+			background: rgb(150, 38, 38);
+			border: none;
+			cursor: pointer;
+		}
+
+		.mainArea .search_box .btn .fas:hover {
+			background:black;
 		}
 
 .mainArea .results {
