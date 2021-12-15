@@ -22,9 +22,12 @@
                 <div class="mainSpace">
                     <div class="search_box">
                         <input type="text" class="input" placeholder="Search...">
+
                         <div class="btn">
-                            <i class="fas fa-search"></i>
-                            <!--https://fontawesome.com/v4.7/icon/search-->
+                            <form method="post" action="/">
+                                <button name="searchButton" type="submit" class="fas fa-search"></button>
+                                <!--https://fontawesome.com/v4.7/icon/search-->
+                            </form>
                         </div>
                     </div>
 
@@ -104,40 +107,44 @@
                 </div>
 
                 <div class="sidebar">
-    			<p>Filter by Category</p>
-    			<button class="dropdown" id="pathwayBttn">Pathway
-    			    <i class="fa fa-caret-down"></i>
-    			</button>
-    			<div class="dropdown-container" id="pathwayDDs">
-    			</div>
-    
-    			<button class="dropdown">Days per Week
-    			    <i class="fa fa-caret-down"></i>
-    			</button>
-    			<div class="dropdown-container">
-    			</div>
-    
-    			<button class="dropdown">Course Level
-    			    <i class="fa fa-caret-down"></i>
-    			</button>
-    			<div class="dropdown-container">
-    			</div>
-    
-    			<button class="dropdown">Length
-    			    <i class="fa fa-caret-down"></i>
-    			</button>
-    			<div class="dropdown-container">
-    			</div>
-    		</div>
-         
+                    <p>Filter by Category</p>
+                    <button class="dropdown" id="pathwayBttn">
+                        Pathway
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container" id="pathwayDDs">
+                    </div>
+
+                    <button class="dropdown">
+                        Days per Week
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container">
+                    </div>
+
+                    <button class="dropdown">
+                        Course Level
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container">
+                    </div>
+
+                    <button class="dropdown">
+                        Length
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container">
+                    </div>
+                </div>
+
+            </div>
+
+            <footer class="footer">
+                <p>Abington School District © 2021. All Rights Reserved.</p>
+            </footer>
         </div>
 
-        <footer class="footer">
-            <p>Abington School District © 2021. All Rights Reserved.</p>
-        </footer>
-    </div>
-
-<script>
+        <script>
     //VARIABLES
     var theseContainers = document.getElementsByClassName("dropdown-container");
     var pathways = ["Buisness", "Computer Science", "Medicine", "Law"];
@@ -177,7 +184,7 @@
             theseContainers[d].appendChild(ddBttn);
         }
     }
-</script>
+        </script>
 
 
 </body>
