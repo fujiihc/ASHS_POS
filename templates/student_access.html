@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Public Catalog</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+</head>
+<body>
+    <div class="page-container">
+        <div class="wrapper">
+            <div class="topnav">
+                <p>Abington Senior High School</p>
+            </div>
+
+            <div class="header">
+                <p>Course Catalog</p>
+            </div>
+
+            <div class="mainArea">
+                <div class="mainSpace">
+                    <div class="search_box">
+                        <input type="text" class="input" placeholder="Search...">
+
+                        <div class="btn">
+                            <form method="post" action="/">
+                                <button name="searchButton" type="submit" class="fas fa-search"></button>
+                                <!--https://fontawesome.com/v4.7/icon/search-->
+                            </form>
+                        </div>
+                    </div>
+                    <div class="results">
+                        <table>
+                            <tr>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="course-name">Data Structures</p>
+                                    <div class="descriptions">
+                                        <div>Honors</div>
+                                        <div>10 credits</div>
+                                        <div>Computer Science Pathway</div>
+                                        <div>5 days/week</div>
+                                        <div>Computer Science Department</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="course-name">Data Structures</p>
+                                    <div class="descriptions">
+                                        <div>Honors</div>
+                                        <div>10 credits</div>
+                                        <div>Computer Science Pathway</div>
+                                        <div>5 days/week</div>
+                                        <div>Computer Science Department</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="course-name">Data Structures</p>
+                                    <div class="descriptions">
+                                        <div>Honors</div>
+                                        <div>10 credits</div>
+                                        <div>Computer Science Pathway</div>
+                                        <div>5 days/week</div>
+                                        <div>Computer Science Department</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="course-name">Data Structures</p>
+                                    <div class="descriptions">
+                                        <div>Honors</div>
+                                        <div>10 credits</div>
+                                        <div>Computer Science Pathway</div>
+                                        <div>5 days/week</div>
+                                        <div>Computer Science Department</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="course-name">Data Structures</p>
+                                    <div class="descriptions">
+                                        <div>Honors</div>
+                                        <div>10 credits</div>
+                                        <div>Computer Science Pathway</div>
+                                        <div>5 days/week</div>
+                                        <div>Computer Science Department</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <p>Page 1 of 1</p>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <p>Filter by Category</p>
+                    <button class="dropdown" id="pathwayBttn">
+                        Pathway
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container" id="pathwayDDs">
+                    </div>
+
+                    <button class="dropdown">
+                        Days per Week
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container">
+                    </div>
+
+                    <button class="dropdown">
+                        Course Level
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container">
+                    </div>
+
+                    <button class="dropdown">
+                        Length
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="page-selection">
+            <p>
+                Next Page
+            </p>
+        </div>
+        <footer class="footer">
+            <p>Abington School District © 2021. All Rights Reserved.</p>
+        </footer>
+
+        <script>
+            //VARIABLES
+            var theseContainers = document.getElementsByClassName("dropdown-container");
+            var pathways = ["Buisness", "Computer Science", "Medicine", "Law"];
+            var daysPerWeek = [2, 5, 6];
+            var courseLevel = ["AP", "Honors", "College Preparation", "Standard"];
+            var lengths = ["Semester", "Full Year"];
+            var filters = [pathways, daysPerWeek, courseLevel, lengths, "1"];
+            var dropdownBttns = document.getElementsByClassName("dropdown");
+            const map1 = new Map();
+            var filterTypes = document.getElementsByClassName("filterType");
+
+            //CLICKING ON DROPDOWNS
+            var onButtonClick = function (event) {
+                var thisBttn = event.currentTarget;
+                var container = map1.get(thisBttn);
+                var style = container.style.getPropertyValue("display");
+                if (style == "block")
+                    container.style.display = "none";
+                else
+                    container.style.display = "block";
+            };
+
+
+            for (var i = 0; i < dropdownBttns.length; i++) {
+                map1.set(dropdownBttns[i], theseContainers[i]);
+                dropdownBttns[i].addEventListener("click", onButtonClick);
+            }
+
+            //MAKE BUTTONS IN DROPDOWNS
+            for (var d = 0; d <= theseContainers.length; d++) {
+                var filter = filters[d];
+                for (var i = 0; i < filter.length; i++) {
+                    const ddBttn = document.createElement("button");
+                    ddBttn.className = "filterType";
+                    ddBttn.innerHTML = filter[i];
+
+                    theseContainers[d].appendChild(ddBttn);
+                }
+            }
+        </script>
+
+
+</body>
+</html>
