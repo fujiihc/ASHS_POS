@@ -66,6 +66,7 @@
 	height: 400px;
 	background-color: #f2f2f2;
 	font-style: bold;
+	margin-bottom:200px;
 }
 
 .homebtn{
@@ -108,8 +109,9 @@
 /*public_catalog*/
 .mainArea {
 	width: 500px;
-	margin: 30px 150px;
 	margin-top: 130px;
+	margin-left:100px;
+	margin-right:9000px;
 }
 
 .mainSpace {
@@ -157,20 +159,42 @@
 			background:black;
 		}
 
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td, th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+
+tr:hover {
+	background-color: #d4d4d4;
+}
+
 .mainArea .results {
 	color: #000000;
 	margin-top: 60px;
-	padding: 20px 20px;
-	font-size: 20px;
+	font-size: 15px;
 	background-color: #f2f2f2;
 	border: 2px solid black;
+	width:100%;
 }
 
-	.mainArea .results .p {
-		position: absolute;
-		width: 100%;
-		height: 60px;
-	}
+.course-name {
+	font-weight: bold;
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+
+.descriptions {
+	font-size: 18px;
+	display: flex;
+	justify-content: space-between;
+}
 
 /*SIDEBAR*/
 .sidebar {
@@ -179,6 +203,7 @@
 	background-color: black;
 	overflow-x: hidden;
 	position: sticky;
+	margin-bottom: 800px;
 }
 
 	.sidebar p {
@@ -216,18 +241,23 @@
 	padding-right: 8px;
 }
 
+.page-selection{
+	position: center;
+}
+
 /*FOOTER*/
 .footer {
 	position: static;
 	z-index: 997;
 	/*unset, inherit, initial*/
 	bottom: 0px;
-	height: 20px;
+	height: 40px;
+	line-height: 40px;
 	width: 100%;
 	background-color: black;
 	text-align: center;
-	margin-top: 100%;
 	margin-bottom: 0%;
+	bottom:0px;
 }
 
 	.footer p {
