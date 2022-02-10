@@ -2,9 +2,18 @@
 This script runs the application using a development server.
 It contains the definition of routes and views for the application.
 """
-
+import course as cs
+import data as dt
+import pandas as pd
 from flask import Flask, render_template, redirect, url_for, request
+from turbo_flask import Turbo
+
 app = Flask(__name__)
+turbo = Turbo(app)
+#have this built into somewhere else
+df = dt.data()
+c1 = cs.course('CS', '10101010', 'Literally computers and stuff like this', 5, 'Honors', 'Full Year', '10', 10)
+df.addCourse(c1)
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 wsgi_app = app.wsgi_app
@@ -23,15 +32,16 @@ def home():
 
 
 
-
-@app.route('/catalog')
+@app.route('/catalog', methods = ['POST', 'GET'])
 def catalog():
+    if request.method == 'POST':
+        #find a way to differentiate the post get signals with buttons rather than inputs
+        return render_template('public_catalog.html')
     return render_template('public_catalog.html')
 
 @app.route('/student')
 def student():
-    #need to add google authentication in here somehow, which will then send information to the python script that'll store data somewhere?
-    return 'student access'
+    return render_template('student_access.html')
 
 @app.route('/admin')
 def admin():
