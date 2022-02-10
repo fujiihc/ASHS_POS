@@ -6,14 +6,11 @@
 }
 
 .page-container {
-	position: relative;
 	min-height: 100%;
 }
 
 .wrapper {
-	margin-top: 150px;
 	padding-bottom: 20px;
-	min-height: 100%;
 }
 
 .topnav {
@@ -57,13 +54,11 @@
 
 /*home*/
 #bttnBox {
-	margin-top: 100px;
 	align-self: center;
 	border-style: groove;
 	margin: auto;
-	text-align: center;
 	width: 500px;
-	height: 400px;
+	height: unset;
 	background-color: #f2f2f2;
 	font-style: bold;
 	margin-bottom:200px;
@@ -107,17 +102,21 @@
 }
 
 /*public_catalog*/
-.mainArea {
-	width: 500px;
-	margin-top: 130px;
-	margin-left:100px;
-	margin-right:9000px;
+.container {
+	margin-top: 150px;
 }
 
-.mainSpace {
+.mainArea {
+	margin: auto;
+	align-self: center;
+	width: 900px;
+	height: 800px;
+}
+
+.mainArea .mainSpace {
 	position: absolute;
-	margin: 0px 200px;
-	width: 70%;
+	margin-left: 200px;
+	width:700px;
 }
 
 .mainArea .search_box {
@@ -139,7 +138,6 @@
 		right: 0;
 		width: 60px;
 		height: 60px;
-		z-index: 1;
 	}
 
 		.mainArea .search_box .btn .fas {
@@ -191,10 +189,124 @@ tr:hover {
 }
 
 .descriptions {
+	margin-left:5px;
 	font-size: 18px;
 	display: flex;
 	justify-content: space-between;
 }
+
+.fa-plus {
+	position: absolute;
+	color: black;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	right:0px;
+}
+
+	.fa-plus:hover + .course-name {
+		color:blue;
+	}
+
+.cart {
+	position:absolute;
+	right: 0px;
+	top:115px;
+}
+
+.course-choices {
+	position: absolute;
+	right: 0px;
+	width: 200px;
+	height: 300px;
+	background-color: black;
+}
+
+.cartBtn {
+	position: absolute;
+	right:15px;
+	margin-top:15px;
+}
+
+.cartBtn .fa {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	color: #ffffff;
+	width: 30px;
+	height: 30px;
+	background: rgb(150, 38, 38);
+	border: none;
+	cursor: pointer;
+}
+
+.cartBtn .fa:hover {
+	background: #000000;
+}
+
+.choicesText {
+	margin-left: 25px;
+	display: flex;
+	justify-content: space-between;
+	color:white;
+}
+
+#bttnBox .choicesText {
+	color: black;
+}
+
+#bttnBox .fa-times {
+	position: absolute;
+	margin-right:500px;
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+	background: none;
+	color: black;
+	margin-top: 0px
+}
+
+	#bttnBox .fa-times:hover {
+		color: rgb(150, 38, 38);
+	}
+
+	#bttnBox .fa-times:hover + .choicesText {
+		color: rgb(150, 38, 38);
+	}
+
+.course-choices .fa-times {
+	position: absolute;
+	color: #ffffff;
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+	margin-top: 2px;
+	background:none;
+}
+
+	.course-choices .fa-times:hover {
+		color: rgb(150, 38, 38);
+	}
+
+		.course-choices .fa-times:hover + .choicesText {
+			color: rgb(150, 38, 38);
+		}
+
+.viewCoursesBtn {
+	background: rgb(150, 38, 38);
+	color: white;
+	height: 30px;
+	width: 150px;
+	border: 2px solid white;
+	position:absolute;
+	bottom:15px;
+	left:25px;
+}
+
+	.viewCoursesBtn:hover {
+		background: #000000;
+	}
 
 /*SIDEBAR*/
 .sidebar {
@@ -202,7 +314,7 @@ tr:hover {
 	width: 180px;
 	background-color: black;
 	overflow-x: hidden;
-	position: sticky;
+	position: absolute;
 	margin-bottom: 800px;
 }
 
@@ -241,25 +353,35 @@ tr:hover {
 	padding-right: 8px;
 }
 
-.page-selection{
-	position: center;
-}
-
 /*FOOTER*/
 .footer {
-	position: static;
+	position: absolute;
 	z-index: 997;
-	/*unset, inherit, initial*/
-	bottom: 0px;
+	left:0px;
+	right:0px;
 	height: 40px;
 	line-height: 40px;
-	width: 100%;
 	background-color: black;
 	text-align: center;
-	margin-bottom: 0%;
-	bottom:0px;
+	/*width:100%;*/
 }
 
 	.footer p {
 		color: white;
+	}
+
+/*REQUEST COURSES PAGE*/
+.scheduleRequestBtn {
+	background: rgb(150, 38, 38);
+	color: white;
+	height: 40px;
+	width: 170px;
+	margin-left:175px;
+	margin-top:15px;
+	margin-bottom:15px;
+	border: 2px solid white;
+}
+
+	.scheduleRequestBtn:hover {
+		background: #000000;
 	}
