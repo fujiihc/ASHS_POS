@@ -6,12 +6,13 @@ import course as cs
 import data as dt
 import pandas as pd
 from flask import Flask, render_template, redirect, url_for, request
-from turbo_flask import Turbo
+
 
 app = Flask(__name__)
 turbo = Turbo(app)
 #have this built into somewhere else
 df = dt.data()
+#this is tester code because we dont have the actual data file yet
 c1 = cs.course('CS', '10101010', 'Literally computers and stuff like this', 5, 'Honors', 'Full Year', '10', 10)
 df.addCourse(c1)
 
