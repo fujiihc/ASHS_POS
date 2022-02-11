@@ -9,7 +9,7 @@ from flask import Flask, render_template, redirect, url_for, request
 
 
 app = Flask(__name__)
-turbo = Turbo(app)
+
 #have this built into somewhere else
 df = dt.data()
 #this is tester code because we dont have the actual data file yet
