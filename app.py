@@ -13,8 +13,7 @@ app = Flask(__name__)
 #have this built into somewhere else
 df = dt.data()
 #this is tester code because we dont have the actual data file yet
-c1 = cs.course('CS', '10101010', 'Literally computers and stuff like this', 5, 'Honors', 'Full Year', '10', 10)
-df.addCourse(c1)
+#print(df.toString())
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 wsgi_app = app.wsgi_app
@@ -37,7 +36,7 @@ def home():
 def catalog():
     if request.method == 'POST':
         #find a way to differentiate the post get signals with buttons rather than inputs
-        return render_template('public_catalog.html', variable = df.to_string())
+        return render_template('public_catalog.html', variable = df.toString())
     return render_template('public_catalog.html')
 
 @app.route('/student')
@@ -57,4 +56,3 @@ if __name__ == '__main__':
     except ValueError:
         PORT = 5555
     app.run(HOST, PORT)
-
