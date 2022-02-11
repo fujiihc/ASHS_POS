@@ -274,6 +274,14 @@
                         const ddBttn = document.createElement("button");
                         ddBttn.className = "filterType";
                         ddBttn.innerHTML = filter[i];
+                        ddBttn.addEventListener("click", function() {
+                            if(ddBttn.style.backgroundColor == "darkgrey") {
+                                ddBttn.style.backgroundColor = "#262626";
+                            }
+                            else {
+                                ddBttn.style.backgroundColor = "darkgrey";
+                            }
+                        });
 
                         theseContainers[d].appendChild(ddBttn);
                     }
