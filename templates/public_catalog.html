@@ -17,82 +17,123 @@
             <div class="header">
                 <p>Course Catalog</p>
             </div>
+            <div class="container">
+                <div class="mainArea">
+                    <div class="mainSpace">
+                        <div class="search_box">
+                            <input type="text" class="input" placeholder="Search...">
 
-            <div class="mainArea">
-                <div class="mainSpace">
-                    <div class="search_box">
-                        <input type="text" class="input" placeholder="Search...">
-
-                        <div class="btn">
-                            <form method="post" action="/catalog">
-                                <button name="searchButton" type="submit" class="fas fa-search"></button>
-                                <!--https://fontawesome.com/v4.7/icon/search-->
-                            </form>
+                            <div class="btn">
+                                <form method="post" action="/">
+                                    <button name="searchButton" type="submit" class="fas fa-search"></button>
+                                    <!--https://fontawesome.com/v4.7/icon/search-->
+                                </form>
+                            </div>
+                        </div>
+                        <div class="results">
+                            <table>
+                                <tr>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="course-name">Data Structures</p>
+                                        <div class="descriptions">
+                                            <div>Honors</div>
+                                            <div>10 credits</div>
+                                            <div>Computer Science Pathway</div>
+                                            <div>5 days/week</div>
+                                            <div>Computer Science Department</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="course-name">Data Structures</p>
+                                        <div class="descriptions">
+                                            <div>Honors</div>
+                                            <div>10 credits</div>
+                                            <div>Computer Science Pathway</div>
+                                            <div>5 days/week</div>
+                                            <div>Computer Science Department</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="course-name">Data Structures</p>
+                                        <div class="descriptions">
+                                            <div>Honors</div>
+                                            <div>10 credits</div>
+                                            <div>Computer Science Pathway</div>
+                                            <div>5 days/week</div>
+                                            <div>Computer Science Department</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="course-name">Data Structures</p>
+                                        <div class="descriptions">
+                                            <div>Honors</div>
+                                            <div>10 credits</div>
+                                            <div>Computer Science Pathway</div>
+                                            <div>5 days/week</div>
+                                            <div>Computer Science Department</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="course-name">Data Structures</p>
+                                        <div class="descriptions">
+                                            <div>Honors</div>
+                                            <div>10 credits</div>
+                                            <div>Computer Science Pathway</div>
+                                            <div>5 days/week</div>
+                                            <div>Computer Science Department</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
-                    <div class="results">
-                        <table>
-                            <tr>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p class="course-name">Data Structures</p>
-                                    <div class="descriptions">
-                                        <div>Honors</div>
-                                        <div>10 credits</div>
-                                        <div>Computer Science Pathway</div>
-                                        <div>5 days/week</div>
-                                        <div>Computer Science Department</div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
+
+                    <div class="sidebar">
+                        <p>Filter by Category</p>
+                        <button class="dropdown" id="pathwayBttn">
+                            Pathway
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-container" id="pathwayDDs">
+                        </div>
+
+                        <button class="dropdown">
+                            Days per Week
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-container">
+                        </div>
+
+                        <button class="dropdown">
+                            Course Level
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-container">
+                        </div>
+
+                        <button class="dropdown">
+                            Length
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-container">
+                        </div>
                     </div>
-                    <div>
-                        <p>Page 1 of 1</p>
-                    </div>
+
                 </div>
-
-                <div class="sidebar">
-                    <p>Filter by Category</p>
-                    <button class="dropdown" id="pathwayBttn">
-                        Pathway
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-container" id="pathwayDDs">
-                    </div>
-
-                    <button class="dropdown">
-                        Days per Week
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-container">
-                    </div>
-
-                    <button class="dropdown">
-                        Course Level
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-container">
-                    </div>
-
-                    <button class="dropdown">
-                        Length
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-container">
-                    </div>
-                </div>
-
             </div>
         </div>
-        <div class="page-selection">
-            <p>
-                Next Page
-            </p>
-        </div>
         <footer class="footer">
-            <p>Abington School District © 2021. All Rights Reserved.</p>
+            <p>Abington School District © 2022. All Rights Reserved.</p>
         </footer>
 
         <script>
