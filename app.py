@@ -37,7 +37,7 @@ def home():
 def catalog():
     if request.method == 'POST':
         #find a way to differentiate the post get signals with buttons rather than inputs
-        return render_template('public_catalog.html')
+        return render_template('public_catalog.html', variable = df.to_string())
     return render_template('public_catalog.html')
 
 @app.route('/student')
