@@ -3,8 +3,8 @@ import course
 
 class data:
     def __init__(self):
-        self.df = pd.DataFrame(columns = range(8))
-        self.df.columns = ['Name','ID','Description','Days/Week', 'Level', 'Length', 'Grade', 'Credits']
+        self.df = pd.read_csv('22-23CourseMaster.csv')
+        #self.df.columns = ['Course','Short Description','Curriculumn','Len', 'Crs Typ', 'Dept Cd', 'Earned Crdts', 'Grade Req Crdts', 'Grd L', 'Grd H', 'T G']
 
     def addCourse(self, course):
         self.df.loc[len(self.df.index)] = course.getCourseData()
