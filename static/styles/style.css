@@ -209,7 +209,7 @@ tr:hover {
 	}
 
 .cart {
-	position:absolute;
+	position:fixed;
 	right: 0px;
 	top:115px;
 }
