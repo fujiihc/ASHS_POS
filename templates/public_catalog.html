@@ -108,7 +108,6 @@
                     container.style.display = "block";
             };
 
-
             for (var i = 0; i < dropdownBttns.length; i++) {
                 map1.set(dropdownBttns[i], theseContainers[i]);
                 dropdownBttns[i].addEventListener("click", onButtonClick);
@@ -121,12 +120,18 @@
                     const ddBttn = document.createElement("button");
                     ddBttn.className = "filterType";
                     ddBttn.innerHTML = filter[i];
+                    ddBttn.addEventListener("click", function() {
+                        if(ddBttn.style.backgroundColor == "darkgrey") {
+                            ddBttn.style.backgroundColor = "#262626";
+                        }
+                        else {
+                            ddBttn.style.backgroundColor = "darkgrey";
+                        }
+                    });
 
                     theseContainers[d].appendChild(ddBttn);
                 }
             }
         </script>
-
-
 </body>
 </html>
