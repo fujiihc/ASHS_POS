@@ -20,16 +20,15 @@
             <div class="container">
                 <div class="mainArea">
                     <div class="mainSpace">
-                        
-                        <form method="post" action="/catalog" onsubmit="myFunction(this.searchBar.value)">
-                            <div class="search_box">
-                                    <input type="text" class="input" placeholder="Search..." id="searchBar">
-                                </div>
-                            <div class="btn">
-                                <button name="searchButton" type="submit" class="fas fa-search"></button>
-                            </div>
-                                <!--https://fontawesome.com/v4.7/icon/search-->
-                        </form>
+                        <div class="search_box">
+                            <form method="post" action="/catalog" onsubmit="myFunction(this.searchBar.value)">
+                                <input type="text" class="input" placeholder="Search..." id="searchBar">
+                                    </div>
+                                <div class="btn">
+                                    <button name="searchButton" type="submit" class="fas fa-search"></button>
+                                    <!--https://fontawesome.com/v4.7/icon/search-->
+                            </form>
+                      </div>
                         
                         <div class="results">
                             <table>
