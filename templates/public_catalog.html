@@ -21,13 +21,14 @@
                 <div class="mainArea">
                     <div class="mainSpace">
                         <div class="search_box">
-                            <form method="post" action="/catalog" onsubmit="myFunction(this.searchBar.value)">
-                                <input type="text" class="input" placeholder="Search..." id="searchBar">
-                                    </div>
-                                <div class="btn">
+                            <input type="text" class="input" placeholder="Search..." id="searchBar">
+                            
+                            <div class="btn">
+                                <form method="post" action="/catalog" onsubmit="myFunction(this.searchBar.value)">
                                     <button name="searchButton" type="submit" class="fas fa-search"></button>
                                     <!--https://fontawesome.com/v4.7/icon/search-->
-                            </form>
+                                </form>
+                            </div>
                       </div>
                         
                         <div class="results">
