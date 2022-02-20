@@ -12,8 +12,6 @@ app = Flask(__name__)
 
 #have this built into somewhere else
 df = dt.data()
-#this is tester code because we dont have the actual data file yet
-#print(df.toString())
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 wsgi_app = app.wsgi_app
