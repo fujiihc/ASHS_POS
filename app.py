@@ -32,7 +32,6 @@ def home():
 @app.route('/catalog', methods = ['POST', 'GET'])
 def catalog():
     if request.method == 'POST':
-        #find a way to differentiate the post get signals with buttons rather than inputs
         results = df.getCourse(str(request.form.get('searchBar')).upper())
         return render_template('public_catalog.html', courseName = results['Short Description'].to_string(), length = results['Len'].to_string())
     return render_template('public_catalog.html')
