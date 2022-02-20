@@ -31,12 +31,12 @@ def home():
     return render_template('home.html')
 
 
-
 @app.route('/catalog', methods = ['POST', 'GET'])
 def catalog():
     if request.method == 'POST':
         #find a way to differentiate the post get signals with buttons rather than inputs
-        return render_template('public_catalog.html', variable = df.toString())
+        results = df.getCourse(str(request.form.get('searchBar')).upper())
+        return render_template('public_catalog.html', courseName = results['Short Description'].to_string(), length = results['Len'].to_string())
     return render_template('public_catalog.html')
 
 @app.route('/student')
@@ -56,3 +56,4 @@ if __name__ == '__main__':
     except ValueError:
         PORT = 5555
     app.run(HOST, PORT)
+
