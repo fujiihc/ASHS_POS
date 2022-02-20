@@ -21,16 +21,19 @@
                 <div class="mainArea">
                     <div class="mainSpace">
                         <div class="search_box">
-                            <input type="text" class="input" placeholder="Search..." id="searchBar">
+                            <form method="post" action="/catalog">
+                                <input type="text" class="input" placeholder="Search..." name="searchBar">
+                            </form>
                             
+
                             <div class="btn">
-                                <form method="post" action="/catalog" onsubmit="myFunction(this.searchBar.value)">
+                                <form method="post" action="/catalog">
                                     <button name="searchButton" type="submit" class="fas fa-search"></button>
                                     <!--https://fontawesome.com/v4.7/icon/search-->
                                 </form>
                             </div>
-                      </div>
-                        
+                        </div>
+
                         <div class="results">
                             <table>
                                 <tr>
@@ -39,11 +42,12 @@
                                     <td>
                                         <p class="course-name">Data Structures</p>
                                         <div class="descriptions">
-                                            {{variable}}
+                                            {{courseName}}
+                                            {{length}}
                                         </div>
                                     </td>
                                 </tr>
-                               
+
                             </table>
                         </div>
                     </div>
@@ -88,6 +92,7 @@
         </footer>
 
         <script>
+            
             //VARIABLES
             var theseContainers = document.getElementsByClassName("dropdown-container");
             var pathways = ["Buisness", "Computer Science", "Medicine", "Law"];
@@ -122,8 +127,8 @@
                     const ddBttn = document.createElement("button");
                     ddBttn.className = "filterType";
                     ddBttn.innerHTML = filter[i];
-                    ddBttn.addEventListener("click", function() {
-                        if(ddBttn.style.backgroundColor == "darkgrey") {
+                    ddBttn.addEventListener("click", function () {
+                        if (ddBttn.style.backgroundColor == "darkgrey") {
                             ddBttn.style.backgroundColor = "#262626";
                         }
                         else {
