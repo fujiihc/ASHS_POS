@@ -1,0 +1,441 @@
+ID,CourseName,Pre-Req,Description,Length,CreditArea,Dept,Credits,minGradeLevel,Business,CS,Govt,Health,Hum,Manu,STEM,SocSci,VisArts
+APRS,"ADVANCED PLACEMENT RESEARCH
+","Prerequisite:  Advanced Placement Seminar, including all assessment components of the course.
+","This course is the second of two courses in the College Board’s Advanced Placement Capstone Program.  Students enrolled in Advanced Placement Research will explore an academic topic, problem, issue, or idea of individual interest.  Students may dig deeper",YR,,,10,10,,X,X,X,X,X,,X,X
+APSM,"ADVANCED PLACEMENT SEMINAR
+","Prerequisite: Open to students entering grades 10 and 11
+","In this interdisciplinary course, students investigate real-world issues from multiple perspectives, gathering and analyzing information from multiple sources in order to develop, communicate, and defend credible and valid evidence-based arguments present",YR,,,10,10,,X,X,X,X,X,,X,X
+AR100,STUDIO ART I,No prerequisite,"Studio Art I is a comprehensive, year-long course in which students explore and develop a variety of artistic techniques by learning foundational skills in drawing, painting, printmaking, and sculpture across a variety of media. Through projects and exper",YR,,AR,10,9,,X,X,X,X,X,X,X,X
+AR111,DIGITAL PHOTOGRAPHY,No Prerequisite,"Digital Photography is a semester course that introduces students to the digital camera and the emerging technologies of digital photography. These technologies include high quality color printers, scanners, and computers through Adobe Creative Suite appl",SM,,TE,5,9,,X,X,X,X,X,X,X,X
+AR112,ADVANCED DIGITAL PHOTOGRAPHY,"Prerequisite: Digital Photography
+","Advanced Digital Photography is a semester course designed for students who have successfully completed Digital Photography and are interested in furthering their knowledge.  Building on Digital Photography, students will explore alternative processes lik",SM,,AR,5,9,,X,,,X,X,X,X,X
+AR113,GRAPHICS & DESIGN,No prerequisite,Graphics Design is a semester course that introduces students to the principles of 2-D design and visual communication.  Students explore techniques used by commercial artists and graphic designers through the elements and principles of design.  Coursewor,SM,,AR,5,9,,X,X,X,X,X,X,X,X
+AR114,ADVANCED GRAPHICS & DESIGN,"Prerequisite:  Graphics & Design
+","Advanced Graphics & Design is a semester course that challenges students to apply principles of design and visual communication techniques to conceptually challenging projects.  Advanced Drawing, Painting and Printmaking techniques will be explored in add",SM,,AR,5,9,,,,,X,X,X,X,
+AR115,DRAWING,"No prerequisite
+","Drawing is a semester course that presents students with an introduction to various drawing techniques. The course will focus on observational drawing, composition, and design. Projects will help students understand the concepts of linear perspective, sph",SM,,AR,5,9,,X,X,X,X,X,X,X,X
+AR116,ADVANCED DRAWING,Prerequisite:  Drawing,"Advanced Drawing is a semester course in which students will use a variety of alternative strategies to further develop their drawing technique. In addition to pencil, charcoal, and digital drawing tools, students will also explore the use of pastel, wate",SM,,AR,5,9,,,,,X,X,X,X,
+AR117,PAINTING,Prerequisite: Drawing and/or recommendation of instructor,"Painting is a semester course that presents students with an introduction to various painting techniques of watercolor, oil, and acrylic. An emphasis will be placed upon color theory, composition and how to make the most of your painting tools. Students w",SM,,AR,5,9,,X,X,X,X,X,X,X,X
+AR118,ADVANCED PAINTING,"Prerequisite: Painting 
+",Advanced Painting is a semester course that provides students with the opportunity to utilize the basic skills they learned in Painting and to advance their techniques through further in-depth studies of painting.  Students will develop a deeper understan,SM,,AR,5,9,,,,,,X,X,X,
+AR121,CERAMICS: WHEEL-THROWING,"Prerequisite: Ceramics: Hand-Building or recommendation of instructor 
+","Ceramics: Wheel-Throwing is a semester course that will introduce students to the skills, tools, and materials used in creating 3-D works of art using the potter’s wheel. Beginning with the fundamentals of centering clay to making more sophisticated forms",SM,,AR,5,9,,X,X,X,X,X,X,X,
+AR122,CERAMICS: ADVANCED WHEEL-THROWING,Prerequisite: Ceramics: Wheel-Throwing,Ceramics: Advanced Wheel-Throwing is a semester course designed for students who wish to further their knowledge and skills using the potter’s wheel as their main tool for production. Wheel-Throwing Advanced engages students with more complex 3-D design p,SM,,AR,5,10,,,,,X,X,X,X,
+AR123,CERAMICS: HAND-BUILDING,No prerequisite,"Ceramics: Hand-Building is a semester course that will introduce students to the skills, tools, and materials used in creating 3-D works of art without the use of a pottery wheel. Hand-building techniques such as pinch, coil and slab will be utilized to m",SM,,AR,5,9,,X,X,X,X,X,X,X,
+AR124,CERAMICS: ADVANCED HAND-BUILDING,Prerequisite: Ceramics: Hand-Building,Ceramics: Advanced Hand-Building is a semester course designed to give students who have completed Ceramics: Hand-Building the opportunity to continue working with three-dimensional media without the aid of the potter’s wheel. Advanced Hand-Building engag,SM,,AR,5,9,,,,,X,X,X,X,
+AR125,CRAFTS DESIGN,"No Prerequisite
+",Crafts Design is a semester course in which students will explore a variety of craft techniques and materials. The History of Craft and the ways in which Crafts reflect the people and the society who create them is central to the course. 3-D design concep,SM,,AR,5,9,,X,X,X,X,X,X,X,X
+AR126,"ILLUSTRATION AND ANIMATION
+","Prerequisite: Drawing, Studio Art I or recommendation of instructor
+","Illustration and Animation is a semester course in which students explore foundational concepts of 2-D and 3-D visuals using digital tools and the Adobe Creative Suite. Students learn to story-board and develop imagery for creative, expressive, and commer",SM,,AR,5,9,,X,X,X,X,X,X,X,X
+AR127,"CERAMICS: PROJECTS IN SCULPTURE
+","Prerequisite: recommendation of instructor
+","Ceramics: Projects in Sculpture I is a semester course that provides students the opportunity to continue ceramic studies by choosing a specific topic or technique to develop an individualized, cohesive body of three-dimensional work. Students will mainta",SM,,AR,5,10,,,,,,X,X,X,
+AR128,"CERAMICS: ADVANCED PROJECTS IN SCULPTURE
+","Prerequisite: Ceramics: Projects in Sculpture
+",Ceramics: Advanced Projects in Sculpture is a semester course that provides students the opportunity to continue ceramic studies by choosing a personal concept for making 3-D work that will culminate in a final portfolio of related works and a written art,SM,,AR,5,10,,,,,,X,X,X,
+AR200,HONORS STUDIO ART II,"Prerequisite: Studio Art I or two art semester electives where one is Drawing, or a portfolio review
+","Studio Art II is an honors-level, year-long course in which students increase their depth of study in art and design fundamentals. Students explore advanced art techniques including watercolor and acrylic painting, drawing, and sculpture.  Studio Art II f",YR,,AR,10,10,,X,X,X,X,X,X,X,X
+AR300,HONORS STUDIO ART III,"Prerequisite: Honors Studio Art II and/or recommendation of instructor
+","Studio Art III is an honors-level, year-long course in which students focus on furthering and applying their understanding of artistic techniques and communication skills to create and present a portfolio. Students engage in constructive peer critiques th",YR,,AR,10,11,,X,X,X,X,X,X,X,X
+AR310,HONORS STUDIO ART TECHNIQUES AND APPLICATIONS,"Prerequisite: Honors Studio Art II or recommendation of instructor
+Corequisite: Honors Studio Art III
+","This course provides serious art students contemplating a career in the arts with advanced formal, technical, and expressive instruction in painting, drawing, and printmaking.  Students will develop higher-level thinking skills, art-related technology ski",YR,,AR,10,11,,X,X,X,X,X,X,X,X
+AR500,ADVANCED PLACEMENT STUDIO ART AND DESIGN,"Prerequisite: Honors Studio Art II
+Corequisite: Honors Studio Art III","Advanced Placement Studio Art is a full-year course in which students will create a cohesive body of work in a subject area of their choice. Students choose to submit a Drawing, 2-D, or 3-D Portfolio. Students are responsible to complete one work biweekly",YR,,AR,10,12,,X,X,X,X,X,X,X,X
+BU111,"INTRODUCTION TO BUSINESS
+","No prerequisite
+","Students will truly be given a glimpse of the Business/Entrepreneurship Pathway during this semester course, exploring Accounting, Marketing, Entrepreneurship, and career opportunities.  Students will be introduced to several beginning topics of courses i",SM,,BU,5,9,,X,,,,,,,
+BU112,"COMPUTING ESSENTIALS
+","No prerequisite
+",Computing Essentials focuses on the effective use of applications for use in the workplace or school environments.  Instruction will be directed toward industry certification that will build the students’ skill set while equipping the student with skills ,SM,,BU,5,9,,X,X,,,,,,
+BU113,"INTRODUCTION TO INFORMATION TECHNOLOGY
+","No prerequisite
+","Introduction to Information Technology is designed to explore the nature and scope of Information Technology (IT).   Students will plan and install a network using wireless technology, develop critical thinking and problem-solving skills using Cisco Packe",SM,,BU,5,9,,X,X,,,,,,
+BU114,"INTRODUCTION TO COMPUTER SCIENCE
+","No Prerequisite
+","Introduction to Computer Science introduces students to Computer Science through a systematic approach.  Students will learn how to create and share the content on their own web pages. After deciding what content they want to share with the world, they wi",SM,,BU,5,9,,X,X,,,,,,
+BU115,"SPORTS AND ENTERTAINMENT MARKETING I
+","No Prerequisite
+","Discussions will cover the decision-making process of sports teams and agents, interactions between professional sports and the media, and problems involving the creation and distribution of sports entertainment products.  Strategies of planning, organizi",SM,,BU,5,10,,X,,,,,,,
+BU116,"SPORTS AND ENTERTAINMENT MARKETING II
+","Prerequisite:  Sports and Entertainment Marketing I
+","Sports and Entertainment Marketing II is a project based course where students apply their understanding of marketing, specifically in the context of sports and entertainment.  Students will have the opportunity to promote sporting and arts/entertainment ",SM,,BU,5,11,,X,,,,,,,
+BU117,"ENTREPRENEURSHIP I
+","No prerequisite
+","Entrepreneurship I is for designers, engineers, ""techies"", writers, and all students interested in excelling in the 21st Century. Students will develop an entrepreneurial mindset- a mindset capable of critical thinking and problem solving in a fast-paced,",SM,,BU,5,10,,X,,,,,,,
+BU118,"ENTREPRENEURSHIP II
+","Prerequisite: Entrepreneurship I
+","Students in Entrepreneurship II will use Design Thinking to identify a business opportunity and take action! Once students have formulated their business idea, they will conduct market research, secure financial and human resources, establish relationship",SM,,BU,5,11,,X,,,,,,,
+BU121,"MONEY AND INVESTING
+","No prerequisite
+",Understanding the various components of an individual's personal finances is helpful for future financial success. Money and Investing presents knowledge and skills for students to make informed decisions and to manage real world financial issues. The ent,SM,,BU,5,10,,X,,,,,,,
+BU211,"INFORMATION TECHNOLOGY I
+","Prerequisite: Introduction to Information Technology
+","Information Technology I will introduce content necessary to take the Certified Cisco Network Associate (CCNA) and Certified Cisco CyberOps certification exams.  The course will utilize the Cisco Networking Academy's Introduction to Networks, Cybersecurit",YR,,BU,10,10,,,X,,,,,,
+BU212,"INFORMATION TECHNOLOGY II
+","Prerequisite:  Information Technology I
+","Information Technology II will continue with the content necessary to take the Certified Cisco Network Associate (CCNA) and Certified Cisco CyberOps certification exams.  The course will utilize the Cisco Networking Academy's Switching, Routing & Wireless",YR,,BU,10,11,,,X,,,,,,
+BU213,"ACCOUNTING I (DUAL ENROLLMENT GWYNEDD-MERCY UNIVERSITY)
+","Prerequisite:  Strong Math Skills 
+","Accounting is considered to be the language of business. Therefore, students considering a major in an area of Business Administration (International Business, Marketing, Finance, Accounting, Entrepreneurship, Management, etc.) should enroll in this intro",YR,,BU,10,10,,X,,,,,,,
+BU214,"ACCOUNTING II
+","Prerequisite:  Accounting I
+","Accounting II expands upon the basic principles learned in Accounting I through Departmental Accounting. Departmental Accounting refers to maintaining accounts for one or more branches or departments of the company, with revenues and expenses of the depar",YR,,BU,10,11,,X,,,,,,,
+BU500,"ADVANCED PLACEMENT COMPUTER SCIENCE PRINCIPLES 
+","Prerequisite: Algebra 1 and/or Introduction to Computer Science
+",AP Computer Science Principles is an introductory college-level computing course that introduces students to the breadth of the field of computer science. Students learn to design and evaluate solutions and to apply computer science to solve problems thro,YR,,BU,,9,,X,X,,,,,,
+BU520,"HONORS ADVANCED DATA STRUCTURES AND ALGORITHMS
+","Prerequisite: Successful completion of AP Computer Science A Exam and Recommendation of Instructor
+","Exploration of advanced topics in Computer Science, including Advanced Data Structures, Database Administration, Data Science Concepts and Tools, and development of projects for inclusion in the students’ Career Portfolio.
+",YR,,BU,10,11,,,X,,,,,,
+BUWS,"WORK STUDY 
+",Prerequisite: Work Study Contract,"The Work Study Program provides students in grades 11 and 12 an opportunity to meet their academic requirements for graduation while gaining valuable work experience.   Through this experience, they will build the knowledge, skills and self-confidence to ",YR,,,,10,,X,X,X,X,X,X,X,X
+ELDA,"ELD LEVEL A
+",,A student in ELD Level A demonstrates an English proficiency level in the range of Entering (Level 1) or Emerging (Level 2) according to the PA English Language Development Standards Indicators. A student at this level has limited ability in understanding,YR,,EN,10,9,,x,x,x,x,x,x,x,x
+ELDB,"ELD LEVEL B
+",,"A student in ELD Level B demonstrates an English proficiency level in the range of Emerging (Level 2), Developing (Level 3) or Expanding (Level 4) according to the PA English Language Development Standards Indicators. A student at this level understands a",YR,,EN,10,9,,x,x,x,x,x,x,x,x
+ELDC,"ELD LEVEL C
+",,A student in ELD Level C demonstrates an English proficiency level in the range of Expanding (Level 4) or Bridging (Level 5) according to the PA English Language Development Standards Indicators. A student at this level understands and speaks English but ,YR,,EN,10,9,,x,x,x,x,x,x,x,x
+EN110,"HONORS ENGLISH I
+","No prerequisite
+","This course is designed to present students with the opportunity to practice all of the language arts in a variety of contexts and for a variety of audiences. The course is designed to take a multi-genre approach to literature by exploring novels, short s",YR,,EN,,9,,X,X,X,X,X,X,X,X
+EN111,"ENGLISH I
+","No prerequisite
+","This course is designed to present students with the opportunity to practice all of the language arts in a variety of contexts and for a variety of audiences. The course is designed to take a multi-genre approach to literature by exploring novels, short s",YR,EN,EN,10,9,,X,X,X,X,X,X,X,X
+EN120,"HONORS ENGLISH II
+","Prerequisite:  English I
+","Provides an in-depth study of the great works of American literature with a focus on both nineteenth and twentieth century writers. In composition, the skills of exposition and argumentation are reinforced, and the essays of critical analysis are introduc",YR,EN,EN,10,10,,X,X,X,X,X,X,X,X
+EN121,"ENGLISH II
+","Prerequisite:  English I
+",Stresses the skills of literary analysis through a study of selected works primarily in American literature. The focus in composition is on expository and persuasive essays with particular attention given to a variety of organizational techniques. The bas,YR,EN,EN,10,10,,X,X,X,X,X,X,X,X
+EN130,"HONORS ENGLISH III 	 
+","Prerequisite:  English II
+","Provides an in-depth study of the great works of British and Commonwealth literature with a focus on writers, both classic and contemporary. In composition the skills of critical analysis are developed, and the essay of explication is introduced. The gram",YR,EN,EN,10,11,,X,X,X,X,X,X,X,X
+EN131,"ENGLISH III 	
+","Prerequisite: English II 
+","Develops the skills of literary analysis through a study of selected works primarily in British and Commonwealth literature, along with an infusion of high-interest readings from American and/or world literature. The focus in composition is on expository ",YR,EN,EN,10,11,,X,X,X,X,X,X,X,X
+EN141,"ENGLISH IV
+","Prerequisite: English III
+","Develop the skills of literary analysis through a study of selected works primarily in world literature.  The focus in composition is on explication with particular attention given to the essay of comparison/contrast. The basics of grammar are reviewed, e",YR,EN,EN,10,12,,X,X,X,X,X,X,X,X
+EN201,"AFRICAN AMERICAN LITERATURE: RECONSTRUCTION TO THE HARLEM RENAISSANCE
+","No prerequisite 
+","This course will focus on the literary canon of African American writers from the Period of Reconstruction through the Harlem Renaissance. Students will explore the history, experiences, theories, and philosophies of African Americans through the literatu",SM,EN,EN,5,10,,X,X,X,X,X,X,X,X
+EN202,"AFRICAN AMERICAN LITERATURE: THE CIVIL RIGHTS MOVEMENT TO THE PRESENT
+","No prerequisite 
+","This course will focus on the literary canon of African American writers from the Civil Rights movement to the present. Students will explore the history, experiences, theories, and philosophies of African Americans through the literature represented by i",SM,,EN,5,10,,X,X,X,X,X,X,X,X
+EN203,"INTRODUCTION TO ACTING AND THEATER
+","No prerequisite
+","In this course, students will be introduced to basic theater terms, Uta Hagen’s 9 questions, delivery of monologues and dialogues, script writing, costume design, and an overall understanding of the total theater production.  Students will primarily learn",SM,,EN,5,9,,,,X,,X,,,X
+EN204,"ADVANCED ACTING AND THEATER
+","Prerequisite: Introduction to Acting and Theater
+","In this course, students will pursue a more nuanced understanding of the dynamics of acting, directing, and theater logistics. This entirely interactive course will prompt students to conduct in-depth studies and performances of monologues, scenes, and fu",SM,EN,EN,5,10,,,,X,,X,,,X
+EN205,"INTRODUCTION TO CINEMA					
+","No prerequisite 
+","Cinema is an introduction to film analysis, which is an enjoyable, entertaining, and instructive process. Among the areas addressed will be a film's message and how and by whom that message is communicated. This, of course, will lead to larger meanings as",SM,,EN,5,9,,,,,,X,,X,X
+EN206,"CREATIVE WRITING 	
+","No prerequisite 
+","Provides students with the opportunity to explore the dynamics of the creative process through computer assisted writing. Using computer software in a supportive climate, students will generate documents that reflect their mastery of various writing techn",SM,,EN,5,9,,X,,X,,X,,,X
+EN207,DEBATE ,"No prerequisite 
+","Is designed for students who hope to pursue careers in law or communications, or for students who would like to sharpen their skills in research and analysis. Formal debate procedure will be examined, followed by a detailed analysis of the current debate ",SM,,EN,5,9,,X,X,X,,X,,,X
+EN208,JOURNALISM ,"No prerequisite 
+","Introduces students to news writing and reporting, as well as the analytical skills needed to determine what constitutes ""news"" in the eyes of the media and the general public. Students will learn the roles that the newspaper, Internet, and television med",SM,,EN,5,10,,X,X,X,,X,,,X
+EN209,"MEDIA LITERACY
+","No prerequisite
+","The Media Literacy course provides students with the skills needed to determine the reliability and validity of the information disseminated daily through the internet, social media apps like Instagram and Snapchat, television, and print media. Using the ",SM,EN,EN,,9,,X,X,X,X,X,,,X
+EN211,"PUBLIC SPEAKING
+","No prerequisite
+","Is a ""tool"" course that should have social and vocational value for all students. It aims to develop effective oral communication. Correct voice production, pronunciation, and the art of listening are all stressed. Types of speeches and techniques of deli",SM,,EN,5,10,,X,X,X,X,X,X,X,X
+EN212,"VIDEO PRODUCTION I 	
+","No prerequisite
+","Involves students in the creation, development, and presentation of various media programs, such as the commercial, public service announcement, newscast, mini-documentary, visual story, and short film/video piece. Emphasis is placed upon writing program ",SM,,EN,5,10,,X,X,,,X,,X,X
+EN213,"VIDEO PRODUCTION II
+","Prerequisite: Video Production I
+","Video Production II is a more demanding extension of the Video Production I elective. This course involves students in the creation, development, and presentation of various media/video programs, such as the feature segment, commercial, public service ann",YR,,EN,10,11,,X,X,,,X,,X,X
+EN500,"ADVANCED PLACEMENT ENGLISH LANGUAGE AND COMPOSITION 
+","Prerequisite:  English II
+",The Advanced Placement English Language and Composition course will run as an elective course open to both 11th and 12th grade students.  The course will engage students in becoming skilled prose readers from a variety of rhetorical contexts and time peri,YR,EN,EN,10,11,,X,X,X,X,X,X,X,X
+EN510,"ADVANCED PLACEMENT ENGLISH LITERATURE AND COMPOSITION
+","Prerequisite: English III
+","Provides an in-depth study of the great works of world literature with a focus on major literary movements. In composition, the intrinsic skills of explication are developed, and the scholarly essay based on elements of comparative literature is introduce",YR,EN,EN,10,12,,X,X,X,X,X,X,X,X
+ENIDS,"INTERDISCIPLINARY STUDIES
+","Prerequisite: Recommended for grade 12. Admission to this course is by application. 
+","The Interdisciplinary Studies course is a humanities course that provides students with the opportunity to explore the branches of knowledge concerned with understanding humanity and its cultural expressions. It is the integrated study of history, economi",YR,,EN,,12,,X,X,X,X,X,X,X,X
+FC101,"APPAREL DESIGN I 
+","No prerequisite 
+","Apparel Design I offers an opportunity to gain career skills in all facets of the fashion industry, providing students with a fundamental understanding of fibers, fabrics, textile construction and design. Students learn basic pattern making skills, comput",SM,,CS,5,10,,,,,,,,,
+FC102,"APPAREL DESIGN II 
+",Prerequisite: Apparel Design I ,,SM,,CS,5,11,,,,,,,,,
+FC103,"APPAREL DESIGN III
+","Prerequisite: Apparel Design II
+","Apparel Design III allows students to explore their talents and skills within the fashion industry for higher education options and career choices.  This course provides an opportunity to gain skills through research and projects in illustration, patternm",SM,,CS,5,12,,,,,,,,,
+FC201,"CHEF’S WORKSHOP 	
+","No prerequisite 
+","Chef’s Workshop provides opportunities for students to develop basic skills in nutrition, meal planning, food purchasing, food preparation, regional foods, and consumer topics. Food careers are explored.
+",SM,,CS,5,10,,,,,,,,,
+FOI1,"FOUNDATIONS OF INNOVATION I
+","No prerequisite
+","Foundations of Innovation I provides opportunities for students to plan for their future by identifying their interests and strengths, interacting with community partners, and investigating the college and career pathways.  Students will develop effective",SM,,,5,9,,,,,,,,,
+FOI2,"FOUNDATIONS OF INNOVATION II
+","No prerequisite
+","Foundations of Innovation II provides opportunities for students to invest in their future by equipping them with the knowledge and skills to manage money effectively in life and the workplace, exploring secondary and post-secondary options, and preparing",SM,,BU,5,10,,,,,,,,,
+HP101,"FITNESS AND WELLNESS I
+","No prerequisite
+","Fitness and Wellness I is a requirement for all 9th grade students.  This hybrid course will include time in the traditional classroom setting working on wellness concepts across the following topics: health and wellness, fitness and nutrition, mental and",SM,HP,HP,5,9,,,,,X,,,,
+HP102,"FITNESS AND WELLNESS II
+","No prerequisite
+","Fitness and Wellness II is a requirement for all 11th grade students.  The classroom portion of this course focuses on the study of human behavior and sexuality.  Human behavior consists of a complete study of mental health, from the recognition of basic ",SM,HP,HP,5,11,,,,,X,,,,
+HP103,"UNIFIED FITNESS AND WELLNESS 
+","Prerequisite: Instructor Approval 
+","This course combines students of all abilities to participate cooperatively in physical activities including fitness, lifetime activities, and individual and team sports.  Students will increase confidence, communication, and leadership skills while worki",SM,HP,HP,5,9,,,,,X,,,,
+HP201,"ADVENTURE EDUCATION						
+","No prerequisite	
+","Adventure Education is the ultimate experience in social emotional learning (SEL) through a variety of activities and challenges across various environments. In other words, how do you perceive obstacles, solve problems,  communicate, set goals, perform t",SM,HP,HP,5,10,,,,,X,,,,
+HP202,"AQUATIC ACTIVITIES
+","Prerequisite: Swimming proficiency 
+","Any student who is a proficient swimmer and wants to explore various activities and games while also improving fitness levels in the aquatic setting should enroll.  Water volleyball, basketball, and polo are some of the games you’ll enjoy.  Adventure-base",SM,HP,HP,5,10,,,,,X,,,,
+HP203,"INTRODUCTION TO EXERCISE SCIENCE 
+","No prerequisite 
+","This elective is appropriate for students interested in health and human services careers.  Course topics include: organization of the body, the skeletal system, articulations and skeletal muscles, the blood, the cardiovascular system, and the respiratory",SM,HP,HP,5,10,,,,,X,,,,
+HP204,LIFEGUARDING,"No prerequisite
+","American Red Cross Lifeguard Certification - Students will gain knowledge and skills needed to prevent and respond quickly to aquatic emergencies and injuries, prevent drownings, and promote facility safety. Students will be able to demonstrate rescue ski",SM,,HP,5,9,,,,,X,,,,
+HP205,"LIFETIME SPORTS & ACTIVITIES
+","No prerequisite	
+","Lifetime Sports & Activities will enable students to engage in a variety of lifetime sports and activities.  The main focus is on the development of skills, game strategy, rules, etiquette, and safety precautions for the following: Tennis, Ping-pong, Badm",SM,HP,HP,5,10,,,,,X,,,,
+HP206,"OPTIMAL WELLNESS
+","No prerequisite 
+","This course is designed to explore all aspects of the wellness continuum and empower individuals to take a proactive approach to overall health and wellness for a lifetime.  Discover a world of alternative, complementary, and/or integrative medical system",SM,HP,HP,5,11,,,,,X,,,,
+HP207,"PERSONAL FITNESS
+","No prerequisites 
+","Personal Fitness is designed to equip students with the knowledge and skills necessary for maintaining an optimal level of fitness for a lifetime.  The ultimate goal is finding new and exciting ways to increase heart rate.  Circuit training, spin bikes, Z",SM,HP,HP,5,9,,,,,X,,,,
+HP208,"STRENGTH & CONDITIONING
+","No prerequisites 
+","The course provides an opportunity for development of strength and conditioning for various sports and fitness related activities. Free weights, exercise machines, and conditioning activities will be incorporated to promote improvement in strength, endura",SM,HP,HP,5,9,,,,,X,,,,
+HP209,"TEAM SPORTS AND COMPETITIVE GAMES
+","No prerequisite	
+","The purpose of this elective course is to develop the physical, social, and emotional skills necessary to be competent in many forms of movement in a team or group setting. The integration of fitness concepts throughout gameplay is critical to the success",SM,HP,HP,5,10,,,,,X,,,,
+HP210,"ULTIMATE PHYSICAL EDUCATION
+","Prerequisite: Permission from a Physical Education staff member.  
+",Ultimate Physical Education is the combination of the full range of electives offered throughout the physical education program at an intensified level.  Students looking to challenge themselves and others across every category of activity and environment,SM,HP,HP,5,11,,,,,X,,,,
+HP211,"UNIFIED PARTNERS INTERNSHIP
+","Prerequisite: Application Process to be approved by Physical Education staff.
+",In this program peer tutors will be paired with students with special needs in a Unified Fitness and Wellness class. This program will give regular education students the opportunities for hands-on experiences in the teaching process. They will learn more,SM,HP,HP,5,11,,,,,X,,,,X
+HP212,WATER SAFETY INTERNSHIP,"Prerequisite: Application Process to be approved by Physical Education staff.
+",Water Safety Internship is for students with a valid lifeguarding certification.  Students will gain practical experience by lifeguarding various physical education classes and help to ensure a safe environment.  Students will also assist the teacher with,SM,,HP,5,11,,,,,X,,,,X
+MA100,HONORS ALGEBRA I ,,No prerequisite,YR,MA,MA,10,9,,x,x,x,x,x,x,x,x
+MA101,ALGEBRA I,,No prerequisite ,YR,,MA,10,9,,x,x,x,x,x,x,x,x
+MA110,HONORS GEOMETRY,Prerequisite:   Algebra I,,YR,MA,MA,10,10,,x,x,x,x,x,x,x,x
+MA111,GEOMETRY,Prerequisite:   Algebra I,,YR,MA,MA,10,10,,x,x,x,x,x,x,x,x
+MA120,HONORS ALGEBRA II AND TRIGONOMETRY ,Prerequisite:  Honors Geometry,"This is a rigorous course combining topics in Algebra I and Precalculus.  It requires a strong student commitment in terms of effort and study skills. The primary focus is on the study of polynomial, rational, radical, exponential, logarithmic, trigonomet",YR,MA,MA,10,10,,x,x,x,x,x,x,x,x
+MA130,HONORS ALGEBRA II,,Prerequisite:  Algebra I,YR,MA,MA,10,9,,x,x,x,x,x,x,x,x
+MA131,ALGEBRA II,,Prerequisite: Algebra I,YR,MA,MA,10,9,,x,x,x,x,x,x,x,x
+MA140,HONORS PRECALCULUS & CALCULUS A,,Prerequisite: Honors Algebra II and Trigonometry ,YR,MA,MA,10,11,,x,x,,x,,,x,
+MA141,FINITE MATHEMATICS,,Prerequisite: Algebra II,YR,MA,MA,10,11,,x,x,x,x,x,x,x,x
+MA142,INTRODUCTION TO STATISTICS,Prerequisite:  Algebra II,,SM,MA,MA,5,11,,x,x,x,x,x,x,x,x
+MA143,PRECALCULUS-FUNCTIONS,Prerequisite: Algebra II or Honors Alg II,"This semester course builds upon the foundations of algebra while looking at foundational functions and their inverses in greater depth and detail.  Topics include polynomial, rational, radical, exponential, and logarithmic functions and related expressio",SM,MA,MA,5,11,,x,x,,x,,,x,
+MA144,PRECALCULUS-TRIGONOMETRY ,,Prerequisite: Algebra II or Honors Alg II,SM,MA,MA,5,11,,,x,,x,,,x,
+MA145,ALGEBRA III,Prerequisite: Algebra II,"The purpose of this course is to strengthen algebraic skills and introduce topics that will be helpful in taking a college course in Precalculus, Finite Mathematics or Introductory Statistics. Topics include polynomial, rational, exponential and logarithm",SM,MA,MA,5,11,,x,x,,x,,,x,
+MA146,CALCULUS,Prerequisite: Precalculus or Honors Precalculus & Calculus A,"Calculus offers dual enrollment college credit from Montgomery County Community College. It uses a college text and is equivalent to a Calculus I college course. There is much memorization and rigor in this course. Excellent algebra skills, study habits a",YR,MA,MA,10,12,,x,x,,x,,,x,
+MA500,ADVANCED PLACEMENT CALCULUS AB,Prerequisites: Precalculus or Honors Precalculus & Calculus A,"This course is equivalent to one semester of a college calculus course. It follows the curricula as recommended by the College Board Advanced Placement Program. Topics include limits, the derivative, differentiation and integration rules for polynomial, e",YR,MA,MA,10,12,,x,x,,x,,,x,
+MA510,ADVANCED PLACEMENT CALCULUS BC,Prerequisite: Honors Precalculus & Calculus A with grade “B” or better,"AP Calculus BC continues where Honors Precalculus & Calculus A concludes. For this reason, it is only available to students who have taken the prerequisite. AP Calculus BC is equivalent to more than two semesters of college calculus. It follows the curric",YR,MA,MA,10,12,,x,x,,x,,,x,
+MA520,ADVANCED PLACEMENT STATISTICS,Prerequisite: Algebra II,This course follows the curriculum recommended by the College Board Advanced Placement Program. There is an emphasis on preparation and practice for the AP Statistics Exam. Students are expected to take the AP exam and may receive up to 3 college credits ,YR,,MA,10,11,,x,x,x,x,x,,x,x
+MU101,Music Appreciation,No Prerequisite,"Music Appreciation will focus on both music theory and music history.  This course is designed for the student who wants to learn more about music, but not enroll in the AP Music Theory program.  By exploring different time periods and studying different ",YR,,MU,10,9,,X,X,X,X,X,X,X,X
+MU102,Piano,No Prerequisite,This course provides an opportunity for students with no previous keyboard experience to explore the fundamental principles of keyboard technique. Music reading and theory are emphasized through the development of basic playing technique. Students work at,YR,,MU,10,9,,X,X,X,X,X,X,X,X
+MU103,Piano II,Piano I or Approval of Instructor,"This course provides an opportunity for students with previous keyboard experience to develop intermediate to advanced keyboard techniques through a variety of exercises and literature. Students work at their own pace, making this a very individualized co",YR,,MU,10,10,,X,X,,,X,,X,
+MU104,Vocal Workshop,No Prerequisite,Vocal workshop is a semester course for students interested in developing their singing skills. Students engage in applied classroom instruction about healthy and artistic voice production and performance. Students learn about singing and theatrical techn,SM,,MU,5,9,,X,X,X,X,X,X,X,X
+MU105,"INSTRUMENTAL WORKSHOP
+",No Prerequisite,Instrumental Workshop provides students opportunities to develop their expressive music skills by learning a band or string instrument. Students engage in applied classroom instruction about healthy and artistic production and performance on a band or str,SM,,MU,5,9,,X,X,X,X,X,X,X,X
+MU106,MODERN MUSIC WORKSHOP,,No prerequisite,SM,,MU,5,9,,X,X,X,X,X,X,X,X
+MU111,Music Theory and Composition I,No Prerequisite,"Music Theory and Composition I is a year-long course that introduces students to the rudiments of music, functional harmony studies, and using music notation to communicate creative concepts and ideas. Students complete individual and group analysis and c",YR,,MU,10,9,,X,X,X,X,X,X,X,X
+MU120,Honors Music Theory and Composition II,"Music Theory and Composition I and/or recommendation of instructor 
+Honors Music Theory and Composition II is a year-long course in which students learn and apply advanced concepts through analysis and composition.",Students study and create works in a variety of styles while developing their own compositional style. Learning to listen and provide peer feedback is a valuable skill supported throughout the course. Homework assignments given will be commensurate with t,YR,,MU,10,10,,X,X,X,,X,,X,X
+MU130,Honors Advanced Studies in Music Design and Production,AP Music Theory,Honors Advanced Studies in Music Design and Production is a semester course for students who wish to continue advancing and expanding their music skills in the areas of music technology and music theory. Through a personalized project-based approach to in,SM,,MU,5,11,,X,X,X,,X,,X,X
+MU201,Concert Band,Recommendation of the Band director,"Concert Band is a year-long, repeated course in which students develop their skills as band musicians. Membership is open and is informed by each member's placement audition. Rehearsals develop and reinforce basic ensemble skills, musical concepts, musici",YR,,MU,10,9,,X,X,X,X,X,X,X,X
+MU202,SYMPHONIC BAND ,,Prerequisite: Audition,YR,,MU,10,9,,X,X,X,X,X,X,X,X
+MU211,Concert Choir,No Prerequisite,"Concert Choir is a year-long, repeated course in which students develop their skills as choral singers. Membership is open. Rehearsals develop and reinforce basic ensemble skills, musical concepts, musicianship, and professionalism. The ensemble explores ",YR,,MU,10,9,,X,X,X,X,X,X,X,X
+MU212,Chorale,Audition,"Chorale is a year-long, repeated course in which students advance their skills as choral singers. Membership is achieved through an audition. Rehearsals develop and reinforce advanced ensemble skills, musical concepts, musicianship, and professionalism. T",YR,,MU,10,9,,X,X,X,X,X,X,X,X
+MU221,Orchestra,Recommendation of the Orchestra director,"Orchestra is a year-long, repeated course in which students develop their skills as string musicians. Membership is open and is informed by each member's placement audition. Rehearsals develop and reinforce basic ensemble skills, musical concepts, musicia",YR,,MU,10,9,,X,X,X,X,X,X,X,X
+MU222,Symphonic Orchestra ,Audition,"Symphonic Orchestra is a year-long, repeated course in which students advance their skills as string musicians. Membership is achieved through an audition. Rehearsals develop and reinforce advanced ensemble skills, musical concepts, musicianship, and prof",YR,,MU,10,9,,X,X,X,X,X,X,X,X
+MU301,Music Technology 1,No Prerequisite,"Music Technology I is a course in which students begin exploring the many facets of this creative and innovative field. Creation, production, engineering, programming, and entrepreneurship are all key areas of practice within the music technology field. S",YR,,MU,10,9,,X,X,X,X,X,X,X,X
+MU302,Music Technology II,Music Technology I or recommendation of instructor,"Music Technology II is a year-long course in which students advance their skills across the areas of  creation, production, engineering, programming, and entrepreneurship. Students learn more advanced features and uses of the digital instruments, digital ",YR,,MU,10,10,,X,X,X,X,X,X,X,X
+MU500,Advanced Placement Music Theory,Honors Music Theory and Composition II,"AP Music Theory is a year-long course that provides an in-depth study of the processes of music performance, composition, and analysis by focusing on the development of skills that include identifying features of pitch, interval, scales and keys, chords, ",YR,,MU,10,11,,X,X,X,,X,,X,X
+RD111,"POPULAR CONTEMPORARY LITERATURE
+","No prerequisite
+",This course is designed with a specific emphasis on critical analysis skills. Students will read self-selected materials and high-interest teacher-assigned literary works from a wide variety of genres in the realm of adolescent and young adult literature.,SM,RD,RD,5,10,,,,X,,X,,,X
+SC100,"HONORS BIOLOGY
+","No prerequisite
+","The ninth grade honors course in biology requires students to engage the major concepts of the life sciences on a deeper and expanded level.  Areas of concentration include biochemistry, cellular structure and function, genetics, evolution, ecology, and t",YR,SC,SC,10,9,,X,X,X,X,X,X,X,X
+SC101,BIOLOGY,"No prerequisite
+","The ninth grade course in biology expands on many of the concepts of the life sciences, which were introduced in Science 8.  Students explore the areas of biochemistry, cellular structure and function, genetics, evolution, ecology, and taxonomy. Meeting s",YR,SC,SC,10,9,,X,X,X,X,X,X,X,X
+SC110,"HONORS CHEMISTRY
+","Prerequisite:   Biology or Honors Biology     
+It is recommended that students have a good grasp of Algebra I concepts before taking Chemistry.
+","This course stresses experimentation and observation. Topics include: atomic theory, conservation laws, kinetic theory, atomic structure, periodic table, energy changes in chemical and nuclear reactions, equilibrium, oxidation-reduction, electro-magnetic ",YR,SC,SC,10,10,,X,X,X,X,X,X,X,X
+SC111,CHEMISTRY ,"Prerequisite:   Biology or Honors Biology                                                   	    It is recommended that students have a good grasp of Algebra I concepts before taking Chemistry.",This course is the systematic study of the properties of common elements and their compounds. The student looks at the atomic structure of those compounds and makes a survey of their relationships to each other. The student learns the fundamental theories,YR,SC,SC,10,10,,X,X,X,X,X,X,X,X
+SC121,PHYSICS ,"Prerequisite: Chemistry or Honors Chemistry 
+","This is a problem solving and laboratory-oriented course. It includes the study of mechanics, light, electricity, heat, and some topics in modern physics. 
+",YR,SC,SC,10,11,,X,X,X,X,X,X,X,X
+SC122,"ACTIVE PHYSICS 
+","No prerequisite  
+","Active Physics students are introduced to physics concepts as they explore issues in transportation, communication, home, and sports.  Students learn through small group discussions, laboratory investigations, and projects. Overall, the emphasis is on phy",YR,SC,SC,10,11,,X,X,X,X,X,X,X,X
+SC131,"ANATOMY / PHYSIOLOGY
+","Prerequisite: Biology or Honors Biology
+","The purpose of this course is to provide students with a background in anatomy and physiology. The course includes the anatomy of the cat, and the physiology of the individual organ systems. A major portion of the course includes the dissection of an actu",YR,SC,SC,10,12,,,,,X,,,,
+SC132,"PRINCIPLES OF BIOMEDICAL SCIENCE
+","No prerequisite
+","In this course students explore the vast range of careers in biomedical sciences from design and data analysis to outbreaks, clinical empathy, health promotion, and more. They develop not just technical skills, but also in-demand, transportable skills tha",YR,SC,SC,10,9,,,,,X,,,,
+SC133,"HUMAN BODY SYSTEMS  
+","Prerequisite: Biology or Honors Biology
+","In this course students examine the interactions of human body systems as they explore identity, power, movement, protection, and homeostasis. Exploring science in action, students build organs and tissues on a skeleton; use data acquisition software to m",YR,SC,SC,10,10,,,,,X,,,,
+SC134,"PHYSICS OF FLIGHT
+","Prerequisite: Any Senior who has passed Active Physics, Physics, or Advanced Placement Physics
+","In this course students will investigate the nature of flight. They will learn the parts of an airplane, the factors that affect flight, and the history of modern flight. During the semester, students complete several hand-on projects including constructi",SM,SC,SC,5,12,,,,,,,,X,
+SC135,"ASTRONOMY
+","No prerequisite
+","The purpose of this course is to provide students with an overview of a broad array of astronomy topics. This course introduces students to lunar phases, constellations, major bodies of the solar system, the Milky Way galaxy and more. A recurring theme th",SM,SC,SC,5,11,,,,,,,,X,
+SC136,"ENGINEERING ESSENTIALS
+","Prerequisite: Algebra I
+","In this course students dig deep into the engineering design process, applying math, science, and engineering standards to hands-on projects. They work both individually and in teams to design solutions to a variety of problems using 3-D modeling software",YR,SC,SC,10,9,,,X,,,,X,X,
+SC137,"PRINCIPLES OF ENGINEERING
+","Prerequisite: Algebra I 
+It is recommended but not required that students take Engineering Essentials as an introduction to this course. 
+","In this course students explore a broad range of engineering topics including mechanisms, strength of structure and materials, and automation, and then they apply what they know to take on challenges like designing a self-powered car. This is a Project Le",YR,,SC,10,10,,,X,,,,X,X,
+SC138,"FORENSIC SCIENCE
+","Prerequisite: Biology or Honors Biology and Chemistry or Honors Chemistry
+","This semester course utilizes lecture, extensive laboratory activities, scientific literature/case study analysis, and demonstrations in a forensic context and will allow students to apply scientific methodology to develop writing, problem solving and cri",SM,SC,SC,5,12,,,,X,X,,,,X
+SC139,"PHYSICS OF MECHANICAL ROBOTS
+","Prerequisite: Any student who has passed Active Physics, Physics, or AP Physics I 
+","This introductory Robotics course will cover the mechanical and electrical systems involved in basic robot functions. Students will investigate robot configuration and degrees of freedom through the study of rigid body motions, kinematics, and forces. Ana",SM,SC,SC,5,11,,,X,,,,,X,
+SC141,"PHYSICS OF AUTOMATED ROBOTS
+","Prerequisite: Any student who has passed Active Physics, Physics, or AP Physics I
+","In this course, students will investigate the automation systems that govern robot control. Students will conduct experiments exploring the use of sensors, logic gates, and variable voltage systems. Reverse engineering of automatic processes will be studi",SM,SC,SC,5,11,,,X,,,,,X,
+SC500,"ADVANCED PLACEMENT BIOLOGY 	 
+","Prerequisite: Biology or Honors Biology and Chemistry* or Honors Chemistry*
+*Students can take Chemistry or Honors Chemistry concurrently with a teacher recommendation.
+",This course is taught at the college level and is designed to prepare the student for the Advanced Placement Biology examination. This is a six period a week class that has both a lecture and a lab component.  AP Biology consists of extensive studies in b,YR,SC,SC,10,10,,X,X,X,X,X,X,X,X
+SC510,"ADVANCED PLACEMENT CHEMISTRY 	 
+","Prerequisite: Chemistry or Honors Chemistry 
+","This course undertakes thorough study of the underlying principles of chemistry. The first part of the course emphasizes such fundamentals as oxidation potential, equilibrium constant, kinetic-molecular theory, chemical bonds, and reaction kinetics. Later",YR,SC,SC,10,11,,X,X,X,X,X,X,X,X
+SC520,"ADVANCED PLACEMENT ENVIRONMENTAL SCIENCE 
+","Prerequisite: Biology or Honors Biology
+","AP Environmental Science is a six-period per week course designed for the junior or senior student. Topics covered include cycling of matter and energy, as well as the interdependence of biota, atmosphere, geosphere and the activities of civilization. Add",YR,SC,SC,10,11,,,X,X,X,X,X,X,X
+SC530,"ADVANCED PLACEMENT PHYSICS 1: ALGEBRA-BASED
+","Prerequisite: grade 11 or 12 and recommendation from instructor
+","AP Physics 1: Algebra-Based is the equivalent to a first-semester college course in algebra-based physics. The course covers Newtonian mechanics (including rotational dynamics and angular momentum); work, energy, and power; and mechanical waves and sound.",YR,SC,SC,10,11,,,,,,,,,
+SC540,"ADVANCED PLACEMENT PHYSICS 2: ALGEBRA-BASED
+","Prerequisite: AP Physics 1 or Physics and recommendation from instructor
+","AP Physics 2: Algebra-Based is the equivalent to a second-semester college course in algebra-based physics. The course covers fluid mechanics; thermodynamics; electricity and magnetism; optics; and atomic and nuclear physics. 
+",YR,SC,SC,10,12,,,,,,,,,
+SC550,"ADVANCED PLACEMENT PHYSICS C	 
+","Prerequisite: AP Physics 1 and completion of or concurrent enrollment in a calculus-based mathematics course
+","This course is planned for students with a sound mathematics background. The course approaches the largest physical concepts in a fundamental way that involves mathematics, theoretical physics, and experimental work in the laboratory. College level mechan",YR,SC,SC,10,12,,,,,,,,,
+SS110,HONORS WORLD HISTORY,"No prerequisite, Fulfills grade 9 Social Studies requirement","The student must be a strong, independent reader and highly motivated learner. The course moves at a faster pace and the planned course of study covers more material and in greater depth than College Prep. Projects and assessments are more difficult with ",YR,,SS,10,9,,X,X,X,X,X,X,X,X
+SS111,WORLD HISTORY,"No prerequisite, Fulfills grade 9 Social Studies requirement","This is a survey course of modern world history and its historical foundations. Units of study include Government and Economic systems, the history of world religions, the Renaissance, First Global Age, Absolutism and Revolution, Nationalism and Imperiali",YR,SS,SS,10,9,,X,X,X,X,X,X,X,X
+SS120,HONORS CIVICS AND GOVERNMENT,"No prerequisite, Fulfills grade 10 Social Studies requirement","Focuses on the principles, structure and power of our national and state governments and how our governments interact with each other and with citizens and citizen groups. Participatory citizenship knowledge and skills required in a modern democracy will ",YR,,SS,10,10,,X,X,X,X,X,X,X,X
+SS121,CIVICS AND GOVERNMENT,"No prerequisite, Fulfills grade 10 Social Studies requirement","Focuses on the principles, structure, and power of our national and state governments and how our governments interact with each other and with citizens and citizen groups. Participatory citizenship knowledge and skills required in a modern democracy will",YR,SS,SS,10,10,,X,X,X,X,X,X,X,X
+SS130,HONORS AMERICAN HISTORY,"No prerequisite, Fulfills grade 11 Social Studies requirement","This survey course in American History will include the history, government, culture, and the economic and social problems of the United States to the present day. Also stressed is an examination of the contemporary problems of our society in the light of",YR,,SS,10,11,,X,X,X,X,X,X,X,X
+SS131,AMERICAN HISTORY,"No prerequisite, Fulfills grade 11 Social Studies requirement","This survey course in American History will include the history, government, culture, and the economic and social problems of the United States to the present day. Also stressed is an examination of the contemporary problems of our society in the light of",YR,SS,SS,10,11,,X,X,X,X,X,X,X,X
+SS201,AFRICAN AMERICAN HISTORY: EARLY AMERICA THROUGH THE CIVIL WAR,No Prerequisite,"This course presents an intensive study of the history of the African American. Starting with a consideration of the great African civilizations, the course will trace the progress of the African in America from arrival through the Civil War up to the eve",SM,SS,SS,5,9,,X,,X,X,X,,,X
+SS202,AFRICAN AMERICAN HISTORY: RECONSTRUCTION THROUGH MODERN TIMES,No Prerequisite,This course presents an intensive study of the history of the African American from the middle of the 20th century to the present day. The course examines the broad range of experiences of African Americans from the end of reconstruction to the present da,SM,SS,SS,5,9,,X,,X,X,X,,,X
+SS203,AMERICA AS A WORLD POWER,No prerequisite,"America as a World Power, will focus on the emergence of the United States as a dominant figure in global affairs between 1945 and the present. The primary goal of the class will be to offer students an opportunity to learn the political, diplomatic, econ",SM,SS,SS,5,11,,X,,X,,X,,X,X
+SS204,GLOBAL ISSUES IN THE 21ST CENTURY,No prerequisite,Students will work their way through several units that intertwine current events and historical roots of challenges facing the world today. Dynamic units will allow students to discover and utilize primary documents from the past as they analyze modern m,SM,SS,SS,5,9,,X,X,X,X,X,X,,X
+SS205,HISTORY OF CONTEMPORARY AMERICAN CULTURE,No prerequisite,"This course will focus on American popular culture from the post WWII era to the modern day. Specifically, it is a study of the major historical events of the age with a focus on how media (a means of mass communication, such as newspapers, magazines, rad",SM,SS,SS,5,11,,X,,X,,X,,,X
+SS206,INTRODUCTION TO LAW & THE LEGAL SYSTEM,No Prerequisite,"This course is designed for all students with an interest in various areas of law, law enforcement, our legal system, and corrections. Students will study the criminal justice process from investigation through corrections and they will have the opportuni",SM,SS,SS,5,9,,X,X,X,X,X,,,X
+SS207,PSYCHOLOGY,No Prerequisite,"This course presents the basic ideas and principles of human behavior. Psychological methods, human growth and development, personality, intelligence, principles of learning, process of thinking, emotions, frustration and conflicts, personality disturbanc",YR,,SS,5,9,,X,X,X,X,X,,X,X
+SS208,SOCIOLOGY,No Prerequisite,"This course focuses on humans as members of social groups. Basic sociological concepts such as culture, relationship, the family, race, and inter-group relations are studied. Emphasis is given to contemporary social problems including crime, issues and pr",YR,SS,SS,5,9,,X,X,X,X,X,,X,X
+SS500,ADVANCED PLACEMENT UNITED STATES GOVERNMENT AND POLITICS,"No prerequisite, Fulfills grade 10 Social Studies requirement",The Advanced Placement United States Government and Politics course is designed to provide students with both the study of general concepts used to interpret United States politics and the analysis of specific examples. The course will cover the Instituti,YR,SS,SS,10,10,,X,X,X,,X,X,X,X
+SS510,ADVANCED PLACEMENT UNITED STATES HISTORY,"No prerequisite, Fulfills grade 11 Social Studies requirement","The Advanced Placement U.S. History content matter covers discovery and settlement of the New World, The Gilded Age, and early twentieth century foreign policy to present day. The course is designed to deliver factual material and to deal critically with ",YR,SS,SS,10,11,,X,X,X,X,X,,X,X
+SS520,ADVANCED PLACEMENT EUROPEAN HISTORY,Prerequisite: Grade 9 World History or Honors World History,"The AP European History course encompasses events from 1450, the High Renaissance, to the present. The course is designed to include the cultural, diplomatic, economic, intellectual, political, and social history from this period. The goals of the course ",YR,SS,SS,10,10,,,,X,,X,,,X
+SS530,ADVANCED PLACEMENT HUMAN GEOGRAPHY,No Prerequisite,"The AP Human Geography course is equivalent to an introductory college-level course in human geography or cultural geography. The course is structured thematically and is organized around the discipline’s main subfields: economic geography, cultural geogr",YR,,SS,10,9,,X,X,X,X,X,X,X,X
+SS550,ADVANCED PLACEMENT MICROECONOMICS (offered in 2022-2023 and 2024-2025),No Prerequisite,Identify some potential college majors that you may be interested in pursuing. Then examine a sample program of study for that major. Chances are good that the program of study consists of Macroeconomic and Microeconomic courses. This AP Economics course ,YR,,SS,10,10,,X,X,X,X,X,X,X,X
+SS560,ADVANCED PLACEMENT PSYCHOLOGY,No Prerequisite,"The AP Psychology course is designed to introduce students to the systematic and scientific study of the behavior and mental processes of human beings and other animals. Students are exposed to the psychological facts, principles, and phenomena associated",YR,SS,SS,10,10,,X,X,X,X,X,X,,X
+SS570,ADVANCED PLACEMENT WORLD HISTORY,Prerequisite: World History or Honors World History,"The Advanced Placement World History course is structured around five themes: interaction between humans and the environment, development and interaction of cultures, state-building, expansion and conflict, creation, expansion and interaction of economic ",YR,SS,SS,10,10,,,,X,,X,,,X
+SS590,"HOLOCAUST, GENOCIDE, AND CRIMES AGAINST HUMANITY",No Prerequisite,"Students will explore various aspects of genocide, human behavior, and crimes against humanity. With a focus on the 20th century, approximately half of the course will be devoted to studying the Holocaust with the remainder devoted to contemporary genocid",YR,,SS,10,10,,,,X,,X,,,X
+SSIDS,INTERDISCIPLINARY STUDIES,Prerequisite: Recommended for grade 12. Admission to this course is by application,"The Interdisciplinary Studies course is a humanities course that provides students with the opportunity to explore the branches of knowledge concerned with understanding humanity and its cultural expressions. It is the integrated study of history, economi",YR,,SS,,12,,X,X,X,X,X,,X,X
+WL111,"FRENCH I
+","No prerequisite
+","This course begins the development of the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presentational (speaking and writing to an audience).  Stu",YR,,FL,10,9,,x,,x,x,x,,x,x
+WL120,"FRENCH II HONORS
+","Prerequisite: Level I French
+","This Honors course focuses on the study of thematic units with the emphasis on the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presentational (s",YR,,FL,10,9,,x,,x,x,x,,x,x
+WL121,"FRENCH II
+","Prerequisite: Level I French
+","This course continues the study of language in thematic units with the emphasis on the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presentationa",YR,,FL,10,9,,x,,x,x,x,,x,x
+WL130,"FRENCH III HONORS
+","Prerequisite: Level II or Level II Honors French
+","This Honors course focuses on the study of thematic units with the emphasis on the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presentational (s",YR,,FL,10,10,,x,,x,x,x,,x,x
+WL131,"FRENCH III
+","Prerequisite: Level II or Level II Honors French
+","This course continues the study of language in thematic units with the emphasis on the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presentationa",YR,,FL,10,10,,x,,x,x,x,,x,x
+WL140,"FRENCH IV HONORS	
+","Prerequisite: Level III or Level III Honors French
+","In this pre-AP course, the focus is on the study of thematic units with the emphasis on the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presenta",YR,,FL,10,11,,x,,x,x,x,,x,x
+WL141,"FRENCH IV
+","Prerequisite: Level III or Level III Honors French
+","The focus is on the study of thematic units with the emphasis on the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presentational (speaking and wr",YR,,FL,10,11,,x,,x,x,x,,x,x
+WL151,"FRENCH V
+","Prerequisite: Level IV or Level IV Honors French
+","This course is a culminating course that focuses on preparing the student to use the language in authentic contexts. The focus is on the study of thematic units about the social, political and cultural influences in society today with the emphasis on the ",YR,,FL,10,12,,x,,x,x,x,,x,x
+WL220,"GERMAN II HONORS
+","Prerequisite: Level I German
+","This Honors course focuses on the study of thematic units with the emphasis on the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presentational (s",YR,,FL,10,9,,x,,x,x,x,,x,x
+WL230,"GERMAN III HONORS
+","Prerequisite: Level II Honors German
+","This Honors course focuses on the study of thematic units with the emphasis on the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presentational (s",YR,,FL,10,10,,x,,x,x,x,,x,x
+WL240,"GERMAN IV HONORS	
+","Prerequisite: Level III Honors German
+","In this pre-AP course, the focus is on the study of thematic units with the emphasis on the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presenta",YR,,FL,10,11,,x,,x,x,x,,x,x
+WL330,"MANDARIN CHINESE III HONORS
+","Prerequisite: Level II Honors Mandarin Chinese
+","This Honors course focuses on the study of thematic units with the emphasis on the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presentational (s",YR,,FL,10,9,,x,,x,x,x,,x,x
+WL340,"MANDARIN CHINESE IV HONORS	
+","Prerequisite: Level III Honors Mandarin Chinese
+","In this pre-AP course, the focus is on the study of thematic units with the emphasis on the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presenta",YR,,FL,10,10,,x,,x,x,x,,x,x
+WL411,"SPANISH I
+","No prerequisite
+","This course begins the development of the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presentational (speaking and writing to an audience).  Stu",YR,,FL,10,9,,x,,x,x,x,,x,x
+WL420,"SPANISH II HONORS
+","Prerequisite: Level I Spanish
+","This Honors course focuses on the study of thematic units with the emphasis on the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presentational (s",YR,,FL,10,9,,x,,x,x,x,,x,x
+WL421,"SPANISH II
+","Prerequisite: Level I Spanish
+","This course continues the study of language in thematic units with the emphasis on the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presentationa",YR,,FL,10,9,,x,,x,x,x,,x,x
+WL430,"SPANISH III HONORS
+","Prerequisite: Level II or Level II Honors Spanish
+","This Honors course focuses on the study of thematic units with the emphasis on the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presentational (s",YR,,FL,10,10,,x,,x,x,x,,x,x
+WL431,"SPANISH III
+","Prerequisite: Level II or Level II Honors Spanish
+","This course continues the study of language in thematic units with the emphasis on the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presentationa",YR,,FL,10,10,,x,,x,x,x,,x,x
+WL440,"SPANISH IV HONORS	
+","Prerequisite: Level III or Level III Honors Spanish
+","In this pre-AP course, the focus is on the study of thematic units with the emphasis on the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presenta",YR,,FL,10,11,,x,,x,x,x,,x,x
+WL441,"SPANISH IV
+","Prerequisite: Level III or Level III Honors Spanish
+","The focus is on the study of thematic units with the emphasis on the three modes of communication: interpretive (listening and reading), interpersonal (two-way communication- listening and speaking, reading and writing) and presentational (speaking and wr",YR,,FL,10,11,,x,,x,x,x,,x,x
+WL451,"SPANISH V
+","Prerequisite: Level IV or Level IV Honors Spanish
+","This course is a culminating course that focuses on preparing the student to use the language in authentic contexts. The focus is on the study of thematic units about the social, political and cultural influences in society today with the emphasis on the ",YR,,FL,10,12,,x,,x,x,x,,x,x
+WL500,"ADVANCED PLACEMENT FRENCH LANGUAGE AND CULTURE
+","Prerequisite: Level IV or Level IV Honors French
+","The AP course is designed to prepare students to take the Language and Culture AP exam from the College Board. The course and exam are based on six themes: Families and Communities, Beauty and Aesthetics, Global Challenges, Science and Technology, Contemp",YR,,FL,10,12,,x,,x,x,x,,x,x
+WL510,"ADVANCED PLACEMENT GERMAN LANGUAGE AND CULTURE
+","Prerequisite: Level IV Honors German 
+","The AP course is designed to prepare students to take the Language and Culture AP exam from the College Board. The course and exam are based on six themes: Families and Communities, Beauty and Aesthetics, Global Challenges, Science and Technology, Contemp",YR,,FL,10,12,,x,,x,x,x,,x,x
+WL520,"ADVANCED PLACEMENT MANDARIN CHINESE LANGUAGE AND CULTURE
+","Prerequisite: Level IV Honors Mandarin Chinese
+","The AP course is designed to prepare students to take the Language and Culture AP exam from the College Board. The course and exam are based on six themes: Families and Communities, Beauty and Aesthetics, Global Challenges, Science and Technology, Contemp",YR,,FL,10,12,,x,,x,x,x,,x,x
+WL530,"ADVANCED PLACEMENT LATIN 
+","Prerequisite: Latin III Honors and teacher recommendation
+","The AP Latin Vergil course follows the course of study provided by the College Board in the AP® Latin Course Description. In accordance with these requirements, students will do the following: read and translate as literally as possible from Latin into En",YR,,FL,10,12,,x,,x,x,x,,x,x
+WL540,"ADVANCED PLACEMENT SPANISH LANGUAGE AND CULTURE
+","Prerequisite: Level IV or Level IV Honors Spanish
+","The AP course is designed to prepare students to take the Language and Culture AP exam from the College Board. The course and exam are based on six themes: Families and Communities, Beauty and Aesthetics, Global Challenges, Science and Technology, Contemp",YR,,FL,10,12,,x,,x,x,x,,x,x
+WL611,"LATIN I
+","No prerequisite
+","This class begins the development of the four skills of language acquisition in Classical Latin: reading, writing, listening, and speaking. With an emphasis on reading and writing, listening and speaking are given attention sufficient to amplify a general",YR,,FL,10,9,,x,,x,x,x,,x,x
+WL620,"LATIN II HONORS 	 
+","Prerequisite: Latin I 
+","This class continues the development of the four skills of language acquisition in Classical Latin: reading, writing, listening, and speaking. With an emphasis on reading and writing, listening and speaking are given attention sufficient to amplify a gene",YR,,FL,10,10,,x,,x,x,x,,x,x
+WL630,"LATIN III HONORS
+","Prerequisite: Latin II Honors
+","This class continues the development of the four skills of language acquisition in Classical Latin: reading, writing, listening, and speaking. With an emphasis on reading and writing, listening and speaking are given attention sufficient to amplify a gene",YR,,FL,10,11,,x,,x,x,x,,x,x
