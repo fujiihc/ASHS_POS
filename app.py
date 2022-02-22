@@ -11,8 +11,8 @@ from flask import Flask, render_template, redirect, url_for, request
 app = Flask(__name__)
 
 #have this built into somewhere else
-#can get rid of course object? seeing as all the course data needed is already sorted within the dataframe anyway
 df = dt.data()
+
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 wsgi_app = app.wsgi_app
@@ -33,8 +33,10 @@ def home():
 @app.route('/catalog', methods = ['POST', 'GET'])
 def catalog():
     if request.method == 'POST':
+        
         results = df.getCourse(str(request.form.get('searchBar')).upper())
-        return render_template('public_catalog.html', courseName = results['Short Description'].to_string(), length = results['Len'].to_string())
+        print(len(results))
+        return render_template('public_catalog.html', result = results, length = range(len(results)))
     return render_template('public_catalog.html')
 
 @app.route('/student')
@@ -54,4 +56,5 @@ if __name__ == '__main__':
     except ValueError:
         PORT = 5555
     app.run(HOST, PORT)
+
 
