@@ -35,22 +35,13 @@
 
                         <div class="results">
                             <table>
-                                <tr>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="course-name">Data Structures</p>
-                                        <div class="descriptions">
-                                            {{courseName}}
-                                            {{length}}
-                                        </div>
-                                    </td>
-                                </tr>
+                                
+                            {%for item in length%}
                                 <tr>
                                     <td>
                                         <div style="display: flex; justify-content: space-between;">
                                             <div class="fa fa-plus"></div>
-                                            <div class="course-name">Data Structures</div>
+                                            <div class="course-name">{{result['Short Description'].iloc[item]}}</div>
                                         </div>
                                         <div class="descriptions">
                                             <div>Honors</div>
@@ -61,6 +52,9 @@
                                         </div>
                                     </td>
                                 </tr>
+                            {%endfor%}
+
+
                             </table>
                         </div>
                     </div>
@@ -99,59 +93,59 @@
                 </div>
             </div>
         </div>
-        </div>
-        <footer class="footer">
-            <p>Abington School District © 2022. All Rights Reserved.</p>
-        </footer>
+    </div>
+    <footer class="footer">
+        <p>Abington School District © 2022. All Rights Reserved.</p>
+    </footer>
 
-        <script>
-            
-            //VARIABLES
-            var theseContainers = document.getElementsByClassName("dropdown-container");
-            var pathways = ["Buisness", "Computer Science", "Medicine", "Law"];
-            var daysPerWeek = [2, 5, 6];
-            var courseLevel = ["AP", "Honors", "College Preparation", "Standard"];
-            var lengths = ["Semester", "Full Year"];
-            var filters = [pathways, daysPerWeek, courseLevel, lengths, "1"];
-            var dropdownBttns = document.getElementsByClassName("dropdown");
-            const map1 = new Map();
-            var filterTypes = document.getElementsByClassName("filterType");
+    <script>
 
-            //CLICKING ON DROPDOWNS
-            var onButtonClick = function (event) {
-                var thisBttn = event.currentTarget;
-                var container = map1.get(thisBttn);
-                var style = container.style.getPropertyValue("display");
-                if (style == "block")
-                    container.style.display = "none";
-                else
-                    container.style.display = "block";
-            };
+        //VARIABLES
+        var theseContainers = document.getElementsByClassName("dropdown-container");
+        var pathways = ["Buisness", "Computer Science", "Medicine", "Law"];
+        var daysPerWeek = [2, 5, 6];
+        var courseLevel = ["AP", "Honors", "College Preparation", "Standard"];
+        var lengths = ["Semester", "Full Year"];
+        var filters = [pathways, daysPerWeek, courseLevel, lengths, "1"];
+        var dropdownBttns = document.getElementsByClassName("dropdown");
+        const map1 = new Map();
+        var filterTypes = document.getElementsByClassName("filterType");
 
-            for (var i = 0; i < dropdownBttns.length; i++) {
-                map1.set(dropdownBttns[i], theseContainers[i]);
-                dropdownBttns[i].addEventListener("click", onButtonClick);
+        //CLICKING ON DROPDOWNS
+        var onButtonClick = function (event) {
+            var thisBttn = event.currentTarget;
+            var container = map1.get(thisBttn);
+            var style = container.style.getPropertyValue("display");
+            if (style == "block")
+                container.style.display = "none";
+            else
+                container.style.display = "block";
+        };
+
+        for (var i = 0; i < dropdownBttns.length; i++) {
+            map1.set(dropdownBttns[i], theseContainers[i]);
+            dropdownBttns[i].addEventListener("click", onButtonClick);
+        }
+
+        //MAKE BUTTONS IN DROPDOWNS
+        for (var d = 0; d <= theseContainers.length; d++) {
+            var filter = filters[d];
+            for (var i = 0; i < filter.length; i++) {
+                const ddBttn = document.createElement("button");
+                ddBttn.className = "filterType";
+                ddBttn.innerHTML = filter[i];
+                ddBttn.addEventListener("click", function () {
+                    if (ddBttn.style.backgroundColor == "darkgrey") {
+                        ddBttn.style.backgroundColor = "#262626";
+                    }
+                    else {
+                        ddBttn.style.backgroundColor = "darkgrey";
+                    }
+                });
+
+                theseContainers[d].appendChild(ddBttn);
             }
-
-            //MAKE BUTTONS IN DROPDOWNS
-            for (var d = 0; d <= theseContainers.length; d++) {
-                var filter = filters[d];
-                for (var i = 0; i < filter.length; i++) {
-                    const ddBttn = document.createElement("button");
-                    ddBttn.className = "filterType";
-                    ddBttn.innerHTML = filter[i];
-                    ddBttn.addEventListener("click", function () {
-                        if (ddBttn.style.backgroundColor == "darkgrey") {
-                            ddBttn.style.backgroundColor = "#262626";
-                        }
-                        else {
-                            ddBttn.style.backgroundColor = "darkgrey";
-                        }
-                    });
-
-                    theseContainers[d].appendChild(ddBttn);
-                }
-            }
-        </script>
+        }
+    </script>
 </body>
 </html>
