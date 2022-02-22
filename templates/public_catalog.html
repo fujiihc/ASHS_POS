@@ -36,7 +36,7 @@
                         <div class="results">
                             <table>
                                 
-                            {%for item in length%}
+                            {%for item in ranges%}
                                 <tr>
                                     <td>
                                         <div style="display: flex; justify-content: space-between;">
@@ -56,8 +56,12 @@
                                     </td>
                                 </tr>
                             {%endfor%}
-
-
+                         
+                            {%if length == 0%}
+                                <div>
+                                    Keyword "{{searched}}" not found.
+                                </div>
+                            {%endif%}
                             </table>
                         </div>
                     </div>
