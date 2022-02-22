@@ -11,6 +11,7 @@ from flask import Flask, render_template, redirect, url_for, request
 app = Flask(__name__)
 
 #have this built into somewhere else
+#can get rid of course object? seeing as all the course data needed is already sorted within the dataframe anyway
 df = dt.data()
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
