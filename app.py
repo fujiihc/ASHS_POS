@@ -50,6 +50,7 @@ def student():
 #this is just a simple fix
 #something like /student/studentUSERNAME/requests
 #maybe we just need to build like an authentication system or something
+
 @app.route('/requests')
 def requests():
     return render_template('request_courses.html')
