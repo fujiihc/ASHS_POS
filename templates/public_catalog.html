@@ -41,14 +41,17 @@
                                     <td>
                                         <div style="display: flex; justify-content: space-between;">
                                             <div class="fa fa-plus"></div>
-                                            <div class="course-name">{{result['Short Description'].iloc[item]}}</div>
+                                            <div class="course-name">{{result['CourseName'].iloc[item]}}</div>
                                         </div>
                                         <div class="descriptions">
-                                            <div>Honors</div>
-                                            <div>10 credits</div>
-                                            <div>Computer Science Pathway</div>
+                                            <div>{{result['Description'].iloc[item]}}</div>
+                                            <!--
+                                            <div>Credits: {{result['Credits'].iloc[item]}}</div>
+                                            <div>Pathway</div>
                                             <div>5 days/week</div>
-                                            <div>Computer Science Department</div>
+                                            <div>Department: {{result['Dept'].iloc[item]}}</div>
+                                            -->
+                                            
                                         </div>
                                     </td>
                                 </tr>
