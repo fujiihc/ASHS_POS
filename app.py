@@ -33,10 +33,11 @@ def home():
 @app.route('/catalog', methods = ['POST', 'GET'])
 def catalog():
     if request.method == 'POST':
-        
-        results = df.getCourse(str(request.form.get('searchBar')).upper())
-        print(len(results))
-        return render_template('public_catalog.html', result = results, length = range(len(results)))
+        pySearched = str(request.form.get('searchBar'))
+        pyResults = df.getCourse(pySearched.upper(), 'CourseName')
+        pyLength = len(results)
+        #print(len(results))
+        return render_template('public_catalog.html', results = pyResults, ranges = range(pyLength), searched = pySeached, length = pyLength)
     return render_template('public_catalog.html')
 
 @app.route('/student', methods = ['POST','GET'])
@@ -67,6 +68,3 @@ if __name__ == '__main__':
     except ValueError:
         PORT = 5555
     app.run(HOST, PORT)
-
-
-
