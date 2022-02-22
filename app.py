@@ -2,6 +2,7 @@
 This script runs the application using a development server.
 It contains the definition of routes and views for the application.
 """
+
 import data as dt
 import pandas as pd
 from flask import Flask, render_template, redirect, url_for, request
@@ -38,9 +39,20 @@ def catalog():
         return render_template('public_catalog.html', result = results, length = range(len(results)))
     return render_template('public_catalog.html')
 
-@app.route('/student')
+@app.route('/student', methods = ['POST','GET'])
 def student():
+    if request.method == 'POST':
+        return redirect(url_for('requests'))
     return render_template('student_access.html')
+
+#find a way to add individual students through authentication as well as add on request as a sub part of student
+#this is just a simple fix
+#something like /student/studentUSERNAME/requests
+#maybe we just need to build like an authentication system or something
+@app.route('/requests')
+def requests():
+    return render_template('request_courses.html')
+
 
 @app.route('/admin')
 def admin():
@@ -55,5 +67,6 @@ if __name__ == '__main__':
     except ValueError:
         PORT = 5555
     app.run(HOST, PORT)
+
 
 
