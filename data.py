@@ -11,3 +11,7 @@ class data:
 
     def toString(self):
         return self.df.to_string()
+
+    def getCourse(self, courseName):
+       return self.df.loc[self.df['Short Description'].str.contains(courseName, na = False)]
+   
