@@ -1,0 +1,19 @@
+ID-->Course Code
+longDescription-->Course Title
+preRequisite-->Pre-Requisite
+description-->Full Course Description
+Length-->YR=YEAR; SM=SEMESTER
+Pathways:-->X indicates course applies to Pathway
+bisPath
+csPath
+govPath
+healthPath
+humPath
+manuPath
+stemPath
+socSciPath
+visPath
+dept-->Department offering course;
+credits-->Number of Credits course worth
+minGrade-->Minimum Grade Level course is offered
+level-->1=CP; 2=Honors; 3=AP
