@@ -34,7 +34,7 @@ def home():
 def catalog():
     if request.method == 'POST':
         pySearched = str(request.form.get('searchBar'))
-        pyResults = df.getCourse(pySearched.upper(), 'CourseName')
+        pyResults = df.getCourse(pySearched.upper(), 'longDescription')
         pyLength = len(pyResults)
         #print(len(results))
         return render_template('public_catalog.html', results = pyResults, ranges = range(pyLength), searched = pySearched, length = pyLength)
