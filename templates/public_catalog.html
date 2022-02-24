@@ -66,13 +66,42 @@
                         </div>
                     </div>
 
-                    <div class="sidebar">
+                                        <div class="sidebar">
                         <p>Filter by Category</p>
                         <button class="dropdown" id="pathwayBttn">
                             Pathway
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="pathwayDDs">
+                            <form>
+                                <input type="checkbox" id="business" name="business" value="Business">
+                                <label for="business" class="filterType">Business</label>
+
+                                <input type="checkbox" id="compSci" name="compSci" value="Computer Science">
+                                <label for="compSci" class="filterType">Computer Science</label>
+
+                                <input type="checkbox" id="government" name="government" value="Government">
+                                <label for="government" class="filterType">Government</label>
+
+                                <input type="checkbox" id="health" name="health" value="Health">
+                                <label for="health" class="filterType">Health Services</label>
+
+                                <input type="checkbox" id="humanities" name="humanities" value="Humanities">
+                                <label for="humanities" class="filterType">Humanities</label>
+
+                                <input type="checkbox" id="manu" name="manu" value="Manufacturing">
+                                <label for="manu" class="filterType">Manufacturing</label>
+
+                                <input type="checkbox" id="stem" name="stem" value="STEM">
+                                <label for="stem" class="filterType">STEM</label>
+
+                                <input type="checkbox" id="scoSci" name="scoSci" value="Social Science">
+                                <label for="scoSci" class="filterType">Social Science</label>
+
+                                <input type="checkbox" id="arts" name="arts" value="Arts">
+                                <label for="arts" class="filterType">Arts</label>
+
+                            </form>
                         </div>
 
                         <button class="dropdown">
@@ -80,6 +109,13 @@
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container">
+                            <form>
+                                <input type="checkbox" id="two" name="two" value="2">
+                                <label for="two" class="filterType">2</label>
+
+                                <input type="checkbox" id="five" name="five" value="5">
+                                <label for="five" class="filterType">5</label>
+                            </form>
                         </div>
 
                         <button class="dropdown">
@@ -87,6 +123,19 @@
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container">
+                            <form>
+                                <input type="checkbox" id="ap" name="ap" value="AP">
+                                <label for="ap" class="filterType">AP</label>
+
+                                <input type="checkbox" id="honors" name="honors" value="Honors">
+                                <label for="honors" class="filterType">Honors</label>
+
+                                <input type="checkbox" id="cp" name="cp" value="College Prep">
+                                <label for="cp" class="filterType">College Prep</label>
+
+                                <input type="checkbox" id="standard" name="standard" value="Standard">
+                                <label for="standard" class="filterType">Standard</label>
+                            </form>
                         </div>
 
                         <button class="dropdown">
@@ -94,6 +143,13 @@
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container">
+                            <form>
+                                <input type="checkbox" id="semester" name="semester" value="Semester">
+                                <label for="semester" class="filterType">Semester</label>
+
+                                <input type="checkbox" id="fullYear" name="fullYear" value="Full Year">
+                                <label for="fullYear" class="filterType">Full Year</label>
+                            </form>
                         </div>
                     </div>
 
@@ -109,11 +165,11 @@
 
         //VARIABLES
         var theseContainers = document.getElementsByClassName("dropdown-container");
-        var pathways = ["Buisness", "Computer Science", "Medicine", "Law"];
-        var daysPerWeek = [2, 5, 6];
-        var courseLevel = ["AP", "Honors", "College Preparation", "Standard"];
-        var lengths = ["Semester", "Full Year"];
-        var filters = [pathways, daysPerWeek, courseLevel, lengths, "1"];
+        //var pathways = ["Buisness", "Computer Science", "Medicine", "Law"];
+        //var daysPerWeek = [2, 5, 6];
+        //var courseLevel = ["AP", "Honors", "College Preparation", "Standard"];
+        //var lengths = ["Semester", "Full Year"];
+        //var filters = [pathways, daysPerWeek, courseLevel, lengths, "1"];
         var dropdownBttns = document.getElementsByClassName("dropdown");
         const map1 = new Map();
         var filterTypes = document.getElementsByClassName("filterType");
@@ -135,7 +191,7 @@
         }
 
         //MAKE BUTTONS IN DROPDOWNS
-        for (var d = 0; d <= theseContainers.length; d++) {
+        /*for (var d = 0; d <= theseContainers.length; d++) {
             var filter = filters[d];
             for (var i = 0; i < filter.length; i++) {
                 const ddBttn = document.createElement("button");
@@ -152,7 +208,7 @@
 
                 theseContainers[d].appendChild(ddBttn);
             }
-        }
+        }*/
     </script>
 </body>
 </html>
