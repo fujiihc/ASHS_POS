@@ -176,23 +176,6 @@
 
     <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
 
-    <script type="text/javascript">
-        //this thing was just an attempt at using JQuery/AJAX it can be deleted
-        $(document).on('submit', '#todo-form', function (e) {
-            console.log('hello');
-            e.preventDefault();
-            $.ajax({
-                type: 'POST',
-                url: '/',
-                data: {
-                    todo: $("#todo").val()
-                },
-                success: function () {
-                    alert('saved');
-                }
-            })
-        });
-    </script>
 
     <!--how to use jquery and ajax for not refreshing on form submit-->
     <script>
