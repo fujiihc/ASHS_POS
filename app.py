@@ -32,11 +32,23 @@ def home():
 
 @app.route('/catalog', methods = ['POST', 'GET'])
 def catalog():
+    
     if request.method == 'POST':
-        pySearched = str(request.form.get('searchBar'))
-        pyResults = df.getCourse(pySearched.upper(), 'longDescription')
-        pyLength = len(pyResults)
-        return render_template('public_catalog.html', results = pyResults, ranges = range(pyLength), searched = pySearched, length = pyLength)
+        if request.form.get('pathway') or request.form.get('thingy'):                        
+            print(request.form.getlist('pathway'))
+            
+        elif request.form.get('searchBar') or request.form.get('searchButton'):
+            pySearched = str(request.form.get('searchBar'))
+            pyResults = df.getCourse(pySearched.upper(), 'longDescription')
+            pyLength = len(pyResults)
+            return render_template('public_catalog.html', results = pyResults, ranges = range(pyLength), searched = pySearched, length = pyLength)
+        
+
+        #find a way to retain checkboxes
+        #https://www.geeksforgeeks.org/flask-form-submission-without-page-reload/
+        #use event listener and preventdefault??
+        #maybe use the code from the link to ignore the pressing of the pathway dropdown buttons
+     
     return render_template('public_catalog.html')
 
 @app.route('/student', methods = ['POST','GET'])
@@ -49,6 +61,7 @@ def student():
 #this is just a simple fix
 #something like /student/studentUSERNAME/requests
 #maybe we just need to build like an authentication system or something
+#remember to do subdomains
 
 @app.route('/requests')
 def requests():
@@ -68,6 +81,8 @@ if __name__ == '__main__':
     except ValueError:
         PORT = 5555
     app.run(HOST, PORT)
+
+
 
 
 
