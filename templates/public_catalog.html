@@ -203,13 +203,15 @@
                 type: "POST",
                 url: "/catalog",
                 data: { "searchBar": document.getElementById("searchBar").value, "searchButton": "" }
-                
+                //contentType: "application/json"
+                //find a contentType that accounts for special characters such as '
                 //use dataType to figure out what data you want back from the server
 
             }).done(function (response) {
                 var json = JSON.parse(response)
                 var mainKeys = Object.keys(json)
                 var subKeys = Object.keys(json['ID'])
+                //working under the assumption that 'ID' will always be  valid key
                 alert(mainKeys + " " + subKeys);
                 
                 //for every single mainKey, there should be subKeys representing the different result objects
@@ -222,7 +224,8 @@
 
         });
 
-        $("pathways").submit(function (event) {
+        //referencing issue?
+        $("#pathways").submit(function (event) {
 
             event.preventDefault();
 
@@ -230,9 +233,15 @@
 
                 type: "POST",
                 url: "/catalog",
-                data: {}
+                data: { "elements": document.getElementsByName("pathway") }
+                //add "on" and "off" states to each checkbox?
+                //don't want to have to grab every single thing individually
+                //could make this a function
+                //can you access all elements with the same Name??
+                //document.getElementsByName()
+                //run a for loop 
             }).done(function (response) {
-
+                alert("success")
             });
         });
 
