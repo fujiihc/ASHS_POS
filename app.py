@@ -47,19 +47,20 @@ def catalog():
             #modifiers
             #can do it iteratively because you can assume that if it contains all, it will survive all searches
             #have a 'toBeSearched" df that has the modifiers added to it using getCourse??
-            #need to create new df objects, otherwise can't search??
+            #toBeSearched = toBeSearched.findCourse() in for loop
+            #use .toDF() to convert back to dataFrame
             pySearched = request.form['searchBar']
             print(pySearched)
           
-            pyResults = df.getCourse(pySearched.upper(), 'longDescription')
-            pyLength = len(pyResults)
+            pyResults = df.findCourse(pySearched.upper(), 'longDescription')
+            pyLength = len(pyResults.getDF())
             #account for empty search
             #want to send data back to ajax where it will be processed in js 
             #return render_template('public_catalog.html', results = pyResults, ranges = range(pyLength), searched = pySearched, length = pyLength)
             #can't take a dataFrame as a return
             #dict, tuple, string
-            print(pyResults.to_json())
-            return pyResults.to_json()
+            print(pyResults.getDF().to_json())
+            return pyResults.getDF().to_json()
         
 
         #find a way to retain checkboxes
