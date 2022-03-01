@@ -36,11 +36,14 @@ def catalog():
     if request.method == 'POST':
         print(str(request.form))
        
+        #need to rework this boolean for ajax compatibility
         if request.form.get('pathway'): 
             print(request.form.getlist('pathway'))
             
             #need a better boolean to access the data. don't want it to be easily hackable
-        elif request.form['searchButton'] == "":
+            #make sure that special characters are accounted for
+            #is instance doesn't work if request.form['searchBar'] doesn't exist
+        elif request.form['searchButton'] == "" and isinstance(request.form['searchBar'], str):
             
             pySearched = request.form['searchBar']
             print(pySearched)
