@@ -111,17 +111,17 @@
                             </div>
                         </form>
 
-
                         <button class="dropdown">
                             Days per Week
                             <i class="fa fa-caret-down"></i>
                         </button>
+
                         <div class="dropdown-container">
 
-                            <input type="checkbox" id="two" name="two" value="2">
+                            <input type="checkbox" id="two" name="two" value="2" onchange="this.form.submit()">
                             <label for="two" class="filterType">2</label>
 
-                            <input type="checkbox" id="five" name="five" value="5">
+                            <input type="checkbox" id="five" name="five" value="5" onchange="this.form.submit()">
                             <label for="five" class="filterType">5</label>
 
                         </div>
@@ -130,18 +130,19 @@
                             Course Level
                             <i class="fa fa-caret-down"></i>
                         </button>
+
                         <div class="dropdown-container">
 
-                            <input type="checkbox" id="ap" name="ap" value="AP">
+                            <input type="checkbox" id="ap" name="ap" value="AP" onchange="this.form.submit()">
                             <label for="ap" class="filterType">AP</label>
 
-                            <input type="checkbox" id="honors" name="honors" value="Honors">
+                            <input type="checkbox" id="honors" name="honors" value="Honors" onchange="this.form.submit()">
                             <label for="honors" class="filterType">Honors</label>
 
-                            <input type="checkbox" id="cp" name="cp" value="College Prep">
+                            <input type="checkbox" id="cp" name="cp" value="College Prep" onchange="this.form.submit()">
                             <label for="cp" class="filterType">College Prep</label>
 
-                            <input type="checkbox" id="standard" name="standard" value="Standard">
+                            <input type="checkbox" id="standard" name="standard" value="Standard" onchange="this.form.submit()">
                             <label for="standard" class="filterType">Standard</label>
 
                         </div>
@@ -150,12 +151,13 @@
                             Length
                             <i class="fa fa-caret-down"></i>
                         </button>
+
                         <div class="dropdown-container">
 
-                            <input type="checkbox" id="semester" name="semester" value="Semester">
+                            <input type="checkbox" id="semester" name="semester" value="Semester" onchange="this.form.submit()">
                             <label for="semester" class="filterType">Semester</label>
 
-                            <input type="checkbox" id="fullYear" name="fullYear" value="Full Year">
+                            <input type="checkbox" id="fullYear" name="fullYear" value="Full Year" onchange="this.form.submit()">
                             <label for="fullYear" class="filterType">Full Year</label>
 
                         </div>
@@ -171,10 +173,9 @@
 
     <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
 
-
     <!--how to use jquery and ajax for not refreshing on form submit-->
-    
-    <script>
+   
+        <script>
             //VARIABLES
             var theseContainers = document.getElementsByClassName("dropdown-container");
             var dropdownBttns = document.getElementsByClassName("dropdown");
@@ -200,7 +201,5 @@
             }
     </script>
 
-
 </body>
 </html>
-
