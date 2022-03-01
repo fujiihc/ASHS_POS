@@ -1,8 +1,8 @@
 import pandas as pd
 
 class data:
-    def __init__(self):
-        self.df = pd.read_csv('abCourseData.csv', encoding='cp1252')
+    def __init__(self, dataframe):
+        self.df = dataframe
         
     def getCourse(self, keywords, searchCol):
        return self.df.loc[self.searchCheck(keywords.split(' '), self.df[searchCol].str.split(' '))]
