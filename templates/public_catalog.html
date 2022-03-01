@@ -23,6 +23,7 @@
                         <form method="post" action="/catalog" id="search">
 
                             <div class="search_box">
+                                <!--remember to include ids in order for JS to reference objects and their data-->
                                 <input type="text" class="input" placeholder="Search..." name="searchBar" id="searchBar">
 
                                 <div class="btn">
@@ -73,6 +74,8 @@
                                     Keyword "{{searched}}" not found.
                                 </div>
                                 {%endif%}
+
+                                <!--need to come up with a new way to render result blocks, as well as null return-->
                             </table>
                         </div>
                     </div>
@@ -85,7 +88,7 @@
                             <i class="fa fa-caret-down"></i>
                         </button>
 
-                        <form method="post" action="/catalog" id="test">
+                        <form method="post" action="/catalog" id="pathways">
                             <!--the post signal istn getting because checking the box isnt returning any sort of statement-->
                             <div class="dropdown-container" id="pathwayDDs">
 
@@ -116,7 +119,7 @@
                                 <input type="checkbox" id="arts" name="pathway" value="Arts" onchange="this.form.submit()">
                                 <label for="arts" class="filterType">Arts</label>
 
-                                <input type="submit" name="thingy" />
+                                
                                 <!--somehow need to bind the different forms of the search bar and the checkboxes-->
 
                             </div>
@@ -128,7 +131,7 @@
                         </button>
 
                         <div class="dropdown-container">
-
+                            <!--remeber to include a form to submit-->
                             <input type="checkbox" id="two" name="two" value="2" onchange="this.form.submit()">
                             <label for="two" class="filterType">2</label>
 
@@ -190,21 +193,47 @@
     <!--how to use jquery and ajax for not refreshing on form submit-->
 
     <script type="text/javascript">
+        
         $("#search").submit(function (event) {
+
             event.preventDefault();
 
             $.ajax({
+
                 type: "POST",
                 url: "/catalog",
                 data: { "searchBar": document.getElementById("searchBar").value, "searchButton": "" }
-                //contentType: "text",
+                
                 //use dataType to figure out what data you want back from the server
 
             }).done(function (response) {
-                alert(JSON.stringify(response));
+                var json = JSON.parse(response)
+                var mainKeys = Object.keys(json)
+                var subKeys = Object.keys(json['ID'])
+                alert(mainKeys + " " + subKeys);
+                
+                //for every single mainKey, there should be subKeys representing the different result objects
+                //can iterate through mainKeys for every subKey to find the different values of the results
+                //might need to recast response or something into something readable
+                //create a function that can render a course block, add course data to said bloack, push to html
+              
             });
 
 
+        });
+
+        $("pathways").submit(function (event) {
+
+            event.preventDefault();
+
+            $.ajax({
+
+                type: "POST",
+                url: "/catalog",
+                data: {}
+            }).done(function (response) {
+
+            });
         });
 
     </script>
