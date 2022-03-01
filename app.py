@@ -5,7 +5,7 @@ It contains the definition of routes and views for the application.
 
 import data as dt
 import pandas as pd
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, jsonify
 
 
 app = Flask(__name__)
@@ -34,14 +34,24 @@ def home():
 def catalog():
     
     if request.method == 'POST':
+       
         if request.form.get('pathway') or request.form.get('thingy'):                        
             print(request.form.getlist('pathway'))
             
-        elif request.form.get('searchBar') or request.form.get('searchButton'):
-            pySearched = str(request.form.get('searchBar'))
+            #need a better boolean to access the data. don't want it to be easily hackable
+        elif request.form['searchButton'] == "":
+            
+            pySearched = request.form['searchBar']
+            print(pySearched)
+          
             pyResults = df.getCourse(pySearched.upper(), 'longDescription')
             pyLength = len(pyResults)
-            return render_template('public_catalog.html', results = pyResults, ranges = range(pyLength), searched = pySearched, length = pyLength)
+            #account for empty search
+            #want to send data back to ajax where it will be processed in js 
+            #return render_template('public_catalog.html', results = pyResults, ranges = range(pyLength), searched = pySearched, length = pyLength)
+            #can't take a dataFrame as a return
+            #dict, tuple, string
+            return jsonify(pyResults.to_dict())
         
 
         #find a way to retain checkboxes
@@ -81,8 +91,3 @@ if __name__ == '__main__':
     except ValueError:
         PORT = 5555
     app.run(HOST, PORT)
-
-
-
-
-
