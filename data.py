@@ -4,8 +4,11 @@ class data:
     def __init__(self, dataframe):
         self.df = dataframe
         
-    def getCourse(self, keywords, searchCol):
-       return self.df.loc[self.searchCheck(keywords.split(' '), self.df[searchCol].str.split(' '))]
+    def findCourse(self, keywords, searchCol):
+       return data(self.df.loc[self.searchCheck(keywords.split(' '), self.df[searchCol].str.split(' '))])
+
+    def getDF(self):
+        return self.df
 
     def searchCheck(self, keyArr, searchArr):
         finalList = []
