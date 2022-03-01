@@ -34,8 +34,9 @@ def home():
 def catalog():
     
     if request.method == 'POST':
+        print(str(request.form))
        
-        if request.form.get('pathway') or request.form.get('thingy'):                        
+        if request.form.get('pathway'): 
             print(request.form.getlist('pathway'))
             
             #need a better boolean to access the data. don't want it to be easily hackable
@@ -51,7 +52,7 @@ def catalog():
             #return render_template('public_catalog.html', results = pyResults, ranges = range(pyLength), searched = pySearched, length = pyLength)
             #can't take a dataFrame as a return
             #dict, tuple, string
-            print(pyResults)
+            print(pyResults.to_json())
             return pyResults.to_json()
         
 
