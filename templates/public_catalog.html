@@ -182,7 +182,38 @@
         <p>Abington School District © 2022. All Rights Reserved.</p>
     </footer>
 
+     <!--separate our js into separate file in order to maintain consistency?-->
     <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
+
+    <!--https://stackoverflow.com/questions/16323360/submitting-html-form-using-jquery-ajax-->
+    <!--https://stackoverflow.com/questions/48595068/process-ajax-request-in-flask-->
+    <!--how to use jquery and ajax for not refreshing on form submit-->
+
+    <script type="text/javascript">
+        $("#search").submit(function (event) {
+            event.preventDefault();
+
+            $.ajax({
+                type: "POST",
+                url: "/catalog",
+                data: { "searchBar": document.getElementById("searchBar").value, "searchButton": "" },
+                //contentType: "text",
+                //use dataType to figure out what data you want back from the server
+                success: function (response) {
+                    alert(JSON.stringify(response));
+                }
+            });
+
+
+        });
+
+    </script>
+    <!--https://www.tabnine.com/academy/javascript/get-value-of-input/-->
+    <!--https://flask.palletsprojects.com/en/2.0.x/patterns/jquery/-->
+    <!--https://stackoverflow.com/questions/37631388/how-to-get-data-in-flask-from-ajax-post-->
+    <!--https://stackoverflow.com/questions/16323360/submitting-html-form-using-jquery-ajax-->
+    <!--https://stackoverflow.com/questions/48595068/process-ajax-request-in-flask-->
+    <!--https://stackoverflow.com/questions/14908864/how-can-i-use-data-posted-from-ajax-in-flask-->
 
     <!--how to use jquery and ajax for not refreshing on form submit-->
    
