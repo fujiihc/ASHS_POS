@@ -11,6 +11,7 @@ from flask import Flask, render_template, redirect, url_for, request, jsonify
 app = Flask(__name__)
 
 #have this built into somewhere else
+#??what did i mean lmfao
 df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252'))
 
 
@@ -44,14 +45,12 @@ def catalog():
             #make sure that special characters are accounted for
             #is instance doesn't work if request.form['searchBar'] doesn't exist
         elif request.form['searchButton'] == "" and isinstance(request.form['searchBar'], str):
-            #modifiers
+            #modifiers array iterable
             #can do it iteratively because you can assume that if it contains all, it will survive all searches
             #have a 'toBeSearched" df that has the modifiers added to it using getCourse??
             #toBeSearched = toBeSearched.findCourse() in for loop
             #use .toDF() to convert back to dataFrame
             pySearched = request.form['searchBar']
-            print(pySearched)
-          
             pyResults = df.findCourse(pySearched.upper(), 'longDescription')
             pyLength = len(pyResults.getDF())
             #account for empty search
