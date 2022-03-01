@@ -51,7 +51,8 @@ def catalog():
             #return render_template('public_catalog.html', results = pyResults, ranges = range(pyLength), searched = pySearched, length = pyLength)
             #can't take a dataFrame as a return
             #dict, tuple, string
-            return jsonify(pyResults.to_dict())
+            print(pyResults)
+            return pyResults.to_json()
         
 
         #find a way to retain checkboxes
