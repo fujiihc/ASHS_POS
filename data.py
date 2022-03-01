@@ -5,7 +5,7 @@ class data:
         self.df = pd.read_csv('abCourseData.csv', encoding='cp1252')
         
     def getCourse(self, keywords, searchCol):
-       return self.df.loc[self.searchCheck(keywords.split(' '), self.df['longDescription'].str.split(' '))]
+       return self.df.loc[self.searchCheck(keywords.split(' '), self.df[searchCol].str.split(' '))]
 
     def searchCheck(self, keyArr, searchArr):
         finalList = []
