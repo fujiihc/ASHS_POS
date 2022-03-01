@@ -11,7 +11,7 @@ from flask import Flask, render_template, redirect, url_for, request, jsonify
 app = Flask(__name__)
 
 #have this built into somewhere else
-df = dt.data()
+df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252'))
 
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
@@ -44,7 +44,10 @@ def catalog():
             #make sure that special characters are accounted for
             #is instance doesn't work if request.form['searchBar'] doesn't exist
         elif request.form['searchButton'] == "" and isinstance(request.form['searchBar'], str):
-            
+            #modifiers
+            #can do it iteratively because you can assume that if it contains all, it will survive all searches
+            #have a 'toBeSearched" df that has the modifiers added to it using getCourse??
+            #need to create new df objects, otherwise can't search??
             pySearched = request.form['searchBar']
             print(pySearched)
           
