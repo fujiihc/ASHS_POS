@@ -38,7 +38,7 @@ def home():
 def catalog():
     global pathways
     global keyword
-
+    
     if request.method == 'POST':
     
     #need a better boolean to access the data. don't want it to be easily hackable
@@ -51,12 +51,13 @@ def catalog():
 
         elif isinstance(request.form.get('selected'), str):
 
-            modifiers = request.form['selected'].split('#')
+            pathways = request.form['selected'].split('#')
             return search_w_modifiers(keyword)
 
     return render_template('public_catalog.html')
 
 def search_w_modifiers(keyword):
+    global pathways
     toBeSearched = df      
     for p in pathways:
         if p != '':
