@@ -37,45 +37,31 @@ def home():
 def catalog():
     global modifiers
     global keyword
-    print(modifiers)
 
     if request.method == 'POST':
-        
-      
-        
-            #need a better boolean to access the data. don't want it to be easily hackable
-            #make sure that special characters are accounted for
+    
+    #need a better boolean to access the data. don't want it to be easily hackable
+    #make sure that special characters are accounted for
             
         if request.form.get('searchButton') == "" and isinstance(request.form.get('searchBar'), str):
+
             keyword = request.form['searchBar']
             return search_w_modifiers(keyword)
-            
-            #account for empty search
+
         elif isinstance(request.form.get('selected'), str):
 
             modifiers = request.form['selected'].split('#')
             return search_w_modifiers(keyword)
 
-        
-     
     return render_template('public_catalog.html')
 
 def search_w_modifiers(keyword):
-    toBeSearched = df
-            
+    toBeSearched = df      
     for mod in modifiers:
         if mod != '':
             toBeSearched = toBeSearched.findCourse('X', mod)
-
-    
     pyResults = toBeSearched.findCourse(keyword.upper(), 'longDescription').getDF()
-            
-    #account for empty search
-            
-    print(pyResults)
     return pyResults.to_json()
-
-
 
 @app.route('/student', methods = ['POST','GET'])
 def student():
