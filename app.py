@@ -38,28 +38,27 @@ def catalog():
         print(str(request.form))
        
         #need to rework this boolean for ajax compatibility
-        if request.form.get('pathway'): 
-            print(request.form.getlist('pathway'))
-            
             #need a better boolean to access the data. don't want it to be easily hackable
             #make sure that special characters are accounted for
             #is instance doesn't work if request.form['searchBar'] doesn't exist
-        elif request.form['searchButton'] == "" and isinstance(request.form['searchBar'], str):
-            #modifiers array iterable
-            #can do it iteratively because you can assume that if it contains all, it will survive all searches
-            #have a 'toBeSearched" df that has the modifiers added to it using getCourse??
-            #toBeSearched = toBeSearched.findCourse() in for loop
-            #use .toDF() to convert back to dataFrame
+        if request.form.get('searchButton') == "" and isinstance(request.form.get('searchBar'), str):
+            toBeSearched = df
+            modifiers = []
+            #modifiers are added through checkboxes
+            #add modifiers as part of the findCourse method in data.py
+            for mod in modifiers:
+                toBeSearched = toBeSearched.findCourse('X', modifiers)
+
             pySearched = request.form['searchBar']
-            pyResults = df.findCourse(pySearched.upper(), 'longDescription')
-            pyLength = len(pyResults.getDF())
+            pyResults = toBeSearched.findCourse(pySearched.upper(), 'longDescription').getDF()
+            pyLength = len(pyResults)
             #account for empty search
             #want to send data back to ajax where it will be processed in js 
             #return render_template('public_catalog.html', results = pyResults, ranges = range(pyLength), searched = pySearched, length = pyLength)
             #can't take a dataFrame as a return
             #dict, tuple, string
-            print(pyResults.getDF().to_json())
-            return pyResults.getDF().to_json()
+            print(pyResults.to_json())
+            return pyResults.to_json()
         
 
         #find a way to retain checkboxes
