@@ -89,10 +89,10 @@
                         </button>
 
                         <form method="post" action="/catalog" id="pathways">
-                            <!--the post signal istn getting because checking the box isnt returning any sort of statement-->
+                            
                             <div class="dropdown-container" id="pathwayDDs">
 
-                                <input type="checkbox" id="business" name="pathway" value="Business" onchange="this.form.submit()">
+                                <input type="checkbox" id="business" name="pathway" value="Business" onchange="document.getElementById('pathways').submit()">
                                 <label for="business" class="filterType">Business</label>
 
                                 <input type="checkbox" id="compSci" name="pathway" value="Computer Science" onchange="this.form.submit()">
