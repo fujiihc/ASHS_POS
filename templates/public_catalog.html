@@ -20,6 +20,7 @@
             <div class="container">
                 <div class="mainArea">
                     <div class="mainSpace">
+
                         <form method="post" action="/catalog" id="search">
 
                             <div class="search_box">
@@ -91,35 +92,34 @@
                         <form method="post" action="/catalog" id="pathways">
                             
                             <div class="dropdown-container" id="pathwayDDs">
-
-                                <input type="checkbox" id="business" name="pathway" value="Business" onchange="document.getElementById('pathways').submit()">
+                                <!--maybe use an onchange thing within the ajax instead of form submit-->
+                                <input type="checkbox" id="business" value="bisPath">
                                 <label for="business" class="filterType">Business</label>
 
-                                <input type="checkbox" id="compSci" name="pathway" value="Computer Science" onchange="this.form.submit()">
+                                <input type="checkbox" id="compSci" value="csPath">
                                 <label for="compSci" class="filterType">Computer Science</label>
 
-                                <input type="checkbox" id="government" name="pathway" value="Government" onchange="this.form.submit()">
+                                <input type="checkbox" id="government" value="govPath">
                                 <label for="government" class="filterType">Government</label>
 
-                                <input type="checkbox" id="health" name="pathway" value="Health" onchange="this.form.submit()">
+                                <input type="checkbox" id="health" value="healthPath">
                                 <label for="health" class="filterType">Health Services</label>
 
-                                <input type="checkbox" id="humanities" name="pathway" value="Humanities" onchange="this.form.submit()">
+                                <input type="checkbox" id="humanities" value="humPath">
                                 <label for="humanities" class="filterType">Humanities</label>
 
-                                <input type="checkbox" id="manu" name="pathway" value="Manufacturing" onchange="this.form.submit()">
+                                <input type="checkbox" id="manu" value="manuPath">
                                 <label for="manu" class="filterType">Manufacturing</label>
 
-                                <input type="checkbox" id="stem" name="pathway" value="STEM" onchange="this.form.submit()">
+                                <input type="checkbox" id="stem" value="stemPath">
                                 <label for="stem" class="filterType">STEM</label>
 
-                                <input type="checkbox" id="scoSci" name="pathway" value="Social Science" onchange="this.form.submit()">
+                                <input type="checkbox" id="scoSci" value="socSciPath">
                                 <label for="scoSci" class="filterType">Social Science</label>
 
-                                <input type="checkbox" id="arts" name="pathway" value="Arts" onchange="this.form.submit()">
+                                <input type="checkbox" id="arts" value="visPath">
                                 <label for="arts" class="filterType">Arts</label>
 
-                                
                                 <!--somehow need to bind the different forms of the search bar and the checkboxes-->
 
                             </div>
@@ -132,10 +132,10 @@
 
                         <div class="dropdown-container">
                             <!--remeber to include a form to submit-->
-                            <input type="checkbox" id="two" name="two" value="2" onchange="this.form.submit()">
+                            <input type="checkbox" id="two" name="two" value="2">
                             <label for="two" class="filterType">2</label>
 
-                            <input type="checkbox" id="five" name="five" value="5" onchange="this.form.submit()">
+                            <input type="checkbox" id="five" name="five" value="5">
                             <label for="five" class="filterType">5</label>
 
                         </div>
@@ -147,16 +147,16 @@
 
                         <div class="dropdown-container">
 
-                            <input type="checkbox" id="ap" name="ap" value="AP" onchange="this.form.submit()">
+                            <input type="checkbox" id="ap" name="ap" value="AP">
                             <label for="ap" class="filterType">AP</label>
 
-                            <input type="checkbox" id="honors" name="honors" value="Honors" onchange="this.form.submit()">
+                            <input type="checkbox" id="honors" name="honors" value="Honors">
                             <label for="honors" class="filterType">Honors</label>
 
-                            <input type="checkbox" id="cp" name="cp" value="College Prep" onchange="this.form.submit()">
+                            <input type="checkbox" id="cp" name="cp" value="College Prep">
                             <label for="cp" class="filterType">College Prep</label>
 
-                            <input type="checkbox" id="standard" name="standard" value="Standard" onchange="this.form.submit()">
+                            <input type="checkbox" id="standard" name="standard" value="Standard">
                             <label for="standard" class="filterType">Standard</label>
 
                         </div>
@@ -168,10 +168,10 @@
 
                         <div class="dropdown-container">
 
-                            <input type="checkbox" id="semester" name="semester" value="Semester" onchange="this.form.submit()">
+                            <input type="checkbox" id="semester" name="semester" value="Semester">
                             <label for="semester" class="filterType">Semester</label>
 
-                            <input type="checkbox" id="fullYear" name="fullYear" value="Full Year" onchange="this.form.submit()">
+                            <input type="checkbox" id="fullYear" name="fullYear" value="Full Year">
                             <label for="fullYear" class="filterType">Full Year</label>
 
                         </div>
@@ -213,7 +213,8 @@
                 var subKeys = Object.keys(json['ID'])
                 //working under the assumption that 'ID' will always be  valid key
                 alert(mainKeys + " " + subKeys);
-                
+                //make update results function
+
                 //for every single mainKey, there should be subKeys representing the different result objects
                 //can iterate through mainKeys for every subKey to find the different values of the results
                 //might need to recast response or something into something readable
@@ -224,16 +225,20 @@
 
         });
 
-        //referencing issue?
-        $("#pathways").submit(function (event) {
+     
+        $("#pathways").on("change", "input:checkbox", function (event) {
 
             event.preventDefault();
+            var checked = "";
+            var checkboxes = document.getElementById('pathways').querySelectorAll('input[type=checkbox]:checked');
+            for (var i = 0; i < checkboxes.length; i++) checked += checkboxes[i].value + "#";
+            
 
             $.ajax({
 
                 type: "POST",
                 url: "/catalog",
-                data: { "elements": document.getElementsByName("pathway") }
+                data: { "selected": checked }
                 //add "on" and "off" states to each checkbox?
                 //don't want to have to grab every single thing individually
                 //could make this a function
@@ -241,7 +246,7 @@
                 //document.getElementsByName()
                 //run a for loop 
             }).done(function (response) {
-                alert("success")
+                //alert("success")
             });
         });
 
