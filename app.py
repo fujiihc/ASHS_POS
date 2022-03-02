@@ -15,7 +15,7 @@ app = Flask(__name__)
 df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252'))
 
 #allows us to access modifiers and last keyword globally
-modifiers =[]
+pathways =[]
 keyword = ''
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
@@ -36,7 +36,7 @@ def home():
 
 @app.route('/catalog', methods = ['POST', 'GET'])
 def catalog():
-    global modifiers
+    global pathways
     global keyword
 
     if request.method == 'POST':
@@ -58,9 +58,9 @@ def catalog():
 
 def search_w_modifiers(keyword):
     toBeSearched = df      
-    for mod in modifiers:
-        if mod != '':
-            toBeSearched = toBeSearched.findCourse('X', mod)
+    for p in pathways:
+        if p != '':
+            toBeSearched = toBeSearched.findCourse('X', p)
     pyResults = toBeSearched.findCourse(keyword.upper(), 'longDescription').getDF()
     return pyResults.to_json()
 
