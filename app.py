@@ -14,6 +14,8 @@ app = Flask(__name__)
 #??what did i mean lmfao
 df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252'))
 
+modifiers =[]
+keyword = ''
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 wsgi_app = app.wsgi_app
@@ -33,40 +35,47 @@ def home():
 
 @app.route('/catalog', methods = ['POST', 'GET'])
 def catalog():
-    
+    global modifiers
+    global keyword
+    print(modifiers)
+
     if request.method == 'POST':
-        print(str(request.form))
-       
-        #need to rework this boolean for ajax compatibility
+        
+      
+        
             #need a better boolean to access the data. don't want it to be easily hackable
             #make sure that special characters are accounted for
-            #is instance doesn't work if request.form['searchBar'] doesn't exist
+            
         if request.form.get('searchButton') == "" and isinstance(request.form.get('searchBar'), str):
-            toBeSearched = df
-            modifiers = []
-            #modifiers are added through checkboxes
-            #add modifiers as part of the findCourse method in data.py
-            for mod in modifiers:
-                toBeSearched = toBeSearched.findCourse('X', modifiers)
-
-            pySearched = request.form['searchBar']
-            pyResults = toBeSearched.findCourse(pySearched.upper(), 'longDescription').getDF()
-            pyLength = len(pyResults)
+            keyword = request.form['searchBar']
+            return search_w_modifiers(keyword)
+            
             #account for empty search
-            #want to send data back to ajax where it will be processed in js 
-            #return render_template('public_catalog.html', results = pyResults, ranges = range(pyLength), searched = pySearched, length = pyLength)
-            #can't take a dataFrame as a return
-            #dict, tuple, string
-            print(pyResults.to_json())
-            return pyResults.to_json()
-        
+        elif isinstance(request.form.get('selected'), str):
 
-        #find a way to retain checkboxes
-        #https://www.geeksforgeeks.org/flask-form-submission-without-page-reload/
-        #use event listener and preventdefault??
-        #maybe use the code from the link to ignore the pressing of the pathway dropdown buttons
+            modifiers = request.form['selected'].split('#')
+            return search_w_modifiers(keyword)
+
+        
      
     return render_template('public_catalog.html')
+
+def search_w_modifiers(keyword):
+    toBeSearched = df
+            
+    for mod in modifiers:
+        if mod != '':
+            toBeSearched = toBeSearched.findCourse('X', mod)
+
+    
+    pyResults = toBeSearched.findCourse(keyword.upper(), 'longDescription').getDF()
+            
+    #account for empty search
+            
+    print(pyResults)
+    return pyResults.to_json()
+
+
 
 @app.route('/student', methods = ['POST','GET'])
 def student():
