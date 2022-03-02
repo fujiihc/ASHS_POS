@@ -14,6 +14,7 @@ app = Flask(__name__)
 #??what did i mean lmfao
 df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252'))
 
+#allows us to access modifiers and last keyword globally
 modifiers =[]
 keyword = ''
 
