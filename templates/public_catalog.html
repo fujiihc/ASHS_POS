@@ -246,7 +246,10 @@
                 //document.getElementsByName()
                 //run a for loop 
             }).done(function (response) {
-                //alert("success")
+                var json = JSON.parse(response)
+                var mainKeys = Object.keys(json)
+                var subKeys = Object.keys(json['ID'])
+                alert(mainKeys + " " + subKeys);
             });
         });
 
