@@ -12,9 +12,10 @@ app = Flask(__name__)
 
 #have this built into somewhere else
 #??what did i mean lmfao
-df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252'))
+df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna(''))
 
 #allows us to access modifiers and last keyword globally
+#make a global variable for every modifier
 pathways =[]
 keyword = ''
 
