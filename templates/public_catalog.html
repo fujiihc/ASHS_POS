@@ -126,17 +126,50 @@
                         </form>
 
                         <button class="dropdown">
-                            Days per Week
+                            Department
                             <i class="fa fa-caret-down"></i>
                         </button>
 
                         <div class="dropdown-container">
                             <!--remeber to include a form to submit-->
                             <input type="checkbox" id="two" name="two" value="2">
-                            <label for="two" class="filterType">2</label>
+                            <label for="two" class="filterType">AR</label>
 
                             <input type="checkbox" id="five" name="five" value="5">
-                            <label for="five" class="filterType">5</label>
+                            <label for="five" class="filterType">TE</label>
+
+                            <input type="checkbox" id="five" name="five" value="5">
+                            <label for="five" class="filterType">BU</label>
+
+                            <input type="checkbox" id="five" name="five" value="5">
+                            <label for="five" class="filterType">EN</label>
+
+                            <input type="checkbox" id="five" name="five" value="5">
+                            <label for="five" class="filterType">CS</label>
+
+                            <input type="checkbox" id="five" name="five" value="5">
+                            <label for="five" class="filterType">HP</label>
+
+                            <input type="checkbox" id="five" name="five" value="5">
+                            <label for="five" class="filterType">RD</label>
+
+                            <input type="checkbox" id="five" name="five" value="5">
+                            <label for="five" class="filterType">SC</label>
+
+                            <input type="checkbox" id="five" name="five" value="5">
+                            <label for="five" class="filterType">FL</label>
+
+                            <input type="checkbox" id="five" name="five" value="5">
+                            <label for="five" class="filterType">MA</label>
+
+                            <input type="checkbox" id="five" name="five" value="5">
+                            <label for="five" class="filterType">SS</label>
+
+                            <input type="checkbox" id="five" name="five" value="5">
+                            <label for="five" class="filterType">MU</label>
+
+                            <input type="checkbox" id="five" name="five" value="5">
+                            <label for="five" class="filterType">N/A</label>
 
                         </div>
 
@@ -154,10 +187,7 @@
                             <label for="honors" class="filterType">Honors</label>
 
                             <input type="checkbox" id="cp" name="cp" value="College Prep">
-                            <label for="cp" class="filterType">College Prep</label>
-
-                            <input type="checkbox" id="standard" name="standard" value="Standard">
-                            <label for="standard" class="filterType">Standard</label>
+                            <label for="cp" class="filterType">Standard / CP</label>
 
                         </div>
 
@@ -211,9 +241,25 @@
                 var json = JSON.parse(response)
                 var mainKeys = Object.keys(json)
                 var subKeys = Object.keys(json['ID'])
+
+
+                var name = json[mainKeys[1]][subKeys[0]];
+                var description = json[mainKeys[3]][subKeys[0]];
+
+                var resultDiv = document.querySelector(".results");
+
+                for (var i = 0; i < 3; i++) {
+                    var clone = resultDiv.cloneNode(true);
+                    document.body.appendChild(clone);
+                }
+
+                document.getElementById("course-name").innerHTML = name;
+                document.getElementById("description").innerHTML = description;
+
+                //alert(description);
+
                 //working under the assumption that 'ID' will always be  valid key
-                alert(mainKeys + " " + subKeys);
-                //make update results function
+                //alert(mainKeys + " " + subKeys);
 
                 //for every single mainKey, there should be subKeys representing the different result objects
                 //can iterate through mainKeys for every subKey to find the different values of the results
@@ -263,8 +309,7 @@
 
 
     <script>
-   
-        
+  
             //VARIABLES
             var theseContainers = document.getElementsByClassName("dropdown-container");
             var dropdownBttns = document.getElementsByClassName("dropdown");
