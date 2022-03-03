@@ -38,12 +38,12 @@
                         <div class="results">
                             <table>
 
-                                {%for item in ranges%}
+                                
                                 <tr>
                                     <td>
                                         <div style="display: flex; justify-content: space-between;">
                                             <div class="fa fa-plus"></div>
-                                            <div class="course-name">{{results['longDescription'].iloc[item]}}</div>
+                                            <div class="course-name" id="course-name">course name</div>
                                         </div>
                                         <div class="descriptions">
                                             <div>Honors</div>
@@ -56,29 +56,17 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <div class="descriptions">
-                                            <div>{{results['description'].iloc[item]}}</div>
-                                            <!--
-                                            <div>Credits: {{results['credits'].iloc[item]}}</div>
-                                            <div>Pathway</div>
-                                            <div>5 days/week</div>
-                                            <div>Department: {{results['dept'].iloc[item]}}</div>
-                                            -->
-
-                                        </div>
+                                        <div class="descriptions" id="description">description</div>
                                     </td>
                                 </tr>
-                                {%endfor%}
+                                
 
-                                {%if length == 0%}
-                                <div>
-                                    Keyword "{{searched}}" not found.
-                                </div>
-                                {%endif%}
+                                
 
                                 <!--need to come up with a new way to render result blocks, as well as null return-->
                             </table>
                         </div>
+                        
                     </div>
 
                     <div class="sidebar">
