@@ -24,7 +24,7 @@
                         <form method="post" action="/catalog" id="search">
 
                             <div class="search_box">
-                                <!--remember to include ids in order for JS to reference objects and their data-->
+
                                 <input type="text" class="input" placeholder="Search..." name="searchBar" id="searchBar">
 
                                 <div class="btn">
@@ -59,9 +59,6 @@
                                         <div class="descriptions" id="description">description</div>
                                     </td>
                                 </tr>
-                                
-
-                                
 
                                 <!--need to come up with a new way to render result blocks, as well as null return-->
                             </table>
@@ -80,7 +77,7 @@
                         <form action="/catalog" id="pathways">
                             
                             <div class="dropdown-container" id="pathwayDDs">
-                                <!--maybe use an onchange thing within the ajax instead of form submit-->
+                                
                                 <input type="checkbox" id="business" value="bisPath">
                                 <label for="business" class="filterType">Business</label>
 
@@ -108,8 +105,6 @@
                                 <input type="checkbox" id="arts" value="visPath">
                                 <label for="arts" class="filterType">Arts</label>
 
-                                <!--somehow need to bind the different forms of the search bar and the checkboxes-->
-
                             </div>
                         </form>
 
@@ -120,7 +115,7 @@
 
                         <form action="/catalog" id="departments">
                             <div class="dropdown-container">
-                                <!--remeber to include a form to submit-->
+                                
                                 <input type="checkbox" id="AR" value="AR">
                                 <label for="AR" class="filterType">AR</label>
 
@@ -209,10 +204,6 @@
      <!--separate our js into separate file in order to maintain consistency?-->
     <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
 
-    <!--https://stackoverflow.com/questions/16323360/submitting-html-form-using-jquery-ajax-->
-    <!--https://stackoverflow.com/questions/48595068/process-ajax-request-in-flask-->
-    <!--how to use jquery and ajax for not refreshing on form submit-->
-
     <script type="text/javascript">
         
         $("#search").submit(function (event) {
@@ -224,9 +215,7 @@
                 type: "POST",
                 url: "/catalog",
                 data: { "searchBar": document.getElementById("searchBar").value, "searchButton": "" }
-                //contentType: "application/json"
-                //find a contentType that accounts for special characters such as '
-                //use dataType to figure out what data you want back from the server
+                
 
             }).done(function (response) {
                 var json = JSON.parse(response);
@@ -291,14 +280,7 @@
 
         
     </script>
-    <!--https://www.tabnine.com/academy/javascript/get-value-of-input/-->
-    <!--https://flask.palletsprojects.com/en/2.0.x/patterns/jquery/-->
-    <!--https://stackoverflow.com/questions/37631388/how-to-get-data-in-flask-from-ajax-post-->
-    <!--https://stackoverflow.com/questions/16323360/submitting-html-form-using-jquery-ajax-->
-    <!--https://stackoverflow.com/questions/48595068/process-ajax-request-in-flask-->
-    <!--https://stackoverflow.com/questions/14908864/how-can-i-use-data-posted-from-ajax-in-flask-->
-
-
+   
     <script>
   
             //VARIABLES
