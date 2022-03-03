@@ -11,18 +11,19 @@ class data:
         return self.df
 
     def searchCheck(self, keyArr, searchArr):
-        finalList = []        
-        for item in searchArr:            
+        finalList = []      
+        for item in searchArr:         
             toAdd = False
             checkArr = []
             for search in keyArr:
                 #gotta make sure that item is not nan
                 #run an isinstance to make sure its not a float or something
-                if not isinstance(item, float):
-                    for word in item:
-                        if search in word:
-                            toAdd = True
-                            break
+                #need a better nan checker
+                #if not isinstance(item, float):
+                for word in item:    
+                    if search in word:
+                        toAdd = True
+                        break
                 #remember that this indent could cause issues
                 checkArr.append(toAdd)
                 toAdd = False
