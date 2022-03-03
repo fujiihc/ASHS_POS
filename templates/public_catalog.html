@@ -77,7 +77,7 @@
                             <i class="fa fa-caret-down"></i>
                         </button>
 
-                        <form method="post" action="/catalog" id="pathways">
+                        <form action="/catalog" id="pathways">
                             
                             <div class="dropdown-container" id="pathwayDDs">
                                 <!--maybe use an onchange thing within the ajax instead of form submit-->
@@ -118,48 +118,51 @@
                             <i class="fa fa-caret-down"></i>
                         </button>
 
-                        <div class="dropdown-container">
-                            <!--remeber to include a form to submit-->
-                            <input type="checkbox" id="two" name="two" value="2">
-                            <label for="two" class="filterType">AR</label>
+                        <form action="/catalog" id="departments">
+                            <div class="dropdown-container">
+                                <!--remeber to include a form to submit-->
+                                <input type="checkbox" id="department" value="AR">
+                                <label for="AR" class="filterType">AR</label>
 
-                            <input type="checkbox" id="five" name="five" value="5">
-                            <label for="five" class="filterType">TE</label>
+                                <input type="checkbox" id="department" value="TE">
+                                <label for="TE" class="filterType">TE</label>
 
-                            <input type="checkbox" id="five" name="five" value="5">
-                            <label for="five" class="filterType">BU</label>
+                                <input type="checkbox" id="department" value="BU">
+                                <label for="BU" class="filterType">BU</label>
 
-                            <input type="checkbox" id="five" name="five" value="5">
-                            <label for="five" class="filterType">EN</label>
+                                <input type="checkbox" id="department" value="EN">
+                                <label for="EN" class="filterType">EN</label>
 
-                            <input type="checkbox" id="five" name="five" value="5">
-                            <label for="five" class="filterType">CS</label>
+                                <input type="checkbox" id="department" value="CS">
+                                <label for="CS" class="filterType">CS</label>
 
-                            <input type="checkbox" id="five" name="five" value="5">
-                            <label for="five" class="filterType">HP</label>
+                                <input type="checkbox" id="department" value="HP">
+                                <label for="HP" class="filterType">HP</label>
 
-                            <input type="checkbox" id="five" name="five" value="5">
-                            <label for="five" class="filterType">RD</label>
+                                <input type="checkbox" id="department" value="RD">
+                                <label for="RD" class="filterType">RD</label>
 
-                            <input type="checkbox" id="five" name="five" value="5">
-                            <label for="five" class="filterType">SC</label>
+                                <input type="checkbox" id="department" value="SC">
+                                <label for="SC" class="filterType">SC</label>
 
-                            <input type="checkbox" id="five" name="five" value="5">
-                            <label for="five" class="filterType">FL</label>
+                                <input type="checkbox" id="department" value="FL">
+                                <label for="FL" class="filterType">FL</label>
 
-                            <input type="checkbox" id="five" name="five" value="5">
-                            <label for="five" class="filterType">MA</label>
+                                <input type="checkbox" id="department" value="MA">
+                                <label for="MA" class="filterType">MA</label>
 
-                            <input type="checkbox" id="five" name="five" value="5">
-                            <label for="five" class="filterType">SS</label>
+                                <input type="checkbox" id="department" value="SS">
+                                <label for="SS" class="filterType">SS</label>
 
-                            <input type="checkbox" id="five" name="five" value="5">
-                            <label for="five" class="filterType">MU</label>
+                                <input type="checkbox" id="department" value="MU">
+                                <label for="MU" class="filterType">MU</label>
 
-                            <input type="checkbox" id="five" name="five" value="5">
-                            <label for="five" class="filterType">N/A</label>
+                                <input type="checkbox" id="department" value="N/A">
+                                <label for="N/A" class="filterType">N/A</label>
 
-                        </div>
+                            </div>
+                        </form>
+                        
 
                         <button class="dropdown">
                             Course Level
@@ -255,12 +258,12 @@
                 //create a function that can render a course block, add course data to said bloack, push to html
               
             });
-
-
         });
 
      
         $("#pathways").on("change", "input:checkbox", function (event) {
+
+            //make this whole ass thing a method
 
             event.preventDefault();
             var checked = "";
@@ -273,17 +276,33 @@
                 type: "POST",
                 url: "/catalog",
                 data: { "selected": checked }
-                //add "on" and "off" states to each checkbox?
-                //don't want to have to grab every single thing individually
-                //could make this a function
-                //can you access all elements with the same Name??
-                //document.getElementsByName()
-                //run a for loop 
+                
             }).done(function (response) {
                 var json = JSON.parse(response)
                 var mainKeys = Object.keys(json)
                 var subKeys = Object.keys(json['ID'])
                 alert(mainKeys + " " + subKeys);
+            });
+        });
+
+        $("#departments").on("change", "input:checkbox", function (event) {
+
+            event.preventDefault();
+            var checked = "";
+            var checkboxes = document.getElementByID("department").querySelectorAll('input[type=checkbox]:checked');
+            for (var i = 0; i < checkboxes.length; i++) checked += checkboxes[i].value + "#";
+
+            $.ajax({
+
+                type: "POST",
+                url: "/catalog",
+                data: { "selected": checked }
+
+            }).done(function (response) {
+                var json = JSON.parse(response);
+                var mainKeys = Object.keys(json);
+                var subKeys = Object.keys(json['ID']);
+                alert(mainKets + " " + subKeys);
             });
         });
 
