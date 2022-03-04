@@ -14,12 +14,18 @@ app = Flask(__name__)
 #??what did i mean lmfao
 
 df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna(''))
-#probably came from the reformatting of the csv file in the git commit
-#cp1252
+#THINGS TO DO
+#Remove AMPERSANS and SPECIAL CHARS in CSV w/o editing type
+#Give functionality to checkboxes / improve search
+#try to create unique IDs on template render
+
 
 #ask if daub can reset the course data except removing ampersands
 
-pathways =[]
+pathways = []
+departments = []
+courseLengths = []
+courseLevels = []
 keyword = ''
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
@@ -40,7 +46,11 @@ def home():
 
 @app.route('/catalog', methods = ['POST', 'GET'])
 def catalog():
+    
     global pathways
+    global departments
+    global courseLengths
+    global courseLevels
     global keyword
     
     if request.method == 'POST':
@@ -53,19 +63,43 @@ def catalog():
             keyword = request.form['searchBar']
             return search_w_modifiers(keyword)
 
-        elif isinstance(request.form.get('selected'), str):
+        elif request.form.get('origin') == 'pathways' and isinstance(request.form.get('selected'), str):
 
             pathways = request.form['selected'].split('#')
+            return search_w_modifiers(keyword)
+        
+        elif request.form.get('origin') == 'departments' and isinstance(request.form.get('selected'), str):
+
+            departments = request.form['selected'].split('#')
+            return search_w_modifiers(keyword)
+            
+        elif request.form.get('origin') == 'courseLength' and isinstance(request.form.get('selected'), str):
+
+            courseLengths = request.form['selected'].split('#')
+            return search_w_modifiers(keyword)
+
+        elif request.form.get('origin') == 'courseLevel' and isinstance(request.form.get('selected'), str):
+
+            courseLevels = request.form['selected'].split('#')
             return search_w_modifiers(keyword)
 
     return render_template('public_catalog.html')
 
 def search_w_modifiers(keyword):
     global pathways
+    global departments
+    global courseLengths
+    global courseLevels
+
     toBeSearched = df      
     for p in pathways:
         if p != '':
             toBeSearched = toBeSearched.findCourse('X', p)
+    
+    #submit list of all checked boxes for inclusive events
+    #departments, courseLengths, courseLevels
+    #work on findCourse method, differentiate with 'clusive' parameter
+
     pyResults = toBeSearched.findCourse(keyword.upper(), 'longDescription').getDF()
     return pyResults.to_json()
 
