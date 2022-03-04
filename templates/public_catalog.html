@@ -35,7 +35,7 @@
 
                         </form>
 
-                        <template>
+                        <template id="cont">
                             
                                 <table>
 
@@ -44,7 +44,7 @@
                                         <td>
                                             <div style="display: flex; justify-content: space-between;">
                                                 <div class="fa fa-plus"></div>
-                                                <div class="course-name" id="course-name">course name</div>
+                                                <div class="course-name" id="course-name">##course name##</div>
                                             </div>
                                             <div class="descriptions">
                                                 <div>Level</div>
@@ -57,7 +57,7 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="descriptions" id="description">description</div>
+                                            <div class="descriptions" id="description">##description##</div>
                                         </td>
                                     </tr>
 
@@ -65,6 +65,10 @@
                                 </table>
                             
                         </template>
+
+                        <!--need a better way to render null return-->
+                       
+
                         <div class="results" id="content">
 
                         </div>
@@ -253,25 +257,38 @@
                 data: { "selected": checked },
                 
             }).done(function (response) {
+                $("#content").html("");
                 display(JSON.parse(response));
             });
         }
 
         function display(json) {
+            //clear
             $("#content").html("");
 
             //var mainKeys = Object.keys(json);
             var subKeys = Object.keys(json['ID']);
-
             var temp = document.getElementsByTagName("template")[0];
-           
+            
+            
+            
             for (var s = 0; s < subKeys.length; s++) {
                 console.log(json['longDescription'][subKeys[s]]);
                 console.log(json['description'][subKeys[s]]);
-                //temp.getElementById("course-name").innerHTML = json['longDescription'][subKeys[s]];
-                //temp.getElementById("description").innerHTML = json['description'][subKeys[s]];
-                var clon = temp.content.cloneNode(true);
+                
+                temp.innerHTML = temp.innerHTML.replace("##course name##", json['longDescription'][subKeys[s]]);
+                temp.innerHTML = temp.innerHTML.replace("##description##", json['description'][subKeys[s]]);
+
+                clon = temp.content.cloneNode(true);               
                 document.getElementById("content").appendChild(clon);
+
+                //maybe the dataset is too large??
+                //this is a stupid ass fix but it works so whatever
+                //"hi" breaks it
+                temp.innerHTML = temp.innerHTML.replace(json['longDescription'][subKeys[s]], "##course name##");
+                temp.innerHTML = temp.innerHTML.replace(json['description'][subKeys[s]], "##description##");
+                
+                //special characters in the name of the courses
             }
    
         }
