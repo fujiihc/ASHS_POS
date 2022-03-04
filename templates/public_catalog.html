@@ -69,9 +69,10 @@
                         <!--need a better way to render null return-->
                        
 
-                        <div class="results" id="content">
-
+                        <div class="results" id="results">
+                            
                         </div>
+
                     </div>
 
                     <div class="sidebar">
@@ -257,14 +258,14 @@
                 data: { "selected": checked },
                 
             }).done(function (response) {
-                $("#content").html("");
+                
                 display(JSON.parse(response));
             });
         }
 
         function display(json) {
             //clear
-            $("#content").html("");
+            $("#results").html("");
 
             //var mainKeys = Object.keys(json);
             var subKeys = Object.keys(json['ID']);
@@ -273,18 +274,17 @@
             
             
             for (var s = 0; s < subKeys.length; s++) {
-                console.log(json['longDescription'][subKeys[s]]);
-                console.log(json['description'][subKeys[s]]);
+                
+                //console.log(json['longDescription'][subKeys[s]]);
+                //console.log(json['description'][subKeys[s]]);
                 
                 temp.innerHTML = temp.innerHTML.replace("##course name##", json['longDescription'][subKeys[s]]);
                 temp.innerHTML = temp.innerHTML.replace("##description##", json['description'][subKeys[s]]);
 
-                clon = temp.content.cloneNode(true);               
-                document.getElementById("content").appendChild(clon);
-
-                //maybe the dataset is too large??
-                //this is a stupid ass fix but it works so whatever
-                //"hi" breaks it
+                
+                document.getElementById("results").appendChild(temp.content.cloneNode(true));
+                
+                
                 temp.innerHTML = temp.innerHTML.replace(json['longDescription'][subKeys[s]], "##course name##");
                 temp.innerHTML = temp.innerHTML.replace(json['description'][subKeys[s]], "##description##");
                 
