@@ -234,50 +234,35 @@
      
         $("#pathways").on("change", "input:checkbox", function (event) {
 
-            //make this whole ass thing a method
-            //callbacks??
-
             event.preventDefault();
-            var checked = "";
-            var checkboxes = document.getElementById("pathways").querySelectorAll('input[type=checkbox]:checked');
-            for (var i = 0; i < checkboxes.length; i++) checked += checkboxes[i].value + "#";
+            AJAX("pathways");
             
-            $.ajax({
-
-                type: "POST",
-                url: "/catalog",
-                data: { "selected": checked }
-                
-            }).done(function (response) {
-                var json = JSON.parse(response);
-                var mainKeys = Object.keys(json);
-                var subKeys = Object.keys(json['ID']);
-                alert(mainKeys + " " + subKeys);
-            });
         });
 
         $("#departments").on("change", "input:checkbox", function (event) {
 
             event.preventDefault();
+            AJAX("departments");
+        });
+
+        function AJAX(elementID) {
             var checked = "";
-            var checkboxes = document.getElementByID("departments").querySelectorAll('input[type=checkbox]:checked');
+            var checkboxes = document.getElementById(elementID).querySelectorAll('input[type=checkbox]:checked');
             for (var i = 0; i < checkboxes.length; i++) checked += checkboxes[i].value + "#";
 
             $.ajax({
 
                 type: "POST",
                 url: "/catalog",
-                data: { "selected": checked }
-
+                data: { "selected": checked },
+                async: false
             }).done(function (response) {
                 var json = JSON.parse(response);
                 var mainKeys = Object.keys(json);
                 var subKeys = Object.keys(json['ID']);
                 alert(mainKeys + " " + subKeys);
             });
-        });
-
-
+        }
         
     </script>
    
