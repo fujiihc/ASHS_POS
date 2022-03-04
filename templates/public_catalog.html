@@ -35,35 +35,39 @@
 
                         </form>
 
-                        <div class="results">
-                            <table>
+                        <template>
+                            
+                                <table>
 
-                                
-                                <tr>
-                                    <td>
-                                        <div style="display: flex; justify-content: space-between;">
-                                            <div class="fa fa-plus"></div>
-                                            <div class="course-name" id="course-name">course name</div>
-                                        </div>
-                                        <div class="descriptions">
-                                            <div>Honors</div>
-                                            <div>10 credits</div>
-                                            <div>Computer Science Pathway</div>
-                                            <div>
-                                                <button class="viewDescriptionBtn">
-                                                    View Description
-                                                    <i class="fa fa-caret-down" style="margin-left:5px;"></i>
-                                                </button>
+
+                                    <tr>
+                                        <td>
+                                            <div style="display: flex; justify-content: space-between;">
+                                                <div class="fa fa-plus"></div>
+                                                <div class="course-name" id="course-name">course name</div>
                                             </div>
-                                        </div>
-                                        <div class="descriptions" id="description">description</div>
-                                    </td>
-                                </tr>
+                                            <div class="descriptions">
+                                                <div>Level</div>
+                                                <div>Credits</div>
+                                                <div>Pathway</div>
+                                                <div>
+                                                    <button class="viewDescriptionBtn">
+                                                        View Description
+                                                        <i class="fa fa-caret-down" style="margin-left:5px;"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="descriptions" id="description">description</div>
+                                        </td>
+                                    </tr>
 
-                                <!--need to come up with a new way to render result blocks, as well as null return-->
-                            </table>
+                                    <!--need to come up with a new way to render result blocks, as well as null return-->
+                                </table>
+                            
+                        </template>
+                        <div class="results" id="content">
+
                         </div>
-                        
                     </div>
 
                     <div class="sidebar">
@@ -219,33 +223,16 @@
 
             }).done(function (response) {
                 var json = JSON.parse(response);
-                var mainKeys = Object.keys(json);
-                var subKeys = Object.keys(json['ID']);
-                alert(mainKeys + " " + subKeys);
+                
+                //alert(mainKeys + " " + subKeys);
                 //working under the assumption that 'ID' will always be  valid key
                 //for every single mainKey, there should be subKeys representing the different result objects
                 //can iterate through mainKeys for every subKey to find the different values of the results
                 //might need to recast response or something into something readable
                 //create a function that can render a course block, add course data to said bloack, push to html
+
+                display(json);
                 
-                /*
-                
-                var name = json[mainKeys[1]][subKeys[0]];
-                var description = json[mainKeys[3]][subKeys[0]];
-
-                var resultDiv = document.querySelector(".results");
-
-                for (var i = 0; i < 3; i++) {
-                    var clone = resultDiv.cloneNode(true);
-                    document.body.appendChild(clone);
-                }
-
-                document.getElementById("course-name").innerHTML = name;
-                document.getElementById("description").innerHTML = description;
-
-                //alert(description);
-                */
-              
             });
         });
 
@@ -261,6 +248,7 @@
 
             event.preventDefault();
             AJAX("departments");
+
         });
 
         function AJAX(elementID) {
@@ -273,13 +261,31 @@
                 type: "POST",
                 url: "/catalog",
                 data: { "selected": checked },
-                async: false
+                
             }).done(function (response) {
                 var json = JSON.parse(response);
                 var mainKeys = Object.keys(json);
                 var subKeys = Object.keys(json['ID']);
                 alert(mainKeys + " " + subKeys);
             });
+        }
+
+        function display(json) {
+            var mainKeys = Object.keys(json);
+            var subKeys = Object.keys(json['ID']);
+
+            var temp = document.getElementsByTagName("template")[0];
+            
+            
+
+            //there is an issue with using for loops
+           
+            var clon = temp.content.cloneNode(true);
+            document.getElementById("content").appendChild(clon);
+            
+            
+            
+            
         }
         
     </script>
