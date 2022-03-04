@@ -12,10 +12,13 @@ app = Flask(__name__)
 
 #have this built into somewhere else
 #??what did i mean lmfao
-df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna(''))
 
-#allows us to access modifiers and last keyword globally
-#make a global variable for every modifier
+df = dt.data(pd.read_csv('abCourseData.csv', encoding='utf8').fillna(''))
+#probably came from the reformatting of the csv file in the git commit
+#cp1252
+
+#ask if daub can reset the course data except removing ampersands
+
 pathways =[]
 keyword = ''
 
