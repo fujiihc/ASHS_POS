@@ -222,17 +222,7 @@
                 
 
             }).done(function (response) {
-                var json = JSON.parse(response);
-                
-                //alert(mainKeys + " " + subKeys);
-                //working under the assumption that 'ID' will always be  valid key
-                //for every single mainKey, there should be subKeys representing the different result objects
-                //can iterate through mainKeys for every subKey to find the different values of the results
-                //might need to recast response or something into something readable
-                //create a function that can render a course block, add course data to said bloack, push to html
-
-                display(json);
-                
+                display(JSON.parse(response));          
             });
         });
 
@@ -263,29 +253,27 @@
                 data: { "selected": checked },
                 
             }).done(function (response) {
-                var json = JSON.parse(response);
-                var mainKeys = Object.keys(json);
-                var subKeys = Object.keys(json['ID']);
-                alert(mainKeys + " " + subKeys);
+                display(JSON.parse(response));
             });
         }
 
         function display(json) {
-            var mainKeys = Object.keys(json);
+            $("#content").html("");
+
+            //var mainKeys = Object.keys(json);
             var subKeys = Object.keys(json['ID']);
 
             var temp = document.getElementsByTagName("template")[0];
-            
-            
-
-            //there is an issue with using for loops
            
-            var clon = temp.content.cloneNode(true);
-            document.getElementById("content").appendChild(clon);
-            
-            
-            
-            
+            for (var s = 0; s < subKeys.length; s++) {
+                console.log(json['longDescription'][subKeys[s]]);
+                console.log(json['description'][subKeys[s]]);
+                //temp.getElementById("course-name").innerHTML = json['longDescription'][subKeys[s]];
+                //temp.getElementById("description").innerHTML = json['description'][subKeys[s]];
+                var clon = temp.content.cloneNode(true);
+                document.getElementById("content").appendChild(clon);
+            }
+   
         }
         
     </script>
