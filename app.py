@@ -5,7 +5,7 @@ It contains the definition of routes and views for the application.
 
 import data as dt
 import pandas as pd
-from flask import Flask, render_template, redirect, url_for, request, jsonify
+from flask import Flask, render_template, redirect, url_for, request
 
 
 app = Flask(__name__)
@@ -13,7 +13,7 @@ app = Flask(__name__)
 #have this built into somewhere else
 #??what did i mean lmfao
 
-df = dt.data(pd.read_csv('abCourseData.csv', encoding='utf8').fillna(''))
+df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna(''))
 #probably came from the reformatting of the csv file in the git commit
 #cp1252
 
