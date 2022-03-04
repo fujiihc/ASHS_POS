@@ -51,7 +51,7 @@
                                                 <div>Credits</div>
                                                 <div>Pathway</div>
                                                 <div>
-                                                    <button class="viewDescriptionBtn" onclick="$('#description').toggle()">
+                                                    <button class="viewDescriptionBtn">
                                                         View Description
                                                         <i class="fa fa-caret-down" style="margin-left:5px;"></i>
                                                     </button>
@@ -172,34 +172,39 @@
                             Course Level
                             <i class="fa fa-caret-down"></i>
                         </button>
+                        
+                        <form action="/catalog" id="courseLevel">
+                            <div class="dropdown-container">
 
-                        <div class="dropdown-container">
+                                <input type="checkbox" id="ap" value="3">
+                                <label for="ap" class="filterType">AP</label>
 
-                            <input type="checkbox" id="ap" name="ap" value="AP">
-                            <label for="ap" class="filterType">AP</label>
+                                <input type="checkbox" id="honors" value="2">
+                                <label for="honors" class="filterType">Honors</label>
 
-                            <input type="checkbox" id="honors" name="honors" value="Honors">
-                            <label for="honors" class="filterType">Honors</label>
+                                <input type="checkbox" id="cp" value="1">
+                                <label for="cp" class="filterType">Standard / CP</label>
 
-                            <input type="checkbox" id="cp" name="cp" value="College Prep">
-                            <label for="cp" class="filterType">Standard / CP</label>
-
-                        </div>
+                            </div>
+                        </form>
+                        
 
                         <button class="dropdown">
                             Length
                             <i class="fa fa-caret-down"></i>
                         </button>
+                        
+                        <form action="/catalog" id="courseLength">
+                            <div class="dropdown-container">
 
-                        <div class="dropdown-container">
+                                <input type="checkbox" id="semester" value="SM">
+                                <label for="semester" class="filterType">Semester</label>
 
-                            <input type="checkbox" id="semester" name="semester" value="Semester">
-                            <label for="semester" class="filterType">Semester</label>
+                                <input type="checkbox" id="fullYear" value="YR">
+                                <label for="fullYear" class="filterType">Full Year</label>
 
-                            <input type="checkbox" id="fullYear" name="fullYear" value="Full Year">
-                            <label for="fullYear" class="filterType">Full Year</label>
-
-                        </div>
+                            </div>
+                        </form>                        
                     </div>
 
                 </div>
@@ -231,7 +236,7 @@
             });
         });
 
-     
+        //exclusive (contains all)
         $("#pathways").on("change", "input:checkbox", function (event) {
 
             event.preventDefault();
@@ -239,23 +244,34 @@
             
         });
 
+        //inclusive (contains at least one)
         $("#departments").on("change", "input:checkbox", function (event) {
-
             event.preventDefault();
             AJAX("departments");
+        });
 
+        //inclusive (contains at least one)
+        $("#courseLevel").on("change", "input:checkbox", function (event) {
+            event.preventDefault();
+            AJAX("courseLevel");
+        });
+
+        //inclusive (contains at least one)
+        $("courseLength").on("change", "input:checkbox", function (event) {
+            event.preventDefault();
+            AJAX("courseLength");
         });
 
         function AJAX(elementID) {
             var checked = "";
             var checkboxes = document.getElementById(elementID).querySelectorAll('input[type=checkbox]:checked');
             for (var i = 0; i < checkboxes.length; i++) checked += checkboxes[i].value + "#";
-
+            
             $.ajax({
 
                 type: "POST",
                 url: "/catalog",
-                data: { "selected": checked },
+                data: { "selected" : checked, "origin" : elementID},
                 
             }).done(function (response) {
                 
