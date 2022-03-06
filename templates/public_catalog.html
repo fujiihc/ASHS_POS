@@ -37,40 +37,39 @@
 
                         <template id="cont">
                             <!-- what exactly is the point of having multiple tables?-->
-                                <table>
+                            <table>
 
 
-                                    <tr>
-                                        <td>
-                                            <div style="display: flex; justify-content: space-between;">
-                                                <div class="fa fa-plus"></div>
-                                                <div class="course-name" id="course-name">##course name##</div>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <div class="fa fa-plus"></div>
+                                            <div class="course-name" id="course-name">##course name##</div>
+                                        </div>
+                                        <div class="descriptions">
+                                            <div>Level</div>
+                                            <div>Credits</div>
+                                            <div>Pathway</div>
+                                            <div>
+                                                <button class="viewDescriptionBtn" id="##buttonID##">
+                                                    View Description
+                                                    <i class="fa fa-caret-down" style="margin-left:5px;"></i>
+                                                </button>
                                             </div>
-                                            <div class="descriptions">
-                                                <div>Level</div>
-                                                <div>Credits</div>
-                                                <div>Pathway</div>
-                                                <div>
-                                                    <button class="viewDescriptionBtn" id="##buttonID##">
-                                                        View Description
-                                                        <i class="fa fa-caret-down" style="margin-left:5px;"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="descriptions" id="##descID##">##description##</div>
-                                        </td>
-                                    </tr>
+                                        </div>
+                                        <div class="descriptions" id="##descID##">##description##</div>
+                                    </td>
+                                </tr>
 
-                                    <!--need to come up with a new way to render result blocks, as well as null return-->
-                                </table>
-                            
+
+                            </table>
+
                         </template>
 
                         <!--need a better way to render null return-->
-                       
 
                         <div class="results" id="results">
-                            
+
                         </div>
 
                     </div>
@@ -211,6 +210,7 @@
             </div>
         </div>
     </div>
+    
     <footer class="footer">
         <p>Abington School District © 2022. All Rights Reserved.</p>
     </footer>
