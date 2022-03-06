@@ -36,7 +36,7 @@
                         </form>
 
                         <template id="cont">
-                            
+                            <!-- what exactly is the point of having multiple tables?-->
                                 <table>
 
 
@@ -51,13 +51,13 @@
                                                 <div>Credits</div>
                                                 <div>Pathway</div>
                                                 <div>
-                                                    <button class="viewDescriptionBtn">
+                                                    <button class="viewDescriptionBtn" id="##buttonID##">
                                                         View Description
                                                         <i class="fa fa-caret-down" style="margin-left:5px;"></i>
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="descriptions" id="description">##description##</div>
+                                            <div class="descriptions" id="##descID##">##description##</div>
                                         </td>
                                     </tr>
 
@@ -296,13 +296,16 @@
                 
                 temp.innerHTML = temp.innerHTML.replace("##course name##", json['longDescription'][subKeys[s]]);
                 temp.innerHTML = temp.innerHTML.replace("##description##", json['description'][subKeys[s]]);
-
+                temp.innerHTML = temp.innerHTML.replace("##buttonID##", "button" + s);
+                temp.innerHTML = temp.innerHTML.replace("##descID##", "desc" + s);
                 
                 document.getElementById("results").appendChild(temp.content.cloneNode(true));
                 
                 
                 temp.innerHTML = temp.innerHTML.replace(json['longDescription'][subKeys[s]], "##course name##");
                 temp.innerHTML = temp.innerHTML.replace(json['description'][subKeys[s]], "##description##");
+                temp.innerHTML = temp.innerHTML.replace("buttonID" + s, "##buttonID##");
+                temp.innerHTML = temp.innerHTML.replace("desc" + s, "##descID##");
                 
                 //special characters in the name of the courses??
                 //need new encoding type or a new way to reset the template clean
