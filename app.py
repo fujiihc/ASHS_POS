@@ -13,10 +13,10 @@ app = Flask(__name__)
 #have this built into somewhere else
 #??what did i mean lmfao
 
-df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna(''))
+df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna('').astype(str))
+
 #THINGS TO DO
 #Remove AMPERSANS and SPECIAL CHARS in CSV w/o editing type
-#Give functionality to checkboxes / improve search
 #try to create unique IDs on template render
 
 pathways = []
@@ -51,7 +51,7 @@ def catalog():
     global keyword
     
     if request.method == 'POST':
-        #print(request.form)
+        print(request.form)
     #make sure special characters are accounted for
             
         if request.form.get('searchButton') == "" and isinstance(request.form.get('searchBar'), str):
@@ -81,6 +81,8 @@ def search_w_modifiers(keyword):
             toBeSearched = toBeSearched.findCourse('X', p)
     
     #creates blank dataframe with all of the inclusive modifiers
+
+    #courseLENGTH NOT WORKING
     inclusive = dt.data(pd.DataFrame())
     for d in departments:
         if d != '':
