@@ -17,7 +17,7 @@ df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna('').astyp
 
 #THINGS TO DO
 #Remove AMPERSANS and SPECIAL CHARS in CSV w/o editing type
-#try to create unique IDs on template render
+#Intro to IT has special characters
 
 pathways = []
 departments = []
@@ -51,7 +51,7 @@ def catalog():
     global keyword
     
     if request.method == 'POST':
-        print(request.form)
+        #print(request.form)
     #make sure special characters are accounted for
             
         if request.form.get('searchButton') == '' and isinstance(request.form.get('searchBar'), str):
@@ -74,15 +74,6 @@ def search_w_modifiers(keyword):
     global courseLengths
     global courseLevels
 
-    toBeSearched = df     
-
-    for p in pathways:
-        if p != '':
-            toBeSearched = toBeSearched.findCourse('X', p)
-    
-    #creates blank dataframe with all of the inclusive modifiers
-
-    #courseLENGTH NOT WORKING
     inclusive = dt.data(pd.DataFrame())
     for d in departments:
         if d != '':
@@ -94,13 +85,19 @@ def search_w_modifiers(keyword):
         if lev != '':
             inclusive.merge(df.findCourse(lev, 'level'))
 
+    if len(inclusive.getDF()) == 0:
+        toBeSearched = df
+    else:
+        toBeSearched = inclusive
+
+    for p in pathways:
+        if p != '':
+            toBeSearched = toBeSearched.findCourse('X', p)
+
     #print(inclusive.getDF())
     #print(toBeSearched.getDF())
-    if len(pathways) == 0 and len(inclusive.getDF()) > 0:
-        toBeSearched = inclusive
-    else:
-        toBeSearched.merge(inclusive)
-    
+    #doesnt work if pathway is applied and then inclusive objects are applied because if they aren't compatible, it doesn't return null result
+       
     pyResults = toBeSearched.findCourse(keyword.upper(), 'longDescription').getDF()
     return pyResults.to_json()
 
@@ -124,6 +121,7 @@ def requests():
 @app.route('/admin')
 def admin():
     #need to add google authentication in here somehow, which will then send information to the python script that'll store data somewhere?
+    #create a user database
     return 'administrator access'
 
 if __name__ == '__main__':
