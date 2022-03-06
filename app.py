@@ -54,7 +54,7 @@ def catalog():
         print(request.form)
     #make sure special characters are accounted for
             
-        if request.form.get('searchButton') == "" and isinstance(request.form.get('searchBar'), str):
+        if request.form.get('searchButton') == '' and isinstance(request.form.get('searchBar'), str):
             keyword = request.form['searchBar']   
         elif request.form.get('origin') == 'pathways' and isinstance(request.form.get('selected'), str):
             pathways = request.form['selected'].split('#')
