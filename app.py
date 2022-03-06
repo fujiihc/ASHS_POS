@@ -19,9 +19,6 @@ df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna(''))
 #Give functionality to checkboxes / improve search
 #try to create unique IDs on template render
 
-
-#ask if daub can reset the course data except removing ampersands
-
 pathways = []
 departments = []
 courseLengths = []
@@ -54,34 +51,20 @@ def catalog():
     global keyword
     
     if request.method == 'POST':
-    
-    #need a better boolean to access the data. don't want it to be easily hackable
-    #make sure that special characters are accounted for
+        #print(request.form)
+    #make sure special characters are accounted for
             
         if request.form.get('searchButton') == "" and isinstance(request.form.get('searchBar'), str):
-
-            keyword = request.form['searchBar']
-            return search_w_modifiers(keyword)
-
+            keyword = request.form['searchBar']   
         elif request.form.get('origin') == 'pathways' and isinstance(request.form.get('selected'), str):
-
             pathways = request.form['selected'].split('#')
-            return search_w_modifiers(keyword)
-        
         elif request.form.get('origin') == 'departments' and isinstance(request.form.get('selected'), str):
-
             departments = request.form['selected'].split('#')
-            return search_w_modifiers(keyword)
-            
         elif request.form.get('origin') == 'courseLength' and isinstance(request.form.get('selected'), str):
-
             courseLengths = request.form['selected'].split('#')
-            return search_w_modifiers(keyword)
-
         elif request.form.get('origin') == 'courseLevel' and isinstance(request.form.get('selected'), str):
-
             courseLevels = request.form['selected'].split('#')
-            return search_w_modifiers(keyword)
+        return search_w_modifiers(keyword)   
 
     return render_template('public_catalog.html')
 
@@ -91,15 +74,31 @@ def search_w_modifiers(keyword):
     global courseLengths
     global courseLevels
 
-    toBeSearched = df      
+    toBeSearched = df     
+
     for p in pathways:
         if p != '':
             toBeSearched = toBeSearched.findCourse('X', p)
     
-    #submit list of all checked boxes for inclusive events
-    #departments, courseLengths, courseLevels
-    #work on findCourse method, differentiate with 'clusive' parameter
+    #creates blank dataframe with all of the inclusive modifiers
+    inclusive = dt.data(pd.DataFrame())
+    for d in departments:
+        if d != '':
+            inclusive.merge(df.findCourse(d, 'dept'))
+    for leng in courseLengths:
+        if leng != '':
+            inclusive.merge(df.findCourse(leng, 'Length'))
+    for lev in courseLevels:
+        if lev != '':
+            inclusive.merge(df.findCourse(lev, 'level'))
 
+    #print(inclusive.getDF())
+    #print(toBeSearched.getDF())
+    if len(pathways) == 0 and len(inclusive.getDF()) > 0:
+        toBeSearched = inclusive
+    else:
+        toBeSearched.merge(inclusive)
+    
     pyResults = toBeSearched.findCourse(keyword.upper(), 'longDescription').getDF()
     return pyResults.to_json()
 
