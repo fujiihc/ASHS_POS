@@ -10,21 +10,16 @@ class data:
     def getDF(self):
         return self.df
 
-    def searchCheck(self, keyArr, searchArr):
-        finalList = []      
+    def searchCheck(self, keyArr, searchArr):       
+        finalList = []            
         for item in searchArr:         
             toAdd = False
-            checkArr = []
+            checkArr = []      
             for search in keyArr:
-                #gotta make sure that item is not nan
-                #run an isinstance to make sure its not a float or something
-                #need a better nan checker
-                #if not isinstance(item, float):
-                for word in item:    
-                    if search in word:
+                for word in item: 
+                    if search in word:               
                         toAdd = True
                         break
-                #remember that this indent could cause issues
                 checkArr.append(toAdd)
                 toAdd = False
             toAdd = True
@@ -34,3 +29,9 @@ class data:
                     break
             finalList.append(toAdd)   
         return finalList
+
+    def merge(self, data2):
+        #merge, remove duplicates
+        self.df = pd.concat([self.df, data2.getDF()]).drop_duplicates().reset_index(drop = True)
+        return self
+        
