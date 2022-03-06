@@ -257,7 +257,7 @@
         });
 
         //inclusive (contains at least one)
-        $("courseLength").on("change", "input:checkbox", function (event) {
+        $("#courseLength").on("change", "input:checkbox", function (event) {
             event.preventDefault();
             AJAX("courseLength");
         });
