@@ -219,44 +219,32 @@
     <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
 
     <script type="text/javascript">
-        
         $("#search").submit(function (event) {
-
             event.preventDefault();
-
             $.ajax({
-
                 type: "POST",
                 url: "/catalog",
                 data: { "searchBar": document.getElementById("searchBar").value, "searchButton": "" }
-                
-
             }).done(function (response) {
                 display(JSON.parse(response));          
             });
         });
 
-        //exclusive (contains all)
         $("#pathways").on("change", "input:checkbox", function (event) {
-
             event.preventDefault();
             AJAX("pathways");
-            
         });
 
-        //inclusive (contains at least one)
         $("#departments").on("change", "input:checkbox", function (event) {
             event.preventDefault();
             AJAX("departments");
         });
 
-        //inclusive (contains at least one)
         $("#courseLevel").on("change", "input:checkbox", function (event) {
             event.preventDefault();
             AJAX("courseLevel");
         });
 
-        //inclusive (contains at least one)
         $("#courseLength").on("change", "input:checkbox", function (event) {
             event.preventDefault();
             AJAX("courseLength");
@@ -265,54 +253,32 @@
         function AJAX(elementID) {
             var checked = "";
             var checkboxes = document.getElementById(elementID).querySelectorAll('input[type=checkbox]:checked');
-            for (var i = 0; i < checkboxes.length; i++) checked += checkboxes[i].value + "#";
-            
+            for (var i = 0; i < checkboxes.length; i++) checked += checkboxes[i].value + "#";  
             $.ajax({
-
                 type: "POST",
                 url: "/catalog",
-                data: { "selected" : checked, "origin" : elementID},
-                
+                data: { "selected" : checked, "origin" : elementID},       
             }).done(function (response) {
-                
                 display(JSON.parse(response));
             });
         }
 
         function display(json) {
-            //clear
             $("#results").html("");
-
-            //var mainKeys = Object.keys(json);
             var subKeys = Object.keys(json['ID']);
-            var temp = document.getElementsByTagName("template")[0];
-            
-            
-            
-            for (var s = 0; s < subKeys.length; s++) {
-                
-                //console.log(json['longDescription'][subKeys[s]]);
-                //console.log(json['description'][subKeys[s]]);
-                
+            var temp = document.getElementById("cont");  
+            for (var s = 0; s < subKeys.length; s++) {  
                 temp.innerHTML = temp.innerHTML.replace("##course name##", json['longDescription'][subKeys[s]]);
                 temp.innerHTML = temp.innerHTML.replace("##description##", json['description'][subKeys[s]]);
                 temp.innerHTML = temp.innerHTML.replace("##buttonID##", "button" + s);
                 temp.innerHTML = temp.innerHTML.replace("##descID##", "desc" + s);
-                
                 document.getElementById("results").appendChild(temp.content.cloneNode(true));
-                
-                
                 temp.innerHTML = temp.innerHTML.replace(json['longDescription'][subKeys[s]], "##course name##");
                 temp.innerHTML = temp.innerHTML.replace(json['description'][subKeys[s]], "##description##");
                 temp.innerHTML = temp.innerHTML.replace("buttonID" + s, "##buttonID##");
                 temp.innerHTML = temp.innerHTML.replace("desc" + s, "##descID##");
-                
-                //special characters in the name of the courses??
-                //need new encoding type or a new way to reset the template clean
             }
-   
-        }
-        
+        }  
     </script>
    
     <script>
