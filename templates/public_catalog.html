@@ -219,7 +219,6 @@
     <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
 
     <script type="text/javascript">
-        
         $.ajax({
             type: "POST",
             url: "/catalog",
@@ -284,7 +283,7 @@
                 document.getElementById("results").appendChild(temp.content.cloneNode(true));
                 temp.innerHTML = temp.innerHTML.replace(json['longDescription'][subKeys[s]], "##course name##");
                 temp.innerHTML = temp.innerHTML.replace(json['description'][subKeys[s]], "##description##");
-                temp.innerHTML = temp.innerHTML.replace("buttonID" + s, "##buttonID##");
+                temp.innerHTML = temp.innerHTML.replace("button" + s, "##buttonID##");
                 temp.innerHTML = temp.innerHTML.replace("desc" + s, "##descID##");
             }
         }  
