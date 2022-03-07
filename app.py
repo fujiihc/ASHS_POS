@@ -7,17 +7,24 @@ import data as dt
 import pandas as pd
 from flask import Flask, render_template, redirect, url_for, request
 
-
 app = Flask(__name__)
-
-#have this built into somewhere else
-#??what did i mean lmfao
 
 df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna('').astype(str))
 
 #THINGS TO DO
 #Remove AMPERSANS and SPECIAL CHARS in CSV w/o editing type
 #Intro to IT has special characters
+#Need to have a null display
+#Need to have pages of results JS
+#Fix that footer
+
+#add google auth to create user database
+#create custom requirements.txt file
+#https://realpython.com/flask-google-login/
+#https://console.cloud.google.com/apis/credentials?project=ashpos&supportedpurview=project
+#how about asking the district for their actual google account
+#saved under fujiihc, make sure to authorize Nileena and Davan as well
+
 
 pathways = []
 departments = []
@@ -43,7 +50,8 @@ def home():
 
 @app.route('/catalog', methods = ['POST', 'GET'])
 def catalog():
-    
+    #need a way to initialize immediately?
+    #ajax script first??
     global pathways
     global departments
     global courseLengths
@@ -52,7 +60,6 @@ def catalog():
     
     if request.method == 'POST':
         #print(request.form)
-    #make sure special characters are accounted for
             
         if request.form.get('searchButton') == '' and isinstance(request.form.get('searchBar'), str):
             keyword = request.form['searchBar']   
@@ -64,6 +71,8 @@ def catalog():
             courseLengths = request.form['selected'].split('#')
         elif request.form.get('origin') == 'courseLevel' and isinstance(request.form.get('selected'), str):
             courseLevels = request.form['selected'].split('#')
+        elif request.form.get('initialized') == 'initialized':
+            return df.getDF().to_json()
         return search_w_modifiers(keyword)   
 
     return render_template('public_catalog.html')
@@ -85,6 +94,7 @@ def search_w_modifiers(keyword):
         if lev != '':
             inclusive.merge(df.findCourse(lev, 'level'))
 
+    #print(inclusive.getDF())
     if len(inclusive.getDF()) == 0:
         toBeSearched = df
     else:
@@ -96,7 +106,6 @@ def search_w_modifiers(keyword):
 
     #print(inclusive.getDF())
     #print(toBeSearched.getDF())
-    #doesnt work if pathway is applied and then inclusive objects are applied because if they aren't compatible, it doesn't return null result
        
     pyResults = toBeSearched.findCourse(keyword.upper(), 'longDescription').getDF()
     return pyResults.to_json()
