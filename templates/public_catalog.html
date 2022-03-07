@@ -219,6 +219,15 @@
     <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
 
     <script type="text/javascript">
+        
+        $.ajax({
+            type: "POST",
+            url: "/catalog",
+            data: { "initialized": "initialized" }
+        }).done(function (response) {
+            display(JSON.parse(response))
+        });
+
         $("#search").submit(function (event) {
             event.preventDefault();
             $.ajax({
