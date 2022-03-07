@@ -1,2 +1,2 @@
 Flask~=1.1
-pandas~=1.4.1
+pandas==1.4.1
