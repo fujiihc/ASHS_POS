@@ -2,7 +2,7 @@
 This script runs the application using a development server.
 It contains the definition of routes and views for the application.
 """
-
+#requirements removed: Flask~=1.1
 import data as dt
 import pandas as pd
 from flask import Flask, render_template, redirect, url_for, request
