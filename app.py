@@ -50,8 +50,6 @@ def home():
 
 @app.route('/catalog', methods = ['POST', 'GET'])
 def catalog():
-    #need a way to initialize immediately?
-    #ajax script first??
     global pathways
     global departments
     global courseLengths
