@@ -47,9 +47,13 @@
                                             <div class="course-name" id="course-name">##course name##</div>
                                         </div>
                                         <div class="descriptions">
-                                            <div>Level</div>
-                                            <div>Credits</div>
-                                            <div>Pathway</div>
+                                            <!--<div>##pathway##</div>-->
+                                            <!--maybe we should display pathway within the dropdown or something-->
+
+                                            <div>##depts##</div>
+                                            <div>##courseLength##</div>
+                                            <div>##courseLevel##</div>
+
                                             <div>
                                                 <button class="viewDescriptionBtn" id="##buttonID##">
                                                     View Description
@@ -273,16 +277,38 @@
 
         function display(json) {
             $("#results").html("");
+            console.log(json)
             var subKeys = Object.keys(json['ID']);
             var temp = document.getElementById("cont");  
-            for (var s = 0; s < subKeys.length; s++) {  
+            for (var s = 0; s < subKeys.length; s++) {
+                //temp.innerHTML = temp.innerHTML.replace("##depts##", json['dept'][subKeys[s]]);
+
                 temp.innerHTML = temp.innerHTML.replace("##course name##", json['longDescription'][subKeys[s]]);
                 temp.innerHTML = temp.innerHTML.replace("##description##", json['description'][subKeys[s]]);
+                
+                temp.innerHTML = temp.innerHTML.replace("##courseLength##", json['Length'][subKeys[s]]);
+
+                var levelNum = json['level'][subKeys[s]];
+                var level = "";
+                if (levelNum == "1") level = "Standard/CP";
+                if (levelNum == "2") level = "Honors";
+                if (levelNum == "3") level = "AP";
+
+                temp.innerHTML = temp.innerHTML.replace("##courseLevel##", level);
+
                 temp.innerHTML = temp.innerHTML.replace("##buttonID##", "button" + s);
                 temp.innerHTML = temp.innerHTML.replace("##descID##", "desc" + s);
+
                 document.getElementById("results").appendChild(temp.content.cloneNode(true));
+
+                //temp.innerHTML = temp.innerHTML.replace(json['dept'][subKeys[s]], "##depts##");
+
                 temp.innerHTML = temp.innerHTML.replace(json['longDescription'][subKeys[s]], "##course name##");
                 temp.innerHTML = temp.innerHTML.replace(json['description'][subKeys[s]], "##description##");
+                
+                temp.innerHTML = temp.innerHTML.replace(json['Length'][subKeys[s]], "##courseLength##");
+                temp.innerHTML = temp.innerHTML.replace(level, "##courseLevel##");
+
                 temp.innerHTML = temp.innerHTML.replace("button" + s, "##buttonID##");
                 temp.innerHTML = temp.innerHTML.replace("desc" + s, "##descID##");
             }
