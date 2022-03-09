@@ -14,10 +14,32 @@ df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna('').astyp
 #THINGS TO DO
 #Remove AMPERSANS and SPECIAL CHARS in CSV w/o editing type
 #Intro to IT has special characters
+#Figure out what the hell the departments are
 #Need to have a null display
 #Need to have pages of results JS
 #Fix that footer
+#Find out what the Departments actually are
 
+#Inconsistencies with inclusive modifiers being applied simultaneously
+
+#eventually turn into environment variables or something
+GOOGLE_CLIENT_ID = ''
+GOOGLE_CLIENT_SECRET = ''
+GOOGLE_URL = 'https://accounts.google.com/.well-known/openid-configuration'
+
+@app.route('/login')
+def login():
+    pass
+
+@app.route('/login/callback')
+def callback():
+    pass
+
+@app.route('/logout')
+def logout():
+    pass
+
+#https://www.youtube.com/watch?v=FKgJEfrhU1E
 #add google auth to create user database
 #create custom requirements.txt file
 #https://realpython.com/flask-google-login/
@@ -81,31 +103,57 @@ def search_w_modifiers(keyword):
     global courseLengths
     global courseLevels
 
-    inclusive = dt.data(pd.DataFrame())
-    for d in departments:
-        if d != '':
-            inclusive.merge(df.findCourse(d, 'dept'))
-    for leng in courseLengths:
-        if leng != '':
-            inclusive.merge(df.findCourse(leng, 'Length'))
-    for lev in courseLevels:
-        if lev != '':
-            inclusive.merge(df.findCourse(lev, 'level'))
+    #should only be inclusive for the items contained within the inclusive modifier
+    #exclusive to each other
+
+    #inclusive = dt.data(pd.DataFrame())
+    #for d in departments:
+    #    if d != '':
+    #        inclusive.merge(df.findCourse(d, 'dept'))
+    #
+    #for leng in courseLengths:
+    #    if leng != '':
+    #        inclusive.merge(df.findCourse(leng, 'Length'))
+    #for lev in courseLevels:
+    #    if lev != '':
+    #        inclusive.merge(df.findCourse(lev, 'level'))
+
+    #should be searching within the defined inclusive search
+    #maybe compile a dataframe of possible candidates and then run a second search on them that is exclusive for all variables?
+    
 
     #print(inclusive.getDF())
-    if len(inclusive.getDF()) == 0:
-        toBeSearched = df
-    else:
-        toBeSearched = inclusive
+    #if len(inclusive.getDF()) == 0:
+    #    toBeSearched = df
+    #else:
+    #    toBeSearched = inclusive
+
+    #exclusive modifiers: only allows one to be checked at a time
+    #it gets messy when you start having multiple modifiers within each category because there are so many "or"s
+    #would it be easier to give them all the information possible?
+    toBeSearched = df
 
     for p in pathways:
         if p != '':
             toBeSearched = toBeSearched.findCourse('X', p)
+    
+    for d in departments:
+        if d != '':
+            toBeSearched = toBeSearched.findCourse(d, 'dept')
+
+    for leng in courseLengths:
+        if leng != '':
+            toBeSearched = toBeSearched.findCourse(leng, 'Length')
+
+    for lev in courseLevels:
+        if lev != '':
+            toBeSearched = toBeSearched.findCourse(lev, 'level')
 
     #print(inclusive.getDF())
     #print(toBeSearched.getDF())
        
     pyResults = toBeSearched.findCourse(keyword.upper(), 'longDescription').getDF()
+    print(pyResults)
     return pyResults.to_json()
 
 @app.route('/student', methods = ['POST','GET'])
