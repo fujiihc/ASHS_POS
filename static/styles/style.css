@@ -115,8 +115,8 @@
 
 	.mainArea .mainSpace {
 		position: absolute;
-		margin-left: 200px;
-		width: 700px;
+		margin-left: 220px;
+		width: 680px;
 	}
 
 	.mainArea .search_box {
@@ -181,7 +181,6 @@ tr:hover {
 	background-color: #f2f2f2;
 	border: 2px solid black;
 	width: 100%;
-	
 }
 
 .course-name {
@@ -191,7 +190,7 @@ tr:hover {
 }
 
 .descriptions {
-	margin-bottom:5px;
+	margin-bottom: 5px;
 	font-size: 18px;
 	display: flex;
 	justify-content: space-between;
@@ -343,7 +342,7 @@ tr:hover {
 /*SIDEBAR*/
 .sidebar {
 	height: unset;
-	width: 180px;
+	width: 200px;
 	background-color: black;
 	overflow-x: hidden;
 	position: absolute;
@@ -382,6 +381,80 @@ tr:hover {
 
 .fa-caret-down {
 	float: right;
+}
+
+label {
+	display: inline;
+	color: #818181;
+}
+
+.checkbox-container {
+	display: block;
+	position: relative;
+	padding-left: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	cursor: pointer;
+	font-size: 20px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+	.checkbox-container input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+	}
+
+/* Create a custom checkbox */
+.checkmark {
+	position: absolute;
+	top: 11px;
+	right: 11px;
+	height: 12px;
+	width: 12px;
+	background-color: transparent;
+	border: 1px solid grey;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkmark {
+	background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a red background */
+.checkbox-container input:checked ~ .checkmark {
+	background-color: rgb(150, 38, 38);
+	border: none;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkmark:after {
+	display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-container .checkmark:after {
+	left: 4px;
+	top: 2px;
+	width: 2px;
+	height: 5px;
+	border: solid white;
+	border-width: 0 2px 2px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
 }
 
 /*FOOTER*/
