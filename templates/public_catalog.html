@@ -55,13 +55,13 @@
                                             <div>##courseLevel##</div>
 
                                             <div>
-                                                <button class="viewDescriptionBtn" id="##buttonID##">
+                                                <button class="viewDescriptionBtn" id="##buttonID##" onclick="descriptionBttn(this)">
                                                     View Description
                                                     <i class="fa fa-caret-down" style="margin-left:5px;"></i>
                                                 </button>
                                             </div>
                                         </div>
-                                        <div class="descriptions" id="##descID##">##description##</div>
+                                        <div class="descriptions" id="##descID##" style="display: none;">##description##</div>
                                     </td>
                                 </tr>
 
@@ -329,6 +329,14 @@
                 var container = dropdownmMap.get(thisBttn);
                 $(container).toggle();
             };
+
+            var descriptionBttn = function (element) {
+                var elementName = element.id;
+                var elNum = elementName.substring(elementName.length - 1);
+                var descript = document.getElementById("desc" + elNum);
+                //alert(elNum);
+                $(descript).toggle();
+            }
 
             for (var i = 0; i < dropdownBttns.length; i++) {
                 dropdownmMap.set(dropdownBttns[i], theseContainers[i]);
