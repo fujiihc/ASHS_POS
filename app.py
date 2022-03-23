@@ -85,12 +85,16 @@ def catalog():
             keyword = request.form['searchBar']   
         elif request.form.get('origin') == 'pathways' and isinstance(request.form.get('selected'), str):
             pathways = request.form['selected'].split('#')
+            keyword = request.form['searchBar']
         elif request.form.get('origin') == 'departments' and isinstance(request.form.get('selected'), str):
             departments = request.form['selected'].split('#')
+            keyword = request.form['searchBar']
         elif request.form.get('origin') == 'courseLength' and isinstance(request.form.get('selected'), str):
             courseLengths = request.form['selected'].split('#')
+            keyword = request.form['searchBar']
         elif request.form.get('origin') == 'courseLevel' and isinstance(request.form.get('selected'), str):
             courseLevels = request.form['selected'].split('#')
+            keyword = request.form['searchBar']
         elif request.form.get('initialized') == 'initialized':
             return df.getDF().to_json()
         return search_w_modifiers(keyword)   
