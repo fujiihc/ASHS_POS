@@ -87,9 +87,9 @@
                         </button>
 
                         <form action="/catalog" id="pathways">
-                            
+
                             <div class="dropdown-container" id="pathwayDDs">
-                                
+
                                 <label for="business" class="checkbox-container">
                                     Business
                                     <input type="checkbox" id="business" value="bisPath">
@@ -154,75 +154,75 @@
 
                         <form action="/catalog" id="departments">
                             <div class="dropdown-container">
-                                
+
                                 <label for="AR" class="checkbox-container">
-                                    AR
+                                    Art
                                     <input type="checkbox" id="AR" value="AR">
                                     <span class="checkmark"></span>
                                 </label>
 
                                 <label for="TE" class="checkbox-container">
-                                    TE
+                                    Technology
                                     <input type="checkbox" id="TE" value="TE">
                                     <span class="checkmark"></span>
                                 </label>
 
                                 <label for="BU" class="checkbox-container">
-                                    BU
+                                    Business
                                     <input type="checkbox" id="BU" value="BU">
                                     <span class="checkmark"></span>
                                 </label>
 
                                 <label for="EN" class="checkbox-container">
-                                    EN
+                                    English
                                     <input type="checkbox" id="EN" value="EN">
                                     <span class="checkmark"></span>
                                 </label>
 
                                 <label for="CS" class="checkbox-container">
-                                    CS
+                                    Consumer Science
                                     <input type="checkbox" id="CS" value="CS">
                                     <span class="checkmark"></span>
                                 </label>
 
                                 <label for="HP" class="checkbox-container">
-                                    HP
+                                    Health & PE
                                     <input type="checkbox" id="HP" value="HP">
                                     <span class="checkmark"></span>
                                 </label>
 
                                 <label for="RD" class="checkbox-container">
-                                    RD
+                                    Reading
                                     <input type="checkbox" id="RD" value="RD">
                                     <span class="checkmark"></span>
                                 </label>
 
                                 <label for="SC" class="checkbox-container">
-                                    SC
+                                    Science
                                     <input type="checkbox" id="SC" value="SC">
                                     <span class="checkmark"></span>
                                 </label>
 
                                 <label for="FL" class="checkbox-container">
-                                    FL
+                                    Foreign Language
                                     <input type="checkbox" id="FL" value="FL">
                                     <span class="checkmark"></span>
                                 </label>
 
                                 <label for="MA" class="checkbox-container">
-                                    MA
+                                    Mathmatics
                                     <input type="checkbox" id="MA" value="MA">
                                     <span class="checkmark"></span>
                                 </label>
 
                                 <label for="SS" class="checkbox-container">
-                                    SS
+                                    Social Studies
                                     <input type="checkbox" id="SS" value="SS">
                                     <span class="checkmark"></span>
                                 </label>
 
                                 <label for="MU" class="checkbox-container">
-                                    MU
+                                    Music
                                     <input type="checkbox" id="MU" value="MU">
                                     <span class="checkmark"></span>
                                 </label>
@@ -235,13 +235,13 @@
 
                             </div>
                         </form>
-                        
+
 
                         <button class="dropdown">
                             Course Level
                             <i class="fa fa-caret-down"></i>
                         </button>
-                        
+
                         <form action="/catalog" id="courseLevel">
                             <div class="dropdown-container">
 
@@ -264,13 +264,13 @@
                                 </label>
                             </div>
                         </form>
-                        
+
 
                         <button class="dropdown">
                             Length
                             <i class="fa fa-caret-down"></i>
                         </button>
-                        
+
                         <form action="/catalog" id="courseLength">
                             <div class="dropdown-container">
 
@@ -282,12 +282,12 @@
 
                                 <label for="fullYear" class="checkbox-container">
                                     Full Year
-                                    <input type="checkbox" id="fullYear"" value="YR">
+                                    <input type="checkbox" id="fullYear" value="YR">
                                     <span class="checkmark"></span>
                                 </label>
 
                             </div>
-                        </form>                        
+                        </form>
                     </div>
 
                 </div>
@@ -295,7 +295,7 @@
         </div>
     </div>
 
-     <!--separate our js into separate file in order to maintain consistency?-->
+    <!--separate our js into separate file in order to maintain consistency?-->
     <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
 
     <script type="text/javascript">
@@ -314,7 +314,7 @@
                 url: "/catalog",
                 data: { "searchBar": document.getElementById("searchBar").value, "searchButton": "" }
             }).done(function (response) {
-                display(JSON.parse(response));          
+                display(JSON.parse(response));
             });
         });
 
@@ -341,11 +341,11 @@
         function AJAX(elementID) {
             var checked = "";
             var checkboxes = document.getElementById(elementID).querySelectorAll('input[type=checkbox]:checked');
-            for (var i = 0; i < checkboxes.length; i++) checked += checkboxes[i].value + "#";  
+            for (var i = 0; i < checkboxes.length; i++) checked += checkboxes[i].value + "#";
             $.ajax({
                 type: "POST",
                 url: "/catalog",
-                data: { "selected" : checked, "origin" : elementID},       
+                data: { "selected": checked, "origin": elementID },
             }).done(function (response) {
                 display(JSON.parse(response));
             });
@@ -355,13 +355,13 @@
             $("#results").html("");
             console.log(json)
             var subKeys = Object.keys(json['ID']);
-            var temp = document.getElementById("cont");  
+            var temp = document.getElementById("cont");
             for (var s = 0; s < subKeys.length; s++) {
                 //temp.innerHTML = temp.innerHTML.replace("##depts##", json['dept'][subKeys[s]]);
 
                 temp.innerHTML = temp.innerHTML.replace("##course name##", json['longDescription'][subKeys[s]]);
                 temp.innerHTML = temp.innerHTML.replace("##description##", json['description'][subKeys[s]]);
-                
+
                 temp.innerHTML = temp.innerHTML.replace("##courseLength##", json['Length'][subKeys[s]]);
 
                 var levelNum = json['level'][subKeys[s]];
@@ -381,42 +381,45 @@
 
                 temp.innerHTML = temp.innerHTML.replace(json['longDescription'][subKeys[s]], "##course name##");
                 temp.innerHTML = temp.innerHTML.replace(json['description'][subKeys[s]], "##description##");
-                
+
                 temp.innerHTML = temp.innerHTML.replace(json['Length'][subKeys[s]], "##courseLength##");
                 temp.innerHTML = temp.innerHTML.replace(level, "##courseLevel##");
 
                 temp.innerHTML = temp.innerHTML.replace("button" + s, "##buttonID##");
                 temp.innerHTML = temp.innerHTML.replace("desc" + s, "##descID##");
             }
-        }  
+        }
     </script>
-   
+
     <script>
-  
-            //VARIABLES
-            var theseContainers = document.getElementsByClassName("dropdown-container");
-            var dropdownBttns = document.getElementsByClassName("dropdown");
-            const dropdownmMap = new Map();
-            var filterTypes = document.getElementsByClassName("filterType");
 
-            //CLICKING ON DROPDOWNS
-            var onButtonClick = function (event) {
-                var thisBttn = event.currentTarget;
-                var container = dropdownmMap.get(thisBttn);
-                $(container).toggle();
-            };
+        //VARIABLES
+        var theseContainers = document.getElementsByClassName("dropdown-container");
+        var dropdownBttns = document.getElementsByClassName("dropdown");
+        const dropdownmMap = new Map();
+        var filterTypes = document.getElementsByClassName("filterType");
 
-            var descriptionBttn = function (element) {
-                var elementName = element.id;
-                var elNum = elementName.substring(elementName.length - 1);
-                var descript = document.getElementById("desc" + elNum);
-                $(descript).toggle();
-            }
+        //CLICKING ON DROPDOWNS
+        var onButtonClick = function (event) {
+            var thisBttn = event.currentTarget;
+            var container = dropdownmMap.get(thisBttn);
+            $(container).toggle();
+        };
 
-            for (var i = 0; i < dropdownBttns.length; i++) {
-                dropdownmMap.set(dropdownBttns[i], theseContainers[i]);
-                dropdownBttns[i].addEventListener("click", onButtonClick);
-            }
+        //View Description Button
+        var descriptionBttn = function (element) {
+            var elementName = element.id;
+            var elNum = elementName.substring(elementName.length - 1);
+            var descript = document.getElementById("desc" + elNum);
+            $(descript).toggle();
+        }
+
+        //Add event listeners to all dropdowns
+        for (var i = 0; i < dropdownBttns.length; i++) {
+            dropdownmMap.set(dropdownBttns[i], theseContainers[i]);
+            dropdownBttns[i].addEventListener("click", onButtonClick);
+        }
+
     </script>
 
 </body>
