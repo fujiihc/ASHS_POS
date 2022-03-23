@@ -278,7 +278,7 @@
 
                                 <label for="fullYear" class="checkbox-container">
                                     Full Year
-                                    <input type="checkbox" id="fullYear" " value="YR">
+                                    <input type="checkbox" id="fullYear" value="YR">
                                     <span class="checkmark"></span>
                                 </label>
 
@@ -290,7 +290,7 @@
             </div>
 
             <div class="cart">
-                <div class="course-choices">
+                <div class="course-choices" id="course-choices">
                     <p style="font-size: 20px; margin-left:15px; margin-top:10px;margin-bottom:10px;color:white;">Selected Courses</p>
                     <div style="margin-left: 15px; margin-right:15px; font-size: 18px;">
                         <div class="fa fa-times"></div>
@@ -370,10 +370,8 @@
                     </div>
                 </div>
                 <div class="cartBtn">
-                    <form method="post" action="/student">
-                        <button name="cartBtn" type="submit" class="fa fa-caret-left"></button>
-                        <!--https://fontawesome.com/v4.7/icon/caret-left-->
-                    </form>
+                    <button name="cartBtn" type="submit" class="fa fa-caret-left" onclick="toggleBttn(document.getElementById('course-choices'))"></button>
+                    <!--https://fontawesome.com/v4.7/icon/caret-left-->
                 </div>
             </div>
 
@@ -381,7 +379,7 @@
         <div class="footer">
             <p>Abington School District © 2022. All Rights Reserved.</p>
         </div>
-
+    </div>
         <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
 
         <script type="text/javascript">
@@ -492,6 +490,7 @@
                 $(container).toggle();
             };
 
+            //View Description Button
             var descriptionBttn = function (element) {
                 var elementName = element.id;
                 var elNum = elementName.substring(elementName.length - 1);
@@ -499,6 +498,12 @@
                 $(descript).toggle();
             }
 
+            //TOGGLE BUTTON
+            var toggleBttn = function (elementToBeToggled) {
+                $(elementToBeToggled).toggle();
+            }
+
+            //Add event listeners to all dropdowns
             for (var i = 0; i < dropdownBttns.length; i++) {
                 dropdownmMap.set(dropdownBttns[i], theseContainers[i]);
                 dropdownBttns[i].addEventListener("click", onButtonClick);
