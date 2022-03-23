@@ -345,7 +345,7 @@
             $.ajax({
                 type: "POST",
                 url: "/catalog",
-                data: { "selected": checked, "origin": elementID },
+                data: { "selected": checked, "origin": elementID, "searchBar": document.getElementById("searchBar").value}
             }).done(function (response) {
                 display(JSON.parse(response));
             });
