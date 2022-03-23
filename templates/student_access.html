@@ -20,131 +20,275 @@
             <div class="container">
                 <div class="mainArea">
                     <div class="mainSpace">
-                        <div class="search_box">
-                            <input type="text" class="input" placeholder="Search...">
 
-                            <div class="btn">
-                                <form method="post" action="/student">
-                                    <button name="searchButton" type="submit" class="fas fa-search"></button>
+                        <form method="post" action="/catalog" id="search">
+
+                            <div class="search_box">
+
+                                <input type="text" class="input" placeholder="Search..." name="searchBar" id="searchBar">
+
+                                <div class="btn">
+                                    <button name="searchButton" type="submit" class="fas fa-search" id="searchButton"></button>
                                     <!--https://fontawesome.com/v4.7/icon/search-->
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                        <div class="results">
+
+                        </form>
+
+                        <template id="cont">
+                            <!-- what exactly is the point of having multiple tables?-->
                             <table>
-                                <tr>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div style="display: flex; justify-content: space-between;">
-                                            <div class="fa fa-plus"></div>
-                                            <div class="course-name">Data Structures</div>
-                                        </div>
-                                        <div class="descriptions">
-                                            <div>Honors</div>
-                                            <div>10 credits</div>
-                                            <div>Computer Science Pathway</div>
-                                            <div>5 days/week</div>
-                                            <div>Computer Science Department</div>
-                                        </div>
-                                    </td>
-                                </tr>
+
                                 <tr>
                                     <td>
                                         <div style="display: flex; justify-content: space-between;">
                                             <div class="fa fa-plus"></div>
-                                            <div class="course-name">Data Structures</div>
+                                            <div class="course-name" id="course-name">##course name##</div>
                                         </div>
                                         <div class="descriptions">
-                                            <div>Honors</div>
-                                            <div>10 credits</div>
-                                            <div>Computer Science Pathway</div>
-                                            <div>5 days/week</div>
-                                            <div>Computer Science Department</div>
+                                            <!--<div>##pathway##</div>-->
+                                            <!--maybe we should display pathway within the dropdown or something-->
+
+                                            <div>##depts##</div>
+                                            <div>##courseLength##</div>
+                                            <div>##courseLevel##</div>
+
+                                            <div>
+                                                <button class="viewDescriptionBtn" id="##buttonID##" onclick="descriptionBttn(this)">
+                                                    View Description
+                                                    <i class="fa fa-caret-down" style="margin-left:5px;"></i>
+                                                </button>
+                                            </div>
                                         </div>
+                                        <div class="descriptions" id="##descID##" style="display: none;">##description##</div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <div style="display: flex; justify-content: space-between;">
-                                            <div class="fa fa-plus"></div>
-                                            <div class="course-name">Data Structures</div>
-                                        </div>
-                                        <div class="descriptions">
-                                            <div>Honors</div>
-                                            <div>10 credits</div>
-                                            <div>Computer Science Pathway</div>
-                                            <div>5 days/week</div>
-                                            <div>Computer Science Department</div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div style="display: flex; justify-content: space-between;">
-                                            <div class="fa fa-plus"></div>
-                                            <div class="course-name">Data Structures</div>
-                                        </div>
-                                        <div class="descriptions">
-                                            <div>Honors</div>
-                                            <div>10 credits</div>
-                                            <div>Computer Science Pathway</div>
-                                            <div>5 days/week</div>
-                                            <div>Computer Science Department</div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div style="display: flex; justify-content: space-between;">
-                                            <div class="fa fa-plus"></div>
-                                            <div class="course-name">Data Structures</div>
-                                        </div>
-                                        <div class="descriptions">
-                                            <div>Honors</div>
-                                            <div>10 credits</div>
-                                            <div>Computer Science Pathway</div>
-                                            <div>5 days/week</div>
-                                            <div>Computer Science Department</div>
-                                        </div>
-                                    </td>
-                                </tr>
+
+
                             </table>
+
+                        </template>
+
+                        <div class="results" id="results">
+
                         </div>
+
                     </div>
 
                     <div class="sidebar">
                         <p>Filter by Category</p>
+
                         <button class="dropdown" id="pathwayBttn">
                             Pathway
                             <i class="fa fa-caret-down"></i>
                         </button>
-                        <div class="dropdown-container" id="pathwayDDs">
-                        </div>
+
+                        <form action="/catalog" id="pathways">
+
+                            <div class="dropdown-container" id="pathwayDDs">
+
+                                <label for="business" class="checkbox-container">
+                                    Business
+                                    <input type="checkbox" id="business" value="bisPath">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="compSci" class="checkbox-container">
+                                    Computer Science
+                                    <input type="checkbox" id="compSci" value="csPath">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="government" class="checkbox-container">
+                                    Government
+                                    <input type="checkbox" id="government" value="govPath">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="health" class="checkbox-container">
+                                    Health Services
+                                    <input type="checkbox" id="health" value="healthPath">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="humanities" class="checkbox-container">
+                                    Humanities
+                                    <input type="checkbox" id="humanities" value="humPath">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="manu" class="checkbox-container">
+                                    Manufacturing
+                                    <input type="checkbox" id="manu" value="manuPath">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="stem" class="checkbox-container">
+                                    STEM
+                                    <input type="checkbox" id="stem" value="stemPath">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="scoSci" class="checkbox-container">
+                                    Social Science
+                                    <input type="checkbox" id="scoSci" value="socSciPath">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="arts" class="checkbox-container">
+                                    Arts
+                                    <input type="checkbox" id="arts" value="visPath">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                            </div>
+                        </form>
 
                         <button class="dropdown">
-                            Days/Week
+                            Department
                             <i class="fa fa-caret-down"></i>
                         </button>
-                        <div class="dropdown-container">
-                        </div>
+
+                        <form action="/catalog" id="departments">
+                            <div class="dropdown-container">
+
+                                <label for="AR" class="checkbox-container">
+                                    Art
+                                    <input type="checkbox" id="AR" value="AR">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="TE" class="checkbox-container">
+                                    Technology
+                                    <input type="checkbox" id="TE" value="TE">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="BU" class="checkbox-container">
+                                    Business
+                                    <input type="checkbox" id="BU" value="BU">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="EN" class="checkbox-container">
+                                    English
+                                    <input type="checkbox" id="EN" value="EN">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="CS" class="checkbox-container">
+                                    Consumer Science
+                                    <input type="checkbox" id="CS" value="CS">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="HP" class="checkbox-container">
+                                    Health & PE
+                                    <input type="checkbox" id="HP" value="HP">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="RD" class="checkbox-container">
+                                    Reading
+                                    <input type="checkbox" id="RD" value="RD">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="SC" class="checkbox-container">
+                                    Science
+                                    <input type="checkbox" id="SC" value="SC">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="FL" class="checkbox-container">
+                                    Foreign Language
+                                    <input type="checkbox" id="FL" value="FL">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="MA" class="checkbox-container">
+                                    Mathmatics
+                                    <input type="checkbox" id="MA" value="MA">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="SS" class="checkbox-container">
+                                    Social Studies
+                                    <input type="checkbox" id="SS" value="SS">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="MU" class="checkbox-container">
+                                    Music
+                                    <input type="checkbox" id="MU" value="MU">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="N/A" class="checkbox-container">
+                                    N/A
+                                    <input type="checkbox" id="N/A" value="N/A">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                            </div>
+                        </form>
 
                         <button class="dropdown">
                             Course Level
                             <i class="fa fa-caret-down"></i>
                         </button>
-                        <div class="dropdown-container">
-                        </div>
+
+                        <form action="/catalog" id="courseLevel">
+                            <div class="dropdown-container">
+
+                                <label for="ap" class="checkbox-container">
+                                    AP
+                                    <input type="checkbox" id="ap" value="3">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="honors" class="checkbox-container">
+                                    Honors
+                                    <input type="checkbox" id="honors" value="2">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="cp" class="checkbox-container">
+                                    Standard/CP
+                                    <input type="checkbox" id="cp" value="1">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </form>
+
 
                         <button class="dropdown">
                             Length
                             <i class="fa fa-caret-down"></i>
                         </button>
-                        <div class="dropdown-container">
-                        </div>
+
+                        <form action="/catalog" id="courseLength">
+                            <div class="dropdown-container">
+
+                                <label for="semester" class="checkbox-container">
+                                    Semester
+                                    <input type="checkbox" id="semester" value="SM">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="fullYear" class="checkbox-container">
+                                    Full Year
+                                    <input type="checkbox" id="fullYear" " value="YR">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                            </div>
+                        </form>
                     </div>
+
                 </div>
             </div>
+
             <div class="cart">
                 <div class="course-choices">
                     <p style="font-size: 20px; margin-left:15px; margin-top:10px;margin-bottom:10px;color:white;">Selected Courses</p>
@@ -232,62 +376,134 @@
                     </form>
                 </div>
             </div>
+
         </div>
         <div class="footer">
             <p>Abington School District © 2022. All Rights Reserved.</p>
         </div>
-        <div>
 
-            <script>
-                //VARIABLES
-                var theseContainers = document.getElementsByClassName("dropdown-container");
-                var pathways = ["Buisness", "Computer Science", "Medicine", "Law"];
-                var daysPerWeek = [2, 5, 6];
-                var courseLevel = ["AP", "Honors", "College Preparation", "Standard"];
-                var lengths = ["Semester", "Full Year"];
-                var filters = [pathways, daysPerWeek, courseLevel, lengths, "1"];
-                var dropdownBttns = document.getElementsByClassName("dropdown");
-                const map1 = new Map();
-                var filterTypes = document.getElementsByClassName("filterType");
+        <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
 
-                //CLICKING ON DROPDOWNS
-                var onButtonClick = function (event) {
-                    var thisBttn = event.currentTarget;
-                    var container = map1.get(thisBttn);
-                    var style = container.style.getPropertyValue("display");
-                    if (style == "block")
-                        container.style.display = "none";
-                    else
-                        container.style.display = "block";
-                };
+        <script type="text/javascript">
+            $.ajax({
+                type: "POST",
+                url: "/catalog",
+                data: { "initialized": "initialized" }
+            }).done(function (response) {
+                display(JSON.parse(response))
+            });
 
+            $("#search").submit(function (event) {
+                event.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "/catalog",
+                    data: { "searchBar": document.getElementById("searchBar").value, "searchButton": "" }
+                }).done(function (response) {
+                    display(JSON.parse(response));
+                });
+            });
 
-                for (var i = 0; i < dropdownBttns.length; i++) {
-                    map1.set(dropdownBttns[i], theseContainers[i]);
-                    dropdownBttns[i].addEventListener("click", onButtonClick);
+            $("#pathways").on("change", "input:checkbox", function (event) {
+                event.preventDefault();
+                AJAX("pathways");
+            });
+
+            $("#departments").on("change", "input:checkbox", function (event) {
+                event.preventDefault();
+                AJAX("departments");
+            });
+
+            $("#courseLevel").on("change", "input:checkbox", function (event) {
+                event.preventDefault();
+                AJAX("courseLevel");
+            });
+
+            $("#courseLength").on("change", "input:checkbox", function (event) {
+                event.preventDefault();
+                AJAX("courseLength");
+            });
+
+            function AJAX(elementID) {
+                var checked = "";
+                var checkboxes = document.getElementById(elementID).querySelectorAll('input[type=checkbox]:checked');
+                for (var i = 0; i < checkboxes.length; i++) checked += checkboxes[i].value + "#";
+                $.ajax({
+                    type: "POST",
+                    url: "/catalog",
+                    data: { "selected": checked, "origin": elementID },
+                }).done(function (response) {
+                    display(JSON.parse(response));
+                });
+            }
+
+            function display(json) {
+                $("#results").html("");
+                console.log(json)
+                var subKeys = Object.keys(json['ID']);
+                var temp = document.getElementById("cont");
+                for (var s = 0; s < subKeys.length; s++) {
+                    //temp.innerHTML = temp.innerHTML.replace("##depts##", json['dept'][subKeys[s]]);
+
+                    temp.innerHTML = temp.innerHTML.replace("##course name##", json['longDescription'][subKeys[s]]);
+                    temp.innerHTML = temp.innerHTML.replace("##description##", json['description'][subKeys[s]]);
+
+                    temp.innerHTML = temp.innerHTML.replace("##courseLength##", json['Length'][subKeys[s]]);
+
+                    var levelNum = json['level'][subKeys[s]];
+                    var level = "";
+                    if (levelNum == "1") level = "Standard/CP";
+                    if (levelNum == "2") level = "Honors";
+                    if (levelNum == "3") level = "AP";
+
+                    temp.innerHTML = temp.innerHTML.replace("##courseLevel##", level);
+
+                    temp.innerHTML = temp.innerHTML.replace("##buttonID##", "button" + s);
+                    temp.innerHTML = temp.innerHTML.replace("##descID##", "desc" + s);
+
+                    document.getElementById("results").appendChild(temp.content.cloneNode(true));
+
+                    //temp.innerHTML = temp.innerHTML.replace(json['dept'][subKeys[s]], "##depts##");
+
+                    temp.innerHTML = temp.innerHTML.replace(json['longDescription'][subKeys[s]], "##course name##");
+                    temp.innerHTML = temp.innerHTML.replace(json['description'][subKeys[s]], "##description##");
+
+                    temp.innerHTML = temp.innerHTML.replace(json['Length'][subKeys[s]], "##courseLength##");
+                    temp.innerHTML = temp.innerHTML.replace(level, "##courseLevel##");
+
+                    temp.innerHTML = temp.innerHTML.replace("button" + s, "##buttonID##");
+                    temp.innerHTML = temp.innerHTML.replace("desc" + s, "##descID##");
                 }
+            }
+        </script>
 
-                //MAKE BUTTONS IN DROPDOWNS
-                for (var d = 0; d <= theseContainers.length; d++) {
-                    var filter = filters[d];
-                    for (var i = 0; i < filter.length; i++) {
-                        const ddBttn = document.createElement("button");
-                        ddBttn.className = "filterType";
-                        ddBttn.innerHTML = filter[i];
-                        ddBttn.addEventListener("click", function() {
-                            if(ddBttn.style.backgroundColor == "darkgrey") {
-                                ddBttn.style.backgroundColor = "#262626";
-                            }
-                            else {
-                                ddBttn.style.backgroundColor = "darkgrey";
-                            }
-                        });
+        <script>
 
-                        theseContainers[d].appendChild(ddBttn);
-                    }
-                }
-            </script>
+            //VARIABLES
+            var theseContainers = document.getElementsByClassName("dropdown-container");
+            var dropdownBttns = document.getElementsByClassName("dropdown");
+            const dropdownmMap = new Map();
+            var filterTypes = document.getElementsByClassName("filterType");
 
+            //CLICKING ON DROPDOWNS
+            var onButtonClick = function (event) {
+                var thisBttn = event.currentTarget;
+                var container = dropdownmMap.get(thisBttn);
+                $(container).toggle();
+            };
+
+            var descriptionBttn = function (element) {
+                var elementName = element.id;
+                var elNum = elementName.substring(elementName.length - 1);
+                var descript = document.getElementById("desc" + elNum);
+                $(descript).toggle();
+            }
+
+            for (var i = 0; i < dropdownBttns.length; i++) {
+                dropdownmMap.set(dropdownBttns[i], theseContainers[i]);
+                dropdownBttns[i].addEventListener("click", onButtonClick);
+            }
+        </script>
 
 </body>
 </html>
