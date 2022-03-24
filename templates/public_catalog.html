@@ -409,7 +409,7 @@
         //View Description Button
         var descriptionBttn = function (element) {
             var elementName = element.id;
-            var elNum = elementName.substring(elementName.length - 1);
+            var elNum = elementName.substring(6);
             var descript = document.getElementById("desc" + elNum);
             $(descript).toggle();
         }
