@@ -135,6 +135,8 @@ def search_w_modifiers(keyword):
     #exclusive modifiers: only allows one to be checked at a time
     #it gets messy when you start having multiple modifiers within each category because there are so many "or"s
     #would it be easier to give them all the information possible?
+    
+    #make secondary modifiers inclusive
     toBeSearched = df
 
     for p in pathways:
@@ -157,7 +159,7 @@ def search_w_modifiers(keyword):
     #print(toBeSearched.getDF())
        
     pyResults = toBeSearched.findCourse(keyword.upper(), 'longDescription').getDF()
-    print(pyResults)
+    #print(pyResults)
     return pyResults.to_json()
 
 @app.route('/student', methods = ['POST','GET'])
