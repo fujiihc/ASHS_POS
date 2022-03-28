@@ -39,6 +39,9 @@ def callback():
 def logout():
     pass
 
+@app.route('/credits')
+def credits():
+    return render_template('credits.html')
 #https://www.youtube.com/watch?v=FKgJEfrhU1E
 #add google auth to create user database
 #create custom requirements.txt file
