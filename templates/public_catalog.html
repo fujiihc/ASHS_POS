@@ -386,11 +386,11 @@
             if (end > length) { end = length; }
 
             for (var s = start; s < end; s++) {
-                //temp.innerHTML = temp.innerHTML.replace("##depts##", json['dept'][subKeys[s]]);
+                
 
                 temp.innerHTML = temp.innerHTML.replace("##course name##", json['longDescription'][subKeys[s]]);
                 temp.innerHTML = temp.innerHTML.replace("##description##", json['description'][subKeys[s]]);
-
+                temp.innerHTML = temp.innerHTML.replace("##depts##", json['dept'][subKeys[s]]);
                 temp.innerHTML = temp.innerHTML.replace("##courseLength##", json['Length'][subKeys[s]]);
 
                 var levelNum = json['level'][subKeys[s]];
@@ -406,11 +406,11 @@
 
                 document.getElementById("results").appendChild(temp.content.cloneNode(true));
 
-                //temp.innerHTML = temp.innerHTML.replace(json['dept'][subKeys[s]], "##depts##");
+                
 
                 temp.innerHTML = temp.innerHTML.replace(json['longDescription'][subKeys[s]], "##course name##");
                 temp.innerHTML = temp.innerHTML.replace(json['description'][subKeys[s]], "##description##");
-
+                temp.innerHTML = temp.innerHTML.replace(json['dept'][subKeys[s]], "##depts##");
                 temp.innerHTML = temp.innerHTML.replace(json['Length'][subKeys[s]], "##courseLength##");
                 temp.innerHTML = temp.innerHTML.replace(level, "##courseLevel##");
 
