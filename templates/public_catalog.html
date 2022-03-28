@@ -10,9 +10,6 @@
 <body>
     <div class="page-container">
         <div class="wrapper">
-            <div class="ahs-logo">
-                <img src="{{url_for('static', filename= 'styles/images/ahsLogo.png')}}" width="100" height="100" alt="logo">
-            </div>
             <div class="topnav">
                 <p>Abington Senior High School</p>
             </div>
@@ -46,6 +43,7 @@
                                 <tr>
                                     <td>
                                         <div style="display: flex; justify-content: space-between;">
+                                            <div class="fa fa-plus"></div>
                                             <div class="course-name" id="course-name">##course name##</div>
                                         </div>
                                         <div class="descriptions">
@@ -73,6 +71,10 @@
                         </template>
 
                         <!--need a better way to render null return-->
+
+                        <button type="submit" class="changePageBttn" id="chngPgBtn-Back" style="margin-top: 70px; color: black;"><i class="fa fa-caret-left" style="margin-left:5px;"></i></button>
+
+                        <button type="submit" class="changePageBttn" id="chngPgBtn-Forward" style="margin-top: 70px; color: black;"><i class="fa fa-caret-down" style="margin-left:5px;"></i></button>
 
                         <div class="results" id="results">
 
@@ -301,12 +303,27 @@
     <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
 
     <script type="text/javascript">
+        var n = 0;
+        var currentData;
+        var length;
+
         $.ajax({
             type: "POST",
             url: "/catalog",
             data: { "initialized": "initialized" }
         }).done(function (response) {
-            display(JSON.parse(response))
+            currentData = response; n = 0;
+            display(JSON.parse(currentData));
+        });
+
+        $("#chngPgBtn-Back").click(function () {
+            if (n >= 10) { n -= 10; }
+            display(JSON.parse(currentData));
+        });
+
+        $("#chngPgBtn-Forward").click(function () {
+            if ((n + 10) < length) { n += 10; }
+            display(JSON.parse(currentData));
         });
 
         $("#search").submit(function (event) {
@@ -316,6 +333,7 @@
                 url: "/catalog",
                 data: { "searchBar": document.getElementById("searchBar").value, "searchButton": "" }
             }).done(function (response) {
+                currentData = response; n = 0;
                 display(JSON.parse(response));
             });
         });
@@ -349,16 +367,25 @@
                 url: "/catalog",
                 data: { "selected": checked, "origin": elementID, "searchBar": document.getElementById("searchBar").value}
             }).done(function (response) {
+                currentData = response; n = 0;
                 display(JSON.parse(response));
             });
         }
 
         function display(json) {
             $("#results").html("");
-            console.log(json)
+            //console.log(json);
             var subKeys = Object.keys(json['ID']);
             var temp = document.getElementById("cont");
-            for (var s = 0; s < subKeys.length; s++) {
+            //alert(n);
+
+            var start = n;
+            var end = n + 10;
+            length = subKeys.length;
+
+            if (end > length) { end = length; }
+
+            for (var s = start; s < end; s++) {
                 //temp.innerHTML = temp.innerHTML.replace("##depts##", json['dept'][subKeys[s]]);
 
                 temp.innerHTML = temp.innerHTML.replace("##course name##", json['longDescription'][subKeys[s]]);
@@ -391,6 +418,7 @@
                 temp.innerHTML = temp.innerHTML.replace("desc" + s, "##descID##");
             }
         }
+
     </script>
 
     <script>
