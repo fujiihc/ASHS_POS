@@ -389,6 +389,7 @@
                 
 
                 temp.innerHTML = temp.innerHTML.replace("##course name##", json['longDescription'][subKeys[s]]);
+                //this line is being weird again
                 temp.innerHTML = temp.innerHTML.replace("##description##", json['description'][subKeys[s]]);
                 temp.innerHTML = temp.innerHTML.replace("##depts##", json['dept'][subKeys[s]]);
                 temp.innerHTML = temp.innerHTML.replace("##courseLength##", json['Length'][subKeys[s]]);
@@ -409,6 +410,7 @@
                 
 
                 temp.innerHTML = temp.innerHTML.replace(json['longDescription'][subKeys[s]], "##course name##");
+                //so is this one
                 temp.innerHTML = temp.innerHTML.replace(json['description'][subKeys[s]], "##description##");
                 temp.innerHTML = temp.innerHTML.replace(json['dept'][subKeys[s]], "##depts##");
                 temp.innerHTML = temp.innerHTML.replace(json['Length'][subKeys[s]], "##courseLength##");
