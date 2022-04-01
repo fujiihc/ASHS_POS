@@ -219,7 +219,7 @@ def student():
     return render_template('student_access.html')
 #remember to do subdomains
 
-#also make sure it checks for login
+@login_is_required
 @app.route('/requests')
 def requests():
     return render_template('request_courses.html')
