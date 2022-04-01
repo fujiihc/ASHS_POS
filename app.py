@@ -1,52 +1,98 @@
 """
 This script runs the application using a development server.
-It contains the definition of routes and views for the application.
+It contains the definition of routes and views for the application. 
 """
 #requirements removed: Flask~=1.1
+#added extra requirements
+import os
+import pathlib
+import requests as rq
+from google.oauth2 import id_token
+from google_auth_oauthlib.flow import Flow
+from pip._vendor import cachecontrol
+import google.auth.transport.requests
+
 import data as dt
+import database as db
 import pandas as pd
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, session, abort
 
 app = Flask(__name__)
 
 df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna('').astype(str))
 
+studentInfo = db.database()
+
+#need a way to register logins. Once logged in, need to store student data in the database, and then pass relevant info in Ajax call to the html
+#need a way to handle simultaneous requests. Can't have "current user" create a user class in order to deal with multiple users at once and store their data easily
+#https://google-auth.readthedocs.io/en/stable/index.html
+#https://geekyhumans.com/how-to-implement-google-login-in-flask-app/#more-20670
+
 #THINGS TO DO
-#Remove AMPERSANS and SPECIAL CHARS in CSV w/o editing type
-#Intro to IT has special characters
-#Figure out what the hell the departments are
 #Need to have a null display
-#Need to have pages of results JS
 #Fix that footer
-#Find out what the Departments actually are
+
 
 #Inconsistencies with inclusive modifiers being applied simultaneously
 
 #eventually turn into environment variables or something
-GOOGLE_CLIENT_ID = ''
-GOOGLE_CLIENT_SECRET = ''
+#import oshttps://www.geeksforgeeks.org/read-json-file-using-python/
+#os.getenv
+app.secret_key = 'testKey'
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+
+#need a way to grab the file. Just place it in the same directory and grab it?
+
+#maybe create OS ENV variables rather than storing them in a file
+#if not, test for file access exploits
+GOOGLE_CLIENT_ID = '415583783710-kpg937ob78e3ej719rldcf9or58d3vfa.apps.googleusercontent.com'
+GOOGLE_CLIENT_SECRET = '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'
+#could use to edit scopes later on
 GOOGLE_URL = 'https://accounts.google.com/.well-known/openid-configuration'
+
+client_secrets_file = os.path.join(pathlib.Path(__file__).parent, 'client.json')
+#edit the scopes
+flow = Flow.from_client_secrets_file(client_secrets_file=client_secrets_file, scopes = ["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"], redirect_uri = 'http://localhost:5555/callback')
+
+def login_is_required(function):
+    def wrapper(*args, **kwargs):
+        if 'google_id' not in session:
+            return abort(401)
+        else:
+            return function()
+    return wrapper
 
 @app.route('/login')
 def login():
-    pass
-
-@app.route('/login/callback')
+    authorization_url,state = flow.authorization_url()
+    session['state'] = state
+    return redirect(authorization_url)
+    
+@app.route('/callback')
 def callback():
-    pass
+    #callback function
+    #redirects to student access
+    #also loads and saves student session info
+    flow.fetch_token(authorization_response = request.url)
 
-@app.route('/logout')
-def logout():
-    pass
+    #if not session['state'] == request['state']:
+    #    abort(500)
+
+    credentials = flow.credentials
+    request_session = rq.sessions.Session()
+    cached_session = cachecontrol.CacheControl(request_session)
+    token_request = google.auth.transport.requests.Request(session = cached_session)
+    id_info = id_token.verify_oauth2_token(id_token = credentials._id_token, request = token_request, audience = GOOGLE_CLIENT_ID)
+    session['google_id'] = id_info.get('sub')
+    session['name'] = id_info.get('name')
+    return redirect(url_for('student'))
 
 @app.route('/credits')
 def credits():
     return render_template('credits.html')
+
 #https://www.youtube.com/watch?v=FKgJEfrhU1E
 #add google auth to create user database
-#create custom requirements.txt file
-#https://realpython.com/flask-google-login/
-#https://console.cloud.google.com/apis/credentials?project=ashpos&supportedpurview=project
 #how about asking the district for their actual google account
 #saved under fujiihc, make sure to authorize Nileena and Davan as well
 
@@ -67,7 +113,7 @@ def home():
         if request.form.get('catalogButton'):
             return redirect(url_for('catalog'))
         elif request.form.get('studentAccess'):
-            return redirect(url_for('student'))
+            return redirect(url_for('login'))
         elif request.form.get('adminAccess'):
             return redirect(url_for('admin'))
     return render_template('home.html')
@@ -83,7 +129,6 @@ def catalog():
     
     if request.method == 'POST':
         #print(request.form)
-            
         if request.form.get('searchButton') == '' and isinstance(request.form.get('searchBar'), str):
             keyword = request.form['searchBar']   
         elif request.form.get('origin') == 'pathways' and isinstance(request.form.get('selected'), str):
@@ -165,27 +210,23 @@ def search_w_modifiers(keyword):
     #print(pyResults)
     return pyResults.to_json()
 
+#make sure that this checks for login
+@login_is_required
 @app.route('/student', methods = ['POST','GET'])
 def student():
     if request.method == 'POST':
         return redirect(url_for('requests'))
     return render_template('student_access.html')
-
-#find a way to add individual students through authentication as well as add on request as a sub part of student
-#this is just a simple fix
-#something like /student/studentUSERNAME/requests
-#maybe we just need to build like an authentication system or something
 #remember to do subdomains
 
+#also make sure it checks for login
 @app.route('/requests')
 def requests():
     return render_template('request_courses.html')
 
-
+#kinda scuffed atm
 @app.route('/admin')
 def admin():
-    #need to add google authentication in here somehow, which will then send information to the python script that'll store data somewhere?
-    #create a user database
     return 'administrator access'
 
 if __name__ == '__main__':
