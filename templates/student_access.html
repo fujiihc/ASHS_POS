@@ -48,8 +48,8 @@
                                 <tr>
                                     <td>
                                         <div style="display: flex; justify-content: space-between;">
-                                            <div class="fa fa-plus"></div>
-                                            <div class="course-name" id="course-name">##course name##</div>
+                                            <div class="fa fa-plus" id="##addID##" onclick="addCourse(this)"></div>
+                                            <div class="course-name" id="##nameID##">##course name##</div>
                                         </div>
                                         <div class="descriptions">
                                             <!--<div>##pathway##</div>-->
@@ -295,79 +295,22 @@
                 </div>
             </div>
 
+            <template id="courseInCart">
+                <div style="margin-left: 15px; margin-right:15px; font-size: 18px;">
+                    <div class="fa fa-times" id="##removeID##"></div>
+                    <!--https://fontawesome.com/v4.7/icon/times-->
+                    <div class="choicesText">
+                        <div>##classname##</div>
+                        <div>10 credits</div>
+                    </div>
+                </div>
+            </template>
+
             <div class="cart">
                 <div class="course-choices" id="course-choices">
                     <p style="font-size: 20px; margin-left:15px; margin-top:10px;margin-bottom:10px;color:white;">Selected Courses</p>
-                    <div style="margin-left: 15px; margin-right:15px; font-size: 18px;">
-                        <div class="fa fa-times"></div>
-                        <!--https://fontawesome.com/v4.7/icon/times-->
-                        <div class="choicesText">
-                            <div>Class 1</div>
-                            <div>10 credits</div>
-                        </div>
-                    </div>
-                    <div style="margin-left: 15px; margin-right:15px; font-size: 18px;">
-                        <div class="fa fa-times"></div>
-                        <div class="choicesText">
-                            <div>Class 2</div>
-                            <div>10 credits</div>
-                        </div>
-                    </div>
-                    <div style="margin-left: 15px; margin-right:15px; font-size: 18px;">
-                        <div class="fa fa-times"></div>
-                        <div class="choicesText">
-                            <div>Class 3</div>
-                            <div>10 credits</div>
-                        </div>
-                    </div>
-                    <div style="margin-left: 15px; margin-right:15px; font-size: 18px;">
-                        <div class="fa fa-times"></div>
-                        <div class="choicesText">
-                            <div>Class 4</div>
-                            <div>10 credits</div>
-                        </div>
-                    </div>
-                    <div style="margin-left: 15px; margin-right:15px; font-size: 18px;">
-                        <div class="fa fa-times"></div>
-                        <div class="choicesText">
-                            <div>Class 5</div>
-                            <div>10 credits</div>
-                        </div>
-                    </div>
-                    <div style="margin-left: 15px; margin-right:15px; font-size: 18px;">
-                        <div class="fa fa-times"></div>
-                        <div class="choicesText">
-                            <div>Class 6</div>
-                            <div>10 credits</div>
-                        </div>
-                    </div>
-                    <div style="margin-left: 15px; margin-right:15px; font-size: 18px;">
-                        <div class="fa fa-times"></div>
-                        <div class="choicesText">
-                            <div>Class 7</div>
-                            <div>10 credits</div>
-                        </div>
-                    </div>
-                    <div style="margin-left: 15px; margin-right:15px; font-size: 18px;">
-                        <div class="fa fa-times"></div>
-                        <div class="choicesText">
-                            <div>Class 8</div>
-                            <div>10 credits</div>
-                        </div>
-                    </div>
-                    <div style="margin-left: 15px; margin-right:15px; font-size: 18px;">
-                        <div class="fa fa-times"></div>
-                        <div class="choicesText">
-                            <div>Class 9</div>
-                            <div>10 credits</div>
-                        </div>
-                    </div>
-                    <div style="margin-left: 15px; margin-right:15px; font-size: 18px;">
-                        <div class="fa fa-times"></div>
-                        <div class="choicesText">
-                            <div>Class 10</div>
-                            <div>10 credits</div>
-                        </div>
+                    <div id="course-list">
+
                     </div>
                     <div>
                         <form method="post" action="/student">
@@ -464,6 +407,9 @@
 
                     temp.innerHTML = temp.innerHTML.replace("##buttonID##", "button" + s);
                     temp.innerHTML = temp.innerHTML.replace("##descID##", "desc" + s);
+                                                                                
+                    temp.innerHTML = temp.innerHTML.replace("##addID##", "add" + s);
+                    temp.innerHTML = temp.innerHTML.replace("##nameID##", "name" + s);
 
                     document.getElementById("results").appendChild(temp.content.cloneNode(true));
 
@@ -477,6 +423,8 @@
 
                     temp.innerHTML = temp.innerHTML.replace("button" + s, "##buttonID##");
                     temp.innerHTML = temp.innerHTML.replace("desc" + s, "##descID##");
+                    temp.innerHTML = temp.innerHTML.replace("add" + s, "##addID##");
+                    temp.innerHTML = temp.innerHTML.replace("name" + s, "##nameID##");
                 }
             }
         </script>
@@ -502,6 +450,30 @@
                 var elNum = elementName.substring(6);
                 var descript = document.getElementById("desc" + elNum);
                 $(descript).toggle();
+            }
+            
+            //Add course to cart
+            var num = 0;
+            function addCourse(element) {
+                var elementName = element.id;
+                var elNum = elementName.substring(3);
+                var courseName = document.getElementById("name" + elNum);
+                //alert(courseName.innerHTML);
+                var name = courseName.innerHTML.substring(0, 5);
+                var templ = document.getElementById("courseInCart");
+
+                templ.innerHTML = templ.innerHTML.replace("##classname##", name);
+                templ.innerHTML = templ.innerHTML.replace("##removeID##", "remove" + num);
+
+                document.getElementById("course-list").appendChild(templ.content.cloneNode(true));
+
+                templ.innerHTML = templ.innerHTML.replace(name, "##classname##");
+                templ.innerHTML = templ.innerHTML.replace("remove" + num, "##removeID##");
+                num++;
+            }
+
+            function removeCourse(element) {
+                num--;
             }
 
             //TOGGLE BUTTON
