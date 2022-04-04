@@ -128,7 +128,7 @@ def catalog():
     global keyword
     
     if request.method == 'POST':
-        #print(request.form)
+        print(request.form)
         if request.form.get('searchButton') == '' and isinstance(request.form.get('searchBar'), str):
             keyword = request.form['searchBar']   
         elif request.form.get('origin') == 'pathways' and isinstance(request.form.get('selected'), str):
@@ -216,8 +216,33 @@ def search_w_modifiers(keyword):
 @app.route('/student', methods = ['POST','GET'])
 @login_is_required
 def student():
+    global pathways
+    global departments
+    global courseLengths
+    global courseLevels
+    global keyword
+    
     if request.method == 'POST':
-        return redirect(url_for('requests'))
+        print(request.form)
+        if request.form.get('searchButton') == '' and isinstance(request.form.get('searchBar'), str):
+            keyword = request.form['searchBar']   
+        elif request.form.get('origin') == 'pathways' and isinstance(request.form.get('selected'), str):
+            pathways = request.form['selected'].split('#')
+            keyword = request.form['searchBar']
+        elif request.form.get('origin') == 'departments' and isinstance(request.form.get('selected'), str):
+            departments = request.form['selected'].split('#')
+            keyword = request.form['searchBar']
+        elif request.form.get('origin') == 'courseLength' and isinstance(request.form.get('selected'), str):
+            courseLengths = request.form['selected'].split('#')
+            keyword = request.form['searchBar']
+        elif request.form.get('origin') == 'courseLevel' and isinstance(request.form.get('selected'), str):
+            courseLevels = request.form['selected'].split('#')
+            keyword = request.form['searchBar']
+        elif request.form.get('initialized') == 'initialized':
+            return df.getDF().to_json()
+        elif request.form.get('viewCoursesBtn'):
+            return redirect(url_for('requests'))
+        return search_w_modifiers(keyword)
     return render_template('student_access.html')
 #remember to do subdomains
 
