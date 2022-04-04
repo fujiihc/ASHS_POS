@@ -2,7 +2,6 @@
 This script runs the application using a development server.
 It contains the definition of routes and views for the application. 
 """
-#requirements removed: Flask~=1.1
 #added extra requirements
 import os
 import pathlib
@@ -22,7 +21,8 @@ app = Flask(__name__)
 df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna('').astype(str))
 
 studentInfo = db.database()
-
+#when declaring the database, why not have it be a csv file or something that i can write to.
+#either that or figure out a way to integrate a database into python
 #need a way to register logins. Once logged in, need to store student data in the database, and then pass relevant info in Ajax call to the html
 #need a way to handle simultaneous requests. Can't have "current user" create a user class in order to deal with multiple users at once and store their data easily
 #https://google-auth.readthedocs.io/en/stable/index.html
@@ -56,7 +56,7 @@ def login_is_required(function):
         if 'google_id' not in session:
             #maybe need like an abort screen
             #like heyyyy login or something
-            return abort(401)
+            return redirect(url_for('login'))
         else:
             return function(*args, **kwargs)
     wrapper.__name__ = function.__name__
@@ -232,6 +232,7 @@ def requests():
 def admin():
     return 'administrator access'
 
+#https://medium.com/swlh/hacking-flask-applications-939eae4bffed
 if __name__ == '__main__':
     import os
     HOST = os.environ.get('SERVER_HOST', 'localhost')
