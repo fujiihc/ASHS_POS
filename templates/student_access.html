@@ -11,9 +11,7 @@
     <div class="page-container">
         <div class="wrapper">
             <div class="ahs-logo">
-                <form method="post" action="/">
-                    <input type="image" src="{{url_for('static', filename= 'styles/images/ahsLogo.png')}}" width="100" height="100" alt="logo" />
-                </form>
+                <img src="{{url_for('static', filename= 'styles/images/ahsLogo.png')}}" width="100" height="100" alt="logo">
             </div>
             <div class="topnav">
                 <p>Abington Senior High School</p>
@@ -26,7 +24,7 @@
                 <div class="mainArea">
                     <div class="mainSpace">
 
-                        <form method="post" action="/catalog" id="search">
+                        <form method="post" action="/student" id="search">
 
                             <div class="search_box">
 
@@ -88,7 +86,7 @@
                             <i class="fa fa-caret-down"></i>
                         </button>
 
-                        <form action="/catalog" id="pathways">
+                        <form action="/student" id="pathways">
 
                             <div class="dropdown-container" id="pathwayDDs">
 
@@ -154,7 +152,7 @@
                             <i class="fa fa-caret-down"></i>
                         </button>
 
-                        <form action="/catalog" id="departments">
+                        <form action="/student" id="departments">
                             <div class="dropdown-container">
 
                                 <label for="AR" class="checkbox-container">
@@ -243,7 +241,7 @@
                             <i class="fa fa-caret-down"></i>
                         </button>
 
-                        <form action="/catalog" id="courseLevel">
+                        <form action="/student" id="courseLevel">
                             <div class="dropdown-container">
 
                                 <label for="ap" class="checkbox-container">
@@ -272,7 +270,7 @@
                             <i class="fa fa-caret-down"></i>
                         </button>
 
-                        <form action="/catalog" id="courseLength">
+                        <form action="/student" id="courseLength">
                             <div class="dropdown-container">
 
                                 <label for="semester" class="checkbox-container">
@@ -390,7 +388,7 @@
         <script type="text/javascript">
             $.ajax({
                 type: "POST",
-                url: "/catalog",
+                url: "/student",
                 data: { "initialized": "initialized" }
             }).done(function (response) {
                 display(JSON.parse(response))
@@ -400,7 +398,7 @@
                 event.preventDefault();
                 $.ajax({
                     type: "POST",
-                    url: "/catalog",
+                    url: "/student",
                     data: { "searchBar": document.getElementById("searchBar").value, "searchButton": "" }
                 }).done(function (response) {
                     display(JSON.parse(response));
@@ -433,8 +431,8 @@
                 for (var i = 0; i < checkboxes.length; i++) checked += checkboxes[i].value + "#";
                 $.ajax({
                     type: "POST",
-                    url: "/catalog",
-                    data: { "selected": checked, "origin": elementID },
+                    url: "/student",
+                    data: { "selected": checked, "origin": elementID, "searchBar": document.getElementById("searchBar").value }
                 }).done(function (response) {
                     display(JSON.parse(response));
                 });
