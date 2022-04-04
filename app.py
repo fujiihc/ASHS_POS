@@ -36,17 +36,13 @@ studentInfo = db.database()
 #Inconsistencies with inclusive modifiers being applied simultaneously
 
 #eventually turn into environment variables or something
-#import oshttps://www.geeksforgeeks.org/read-json-file-using-python/
 #os.getenv
 app.secret_key = 'testKey'
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 
-#need a way to grab the file. Just place it in the same directory and grab it?
-
 #maybe create OS ENV variables rather than storing them in a file
 #if not, test for file access exploits
 GOOGLE_CLIENT_ID = '415583783710-kpg937ob78e3ej719rldcf9or58d3vfa.apps.googleusercontent.com'
-GOOGLE_CLIENT_SECRET = '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'
 #could use to edit scopes later on
 GOOGLE_URL = 'https://accounts.google.com/.well-known/openid-configuration'
 
@@ -54,12 +50,16 @@ client_secrets_file = os.path.join(pathlib.Path(__file__).parent, 'client.json')
 #edit the scopes
 flow = Flow.from_client_secrets_file(client_secrets_file=client_secrets_file, scopes = ["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"], redirect_uri = 'http://localhost:5555/callback')
 
+#need a way to limit the domains that are able to access the app to @abington.k12.pa.us
 def login_is_required(function):
     def wrapper(*args, **kwargs):
         if 'google_id' not in session:
+            #maybe need like an abort screen
+            #like heyyyy login or something
             return abort(401)
         else:
-            return function()
+            return function(*args, **kwargs)
+    wrapper.__name__ = function.__name__
     return wrapper
 
 @app.route('/login')
@@ -211,16 +211,19 @@ def search_w_modifiers(keyword):
     return pyResults.to_json()
 
 #make sure that this checks for login
-@login_is_required
+#login checker is not working
+
 @app.route('/student', methods = ['POST','GET'])
+@login_is_required
 def student():
     if request.method == 'POST':
         return redirect(url_for('requests'))
     return render_template('student_access.html')
 #remember to do subdomains
 
-@login_is_required
+
 @app.route('/requests')
+@login_is_required
 def requests():
     return render_template('request_courses.html')
 
