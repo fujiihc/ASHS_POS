@@ -143,7 +143,7 @@ def catalog():
         elif request.form.get('origin') == 'courseLevel' and isinstance(request.form.get('selected'), str):
             courseLevels = request.form['selected'].split('#')
             keyword = request.form['searchBar']
-        elif request.form.get('initialized') == 'initialized':
+        if request.form.get('initialized') == 'initialized':
             return df.getDF().to_json()
         return search_w_modifiers(keyword)   
 
