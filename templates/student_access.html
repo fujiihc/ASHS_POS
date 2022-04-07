@@ -297,10 +297,10 @@
 
             <template id="courseInCart">
                 <div style="margin-left: 15px; margin-right:15px; font-size: 18px;" id="##classID##">
-                    <div class="fa fa-times" id="##removeID##" onclick="removeCourse(this)"></div>
+                    <div class="fa fa-times" id="##removeID##" data-name-long="##classNME##" onclick="removeCourse(this)"></div>
                     <!--https://fontawesome.com/v4.7/icon/times-->
                     <div class="choicesText">
-                        <div>##classname##</div>
+                        <div><span title="##longname##">##classname##</span></div>
                         <div>10 credits</div>
                     </div>
                 </div>
@@ -459,26 +459,34 @@
                 var elementName = element.id;
                 var elNum = elementName.substring(3);
                 var courseName = document.getElementById("name" + elNum);
-                //alert(courseName.innerHTML);
                 var nameLong = courseName.innerHTML;
-                coursesInCart.push(nameLong);
-                var name = nameLong.substring(0, 5);
-                var templ = document.getElementById("courseInCart");
 
-                templ.innerHTML = templ.innerHTML.replace("##classID##", "class" + num);
-                templ.innerHTML = templ.innerHTML.replace("##classname##", name);
-                templ.innerHTML = templ.innerHTML.replace("##removeID##", "remove" + num);
+                if (coursesInCart.includes(nameLong) == false) {
+                    coursesInCart.push(nameLong);
+                    var nameShort = nameLong.substring(0, 5);
+                    var templ = document.getElementById("courseInCart");
 
-                document.getElementById("course-list").appendChild(templ.content.cloneNode(true));
+                    templ.innerHTML = templ.innerHTML.replace("##classID##", "class" + num);
+                    templ.innerHTML = templ.innerHTML.replace("##classname##", nameShort);
+                    templ.innerHTML = templ.innerHTML.replace("##removeID##", "remove" + num);
+                    templ.innerHTML = templ.innerHTML.replace("##classNME##", nameLong);
+                    templ.innerHTML = templ.innerHTML.replace("##longname##", nameLong);
 
-                templ.innerHTML = templ.innerHTML.replace("class" + num, "##classID##");
-                templ.innerHTML = templ.innerHTML.replace(name, "##classname##");
-                templ.innerHTML = templ.innerHTML.replace("remove" + num, "##removeID##");
-                num++;
-            } //template
+                    document.getElementById("course-list").appendChild(templ.content.cloneNode(true));
+
+                    templ.innerHTML = templ.innerHTML.replace("class" + num, "##classID##");
+                    templ.innerHTML = templ.innerHTML.replace("remove" + num, "##removeID##");
+                    templ.innerHTML = templ.innerHTML.replace(nameLong, "##classNME##");
+                    templ.innerHTML = templ.innerHTML.replace(nameLong, "##longname##");
+                    templ.innerHTML = templ.innerHTML.replace(nameShort, "##classname##");
+                    num++;
+                }
+            }
 
             function removeCourse(element) {
                 var thisNum = element.id.substring(6);
+                var place = coursesInCart.indexOf(element.getAttribute("data-name-long"));
+                coursesInCart.splice(place, 2);
                 document.getElementById("class" + thisNum).remove();
             }
 
