@@ -332,12 +332,27 @@
         <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
 
         <script type="text/javascript">
+            var n = 0;
+            var currentData;
+            var length;
+
             $.ajax({
                 type: "POST",
                 url: "/student",
                 data: { "initialized": "initialized" }
             }).done(function (response) {
+                currentData = response; n = 0;
                 display(JSON.parse(response))
+            });
+
+            $("#chngPgBtn-Back").click(function () {
+                if (n >= 10) { n -= 10; }
+                display(JSON.parse(currentData));
+            });
+
+            $("#chngPgBtn-Forward").click(function () {
+                if ((n + 10) < length) { n += 10; }
+                display(JSON.parse(currentData));
             });
 
             $("#search").submit(function (event) {
@@ -347,6 +362,7 @@
                     url: "/student",
                     data: { "searchBar": document.getElementById("searchBar").value, "searchButton": "" }
                 }).done(function (response) {
+                    currentData = response; n = 0;
                     display(JSON.parse(response));
                 });
             });
@@ -389,7 +405,14 @@
                 console.log(json)
                 var subKeys = Object.keys(json['ID']);
                 var temp = document.getElementById("cont");
-                for (var s = 0; s < subKeys.length; s++) {
+
+                var start = n;
+                var end = n + 10;
+                length = subKeys.length;
+
+                if (end > length) { end = length; }
+
+                for (var s = start; s < end; s++) {
                     //temp.innerHTML = temp.innerHTML.replace("##depts##", json['dept'][subKeys[s]]);
 
                     temp.innerHTML = temp.innerHTML.replace("##course name##", json['longDescription'][subKeys[s]]);
