@@ -433,7 +433,7 @@
                     temp.innerHTML = temp.innerHTML.replace("##courseLength##", courseLength);
 
                     var levelNum = json['level'][subKeys[s]];
-                    var level;
+                    var level = "";
                     if (levelNum == "1") level = "Standard/CP";
                     if (levelNum == "2") level = "Honors";
                     if (levelNum == "3") level = "AP";
@@ -442,10 +442,11 @@
 
                     temp.innerHTML = temp.innerHTML.replace("##buttonID##", "button" + s);
                     temp.innerHTML = temp.innerHTML.replace("##descID##", "desc" + s);
+                                                                                
+                    temp.innerHTML = temp.innerHTML.replace("##addID##", "add" + s);
+                    temp.innerHTML = temp.innerHTML.replace("##nameID##", "name" + s);
 
                     document.getElementById("results").appendChild(temp.content.cloneNode(true));
-
-
 
                     temp.innerHTML = temp.innerHTML.replace(longDescription, "##course name##");
                     //so is this one
@@ -454,8 +455,8 @@
                     temp.innerHTML = temp.innerHTML.replace(courseLength, "##courseLength##");
                     temp.innerHTML = temp.innerHTML.replace(level, "##courseLevel##");
 
-                    temp.innerHTML = temp.innerHTML.replace("button" + s, "##buttonID##");
-                    temp.innerHTML = temp.innerHTML.replace("desc" + s, "##descID##");
+                    temp.innerHTML = temp.innerHTML.replace("add" + s, "##addID##");
+                    temp.innerHTML = temp.innerHTML.replace("name" + s, "##nameID##");
                 }
             }
         </script>
