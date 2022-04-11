@@ -404,6 +404,7 @@
                 url: "/student",
                 data: { "selected": checked, "origin": elementID, "searchBar": document.getElementById("searchBar").value }
             }).done(function (response) {
+                currentData = response; n = 0;
                 display(JSON.parse(response));
             });
         }
