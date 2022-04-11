@@ -3,6 +3,8 @@ This script runs the application using a development server.
 It contains the definition of routes and views for the application. 
 """
 #added extra requirements
+#https://stackoverflow.com/questions/12909332/how-to-logout-of-an-application-where-i-used-oauth2-to-login-with-google
+ 
 import os
 import pathlib
 import requests as rq
@@ -87,6 +89,15 @@ def callback():
     session['name'] = id_info.get('name')
     return redirect(url_for('student'))
 
+@app.route('/logout')
+def logout():
+    #make the logout thing actually work
+    session.clear()
+    
+    print('logged out')
+    #return redirect('https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:5555')
+    return redirect('/')
+
 @app.route('/credits')
 def credits():
     return render_template('credits.html')
@@ -116,6 +127,8 @@ def home():
             return redirect(url_for('login'))
         elif request.form.get('adminAccess'):
             return redirect(url_for('admin'))
+        elif request.form.get('logoutBtn'):
+            return redirect(url_for('logout'))
     return render_template('home.html')
 
 
@@ -128,7 +141,6 @@ def catalog():
     global keyword
     
     if request.method == 'POST':
-        print(request.form)
         if request.form.get('searchButton') == '' and isinstance(request.form.get('searchBar'), str):
             keyword = request.form['searchBar']   
         elif request.form.get('origin') == 'pathways' and isinstance(request.form.get('selected'), str):
@@ -143,8 +155,10 @@ def catalog():
         elif request.form.get('origin') == 'courseLevel' and isinstance(request.form.get('selected'), str):
             courseLevels = request.form['selected'].split('#')
             keyword = request.form['searchBar']
-        if request.form.get('initialized') == 'initialized':
+        elif request.form.get('initialized') == 'initialized':
             return df.getDF().to_json()
+        elif request.form.get('logoutBtn'):
+            return redirect(url_for('logout'))
         return search_w_modifiers(keyword)   
 
     return render_template('public_catalog.html')
@@ -194,7 +208,9 @@ def search_w_modifiers(keyword):
     for d in departments:
         if d != '':
             toBeSearched = toBeSearched.findCourse(d, 'dept')
-
+        #foundations of innovation
+        #ap seminar and research
+        #work study
     for leng in courseLengths:
         if leng != '':
             toBeSearched = toBeSearched.findCourse(leng, 'Length')
@@ -223,7 +239,7 @@ def student():
     global keyword
     
     if request.method == 'POST':
-        print(request.form)
+        
         if request.form.get('searchButton') == '' and isinstance(request.form.get('searchBar'), str):
             keyword = request.form['searchBar']   
         elif request.form.get('origin') == 'pathways' and isinstance(request.form.get('selected'), str):
@@ -240,16 +256,21 @@ def student():
             keyword = request.form['searchBar']
         elif request.form.get('initialized') == 'initialized':
             return df.getDF().to_json()
-        elif request.form.get('viewCoursesBtn'):
+        elif request.form.get('logoutBtn'):
+            return redirect(url_for('logout'))
+        if request.form.get('viewCoursesBtn'):
             return redirect(url_for('requests'))
         return search_w_modifiers(keyword)
     return render_template('student_access.html')
 #remember to do subdomains
 
 
-@app.route('/requests')
+@app.route('/requests', methods = ['POST', 'GET'])
 @login_is_required
 def requests():
+    if request.method == 'POST':
+        if request.form.get('logoutBtn'):
+            return redirect(url_for('logout'))
     return render_template('request_courses.html')
 
 #kinda scuffed atm
