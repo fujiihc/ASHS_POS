@@ -15,11 +15,11 @@
     </div>
     <div class="page-container">
         <div class="wrapper">
-            
+
             <div class="topnav">
                 <p>Abington Senior High School</p>
                 <form method="post" action="/student">
-                    <input type="submit" value="Logout" style="position:absolute;right:0px; top:0px;"border:none; z-index:9999; margin-bottom:15px;" name="logoutBtn" />
+                    <input type="submit" value="Logout" style="position:absolute;right:0px; top:0px;" border:none; z-index:9999; margin-bottom:15px;" name="logoutBtn" />
                 </form>
             </div>
 
@@ -337,202 +337,205 @@
             <p>Abington School District © 2022. All Rights Reserved.</p>
         </div>
     </div>
-        <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
+    <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
 
-        <script type="text/javascript">
-            var n = 0;
-            var currentData;
-            var length;
+    <script type="text/javascript">
+        var n = 0;
+        var currentData;
+        var length;
 
+        $.ajax({
+            type: "POST",
+            url: "/student",
+            data: { "initialized": "initialized" }
+        }).done(function (response) {
+            currentData = response; n = 0;
+            display(JSON.parse(response))
+        });
+
+        $("#chngPgBtn-Back").click(function () {
+            if (n >= 10) { n -= 10; }
+            display(JSON.parse(currentData));
+        });
+
+        $("#chngPgBtn-Forward").click(function () {
+            if ((n + 10) < length) { n += 10; }
+            display(JSON.parse(currentData));
+        });
+
+        $("#search").submit(function (event) {
+            event.preventDefault();
             $.ajax({
                 type: "POST",
                 url: "/student",
-                data: { "initialized": "initialized" }
+                data: { "searchBar": document.getElementById("searchBar").value, "searchButton": "" }
             }).done(function (response) {
                 currentData = response; n = 0;
-                display(JSON.parse(response))
+                display(JSON.parse(response));
             });
+        });
 
-            $("#chngPgBtn-Back").click(function () {
-                if (n >= 10) { n -= 10; }
-                display(JSON.parse(currentData));
+        $("#pathways").on("change", "input:checkbox", function (event) {
+            event.preventDefault();
+            AJAX("pathways");
+        });
+
+        $("#departments").on("change", "input:checkbox", function (event) {
+            event.preventDefault();
+            AJAX("departments");
+        });
+
+        $("#courseLevel").on("change", "input:checkbox", function (event) {
+            event.preventDefault();
+            AJAX("courseLevel");
+        });
+
+        $("#courseLength").on("change", "input:checkbox", function (event) {
+            event.preventDefault();
+            AJAX("courseLength");
+        });
+
+        function AJAX(elementID) {
+            var checked = "";
+            var checkboxes = document.getElementById(elementID).querySelectorAll('input[type=checkbox]:checked');
+            for (var i = 0; i < checkboxes.length; i++) checked += checkboxes[i].value + "#";
+            $.ajax({
+                type: "POST",
+                url: "/student",
+                data: { "selected": checked, "origin": elementID, "searchBar": document.getElementById("searchBar").value }
+            }).done(function (response) {
+                display(JSON.parse(response));
             });
+        }
 
-            $("#chngPgBtn-Forward").click(function () {
-                if ((n + 10) < length) { n += 10; }
-                display(JSON.parse(currentData));
-            });
+        function display(json) {
+            $("#results").html("");
+            console.log(json)
+            var subKeys = Object.keys(json['ID']);
+            var temp = document.getElementById("cont");
 
-            $("#search").submit(function (event) {
-                event.preventDefault();
-                $.ajax({
-                    type: "POST",
-                    url: "/student",
-                    data: { "searchBar": document.getElementById("searchBar").value, "searchButton": "" }
-                }).done(function (response) {
-                    currentData = response; n = 0;
-                    display(JSON.parse(response));
-                });
-            });
+            var start = n;
+            var end = n + 10;
+            length = subKeys.length;
 
-            $("#pathways").on("change", "input:checkbox", function (event) {
-                event.preventDefault();
-                AJAX("pathways");
-            });
+            if (end > length) { end = length; }
 
-            $("#departments").on("change", "input:checkbox", function (event) {
-                event.preventDefault();
-                AJAX("departments");
-            });
+            for (var s = start; s < end; s++) {
+                var longDescription = json['longDescription'][subKeys[s]];
+                var description = json['description'][subKeys[s]];
+                var dept = json['dept'][subKeys[s]];
+                var courseLength = json['Length'][subKeys[s]];
 
-            $("#courseLevel").on("change", "input:checkbox", function (event) {
-                event.preventDefault();
-                AJAX("courseLevel");
-            });
+                temp.innerHTML = temp.innerHTML.replace("##course name##", longDescription);
+                
+                temp.innerHTML = temp.innerHTML.replace("##description##", description);
+                temp.innerHTML = temp.innerHTML.replace("##depts##", dept);
+                temp.innerHTML = temp.innerHTML.replace("##courseLength##", courseLength);
 
-            $("#courseLength").on("change", "input:checkbox", function (event) {
-                event.preventDefault();
-                AJAX("courseLength");
-            });
+                var levelNum = json['level'][subKeys[s]];
+                var level = "";
+                if (levelNum == "1") level = "Standard/CP";
+                if (levelNum == "2") level = "Honors";
+                if (levelNum == "3") level = "AP";
 
-            function AJAX(elementID) {
-                var checked = "";
-                var checkboxes = document.getElementById(elementID).querySelectorAll('input[type=checkbox]:checked');
-                for (var i = 0; i < checkboxes.length; i++) checked += checkboxes[i].value + "#";
-                $.ajax({
-                    type: "POST",
-                    url: "/student",
-                    data: { "selected": checked, "origin": elementID, "searchBar": document.getElementById("searchBar").value }
-                }).done(function (response) {
-                    display(JSON.parse(response));
-                });
+                temp.innerHTML = temp.innerHTML.replace("##courseLevel##", level);
+
+                temp.innerHTML = temp.innerHTML.replace("##buttonID##", "button" + s);
+                temp.innerHTML = temp.innerHTML.replace("##descID##", "desc" + s);
+
+                temp.innerHTML = temp.innerHTML.replace("##addID##", "add" + s);
+                temp.innerHTML = temp.innerHTML.replace("##nameID##", "name" + s);
+
+                document.getElementById("results").appendChild(temp.content.cloneNode(true));
+
+                temp.innerHTML = temp.innerHTML.replace(longDescription, "##course name##");
+                
+                temp.innerHTML = temp.innerHTML.replace(description, "##description##");
+                temp.innerHTML = temp.innerHTML.replace(dept, "##depts##");
+                temp.innerHTML = temp.innerHTML.replace(courseLength, "##courseLength##");
+                temp.innerHTML = temp.innerHTML.replace(level, "##courseLevel##");
+
+                temp.innerHTML = temp.innerHTML.replace("add" + s, "##addID##");
+                temp.innerHTML = temp.innerHTML.replace("name" + s, "##nameID##");
+
+                temp.innerHTML = temp.innerHTML.replace("button" + s, "##buttonID##");
+                temp.innerHTML = temp.innerHTML.replace("desc" + s, "##descID##");
             }
+        }
+    </script>
 
-            function display(json) {
-                $("#results").html("");
-                console.log(json)
-                var subKeys = Object.keys(json['ID']);
-                var temp = document.getElementById("cont");
+    <script>
 
-                var start = n;
-                var end = n + 10;
-                length = subKeys.length;
+        //VARIABLES
+        var theseContainers = document.getElementsByClassName("dropdown-container");
+        var dropdownBttns = document.getElementsByClassName("dropdown");
+        const dropdownmMap = new Map();
+        var filterTypes = document.getElementsByClassName("filterType");
 
-                if (end > length) { end = length; }
+        //CLICKING ON DROPDOWNS
+        var onButtonClick = function (event) {
+            var thisBttn = event.currentTarget;
+            var container = dropdownmMap.get(thisBttn);
+            $(container).toggle();
+        };
 
-                for (var s = start; s < end; s++) {
-                    var longDescription = json['longDescription'][subKeys[s]];
-                    var description = json['description'][subKeys[s]];
-                    var dept = json['dept'][subKeys[s]];
-                    var courseLength = json['Length'][subKeys[s]];
+        //View Description Button
+        var descriptionBttn = function (element) {
+            var elementName = element.id;
+            var elNum = elementName.substring(6);
+            var descript = document.getElementById("desc" + elNum);
+            $(descript).toggle();
+        }
 
-                    temp.innerHTML = temp.innerHTML.replace("##course name##", longDescription);
-                    //this line is being weird again
-                    temp.innerHTML = temp.innerHTML.replace("##description##", description);
-                    temp.innerHTML = temp.innerHTML.replace("##depts##", dept);
-                    temp.innerHTML = temp.innerHTML.replace("##courseLength##", courseLength);
+        //Add course to cart
+        var num = 0;
+        var coursesInCart = [];
+        function addCourse(element) {
+            var elementName = element.id;
+            var elNum = elementName.substring(3);
+            var courseName = document.getElementById("name" + elNum);
+            var nameLong = courseName.innerHTML;
 
-                    var levelNum = json['level'][subKeys[s]];
-                    var level = "";
-                    if (levelNum == "1") level = "Standard/CP";
-                    if (levelNum == "2") level = "Honors";
-                    if (levelNum == "3") level = "AP";
+            if (coursesInCart.includes(nameLong) == false) {
+                coursesInCart.push(nameLong);
+                var nameShort = nameLong.substring(0, 5);
+                var templ = document.getElementById("courseInCart");
 
-                    temp.innerHTML = temp.innerHTML.replace("##courseLevel##", level);
+                templ.innerHTML = templ.innerHTML.replace("##classID##", "class" + num);
+                templ.innerHTML = templ.innerHTML.replace("##classname##", nameShort);
+                templ.innerHTML = templ.innerHTML.replace("##removeID##", "remove" + num);
+                templ.innerHTML = templ.innerHTML.replace("##classNME##", nameLong);
+                templ.innerHTML = templ.innerHTML.replace("##longname##", nameLong);
 
-                    temp.innerHTML = temp.innerHTML.replace("##buttonID##", "button" + s);
-                    temp.innerHTML = temp.innerHTML.replace("##descID##", "desc" + s);
-                                                                                
-                    temp.innerHTML = temp.innerHTML.replace("##addID##", "add" + s);
-                    temp.innerHTML = temp.innerHTML.replace("##nameID##", "name" + s);
+                document.getElementById("course-list").appendChild(templ.content.cloneNode(true));
 
-                    document.getElementById("results").appendChild(temp.content.cloneNode(true));
-
-                    temp.innerHTML = temp.innerHTML.replace(longDescription, "##course name##");
-                    //so is this one
-                    temp.innerHTML = temp.innerHTML.replace(description, "##description##");
-                    temp.innerHTML = temp.innerHTML.replace(dept, "##depts##");
-                    temp.innerHTML = temp.innerHTML.replace(courseLength, "##courseLength##");
-                    temp.innerHTML = temp.innerHTML.replace(level, "##courseLevel##");
-
-                    temp.innerHTML = temp.innerHTML.replace("add" + s, "##addID##");
-                    temp.innerHTML = temp.innerHTML.replace("name" + s, "##nameID##");
-                }
+                templ.innerHTML = templ.innerHTML.replace("class" + num, "##classID##");
+                templ.innerHTML = templ.innerHTML.replace("remove" + num, "##removeID##");
+                templ.innerHTML = templ.innerHTML.replace(nameLong, "##classNME##");
+                templ.innerHTML = templ.innerHTML.replace(nameLong, "##longname##");
+                templ.innerHTML = templ.innerHTML.replace(nameShort, "##classname##");
+                num++;
             }
-        </script>
+        }
 
-        <script>
+        function removeCourse(element) {
+            var thisNum = element.id.substring(6);
+            var place = coursesInCart.indexOf(element.getAttribute("data-name-long"));
+            coursesInCart.splice(place, 2);
+            document.getElementById("class" + thisNum).remove();
+        }
 
-            //VARIABLES
-            var theseContainers = document.getElementsByClassName("dropdown-container");
-            var dropdownBttns = document.getElementsByClassName("dropdown");
-            const dropdownmMap = new Map();
-            var filterTypes = document.getElementsByClassName("filterType");
+        //TOGGLE BUTTON
+        var toggleBttn = function (elementToBeToggled) {
+            $(elementToBeToggled).toggle();
+        }
 
-            //CLICKING ON DROPDOWNS
-            var onButtonClick = function (event) {
-                var thisBttn = event.currentTarget;
-                var container = dropdownmMap.get(thisBttn);
-                $(container).toggle();
-            };
-
-            //View Description Button
-            var descriptionBttn = function (element) {
-                var elementName = element.id;
-                var elNum = elementName.substring(6);
-                var descript = document.getElementById("desc" + elNum);
-                $(descript).toggle();
-            }
-            
-            //Add course to cart
-            var num = 0;
-            var coursesInCart = [];
-            function addCourse(element) {
-                var elementName = element.id;
-                var elNum = elementName.substring(3);
-                var courseName = document.getElementById("name" + elNum);
-                var nameLong = courseName.innerHTML;
-
-                if (coursesInCart.includes(nameLong) == false) {
-                    coursesInCart.push(nameLong);
-                    var nameShort = nameLong.substring(0, 5);
-                    var templ = document.getElementById("courseInCart");
-
-                    templ.innerHTML = templ.innerHTML.replace("##classID##", "class" + num);
-                    templ.innerHTML = templ.innerHTML.replace("##classname##", nameShort);
-                    templ.innerHTML = templ.innerHTML.replace("##removeID##", "remove" + num);
-                    templ.innerHTML = templ.innerHTML.replace("##classNME##", nameLong);
-                    templ.innerHTML = templ.innerHTML.replace("##longname##", nameLong);
-
-                    document.getElementById("course-list").appendChild(templ.content.cloneNode(true));
-
-                    templ.innerHTML = templ.innerHTML.replace("class" + num, "##classID##");
-                    templ.innerHTML = templ.innerHTML.replace("remove" + num, "##removeID##");
-                    templ.innerHTML = templ.innerHTML.replace(nameLong, "##classNME##");
-                    templ.innerHTML = templ.innerHTML.replace(nameLong, "##longname##");
-                    templ.innerHTML = templ.innerHTML.replace(nameShort, "##classname##");
-                    num++;
-                }
-            }
-
-            function removeCourse(element) {
-                var thisNum = element.id.substring(6);
-                var place = coursesInCart.indexOf(element.getAttribute("data-name-long"));
-                coursesInCart.splice(place, 2);
-                document.getElementById("class" + thisNum).remove();
-            }
-
-            //TOGGLE BUTTON
-            var toggleBttn = function (elementToBeToggled) {
-                $(elementToBeToggled).toggle();
-            }
-
-            //Add event listeners to all dropdowns
-            for (var i = 0; i < dropdownBttns.length; i++) {
-                dropdownmMap.set(dropdownBttns[i], theseContainers[i]);
-                dropdownBttns[i].addEventListener("click", onButtonClick);
-            }
-        </script>
+        //Add event listeners to all dropdowns
+        for (var i = 0; i < dropdownBttns.length; i++) {
+            dropdownmMap.set(dropdownBttns[i], theseContainers[i]);
+            dropdownBttns[i].addEventListener("click", onButtonClick);
+        }
+    </script>
 
 </body>
 </html>
