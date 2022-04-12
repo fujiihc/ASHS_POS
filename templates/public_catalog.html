@@ -52,7 +52,7 @@
                                 <tr>
                                     <td>
                                         <div style="display: flex; justify-content: space-between;">
-                                            <div class="course-name" id="course-name">##course name##</div>
+                                            <div class="course-name" id="course-name" data-unique-id="##uniqueId##">##course name##</div>
                                         </div>
                                         <div class="descriptions">
                                             <!--<div>##pathway##</div>-->
@@ -61,6 +61,7 @@
                                             <div>##depts##</div>
                                             <div>##courseLength##</div>
                                             <div>##courseLevel##</div>
+                                            <div>##credits## credits</div>
 
                                             <div>
                                                 <button class="viewDescriptionBtn" id="##buttonID##" onclick="descriptionBttn(this)">
@@ -386,7 +387,6 @@
             //console.log(json);
             var subKeys = Object.keys(json['ID']);
             var temp = document.getElementById("cont");
-            //alert(n);
 
             var start = n;
             var end = n + 10;
@@ -395,18 +395,21 @@
             if (end > length) { end = length; }
 
             for (var s = start; s < end; s++) {
-                
-
                 var longDescription = json['longDescription'][subKeys[s]];
                 var description = json['description'][subKeys[s]];
                 var dept = json['dept'][subKeys[s]];
                 var courseLength = json['Length'][subKeys[s]];
+
+                var uniqueId = json['ID'][subKeys[s]];
+                var credits = parseInt(json['credits'][subKeys[s]]);
                 
                 temp.innerHTML = temp.innerHTML.replace("##course name##", longDescription);
-                //this line is being weird again
                 temp.innerHTML = temp.innerHTML.replace("##description##", description);
                 temp.innerHTML = temp.innerHTML.replace("##depts##", dept);
                 temp.innerHTML = temp.innerHTML.replace("##courseLength##", courseLength);
+                temp.innerHTML = temp.innerHTML.replace("##credits##", credits);
+                temp.innerHTML = temp.innerHTML.replace("##uniqueId##", uniqueId);
+
 
                 var levelNum = json['level'][subKeys[s]];
                 var level;
@@ -424,10 +427,12 @@
                 
 
                 temp.innerHTML = temp.innerHTML.replace(longDescription, "##course name##");
-                //so is this one
                 temp.innerHTML = temp.innerHTML.replace(description, "##description##");
                 temp.innerHTML = temp.innerHTML.replace(dept, "##depts##");
                 temp.innerHTML = temp.innerHTML.replace(courseLength, "##courseLength##");
+                temp.innerHTML = temp.innerHTML.replace(credits, "##credits##");
+                temp.innerHTML = temp.innerHTML.replace(uniqueId, "##uniqueId##");
+
                 temp.innerHTML = temp.innerHTML.replace(level, "##courseLevel##");
 
                 temp.innerHTML = temp.innerHTML.replace("button" + s, "##buttonID##");
