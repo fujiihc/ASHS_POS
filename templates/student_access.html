@@ -321,7 +321,8 @@
 
                     </div>
                     <div>
-                        <form method="post" action="/student">
+                        <!--Attach AJAX call here-->
+                        <form action="/student" id="viewCourses">
                             <input type="submit" value="View Selected Courses" style="border:none;" class="viewCoursesBtn" name="viewCoursesBtn" />
                         </form>
                     </div>
@@ -375,6 +376,18 @@
             });
         });
 
+        $("#viewCourses").submit(function (event) {
+            event.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "/student",
+                data: { "editCart": "", "cart": coursesInCart.toString(), "redirect": 'true' }
+            }).done(function (response) {
+                if (response.redirect) {
+                    window.location.href = response.redirect;
+                }
+            });
+        });
         $("#pathways").on("change", "input:checkbox", function (event) {
             event.preventDefault();
             AJAX("pathways");
@@ -450,6 +463,7 @@
                 document.getElementById("results").appendChild(temp.content.cloneNode(true));
 
                 temp.innerHTML = temp.innerHTML.replace(longDescription, "##course name##");
+                
                 temp.innerHTML = temp.innerHTML.replace(description, "##description##");
                 temp.innerHTML = temp.innerHTML.replace(dept, "##depts##");
                 temp.innerHTML = temp.innerHTML.replace(courseLength, "##courseLength##");
@@ -498,6 +512,11 @@
 
             if (coursesInCart.includes(nameLong) == false) {
                 coursesInCart.push(nameLong);
+                $.ajax({
+                    type: "POST",
+                    url: "/student",
+                    data: { "editCart": "", "cart": coursesInCart.toString(), "redirect": 'false' }
+                });
                 var nameShort = nameLong.substring(0, 5);
                 var templ = document.getElementById("courseInCart");
 
@@ -522,6 +541,12 @@
             var thisNum = element.id.substring(6);
             var place = coursesInCart.indexOf(element.getAttribute("data-name-long"));
             coursesInCart.splice(place, 2);
+
+            $.ajax({
+                type: "POST",
+                url: "/student",
+                data: { "editCart": "", "cart": coursesInCart.toString(), "redirect": 'false' }
+            });
             document.getElementById("class" + thisNum).remove();
         }
 
