@@ -16,7 +16,7 @@ import google.auth.transport.requests
 import data as dt
 import database as db
 import pandas as pd
-from flask import Flask, render_template, redirect, url_for, request, session, abort
+from flask import Flask, render_template, redirect, url_for, request, session, abort, jsonify
 
 app = Flask(__name__)
 
@@ -112,6 +112,7 @@ pathways = []
 departments = []
 courseLengths = []
 courseLevels = []
+cart = []
 keyword = ''
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
@@ -237,10 +238,14 @@ def student():
     global courseLengths
     global courseLevels
     global keyword
-    
+    global cart
+
     if request.method == 'POST':
-        
-        if request.form.get('searchButton') == '' and isinstance(request.form.get('searchBar'), str):
+        if request.form.get('editCart') == '':
+            cart = request.form['cart'].split(',')
+            if request.form['redirect'] == 'true':
+                return jsonify(dict(redirect='/requests'))
+        elif request.form.get('searchButton') == '' and isinstance(request.form.get('searchBar'), str):
             keyword = request.form['searchBar']   
         elif request.form.get('origin') == 'pathways' and isinstance(request.form.get('selected'), str):
             pathways = request.form['selected'].split('#')
@@ -258,8 +263,6 @@ def student():
             return df.getDF().to_json()
         elif request.form.get('logoutBtn'):
             return redirect(url_for('logout'))
-        if request.form.get('viewCoursesBtn'):
-            return redirect(url_for('requests'))
         return search_w_modifiers(keyword)
     return render_template('student_access.html')
 #remember to do subdomains
@@ -268,9 +271,12 @@ def student():
 @app.route('/requests', methods = ['POST', 'GET'])
 @login_is_required
 def requests():
+    global cart
     if request.method == 'POST':
         if request.form.get('logoutBtn'):
-            return redirect(url_for('logout'))
+            return redirect(url_for('logout'))   
+        elif request.form.get('initialized') == 'initialized':
+            return '#'.join(cart)
     return render_template('request_courses.html')
 
 #kinda scuffed atm
