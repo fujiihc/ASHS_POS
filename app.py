@@ -204,26 +204,26 @@ def search_w_modifiers(keyword):
 
     for p in pathways:
         if p != '':
-            toBeSearched = toBeSearched.findCourse('X', p)
+            toBeSearched = toBeSearched.findCourse('X', p, False)
     
     for d in departments:
         if d != '':
-            toBeSearched = toBeSearched.findCourse(d, 'dept')
+            toBeSearched = toBeSearched.findCourse(d, 'dept', False)
         #foundations of innovation
         #ap seminar and research
         #work study
     for leng in courseLengths:
         if leng != '':
-            toBeSearched = toBeSearched.findCourse(leng, 'Length')
+            toBeSearched = toBeSearched.findCourse(leng, 'Length', False)
 
     for lev in courseLevels:
         if lev != '':
-            toBeSearched = toBeSearched.findCourse(lev, 'level')
+            toBeSearched = toBeSearched.findCourse(lev, 'level', False)
 
     #print(inclusive.getDF())
     #print(toBeSearched.getDF())
        
-    pyResults = toBeSearched.findCourse(keyword.upper(), 'longDescription').getDF()
+    pyResults = toBeSearched.findCourse(keyword.upper(), 'longDescription', False).getDF()
     #print(pyResults)
     return pyResults.to_json()
 
@@ -278,7 +278,7 @@ def requests():
         if request.form.get('initialized') == '1':
             cartDF = dt.data(pd.DataFrame())
             for item in cart:
-                cartDF.merge(df.findCourse(item, 'longDescription'))
+                cartDF.merge(df.findCourse(item, 'longDescription', True))
             return cartDF.getDF().to_json()
     return render_template('request_courses.html')
 
