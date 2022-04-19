@@ -156,7 +156,7 @@ def catalog():
         elif request.form.get('origin') == 'courseLevel' and isinstance(request.form.get('selected'), str):
             courseLevels = request.form['selected'].split('#')
             keyword = request.form['searchBar']
-        elif request.form.get('initialized') == 'initialized':
+        elif request.form.get('initialized') == '1':
             return df.getDF().to_json()
         elif request.form.get('logoutBtn'):
             return redirect(url_for('logout'))
@@ -243,6 +243,7 @@ def student():
     if request.method == 'POST':
         if request.form.get('editCart') == '':
             cart = request.form['cart'].split(',')
+            print(cart)
             if request.form['redirect'] == 'true':
                 return jsonify(dict(redirect='/requests'))
         elif request.form.get('searchButton') == '' and isinstance(request.form.get('searchBar'), str):
@@ -259,7 +260,7 @@ def student():
         elif request.form.get('origin') == 'courseLevel' and isinstance(request.form.get('selected'), str):
             courseLevels = request.form['selected'].split('#')
             keyword = request.form['searchBar']
-        elif request.form.get('initialized') == 'initialized':
+        elif request.form.get('initialized') == '1':
             return df.getDF().to_json()
         elif request.form.get('logoutBtn'):
             return redirect(url_for('logout'))
@@ -275,8 +276,11 @@ def requests():
     if request.method == 'POST':
         if request.form.get('logoutBtn'):
             return redirect(url_for('logout'))   
-        elif request.form.get('initialized') == 'initialized':
-            return '#'.join(cart)
+        if request.form.get('initialized') == '1':
+            cartDF = dt.data(pd.DataFrame())
+            for item in cart:
+                cartDF.merge(df.findCourse(item, 'longDescription'))
+            return cartDF.getDF().to_json()
     return render_template('request_courses.html')
 
 #kinda scuffed atm
