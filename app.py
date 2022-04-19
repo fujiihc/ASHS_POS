@@ -243,7 +243,6 @@ def student():
     if request.method == 'POST':
         if request.form.get('editCart') == '':
             cart = request.form['cart'].split(',')
-            print(cart)
             if request.form['redirect'] == 'true':
                 return jsonify(dict(redirect='/requests'))
         elif request.form.get('searchButton') == '' and isinstance(request.form.get('searchBar'), str):
