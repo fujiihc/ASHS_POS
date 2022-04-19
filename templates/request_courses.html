@@ -25,78 +25,23 @@
 
     <div class="wrapper">
         <div class="container">
+
+            <template id="cont">
+                <div style="margin-left: 25px; margin-right:25px;font-size: 18px;">
+                    <div class="fa fa-times"></div>
+                    <div class="choicesText">
+                        <div>##name##</div>
+                        <div>##credits##</div>
+                    </div>
+                </div>
+            </template>
+
             <div id="bttnBox">
                 <!--make this into a template or something-->
                 <h1 style="margin-bottom:20px; margin-top:10px; text-align:center; font-size: 20px;">Review Your Selected Courses</h1>
-                <div style="margin-left: 25px; margin-right:25px;font-size: 18px;">
-                    <div class="fa fa-times"></div>
-                    <div class="choicesText">
-                        <div>Class 1</div>
-                        <div>10 credits</div>
-                    </div>
-                </div>
-                <div style="margin-left: 25px; margin-right:25px;font-size: 18px;">
-                    <div class="fa fa-times"></div>
-                    <div class="choicesText">
-                        <div>Class 2</div>
-                        <div>10 credits</div>
-                    </div>
-                </div>
-                <div style="margin-left: 25px; margin-right:25px;font-size: 18px;">
-                    <div class="fa fa-times"></div>
-                    <div class="choicesText">
-                        <div>Class 3</div>
-                        <div>10 credits</div>
-                    </div>
-                </div>
-                <div style="margin-left: 25px; margin-right:25px;font-size: 18px;">
-                    <div class="fa fa-times"></div>
-                    <div class="choicesText">
-                        <div>Class 4</div>
-                        <div>10 credits</div>
-                    </div>
-                </div>
-                <div style="margin-left: 25px; margin-right:25px;font-size: 18px;">
-                    <div class="fa fa-times"></div>
-                    <div class="choicesText">
-                        <div>Class 5</div>
-                        <div>10 credits</div>
-                    </div>
-                </div>
-                <div style="margin-left: 25px; margin-right:25px;font-size: 18px;">
-                    <div class="fa fa-times"></div>
-                    <div class="choicesText">
-                        <div>Class 6</div>
-                        <div>10 credits</div>
-                    </div>
-                </div>
-                <div style="margin-left: 25px; margin-right:25px;font-size: 18px;">
-                    <div class="fa fa-times"></div>
-                    <div class="choicesText">
-                        <div>Class 7</div>
-                        <div>10 credits</div>
-                    </div>
-                </div>
-                <div style="margin-left: 25px; margin-right:25px;font-size: 18px;">
-                    <div class="fa fa-times"></div>
-                    <div class="choicesText">
-                        <div>Class 8</div>
-                        <div>10 credits</div>
-                    </div>
-                </div>
-                <div style="margin-left: 25px; margin-right:25px;font-size: 18px;">
-                    <div class="fa fa-times"></div>
-                    <div class="choicesText">
-                        <div>Class 9</div>
-                        <div>10 credits</div>
-                    </div>
-                </div>
-                <div style="margin-left: 25px; margin-right:25px;font-size: 18px;">
-                    <div class="fa fa-times"></div>
-                    <div class="choicesText">
-                        <div>Class 10</div>
-                        <div>10 credits</div>
-                    </div>
+
+                <div class="results" id="results">
+
                 </div>
 
                 <div>
@@ -120,10 +65,29 @@
         $.ajax({
             type: "POST",
             url: "/requests",
-            data: { "initialized": "initialized" }
+            data: { "initialized": "1" }
         }).done(function (response) {
-            console.log(response);
+            display(JSON.parse(response))
         });
+
+        function display(json) {
+            $("#results").html("");
+            var subKeys = Object.keys(json['ID']);
+            var temp = document.getElementById("cont");
+
+            for (var s = 0; s < 10; s++) {
+                var longDescription = json['longDescription'][subKeys[s]];
+                var creds = json['credits'][subKeys[s]];
+
+                temp.innerHTML = temp.innerHTML.replace("##name##", longDescription);
+                temp.innerHTML = temp.innerHTML.replace("##credits##", creds);
+
+                document.getElementById("results").appendChild(temp.content.cloneNode(true));
+
+                temp.innerHTML = temp.innerHTML.replace(longDescription, "##name##");
+                temp.innerHTML = temp.innerHTML.replace(creds, "##credits##");
+            }
+        }
     </script>
 
 </body>
