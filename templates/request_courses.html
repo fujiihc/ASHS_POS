@@ -75,7 +75,7 @@
             var subKeys = Object.keys(json['ID']);
             var temp = document.getElementById("cont");
 
-            for (var s = 0; s < 10; s++) {
+            for (var s = 0; s < subKeys.length; s++) {
                 var longDescription = json['longDescription'][subKeys[s]];
                 var creds = json['credits'][subKeys[s]];
 
