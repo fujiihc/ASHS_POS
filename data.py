@@ -4,22 +4,30 @@ class data:
     def __init__(self, dataframe):
         self.df = dataframe
         
-    def findCourse(self, keywords, searchCol):
-        return data(self.df.loc[self.searchCheck(keywords.split(' '), self.df[searchCol].str.split(' '))])
+    def findCourse(self, keywords, searchCol, exact):
+        thingy1 = keywords.split(' ')
+        thingy2 = self.df[searchCol].str.split(' ')
+        if exact:
+            thingy1 = [keywords]
+            thingy2 = list(self.df[searchCol])
+        return data(self.df.loc[self.searchCheck(thingy1, thingy2, exact)])
 
     def getDF(self):
         return self.df
 
-    def searchCheck(self, keyArr, searchArr):       
-        finalList = []            
+    def searchCheck(self, keyArr, searchArr, exact):     
+        finalList = []       
         for item in searchArr:         
             toAdd = False
             checkArr = []      
             for search in keyArr:
-                for word in item: 
-                    if search in word:               
+                if not exact:
+                    for word in item: 
+                        
+                            break
+                else:
+                    if search == item:               
                         toAdd = True
-                        break
                 checkArr.append(toAdd)
                 toAdd = False
             toAdd = True
