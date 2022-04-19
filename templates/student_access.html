@@ -52,7 +52,7 @@
                                     <td>
                                         <div style="display: flex; justify-content: space-between;">
                                             <div class="fa fa-plus" id="##addID##" onclick="addCourse(this)"></div>
-                                            <div class="course-name" id="##nameID##">##course name##</div>
+                                            <div class="course-name" id="##nameID##" data-unique-id="##uniqueId##">##course name##</div>
                                         </div>
                                         <div class="descriptions">
                                             <!--<div>##pathway##</div>-->
@@ -61,6 +61,7 @@
                                             <div>##depts##</div>
                                             <div>##courseLength##</div>
                                             <div>##courseLevel##</div>
+                                            <div>##credits##</div>
 
                                             <div>
                                                 <button class="viewDescriptionBtn" id="##buttonID##" onclick="descriptionBttn(this)">
@@ -439,11 +440,16 @@
                 var dept = json['dept'][subKeys[s]];
                 var courseLength = json['Length'][subKeys[s]];
 
+                var uniqueId = json['ID'][subKeys[s]];
+                var credits = parseInt(json['credits'][subKeys[s]]);
+
                 temp.innerHTML = temp.innerHTML.replace("##course name##", longDescription);
                 
                 temp.innerHTML = temp.innerHTML.replace("##description##", description);
                 temp.innerHTML = temp.innerHTML.replace("##depts##", dept);
                 temp.innerHTML = temp.innerHTML.replace("##courseLength##", courseLength);
+                temp.innerHTML = temp.innerHTML.replace("##credits##", credits + " credits");
+                temp.innerHTML = temp.innerHTML.replace("##uniqueId##", uniqueId);
 
                 var levelNum = json['level'][subKeys[s]];
                 var level = "";
@@ -466,13 +472,16 @@
                 temp.innerHTML = temp.innerHTML.replace(description, "##description##");
                 temp.innerHTML = temp.innerHTML.replace(dept, "##depts##");
                 temp.innerHTML = temp.innerHTML.replace(courseLength, "##courseLength##");
-                temp.innerHTML = temp.innerHTML.replace(level, "##courseLevel##");
+                temp.innerHTML = temp.innerHTML.replace(credits + " credits", "##credits##");
+                temp.innerHTML = temp.innerHTML.replace(uniqueId, "##uniqueId##");
 
-                temp.innerHTML = temp.innerHTML.replace("add" + s, "##addID##");
-                temp.innerHTML = temp.innerHTML.replace("name" + s, "##nameID##");
+                temp.innerHTML = temp.innerHTML.replace(level, "##courseLevel##");
 
                 temp.innerHTML = temp.innerHTML.replace("button" + s, "##buttonID##");
                 temp.innerHTML = temp.innerHTML.replace("desc" + s, "##descID##");
+
+                temp.innerHTML = temp.innerHTML.replace("add" + s, "##addID##");
+                temp.innerHTML = temp.innerHTML.replace("name" + s, "##nameID##");
             }
         }
     </script>
