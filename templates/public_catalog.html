@@ -15,11 +15,11 @@
     </div>
     <div class="page-container">
         <div class="wrapper">
-            
+
             <div class="topnav">
                 <p>Abington Senior High School</p>
                 <form method="post" action="/catalog">
-                    <input type="submit" value="Logout" style="position:absolute;right:0px; top:0px;"border:none; z-index:9999; margin-bottom:15px;" name="logoutBtn" />
+                    <input type="submit" value="Logout" style="position:absolute;right:0px; top:0px;" border:none; z-index:9999; margin-bottom:15px;" name="logoutBtn" />
                 </form>
             </div>
 
@@ -52,7 +52,7 @@
                                 <tr>
                                     <td>
                                         <div style="display: flex; justify-content: space-between;">
-                                            <div class="course-name" id="course-name">##course name##</div>
+                                            <div class="course-name" id="course-name" data-unique-id="##uniqueId##">##course name##</div>
                                         </div>
                                         <div class="descriptions">
                                             <!--<div>##pathway##</div>-->
@@ -61,6 +61,7 @@
                                             <div>##depts##</div>
                                             <div>##courseLength##</div>
                                             <div>##courseLevel##</div>
+                                            <div>##credits##</div>
 
                                             <div>
                                                 <button class="viewDescriptionBtn" id="##buttonID##" onclick="descriptionBttn(this)">
@@ -84,7 +85,7 @@
                             <button type="submit" class="changePageBttn" id="chngPgBtn-Back" style="color: #ffffff; width: 20px; height: 25px; background: rgb(150, 38, 38); border: none; cursor: pointer;"><i class="fa fa-caret-left" style="margin-left:5px;"></i></button>
                             <button type="submit" class="changePageBttn" id="chngPgBtn-Forward" style="color: #ffffff; width: 20px; height: 25px; background: rgb(150, 38, 38); border: none; cursor: pointer;"><i class="fa fa-caret-down" style="margin-left:5px;"></i></button>
                         </div>
-                        
+
                         <div class="results" id="results">
 
                         </div>
@@ -374,7 +375,7 @@
             $.ajax({
                 type: "POST",
                 url: "/catalog",
-                data: { "selected": checked, "origin": elementID, "searchBar": document.getElementById("searchBar").value}
+                data: { "selected": checked, "origin": elementID, "searchBar": document.getElementById("searchBar").value }
             }).done(function (response) {
                 currentData = response; n = 0;
                 display(JSON.parse(response));
@@ -395,18 +396,21 @@
             if (end > length) { end = length; }
 
             for (var s = start; s < end; s++) {
-                
-
                 var longDescription = json['longDescription'][subKeys[s]];
                 var description = json['description'][subKeys[s]];
                 var dept = json['dept'][subKeys[s]];
                 var courseLength = json['Length'][subKeys[s]];
-                
+
+                var uniqueId = json['ID'][subKeys[s]];
+                var credits = parseInt(json['credits'][subKeys[s]]);
+
                 temp.innerHTML = temp.innerHTML.replace("##course name##", longDescription);
-                
+
                 temp.innerHTML = temp.innerHTML.replace("##description##", description);
                 temp.innerHTML = temp.innerHTML.replace("##depts##", dept);
                 temp.innerHTML = temp.innerHTML.replace("##courseLength##", courseLength);
+                temp.innerHTML = temp.innerHTML.replace("##credits##", credits + " credits");
+                temp.innerHTML = temp.innerHTML.replace("##uniqueId##", uniqueId);
 
                 var levelNum = json['level'][subKeys[s]];
                 var level;
@@ -419,14 +423,18 @@
                 temp.innerHTML = temp.innerHTML.replace("##buttonID##", "button" + s);
                 temp.innerHTML = temp.innerHTML.replace("##descID##", "desc" + s);
 
+
                 document.getElementById("results").appendChild(temp.content.cloneNode(true));
 
+
                 temp.innerHTML = temp.innerHTML.replace(longDescription, "##course name##");
-                
+
                 temp.innerHTML = temp.innerHTML.replace(description, "##description##");
                 temp.innerHTML = temp.innerHTML.replace(dept, "##depts##");
                 temp.innerHTML = temp.innerHTML.replace(courseLength, "##courseLength##");
                 temp.innerHTML = temp.innerHTML.replace(level, "##courseLevel##");
+                temp.innerHTML = temp.innerHTML.replace(credits + " credits", "##credits##");
+               temp.innerHTML = temp.innerHTML.replace(uniqueId, "##uniqueId##");
 
                 temp.innerHTML = temp.innerHTML.replace("button" + s, "##buttonID##");
                 temp.innerHTML = temp.innerHTML.replace("desc" + s, "##descID##");
