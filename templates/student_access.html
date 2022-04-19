@@ -348,7 +348,7 @@
         $.ajax({
             type: "POST",
             url: "/student",
-            data: { "initialized": "initialized" }
+            data: { "initialized": "1" }
         }).done(function (response) {
             currentData = response; n = 0;
             display(JSON.parse(response))
@@ -424,7 +424,6 @@
 
         function display(json) {
             $("#results").html("");
-            console.log(json)
             var subKeys = Object.keys(json['ID']);
             var temp = document.getElementById("cont");
 
