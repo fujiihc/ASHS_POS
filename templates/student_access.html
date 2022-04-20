@@ -51,7 +51,7 @@
                                 <tr>
                                     <td>
                                         <div style="display: flex; justify-content: space-between;">
-                                            <div class="fa fa-plus" id="##addID##" onclick="addCourse(this)"></div>
+                                            <div class="fa fa-plus" id="##addID##" data-credits="##creditsNum##" onclick="addCourse(this)"></div>
                                             <div class="course-name" id="##nameID##" data-unique-id="##uniqueId##">##course name##</div>
                                         </div>
                                         <div class="descriptions">
@@ -306,11 +306,11 @@
 
             <template id="courseInCart">
                 <div style="margin-left: 15px; margin-right:15px; font-size: 18px;" id="##classID##">
-                    <div class="fa fa-times" id="##removeID##" data-name-long="##classNME##" onclick="removeCourse(this)"></div>
+                    <div class="fa fa-times" id="##removeID##" data-name-long="##classNME##" data-credits="##creditsNum##" onclick="removeCourse(this)"></div>
                     <!--https://fontawesome.com/v4.7/icon/times-->
                     <div class="choicesText">
                         <div><span title="##longname##">##classname##</span></div>
-                        <div>10 credits</div>
+                        <div>##credits##</div>
                     </div>
                 </div>
             </template>
@@ -442,6 +442,7 @@
 
                 var uniqueId = json['ID'][subKeys[s]];
                 var credits = parseInt(json['credits'][subKeys[s]]);
+                var creditsNum = json['credits'][subKeys[s]];
 
                 temp.innerHTML = temp.innerHTML.replace("##course name##", longDescription);
                 
@@ -449,6 +450,7 @@
                 temp.innerHTML = temp.innerHTML.replace("##depts##", dept);
                 temp.innerHTML = temp.innerHTML.replace("##courseLength##", courseLength);
                 temp.innerHTML = temp.innerHTML.replace("##credits##", credits + " credits");
+                temp.innerHTML = temp.innerHTML.replace("##creditsNum##", creditsNum);
                 temp.innerHTML = temp.innerHTML.replace("##uniqueId##", uniqueId);
 
                 var levelNum = json['level'][subKeys[s]];
@@ -473,6 +475,7 @@
                 temp.innerHTML = temp.innerHTML.replace(dept, "##depts##");
                 temp.innerHTML = temp.innerHTML.replace(courseLength, "##courseLength##");
                 temp.innerHTML = temp.innerHTML.replace(credits + " credits", "##credits##");
+                temp.innerHTML = temp.innerHTML.replace(creditsNum, "##creditsNum##");
                 temp.innerHTML = temp.innerHTML.replace(uniqueId, "##uniqueId##");
 
                 temp.innerHTML = temp.innerHTML.replace(level, "##courseLevel##");
@@ -512,6 +515,7 @@
         //Add course to cart
         var num = 0;
         var coursesInCart = [];
+        var creditTotal = 0;
         function addCourse(element) {
             var elementName = element.id;
             var elNum = elementName.substring(3);
@@ -527,12 +531,19 @@
                 });
                 var nameShort = nameLong.substring(0, 5);
                 var templ = document.getElementById("courseInCart");
+                var credits = parseInt(element.getAttribute("data-credits"));
+                var creditsNum = element.getAttribute("data-credits");
+
+                creditTotal += credits;
 
                 templ.innerHTML = templ.innerHTML.replace("##classID##", "class" + num);
                 templ.innerHTML = templ.innerHTML.replace("##classname##", nameShort);
                 templ.innerHTML = templ.innerHTML.replace("##removeID##", "remove" + num);
                 templ.innerHTML = templ.innerHTML.replace("##classNME##", nameLong);
                 templ.innerHTML = templ.innerHTML.replace("##longname##", nameLong);
+
+                templ.innerHTML = templ.innerHTML.replace("##credits##", credits + " credits");
+                templ.innerHTML = templ.innerHTML.replace("##creditsNum##", creditsNum);
 
                 document.getElementById("course-list").appendChild(templ.content.cloneNode(true));
 
@@ -541,14 +552,18 @@
                 templ.innerHTML = templ.innerHTML.replace(nameLong, "##classNME##");
                 templ.innerHTML = templ.innerHTML.replace(nameLong, "##longname##");
                 templ.innerHTML = templ.innerHTML.replace(nameShort, "##classname##");
+
+                templ.innerHTML = templ.innerHTML.replace(credits + " credits", "##credits##");
+                templ.innerHTML = templ.innerHTML.replace(creditsNum, "##creditsNum##");
                 num++;
-            }
+            }//template
         }
 
         function removeCourse(element) {
             var thisNum = element.id.substring(6);
             var place = coursesInCart.indexOf(element.getAttribute("data-name-long"));
             coursesInCart.splice(place, 2);
+            creditTotal -= parseInt(element.getAttribute("data-credits"));
 
             $.ajax({
                 type: "POST",
