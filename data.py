@@ -23,8 +23,9 @@ class data:
             for search in keyArr:
                 if not exact:
                     for word in item: 
-                        toAdd = True
-                        break
+                        if search in word:
+                            toAdd = True
+                            break
                 else:
                     if search == item:               
                         toAdd = True
