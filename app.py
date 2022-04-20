@@ -204,21 +204,21 @@ def search_w_modifiers(keyword):
 
     for p in pathways:
         if p != '':
-            toBeSearched = toBeSearched.findCourse('X', p, False)
+            toBeSearched = toBeSearched.findCourse('X', p, True)
     
     for d in departments:
         if d != '':
-            toBeSearched = toBeSearched.findCourse(d, 'dept', False)
+            toBeSearched = toBeSearched.findCourse(d, 'dept', True)
         #foundations of innovation
         #ap seminar and research
         #work study
     for leng in courseLengths:
         if leng != '':
-            toBeSearched = toBeSearched.findCourse(leng, 'Length', False)
+            toBeSearched = toBeSearched.findCourse(leng, 'Length', True)
 
     for lev in courseLevels:
         if lev != '':
-            toBeSearched = toBeSearched.findCourse(lev, 'level', False)
+            toBeSearched = toBeSearched.findCourse(lev, 'level', True)
 
     #print(inclusive.getDF())
     #print(toBeSearched.getDF())
