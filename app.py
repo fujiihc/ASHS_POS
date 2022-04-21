@@ -75,7 +75,10 @@ def callback():
     #callback function
     #redirects to student access
     #also loads and saves student session info
-    flow.fetch_token(authorization_response = request.url)
+    try:
+        flow.fetch_token(authorization_response = request.url)
+    except:
+        return redirect(url_for('login'))
 
     #if not session['state'] == request['state']:
     #    abort(500)
