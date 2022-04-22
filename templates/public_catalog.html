@@ -459,11 +459,18 @@
         };
 
         //View Description Button
+        var lastDescript;
         var descriptionBttn = function (element) {
             var elementName = element.id;
             var elNum = elementName.substring(6);
             var descript = document.getElementById("desc" + elNum);
             $(descript).toggle();
+            if (lastDescript != null) {
+                if (descript != lastDescript && lastDescript.style.display != "none") {
+                    $(lastDescript).toggle();
+                }
+            }
+            lastDescript = descript;
         }
 
         //Add event listeners to all dropdowns
