@@ -21,7 +21,8 @@ from flask import Flask, render_template, redirect, url_for, request, session, a
 app = Flask(__name__)
 
 df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna('').astype(str))
-
+#honestly could just delete this file
+#if replaced with sql, just get rid of the database.py file
 studentInfo = db.database()
 #when declaring the database, why not have it be a csv file or something that i can write to.
 #either that or figure out a way to integrate a database into python
