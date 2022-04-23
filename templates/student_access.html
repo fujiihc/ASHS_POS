@@ -345,14 +345,61 @@
         var n = 0;
         var currentData;
         var length;
+        var num = 0;
+        var coursesInCart = [];
+        var creditTotal = 0;
 
         $.ajax({
             type: "POST",
             url: "/student",
             data: { "initialized": "1" }
         }).done(function (response) {
-            currentData = response; n = 0;
-            display(JSON.parse(response))
+            console.log(response);
+            currentData = response['data']; n = 0;
+            display(JSON.parse(response['data']))
+
+            try {
+                responseCart = JSON.parse(response['cart'])
+
+
+                var subKeys = Object.keys(responseCart['ID']);
+
+                for (var i = 0; i < subKeys.length; i++) {
+                    var nameLong = responseCart["longDescription"][subKeys[i]];
+                    coursesInCart[i] = nameLong;
+                    var nameShort = nameLong.substring(0, 5);
+                    var templ = document.getElementById("courseInCart");
+                    var creditsNum = responseCart['credits'][subKeys[i]];
+                    var credits = parseInt(creditsNum);
+
+                    creditTotal += credits;
+
+                    templ.innerHTML = templ.innerHTML.replace("##classID##", "class" + num);
+                    templ.innerHTML = templ.innerHTML.replace("##classname##", nameShort);
+                    templ.innerHTML = templ.innerHTML.replace("##removeID##", "remove" + num);
+                    templ.innerHTML = templ.innerHTML.replace("##classNME##", nameLong);
+                    templ.innerHTML = templ.innerHTML.replace("##longname##", nameLong);
+
+                    templ.innerHTML = templ.innerHTML.replace("##credits##", credits + " credits");
+                    templ.innerHTML = templ.innerHTML.replace("##creditsNum##", creditsNum);
+
+                    document.getElementById("course-list").appendChild(templ.content.cloneNode(true));
+
+                    templ.innerHTML = templ.innerHTML.replace("class" + num, "##classID##");
+                    templ.innerHTML = templ.innerHTML.replace("remove" + num, "##removeID##");
+                    templ.innerHTML = templ.innerHTML.replace(nameLong, "##classNME##");
+                    templ.innerHTML = templ.innerHTML.replace(nameLong, "##longname##");
+                    templ.innerHTML = templ.innerHTML.replace(nameShort, "##classname##");
+
+                    templ.innerHTML = templ.innerHTML.replace(credits + " credits", "##credits##");
+                    templ.innerHTML = templ.innerHTML.replace(creditsNum, "##creditsNum##");
+                    num++;
+                }
+                console.log(num);
+
+            } catch (error) {
+
+            }
         });
 
         $("#chngPgBtn-Back").click(function () {
@@ -389,6 +436,7 @@
                 }
             });
         });
+
         $("#pathways").on("change", "input:checkbox", function (event) {
             event.preventDefault();
             AJAX("pathways");
@@ -440,17 +488,17 @@
                 var dept = json['dept'][subKeys[s]];
                 var courseLength = json['Length'][subKeys[s]];
 
-                var uniqueId = json['ID'][subKeys[s]];
-                var credits = parseInt(json['credits'][subKeys[s]]);
+                var uniqueId = json['ID'][subKeys[s]];   
                 var creditsNum = json['credits'][subKeys[s]];
-
+                var credits = parseInt(creditsNum);
+                console.log(creditsNum)
                 temp.innerHTML = temp.innerHTML.replace("##course name##", longDescription);
                 
                 temp.innerHTML = temp.innerHTML.replace("##description##", description);
                 temp.innerHTML = temp.innerHTML.replace("##depts##", dept);
                 temp.innerHTML = temp.innerHTML.replace("##courseLength##", courseLength);
                 temp.innerHTML = temp.innerHTML.replace("##credits##", credits + " credits");
-                temp.innerHTML = temp.innerHTML.replace("##creditsNum##", creditsNum);
+                temp.innerHTML = temp.innerHTML.replace("##creditsNum##", creditsNum + '@');
                 temp.innerHTML = temp.innerHTML.replace("##uniqueId##", uniqueId);
 
                 var levelNum = json['level'][subKeys[s]];
@@ -458,7 +506,7 @@
                 if (levelNum == "1") level = "Standard/CP";
                 if (levelNum == "2") level = "Honors";
                 if (levelNum == "3") level = "AP";
-
+                
                 temp.innerHTML = temp.innerHTML.replace("##courseLevel##", level);
 
                 temp.innerHTML = temp.innerHTML.replace("##buttonID##", "button" + s);
@@ -475,7 +523,7 @@
                 temp.innerHTML = temp.innerHTML.replace(dept, "##depts##");
                 temp.innerHTML = temp.innerHTML.replace(courseLength, "##courseLength##");
                 temp.innerHTML = temp.innerHTML.replace(credits + " credits", "##credits##");
-                temp.innerHTML = temp.innerHTML.replace(creditsNum, "##creditsNum##");
+                temp.innerHTML = temp.innerHTML.replace(creditsNum + "@", "##creditsNum##");
                 temp.innerHTML = temp.innerHTML.replace(uniqueId, "##uniqueId##");
 
                 temp.innerHTML = temp.innerHTML.replace(level, "##courseLevel##");
@@ -484,12 +532,16 @@
                 temp.innerHTML = temp.innerHTML.replace("desc" + s, "##descID##");
 
                 temp.innerHTML = temp.innerHTML.replace("add" + s, "##addID##");
+
                 temp.innerHTML = temp.innerHTML.replace("name" + s, "##nameID##");
             }
         }
-    </script>
 
-    <script>
+
+
+
+
+
 
         //VARIABLES
         var theseContainers = document.getElementsByClassName("dropdown-container");
@@ -520,26 +572,31 @@
         }
 
         //Add course to cart
-        var num = 0;
-        var coursesInCart = [];
-        var creditTotal = 0;
+
         function addCourse(element) {
+
             var elementName = element.id;
             var elNum = elementName.substring(3);
             var courseName = document.getElementById("name" + elNum);
             var nameLong = courseName.innerHTML;
 
+
+
             if (coursesInCart.includes(nameLong) == false) {
+
                 coursesInCart.push(nameLong);
                 $.ajax({
                     type: "POST",
                     url: "/student",
                     data: { "editCart": "", "cart": coursesInCart.toString(), "redirect": 'false' }
                 });
+                var json = JSON.parse(currentData);
+
                 var nameShort = nameLong.substring(0, 5);
                 var templ = document.getElementById("courseInCart");
-                var credits = parseInt(element.getAttribute("data-credits"));
-                var creditsNum = element.getAttribute("data-credits");
+                var creditsNum = element.getAttribute("data-credits").slice(0, -1);
+                var credits = parseInt(creditsNum)
+                
 
                 creditTotal += credits;
 
@@ -591,6 +648,8 @@
             dropdownBttns[i].addEventListener("click", onButtonClick);
         }
     </script>
+
+    
 
 </body>
 </html>
