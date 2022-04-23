@@ -14,7 +14,6 @@ from pip._vendor import cachecontrol
 import google.auth.transport.requests
 
 import data as dt
-import database as db
 import pandas as pd
 from flask import Flask, render_template, redirect, url_for, request, session, abort, jsonify
 
@@ -23,7 +22,6 @@ app = Flask(__name__)
 df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna('').astype(str))
 #honestly could just delete this file
 #if replaced with sql, just get rid of the database.py file
-studentInfo = db.database()
 #when declaring the database, why not have it be a csv file or something that i can write to.
 #either that or figure out a way to integrate a database into python
 #need a way to register logins. Once logged in, need to store student data in the database, and then pass relevant info in Ajax call to the html
