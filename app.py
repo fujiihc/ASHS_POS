@@ -116,6 +116,7 @@ departments = []
 courseLengths = []
 courseLevels = []
 cart = []
+cartDF = dt.data(pd.DataFrame())
 keyword = ''
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
@@ -263,7 +264,7 @@ def student():
             courseLevels = request.form['selected'].split('#')
             keyword = request.form['searchBar']
         elif request.form.get('initialized') == '1':
-            return df.getDF().to_json()
+            return {'data' : df.getDF().to_json(), 'cart' : cartDF.getDF().to_json()}
         elif request.form.get('logoutBtn'):
             return redirect(url_for('logout'))
         return search_w_modifiers(keyword)
@@ -275,14 +276,17 @@ def student():
 @login_is_required
 def requests():
     global cart
+    global cartDF
     if request.method == 'POST':
         if request.form.get('logoutBtn'):
             return redirect(url_for('logout'))   
-        if request.form.get('initialized') == '1':
+        elif request.form.get('initialized') == '1':
             cartDF = dt.data(pd.DataFrame())
             for item in cart:
                 cartDF.merge(df.findCourse(item, 'longDescription', True))
             return cartDF.getDF().to_json()
+        elif request.form.get('return') == '1':
+            return jsonify(dict(redirect='/student'))
     return render_template('request_courses.html')
 
 #kinda scuffed atm
