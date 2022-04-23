@@ -45,10 +45,11 @@
                 </div>
 
                 <div>
-                    <form method="post" action="/">
-                        <input type="submit" value="Go Back" style="margin-left:; border:none;" class="scheduleRequestBtn" name="goBackBtn" />
+                    <form action="/requests" id="return">
+                        <input type="submit" value="Go Back" style="margin-left:; border:none;" class="scheduleRequestBtn" name="return"/>
                     </form>
-                    <form method="post" action="/">
+
+                    <form method="post" action="/requests">
                         <input type="submit" value="Submit Schedule Request" style="margin-left:; border:none;" class="scheduleRequestBtn" name="scheduleRequestBtn" />
                     </form>
                 </div>
@@ -65,14 +66,29 @@
 
     <script type="text/javascript">
         //need initializing AJAX call
+        var cartContents;
         $.ajax({
             type: "POST",
             url: "/requests",
             data: { "initialized": "1" }
         }).done(function (response) {
+            cartContents = response;
             display(JSON.parse(response))
         });
 
+        $("#return").submit(function (event) {
+            event.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "/requests",
+                data: { "return": '1' }
+            }).done(function (response) {
+                if (response.redirect) {
+                    window.location.href = response.redirect;
+                }
+            });
+        });
+        
         function display(json) {
             $("#results").html("");
             var subKeys = Object.keys(json['ID']);
