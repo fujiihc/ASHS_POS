@@ -345,6 +345,7 @@
         var n = 0;
         var currentData;
         var length;
+
         var num = 0;
         var coursesInCart = [];
         var creditTotal = 0;
@@ -370,6 +371,7 @@
                     var nameShort = nameLong.substring(0, 5);
                     var templ = document.getElementById("courseInCart");
                     var creditsNum = responseCart['credits'][subKeys[i]];
+                    //console.log(creditsNum);
                     var credits = parseInt(creditsNum);
 
                     creditTotal += credits;
@@ -489,16 +491,16 @@
                 var courseLength = json['Length'][subKeys[s]];
 
                 var uniqueId = json['ID'][subKeys[s]];   
-                var creditsNum = json['credits'][subKeys[s]];
+                var creditsNum = json['credits'][subKeys[s]] + ".0";
                 var credits = parseInt(creditsNum);
-                console.log(creditsNum)
+
                 temp.innerHTML = temp.innerHTML.replace("##course name##", longDescription);
                 
                 temp.innerHTML = temp.innerHTML.replace("##description##", description);
                 temp.innerHTML = temp.innerHTML.replace("##depts##", dept);
                 temp.innerHTML = temp.innerHTML.replace("##courseLength##", courseLength);
                 temp.innerHTML = temp.innerHTML.replace("##credits##", credits + " credits");
-                temp.innerHTML = temp.innerHTML.replace("##creditsNum##", creditsNum + '@');
+                temp.innerHTML = temp.innerHTML.replace("##creditsNum##", creditsNum);
                 temp.innerHTML = temp.innerHTML.replace("##uniqueId##", uniqueId);
 
                 var levelNum = json['level'][subKeys[s]];
@@ -523,7 +525,7 @@
                 temp.innerHTML = temp.innerHTML.replace(dept, "##depts##");
                 temp.innerHTML = temp.innerHTML.replace(courseLength, "##courseLength##");
                 temp.innerHTML = temp.innerHTML.replace(credits + " credits", "##credits##");
-                temp.innerHTML = temp.innerHTML.replace(creditsNum + "@", "##creditsNum##");
+                temp.innerHTML = temp.innerHTML.replace(creditsNum, "##creditsNum##");
                 temp.innerHTML = temp.innerHTML.replace(uniqueId, "##uniqueId##");
 
                 temp.innerHTML = temp.innerHTML.replace(level, "##courseLevel##");
@@ -536,12 +538,6 @@
                 temp.innerHTML = temp.innerHTML.replace("name" + s, "##nameID##");
             }
         }
-
-
-
-
-
-
 
         //VARIABLES
         var theseContainers = document.getElementsByClassName("dropdown-container");
@@ -572,31 +568,23 @@
         }
 
         //Add course to cart
-
         function addCourse(element) {
-
             var elementName = element.id;
             var elNum = elementName.substring(3);
             var courseName = document.getElementById("name" + elNum);
             var nameLong = courseName.innerHTML;
 
-
-
-            if (coursesInCart.includes(nameLong) == false) {
-
+            if (coursesInCart.includes(nameLong) == false && creditTotal < 90) {
                 coursesInCart.push(nameLong);
                 $.ajax({
                     type: "POST",
                     url: "/student",
                     data: { "editCart": "", "cart": coursesInCart.toString(), "redirect": 'false' }
                 });
-                var json = JSON.parse(currentData);
-
                 var nameShort = nameLong.substring(0, 5);
                 var templ = document.getElementById("courseInCart");
-                var creditsNum = element.getAttribute("data-credits").slice(0, -1);
-                var credits = parseInt(creditsNum)
-                
+                var credits = parseInt(element.getAttribute("data-credits"));
+                var creditsNum = element.getAttribute("data-credits");
 
                 creditTotal += credits;
 
