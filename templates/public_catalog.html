@@ -17,32 +17,282 @@
         <div class="wrapper">
 
             <div class="topnav">
-                <p>Abington Senior High School</p>
-                <form method="post" action="/catalog">
-                    <input type="submit" value="Logout" style="position:absolute;right:0px; top:0px;" border:none; z-index:9999; margin-bottom:15px;" name="logoutBtn" />
+                <div class="ahs-logo">
+                    <img src="{{url_for('static', filename= 'styles/images/ahsLogo.png')}}" width="100" height="100" alt="logo">
+                </div>
+                <form method="post" action="/">
+                    <input type="submit" value="Sign Out" class="logoutBtn" name="logoutBtn" />
                 </form>
+                <p style="font-size:40px;margin-top:20px;">ABINGTON</p>
+                <p style="font-size:20px;">Senior High School</p>
             </div>
 
             <div class="header">
-                <p>Course Catalog</p>
+                <div class="logo">
+                    <img src="{{url_for('static', filename= 'styles/images/ahsLogo.png')}}" width="80" height="80" alt="logo">
+                </div>
+                <p style="font-size:40px; position:fixed;left:50px; top:95px; z-index:999; color:black;">ASHS</p>
+                <p style="font-size: 15px; position: fixed; left: 80px; top: 125px; z-index: 999; color: black;">Course Catalog</p>
+
+                <form method="post" action="/catalog" id="search">
+
+                    <div class="search_box">
+
+                        <input type="text" class="input" placeholder="Search for courses..." name="searchBar" id="searchBar">
+
+                        <div class="btn">
+                            <button name="searchButton" type="submit" class="fas fa-search" id="searchButton"></button>
+                            <!--https://fontawesome.com/v4.7/icon/search-->
+                        </div>
+                    </div>
+                </form>
+
             </div>
             <div class="container">
+                <div class="sidebar">
+                    <p style="padding: 20px 8px 10px 16px; font-family:'Baskerville';font-size:23px;">Refine Results</p>
+
+                    <button class="dropdown" id="pathwayBttn">
+                        Pathway
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+
+                    <form action="/catalog" id="pathways">
+
+                        <div class="dropdown-container" id="pathwayDDs">
+
+                            <label for="business" class="checkbox-container">
+                                Business
+                                <input type="checkbox" id="business" value="bisPath" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="compSci" class="checkbox-container">
+                                Computer Science
+                                <input type="checkbox" id="compSci" value="csPath" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="government" class="checkbox-container">
+                                Government
+                                <input type="checkbox" id="government" value="govPath" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="health" class="checkbox-container">
+                                Health Services
+                                <input type="checkbox" id="health" value="healthPath" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="humanities" class="checkbox-container">
+                                Humanities
+                                <input type="checkbox" id="humanities" value="humPath" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="manu" class="checkbox-container">
+                                Manufacturing
+                                <input type="checkbox" id="manu" value="manuPath" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="stem" class="checkbox-container">
+                                STEM
+                                <input type="checkbox" id="stem" value="stemPath" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="scoSci" class="checkbox-container">
+                                Social Science
+                                <input type="checkbox" id="scoSci" value="socSciPath" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="arts" class="checkbox-container">
+                                Arts
+                                <input type="checkbox" id="arts" value="visPath" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                        </div>
+                    </form>
+
+                    <button class="dropdown">
+                        Department
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+
+                    <form action="/catalog" id="departments">
+                        <div class="dropdown-container">
+
+                            <label for="AR" class="checkbox-container">
+                                Art
+                                <input type="checkbox" id="AR" value="AR" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="TE" class="checkbox-container">
+                                Technology
+                                <input type="checkbox" id="TE" value="TE" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="BU" class="checkbox-container">
+                                Business
+                                <input type="checkbox" id="BU" value="BU" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="EN" class="checkbox-container">
+                                English
+                                <input type="checkbox" id="EN" value="EN" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="CS" class="checkbox-container">
+                                Consumer Science
+                                <input type="checkbox" id="CS" value="CS" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="HP" class="checkbox-container">
+                                Health & PE
+                                <input type="checkbox" id="HP" value="HP" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="RD" class="checkbox-container">
+                                Reading
+                                <input type="checkbox" id="RD" value="RD" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="SC" class="checkbox-container">
+                                Science
+                                <input type="checkbox" id="SC" value="SC" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="FL" class="checkbox-container">
+                                Foreign Language
+                                <input type="checkbox" id="FL" value="FL" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="MA" class="checkbox-container">
+                                Mathmatics
+                                <input type="checkbox" id="MA" value="MA" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="SS" class="checkbox-container">
+                                Social Studies
+                                <input type="checkbox" id="SS" value="SS" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="MU" class="checkbox-container">
+                                Music
+                                <input type="checkbox" id="MU" value="MU" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="N/A" class="checkbox-container">
+                                N/A
+                                <input type="checkbox" id="N/A" value="N/A" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                        </div>
+                    </form>
+
+
+                    <button class="dropdown">
+                        Course Level
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+
+                    <form action="/catalog" id="courseLevel">
+                        <div class="dropdown-container">
+
+                            <label for="ap" class="checkbox-container">
+                                AP
+                                <input type="checkbox" id="ap" value="3" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="honors" class="checkbox-container">
+                                Honors
+                                <input type="checkbox" id="honors" value="2" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="cp" class="checkbox-container">
+                                Standard/CP
+                                <input type="checkbox" id="cp" value="1" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </form>
+
+
+                    <button class="dropdown">
+                        Length
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+
+                    <form action="/catalog" id="courseLength">
+                        <div class="dropdown-container">
+
+                            <label for="semester" class="checkbox-container">
+                                Semester
+                                <input type="checkbox" id="semester" value="SM" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label for="fullYear" class="checkbox-container">
+                                Full Year
+                                <input type="checkbox" id="fullYear" value="YR" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                        </div>
+                    </form>
+                </div>
                 <div class="mainArea">
+
                     <div class="mainSpace">
-
-                        <form method="post" action="/catalog" id="search">
-
-                            <div class="search_box">
-
-                                <input type="text" class="input" placeholder="Search..." name="searchBar" id="searchBar">
-
-                                <div class="btn">
-                                    <button name="searchButton" type="submit" class="fas fa-search" id="searchButton"></button>
-                                    <!--https://fontawesome.com/v4.7/icon/search-->
-                                </div>
+                        <div id="changePageBar" style="margin-top: 30px; justify-content: space-between; display:flex;">
+                            <div>
+                                <button type="submit" class="backBtn" style="color: #761F33; background: none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                    <i class="fa fa-angle-left fa-lg"></i>
+                                </button>
                             </div>
+                            <div>
+                                <p>Page - of -</p>
+                            </div>
+                            <div>
+                                <button type="submit" class="forwardBtn" style="color: #761F33; background:none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                    <i class="fa fa-angle-right fa-lg"></i>
+                                </button>
+                            </div>
+                        </div>
 
-                        </form>
+                        <table style="margin-top:20px;">
+
+
+                            <tr>
+                                <td style="font-size: 15px; display: flex; justify-content: space-between; color: white; padding-left: 10px; padding-right: 10px; background-color: #761F33;">
+                                    <div>Department</div>
+                                    <div style="padding-right:60px;">Length</div>
+                                    <div style="padding-right: 80px;">Level</div>
+                                    <div style="padding-right: 50px;">Description</div>
+                                </td>
+                            </tr>
+
+
+                        </table>
 
                         <template id="cont">
                             <!-- what exactly is the point of having multiple tables?-->
@@ -52,7 +302,7 @@
                                 <tr>
                                     <td>
                                         <div style="display: flex; justify-content: space-between;">
-                                            <div class="course-name" id="course-name" data-unique-id="##uniqueId##">##course name##</div>
+                                            <div class="course-name" id="course-name">##course name##</div>
                                         </div>
                                         <div class="descriptions">
                                             <!--<div>##pathway##</div>-->
@@ -61,7 +311,6 @@
                                             <div>##depts##</div>
                                             <div>##courseLength##</div>
                                             <div>##courseLevel##</div>
-                                            <div>##credits##</div>
 
                                             <div>
                                                 <button class="viewDescriptionBtn" id="##buttonID##" onclick="descriptionBttn(this)">
@@ -81,232 +330,18 @@
 
                         <!--need a better way to render null return-->
 
-                        <div id="changePageBar" style="margin-top: 10%;">
-                            <button type="submit" class="changePageBttn" id="chngPgBtn-Back" style="color: #ffffff; width: 20px; height: 25px; background: rgb(150, 38, 38); border: none; cursor: pointer;"><i class="fa fa-caret-left" style="margin-left:5px;"></i></button>
-                            <button type="submit" class="changePageBttn" id="chngPgBtn-Forward" style="color: #ffffff; width: 20px; height: 25px; background: rgb(150, 38, 38); border: none; cursor: pointer;"><i class="fa fa-caret-down" style="margin-left:5px;"></i></button>
-                        </div>
-
-                        <div class="results" id="results">
-
-                        </div>
-
-                    </div>
-
-                    <div class="sidebar">
-                        <p>Filter by Category</p>
-
-                        <button class="dropdown" id="pathwayBttn">
-                            Pathway
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-
-                        <form action="/catalog" id="pathways">
-
-                            <div class="dropdown-container" id="pathwayDDs">
-
-                                <label for="business" class="checkbox-container">
-                                    Business
-                                    <input type="checkbox" id="business" value="bisPath" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="compSci" class="checkbox-container">
-                                    Computer Science
-                                    <input type="checkbox" id="compSci" value="csPath" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="government" class="checkbox-container">
-                                    Government
-                                    <input type="checkbox" id="government" value="govPath" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="health" class="checkbox-container">
-                                    Health Services
-                                    <input type="checkbox" id="health" value="healthPath" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="humanities" class="checkbox-container">
-                                    Humanities
-                                    <input type="checkbox" id="humanities" value="humPath" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="manu" class="checkbox-container">
-                                    Manufacturing
-                                    <input type="checkbox" id="manu" value="manuPath" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="stem" class="checkbox-container">
-                                    STEM
-                                    <input type="checkbox" id="stem" value="stemPath" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="scoSci" class="checkbox-container">
-                                    Social Science
-                                    <input type="checkbox" id="scoSci" value="socSciPath" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="arts" class="checkbox-container">
-                                    Arts
-                                    <input type="checkbox" id="arts" value="visPath" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                            </div>
-                        </form>
-
-                        <button class="dropdown">
-                            Department
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-
-                        <form action="/catalog" id="departments">
-                            <div class="dropdown-container">
-
-                                <label for="AR" class="checkbox-container">
-                                    Art
-                                    <input type="checkbox" id="AR" value="AR" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="TE" class="checkbox-container">
-                                    Technology
-                                    <input type="checkbox" id="TE" value="TE" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="BU" class="checkbox-container">
-                                    Business
-                                    <input type="checkbox" id="BU" value="BU" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="EN" class="checkbox-container">
-                                    English
-                                    <input type="checkbox" id="EN" value="EN" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="CS" class="checkbox-container">
-                                    Consumer Science
-                                    <input type="checkbox" id="CS" value="CS" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="HP" class="checkbox-container">
-                                    Health & PE
-                                    <input type="checkbox" id="HP" value="HP" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="RD" class="checkbox-container">
-                                    Reading
-                                    <input type="checkbox" id="RD" value="RD" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="SC" class="checkbox-container">
-                                    Science
-                                    <input type="checkbox" id="SC" value="SC" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="FL" class="checkbox-container">
-                                    World Language
-                                    <input type="checkbox" id="FL" value="FL" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="MA" class="checkbox-container">
-                                    Mathematics
-                                    <input type="checkbox" id="MA" value="MA" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="SS" class="checkbox-container">
-                                    Social Studies
-                                    <input type="checkbox" id="SS" value="SS" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="MU" class="checkbox-container">
-                                    Music
-                                    <input type="checkbox" id="MU" value="MU" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="N/A" class="checkbox-container">
-                                    N/A
-                                    <input type="checkbox" id="N/A" value="N/A" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                            </div>
-                        </form>
 
 
-                        <button class="dropdown">
-                            Course Level
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-
-                        <form action="/catalog" id="courseLevel">
-                            <div class="dropdown-container">
-
-                                <label for="ap" class="checkbox-container">
-                                    AP
-                                    <input type="checkbox" id="ap" value="3" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="honors" class="checkbox-container">
-                                    Honors
-                                    <input type="checkbox" id="honors" value="2" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="cp" class="checkbox-container">
-                                    Standard/CP
-                                    <input type="checkbox" id="cp" value="1" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </form>
-
-
-                        <button class="dropdown">
-                            Length
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-
-                        <form action="/catalog" id="courseLength">
-                            <div class="dropdown-container">
-
-                                <label for="semester" class="checkbox-container">
-                                    Semester
-                                    <input type="checkbox" id="semester" value="SM" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                                <label for="fullYear" class="checkbox-container">
-                                    Full Year
-                                    <input type="checkbox" id="fullYear" value="YR" onclick="checkboxClick(this)">
-                                    <span class="checkmark"></span>
-                                </label>
-
-                            </div>
-                        </form>
+                        <div class="results" id="results"></div>
                     </div>
 
                 </div>
             </div>
         </div>
+    </div>
+    <div class="footer">
+        <p style="font-size:30px;">FOOTER</p>
+        <p style="font-size:16px;">Abington School District © 2022. All Rights Reserved.</p>
     </div>
 
     <!--separate our js into separate file in order to maintain consistency?-->
