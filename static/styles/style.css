@@ -1,5 +1,5 @@
 * {
-	font-family: 'Playfair Display', serif;
+	font-family: 'Baskerville', serif;
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -10,7 +10,6 @@
 }
 
 .wrapper {
-	padding-bottom: 20px;
 }
 
 .ahs-logo {
@@ -20,12 +19,19 @@
 	z-index: 999;
 }
 
+.logo {
+	position: fixed;
+	left: 60px;
+	top: 100px;
+	z-index: 999;
+}
+
 .topnav {
-	background-color: #000000;
+	background-color: #761F33;
 	overflow: hidden;
 	position: fixed;
 	top: 0;
-	height: 35px;
+	height: 100px;
 	width: 100%;
 	line-height: 35px;
 	z-index: 998;
@@ -41,12 +47,12 @@
 	}
 
 .header {
-	background-color: rgb(150, 38, 38);
+	background-color: #E6E6E6;
 	overflow: hidden;
 	position: fixed;
-	height: 70px;
+	height: 80px;
 	width: 100%;
-	top: 35px;
+	top: 100px;
 	line-height: 70px;
 	z-index: 998;
 }
@@ -94,7 +100,7 @@
 
 	.homebtn .btn {
 		margin: 2px 100px;
-		background-color: rgb(150, 38, 38);
+		background-color: #761F33;
 		position: absolute;
 		width: 60px;
 		height: 60px;
@@ -110,59 +116,60 @@
 
 /*public_catalog*/
 .container {
-	margin-top: 150px;
 }
 
 .mainArea {
 	margin: auto;
 	align-self: center;
-	width: 900px;
-	height: 800px;
+	width: 1000px;
 }
 
 	.mainArea .mainSpace {
 		position: absolute;
+		top: 200px;
 		margin-left: 220px;
-		width: 680px;
+		width: 800px;
 	}
 
-	.mainArea .search_box {
-		padding-bottom: 20px;
+.search_box {
+	padding-bottom: 20px;
+	z-index: 999999;
+}
+
+	.search_box .input {
+		position: absolute;
+		left: 450px;
+		top: 20px;
+		width: 800px;
+		border: none;
+		height: 40px;
+		padding: 10px 20px;
+		font-size: 18px;
+		background-color: white;
+		font-family: 'Didot';
 	}
 
-		.mainArea .search_box .input {
-			position: absolute;
-			width: 100%;
-			height: 60px;
-			padding: 10px 20px;
-			font-size: 18px;
-			background-color: #f2f2f2;
+	.search_box .btn {
+		position: absolute;
+		left: 1250px;
+		top: 4.5px;
+		right: 0px;
+		width: 60px;
+		height: 60px;
+	}
+
+		.search_box .btn .fas {
+			color: #ffffff;
+			width: 40px;
+			height: 40px;
+			background: #761F33;
+			border: none;
+			cursor: pointer;
 		}
 
-		.mainArea .search_box .btn {
-			position: absolute;
-			top: 0;
-			right: 0;
-			width: 60px;
-			height: 60px;
-		}
-
-			.mainArea .search_box .btn .fas {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%,-50%);
-				color: #ffffff;
-				width: 60px;
-				height: 60px;
-				background: rgb(150, 38, 38);
-				border: none;
-				cursor: pointer;
+			.search_box .btn .fas:hover {
+				background: black;
 			}
-
-				.mainArea .search_box .btn .fas:hover {
-					background: black;
-				}
 
 table {
 	font-family: arial, sans-serif;
@@ -173,7 +180,7 @@ table {
 td, th {
 	border: 1px solid #dddddd;
 	text-align: left;
-	padding: 8px;
+	padding: 13px;
 }
 
 tr:hover {
@@ -182,11 +189,8 @@ tr:hover {
 
 .mainArea .results {
 	color: #000000;
-	margin-top: 60px;
 	font-size: 15px;
-	background-color: #f2f2f2;
-	background-color: #f2f2f2;
-	border: 2px solid black;
+	background-color: #E6E6E6;
 	width: 100%;
 }
 
@@ -215,7 +219,7 @@ tr:hover {
 }
 
 	.viewDescriptionBtn:hover {
-		color: rgb(150, 38, 38);
+		color: #761F33;
 	}
 
 .addCourseBtn {
@@ -228,7 +232,7 @@ tr:hover {
 }
 
 	.addCourseBtn:hover {
-		color: rgb(150, 38, 38);
+		color: #761F33;
 	}
 
 .fa-plus {
@@ -242,14 +246,15 @@ tr:hover {
 }
 
 	.fa-plus:hover {
-		color: rgb(150, 38, 38);
+		color: #761F33;
 	}
 
 
 .cart {
 	position: fixed;
 	right: 0px;
-	top: 115px;
+	top: 200px;
+	z-index:200px;
 }
 
 .course-choices {
@@ -274,7 +279,7 @@ tr:hover {
 		color: #ffffff;
 		width: 30px;
 		height: 30px;
-		background: rgb(150, 38, 38);
+		background: #761F33;
 		border: none;
 		cursor: pointer;
 	}
@@ -290,28 +295,39 @@ tr:hover {
 	color: white;
 }
 
-#bttnBox .choicesText {
-	color: black;
+#bttnBox {
+	height: 400px;
+	align-self: center;
+	border-style: groove;
+	margin: auto;
+	margin-top: 220px;
+	width: 500px;
+	background-color: #f2f2f2;
+	margin-bottom: 200px;
 }
 
-#bttnBox .fa-times {
-	position: absolute;
-	margin-right: 500px;
-	width: 15px;
-	height: 15px;
-	cursor: pointer;
-	background: none;
-	color: black;
-	margin-top: 0px
-}
-
-	#bttnBox .fa-times:hover {
-		color: rgb(150, 38, 38);
+	#bttnBox .choicesText {
+		color: black;
 	}
 
-		#bttnBox .fa-times:hover + .choicesText {
-			color: rgb(150, 38, 38);
+	#bttnBox .fa-times {
+		position: absolute;
+		margin-right: 500px;
+		width: 15px;
+		height: 15px;
+		cursor: pointer;
+		background: none;
+		color: black;
+		margin-top: 0px
+	}
+
+		#bttnBox .fa-times:hover {
+			color: #761F33;
 		}
+
+			#bttnBox .fa-times:hover + .choicesText {
+				color: #761F33;
+			}
 
 .course-choices .fa-times {
 	position: absolute;
@@ -324,15 +340,15 @@ tr:hover {
 }
 
 	.course-choices .fa-times:hover {
-		color: rgb(150, 38, 38);
+		color: #761F33;
 	}
 
 		.course-choices .fa-times:hover + .choicesText {
-			color: rgb(150, 38, 38);
+			color: #761F33;
 		}
 
 .viewCoursesBtn {
-	background: rgb(150, 38, 38);
+	background: #761F33;
 	color: white;
 	height: 30px;
 	width: 150px;
@@ -348,24 +364,26 @@ tr:hover {
 
 /*SIDEBAR*/
 .sidebar {
-	height: unset;
-	width: 200px;
-	background-color: black;
+	height: 1200px;
+	width: 220px;
+	background-color: #CDCDCD;
 	overflow-x: hidden;
-	position: absolute;
-	margin-bottom: 800px;
+	margin-top: 180px;
+	left: 0px;
 }
 
 	.sidebar p {
-		color: white;
+		color: black;
 		text-align: center;
+		font-family: 'Avenir', Helvetica, sans-serif;
 	}
 
 	.sidebar .filterType, .dropdown, .sidebar p {
-		padding: 6px 8px 6px 16px;
+		padding: 20px 15px 5px 35px;
 		text-decoration: none;
-		font-size: 20px;
-		color: #818181;
+		font-size: 17px;
+		color: black;
+		font-family: 'Avenir', Helvetica, sans-serif;
 		display: block;
 		border: none;
 		background: none;
@@ -382,7 +400,6 @@ tr:hover {
 /* Dropdown container (hidden by default).*/
 .dropdown-container {
 	display: none;
-	background-color: #262626;
 	padding-left: 8px;
 }
 
@@ -392,17 +409,17 @@ tr:hover {
 
 label {
 	display: inline;
-	color: #818181;
+	font-family: 'Avenir', Helvetica, sans-serif;
 }
 
 .checkbox-container {
 	display: block;
 	position: relative;
-	padding-left: 5px;
-	padding-top: 5px;
+	padding-left: 35px;
+	padding-top: 7.5px;
 	padding-bottom: 5px;
 	cursor: pointer;
-	font-size: 20px;
+	font-size: 15px;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -435,7 +452,7 @@ label {
 
 /* When the checkbox is checked, add a red background */
 .checkbox-container input:checked ~ .checkmark {
-	background-color: rgb(150, 38, 38);
+	background-color: #761F33;
 	border: none;
 }
 
@@ -467,23 +484,24 @@ label {
 /*FOOTER*/
 .footer {
 	position: absolute;
-	z-index: 997;
+	z-index: 99;
 	left: 0px;
 	right: 0px;
-	height: 40px;
-	line-height: 40px;
+	height: 90px;
 	background-color: black;
-	text-align: center;
-	/*width:100%;*/
+	width: 100%;
 }
 
 	.footer p {
 		color: white;
+		margin-left: 50px;
+		margin-top: 10px;
+		font-size: 20px;
 	}
 
 /*REQUEST COURSES PAGE*/
 .scheduleRequestBtn {
-	background: rgb(150, 38, 38);
+	background: #761F33;
 	color: white;
 	height: 40px;
 	width: 170px;
@@ -495,4 +513,19 @@ label {
 
 	.scheduleRequestBtn:hover {
 		background: #000000;
+	}
+
+.logoutBtn {
+	position: absolute;
+	font-size: 11px;
+	right: 8px;
+	top: 8px;
+	font-family: "Roboto",Arial,sans-serif;
+	border-radius: 4px;
+	cursor: pointer;
+	padding: 8px 15px 8px;
+}
+
+	.logoutBtn:hover {
+		background-color: #CDCDCD
 	}
