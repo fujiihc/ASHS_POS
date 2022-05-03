@@ -260,6 +260,11 @@
 
                         </div>
                     </form>
+
+                    <button class="dropdown">
+                        Clear All
+                    </button>
+
                 </div>
                 <div class="mainArea">
 
@@ -385,6 +390,7 @@
         var creditTotal = 0;
 
         var currentPage = 1;
+
         $.ajax({
             type: "POST",
             url: "/student",
@@ -431,9 +437,7 @@
                     num++;
                 }
 
-            } catch (error) {
-
-            }
+            } catch (error) {}
         });
 
         $("#backward").click(function () {
@@ -510,18 +514,15 @@
             $("#pageNums").html("");
             
             var subKeys = Object.keys(json['ID']);
-            
-
             var temp = document.getElementById("cont");
 
             var start = n;
             var end = n + 10;
             length = subKeys.length;
-
             if (end > length) { end = length; }
 
             for (var s = start; s < end; s++) {
-                var longDescription = json['longDescription'][subKeys[s]];
+                var longDescription = json['longDescription'][subKeys[s]].toUpperCase();
                 var description = json['description'][subKeys[s]];
                 var dept = json['dept'][subKeys[s]] + ' ';
                 
