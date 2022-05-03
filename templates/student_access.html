@@ -52,7 +52,7 @@
                 <div class="sidebar">
                     <p style="padding: 20px 8px 10px 16px; font-family:'Baskerville';font-size:23px;">Refine Results</p>
 
-                    <!--why the fuck is this a button-->
+                    
                     <button class="dropdown" id="pathwayBttn">
                         Pathway
                         <i class="fa fa-caret-down"></i>
@@ -266,15 +266,19 @@
                     <div class="mainSpace">
                         <div id="changePageBar" style="margin-top: 30px; justify-content: space-between; display:flex;">
                             <div>
-                                <button type="submit" class="backBtn" style="color: #761F33; background: none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                <button type="submit" class="backBtn" id ="backward"style="color: #761F33; background: none; width: 20px; height: 25px; border: none; cursor: pointer;">
                                     <i class="fa fa-angle-left fa-lg"></i>
                                 </button>
                             </div>
+
+                            <div id="pageNums"></div>
+
+                            <template id="currentPage">
+                                <p>Page ##in## of ##out##</p>
+                            </template>
+
                             <div>
-                                <p>Page - of -</p>
-                            </div>
-                            <div>
-                                <button type="submit" class="forwardBtn" style="color: #761F33; background:none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                <button type="submit" class="forwardBtn" id ="forward"style="color: #761F33; background:none; width: 20px; height: 25px; border: none; cursor: pointer;">
                                     <i class="fa fa-angle-right fa-lg"></i>
                                 </button>
                             </div>
@@ -296,7 +300,6 @@
                         </table>
 
                         <template id="cont">
-                            <!-- what exactly is the point of having multiple tables?-->
                             <table>
 
                                 <tr>
@@ -306,8 +309,6 @@
                                             <div class="course-name" id="##nameID##" data-unique-id="##uniqueId##">##course name##</div>
                                         </div>
                                         <div class="descriptions">
-                                            <!--<div>##pathway##</div>-->
-                                            <!--maybe we should display pathway within the dropdown or something-->
 
                                             <div>##depts##</div>
                                             <div>##courseLength##</div>
@@ -329,10 +330,7 @@
                             </table>
 
                         </template>
-
-                        <!--need a better way to render null return-->
-
-
+                        <!--render empty search-->
 
                         <div class="results" id="results"></div>
                     </div>
@@ -386,6 +384,7 @@
         var coursesInCart = [];
         var creditTotal = 0;
 
+        var currentPage = 1;
         $.ajax({
             type: "POST",
             url: "/student",
@@ -431,20 +430,19 @@
                     templ.innerHTML = templ.innerHTML.replace(creditsNum, "##creditsNum##");
                     num++;
                 }
-                console.log(num);
 
             } catch (error) {
 
             }
         });
 
-        $("#chngPgBtn-Back").click(function () {
-            if (n >= 10) { n -= 10; }
+        $("#backward").click(function () {
+            if (n >= 10) { n -= 10; currentPage--;}
             display(JSON.parse(currentData));
         });
 
-        $("#chngPgBtn-Forward").click(function () {
-            if ((n + 10) < length) { n += 10; }
+        $("#forward").click(function () {
+            if ((n + 10) < length) { n += 10; currentPage++;}
             display(JSON.parse(currentData));
         });
 
@@ -455,7 +453,7 @@
                 url: "/student",
                 data: { "searchBar": document.getElementById("searchBar").value, "searchButton": "" }
             }).done(function (response) {
-                currentData = response; n = 0;
+                currentData = response; n = 0; currentPage = 1;
                 display(JSON.parse(response));
             });
         });
@@ -502,14 +500,18 @@
                 url: "/student",
                 data: { "selected": checked, "origin": elementID, "searchBar": document.getElementById("searchBar").value }
             }).done(function (response) {
-                currentData = response; n = 0;
+                currentData = response; n = 0; currentPage = 1;
                 display(JSON.parse(response));
             });
         }
 
         function display(json) {
             $("#results").html("");
+            $("#pageNums").html("");
+            
             var subKeys = Object.keys(json['ID']);
+            
+
             var temp = document.getElementById("cont");
 
             var start = n;
@@ -572,6 +574,15 @@
 
                 temp.innerHTML = temp.innerHTML.replace("name" + s, "##nameID##");
             }
+
+            var pageTotal = Math.ceil(subKeys.length / 10);
+            temp = document.getElementById("currentPage");
+
+            temp.innerHTML = temp.innerHTML.replace("##in##", String(currentPage));
+            temp.innerHTML = temp.innerHTML.replace("##out##", String(pageTotal));
+            document.getElementById("pageNums").appendChild(temp.content.cloneNode(true));
+            temp.innerHTML = temp.innerHTML.replace(String(currentPage), "##in##");
+            temp.innerHTML = temp.innerHTML.replace(String(pageTotal), "##out##");
         }
 
         //VARIABLES
@@ -595,18 +606,14 @@
             ["courseLength", ""]
         ]);
 
-
         var checkboxClick = function (element) {
             var filterType = element.parentElement.parentElement.parentElement.id;
             //console.log(filterType);
             //console.log("ID: " + element.id + "      checked: " + element.checked);
-            if (filterTypeBox.get(filterType) != "") {
-                filterTypeBox.get(filterType).checked = false;
-            }
+            if (filterTypeBox.get(filterType) != "") filterTypeBox.get(filterType).checked = false;
             if (filterTypeBox.get(filterType) == element) {
                 filterTypeBox.set(filterType, "");
-            }
-            else {
+            } else {
                 filterTypeBox.set(filterType, element);
             }
             //console.log(filterTypeBox);
@@ -668,7 +675,7 @@
                 templ.innerHTML = templ.innerHTML.replace(credits + " credits", "##credits##");
                 templ.innerHTML = templ.innerHTML.replace(creditsNum, "##creditsNum##");
                 num++;
-            }//template
+            }
         }
 
         function removeCourse(element) {
