@@ -34,7 +34,7 @@
                 <p style="font-size:40px; position:fixed;left:50px; top:95px; z-index:999; color:black;">ASHS</p>
                 <p style="font-size: 15px; position: fixed; left: 80px; top: 125px; z-index: 999; color: black;">Course Catalog</p>
 
-                <form method="post" action="/catalog" id="search">
+                <form method="post" action="/student" id="search">
 
                     <div class="search_box">
 
@@ -52,12 +52,13 @@
                 <div class="sidebar">
                     <p style="padding: 20px 8px 10px 16px; font-family:'Baskerville';font-size:23px;">Refine Results</p>
 
+                    <!--why the fuck is this a button-->
                     <button class="dropdown" id="pathwayBttn">
                         Pathway
                         <i class="fa fa-caret-down"></i>
                     </button>
 
-                    <form action="/catalog" id="pathways">
+                    <form action="/student" id="pathways">
 
                         <div class="dropdown-container" id="pathwayDDs">
 
@@ -123,7 +124,7 @@
                         <i class="fa fa-caret-down"></i>
                     </button>
 
-                    <form action="/catalog" id="departments">
+                    <form action="/student" id="departments">
                         <div class="dropdown-container">
 
                             <label for="AR" class="checkbox-container">
@@ -213,7 +214,7 @@
                         <i class="fa fa-caret-down"></i>
                     </button>
 
-                    <form action="/catalog" id="courseLevel">
+                    <form action="/student" id="courseLevel">
                         <div class="dropdown-container">
 
                             <label for="ap" class="checkbox-container">
@@ -242,7 +243,7 @@
                         <i class="fa fa-caret-down"></i>
                     </button>
 
-                    <form action="/catalog" id="courseLength">
+                    <form action="/student" id="courseLength">
                         <div class="dropdown-container">
 
                             <label for="semester" class="checkbox-container">
@@ -390,7 +391,7 @@
             url: "/student",
             data: { "initialized": "1" }
         }).done(function (response) {
-            console.log(response);
+            //console.log(response);
             currentData = response['data']; n = 0;
             display(JSON.parse(response['data']))
 
@@ -520,7 +521,8 @@
             for (var s = start; s < end; s++) {
                 var longDescription = json['longDescription'][subKeys[s]];
                 var description = json['description'][subKeys[s]];
-                var dept = json['dept'][subKeys[s]];
+                var dept = json['dept'][subKeys[s]] + ' ';
+                
                 var courseLength = json['Length'][subKeys[s]];
 
                 var uniqueId = json['ID'][subKeys[s]];
@@ -592,6 +594,8 @@
             ["courseLevel", ""],
             ["courseLength", ""]
         ]);
+
+
         var checkboxClick = function (element) {
             var filterType = element.parentElement.parentElement.parentElement.id;
             //console.log(filterType);
