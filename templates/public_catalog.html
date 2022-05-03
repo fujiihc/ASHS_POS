@@ -259,6 +259,11 @@
 
                         </div>
                     </form>
+
+                    <button class="dropdown">
+                        Clear All
+                    </button>
+
                 </div>
                 <div class="mainArea">
 
@@ -439,7 +444,7 @@
             if (end > length) { end = length; }
 
             for (var s = start; s < end; s++) {
-                var longDescription = json['longDescription'][subKeys[s]];
+                var longDescription = json['longDescription'][subKeys[s]].toUpperCase();
                 var description = json['description'][subKeys[s]];
                 var dept = json['dept'][subKeys[s]] + ' ';
 
