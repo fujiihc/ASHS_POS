@@ -175,7 +175,7 @@
                             </label>
 
                             <label for="FL" class="checkbox-container">
-                                Foreign Language
+                                World Language
                                 <input type="checkbox" id="FL" value="FL" onclick="checkboxClick(this)">
                                 <span class="checkmark"></span>
                             </label>
@@ -264,9 +264,12 @@
                         </div>
                     </form>
 
-                    <button class="dropdown">
-                        Clear All
-                    </button>
+                    <form action="/catalog" id="clear">
+                        <button class="dropdown">
+                            Clear All
+                        </button>
+                    </form>
+                    
 
                 </div>
                 <div class="mainArea">
@@ -394,6 +397,19 @@
                 data: { "searchBar": document.getElementById("searchBar").value, "searchButton": "" }
             }).done(function (response) {
                 currentData = response; n = 0; currentPage = 1;
+                display(JSON.parse(response));
+            });
+        });
+
+        $("#clear").submit(function (event) {
+            event.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "/catalog",
+                data: { "clear": "true" }
+            }).done(function (response) {
+                currentData = response; n = 0; currentPage = 1;
+                $('input[type="checkbox"]:checked').prop('checked', false);
                 display(JSON.parse(response));
             });
         });
