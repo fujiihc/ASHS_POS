@@ -159,7 +159,7 @@ def catalog():
         elif request.form.get('origin') == 'courseLevel' and isinstance(request.form.get('selected'), str):
             courseLevels = request.form['selected'].split('#')
             keyword = request.form['searchBar']
-        elif request.form.get('initialized') == '1':
+        elif request.form.get('initialized') == '1' or request.form.get('clear') == 'true':
             return df.getDF().to_json()
         elif request.form.get('logoutBtn'):
             return redirect(url_for('logout'))
@@ -262,7 +262,7 @@ def student():
         elif request.form.get('origin') == 'courseLevel' and isinstance(request.form.get('selected'), str):
             courseLevels = request.form['selected'].split('#')
             keyword = request.form['searchBar']
-        elif request.form.get('initialized') == '1':
+        elif request.form.get('initialized') == '1' or request.form.get('clear') == 'true':
             return {'data' : df.getDF().to_json(), 'cart' : cartDF.getDF().to_json()}
         elif request.form.get('logoutBtn'):
             return redirect(url_for('logout'))
