@@ -176,7 +176,7 @@
                             </label>
 
                             <label for="FL" class="checkbox-container">
-                                Foreign Language
+                                World Language
                                 <input type="checkbox" id="FL" value="FL" onclick="checkboxClick(this)">
                                 <span class="checkmark"></span>
                             </label>
@@ -263,9 +263,12 @@
                         </div>
                     </form>
 
-                    <button class="dropdown">
-                        Clear All
-                    </button>
+                    <form action ="/student" id="clear">
+                        <button class="dropdown">
+                            Clear All
+                        </button>
+                    </form>
+                   
 
                 </div>
                 <div class="mainArea">
@@ -383,6 +386,8 @@
     <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
 
     <script type="text/javascript">
+        //why don't i just remove the action calls in the form and remove the need for
+        //event.preventdefault()??
         var n = 0;
         var currentData;
         var length;
@@ -474,6 +479,20 @@
                 if (response.redirect) {
                     window.location.href = response.redirect;
                 }
+            });
+        });
+
+        $("#clear").submit(function (event) {
+            event.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "/student",
+                data: { "clear": "true" }
+            }).done(function (response) {
+                currentData = response['data']; n = 0; currentPage = 1;
+                $('input[type="checkbox"]:checked').prop('checked', false);
+
+                display(JSON.parse(response['data']));
             });
         });
 
