@@ -610,13 +610,13 @@
         //VARIABLES
         var theseContainers = document.getElementsByClassName("dropdown-container");
         var dropdownBttns = document.getElementsByClassName("dropdown");
-        const dropdownmMap = new Map();
+        const dropdownMap = new Map();
         var filterTypes = document.getElementsByClassName("filterType");
 
         //CLICKING ON DROPDOWNS
         var onButtonClick = function (event) {
             var thisBttn = event.currentTarget;
-            var container = dropdownmMap.get(thisBttn);
+            var container = dropdownMap.get(thisBttn);
             $(container).toggle();
         };
 
@@ -721,7 +721,7 @@
 
         //Add event listeners to all dropdowns
         for (var i = 0; i < dropdownBttns.length; i++) {
-            dropdownmMap.set(dropdownBttns[i], theseContainers[i]);
+            dropdownMap.set(dropdownBttns[i], theseContainers[i]);
             dropdownBttns[i].addEventListener("click", onButtonClick);
         }
     </script>
