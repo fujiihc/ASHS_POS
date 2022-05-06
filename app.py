@@ -5,105 +5,57 @@ It contains the definition of routes and views for the application.
 #added extra requirements
 #https://stackoverflow.com/questions/12909332/how-to-logout-of-an-application-where-i-used-oauth2-to-login-with-google
  
-import os
-import pathlib
-import requests as rq
-from google.oauth2 import id_token
-from google_auth_oauthlib.flow import Flow
-from pip._vendor import cachecontrol
-import google.auth.transport.requests
 
 import data as dt
 import pandas as pd
 from flask import Flask, render_template, redirect, url_for, request, session, abort, jsonify
+from oauth2client.client import OAuth2WebServerFlow, GOOGLE_AUTH_URI
+import json
 
 app = Flask(__name__)
-
 df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna('').astype(str))
-#honestly could just delete this file
-#if replaced with sql, just get rid of the database.py file
-#when declaring the database, why not have it be a csv file or something that i can write to.
-#either that or figure out a way to integrate a database into python
-#need a way to register logins. Once logged in, need to store student data in the database, and then pass relevant info in Ajax call to the html
-#need a way to handle simultaneous requests. Can't have "current user" create a user class in order to deal with multiple users at once and store their data easily
-#https://google-auth.readthedocs.io/en/stable/index.html
-#https://geekyhumans.com/how-to-implement-google-login-in-flask-app/#more-20670
-
-#THINGS TO DO
-#Need to have a null display
-#Fix that footer
 
 
-#Inconsistencies with inclusive modifiers being applied simultaneously
+#https://github.com/lepture/flask-oauthlib/blob/master/example/google.py
 
-#eventually turn into environment variables or something
-#os.getenv
-app.secret_key = 'testKey'
-os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
-
-#maybe create OS ENV variables rather than storing them in a file
-#if not, test for file access exploits
 GOOGLE_CLIENT_ID = '415583783710-kpg937ob78e3ej719rldcf9or58d3vfa.apps.googleusercontent.com'
-#could use to edit scopes later on
-GOOGLE_URL = 'https://accounts.google.com/.well-known/openid-configuration'
+GOOGLE_CLIENT_SECRET = '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'
 
-client_secrets_file = os.path.join(pathlib.Path(__file__).parent, 'client.json')
-#edit the scopes
-flow = Flow.from_client_secrets_file(client_secrets_file=client_secrets_file, scopes = ["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"], redirect_uri = 'http://localhost:5555/callback')
+auth_uri = GOOGLE_AUTH_URI + '?hd=' + 'abington.k12.pa.us'
+auth_flow = OAuth2WebServerFlow(client_id=GOOGLE_CLIENT_ID, client_secret=GOOGLE_CLIENT_SECRET, scope = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'], redirect_uri='http://localhost:5555/oauth2callback', auth_uri=auth_uri)
 
-#need a way to limit the domains that are able to access the app to @abington.k12.pa.us
-def login_is_required(function):
-    def wrapper(*args, **kwargs):
-        if 'google_id' not in session:
-            #maybe need like an abort screen
-            #like heyyyy login or something
-            return redirect(url_for('login'))
-        else:
-            return function(*args, **kwargs)
-    wrapper.__name__ = function.__name__
-    return wrapper
+#https://stackoverflow.com/questions/37748993/authenticate-user-with-a-specific-hosted-domain-hd-in-flask-with-oauth2
+#https://stackoverflow.com/questions/10664868/where-can-i-find-a-list-of-scopes-for-googles-oauth-2-0-api
+#https://stackoverflow.com/questions/21463869/multiple-scopes-using-oauth2webserverflow
+
+#https://stackoverflow.com/questions/24892035/how-can-i-get-the-named-parameters-from-a-url-using-flask
+
+#https://oauth2client.readthedocs.io/_/downloads/en/latest/pdf/
+#page 22 flask
+#page 31 for oauth2webserverflow
 
 @app.route('/login')
 def login():
-    authorization_url,state = flow.authorization_url()
-    session['state'] = state
-    return redirect(authorization_url)
-    
-@app.route('/callback')
-def callback():
-    #callback function
-    #redirects to student access
-    #also loads and saves student session info
-    try:
-        flow.fetch_token(authorization_response = request.url)
-    except:
-        return redirect(url_for('login'))
-
-    #if not session['state'] == request['state']:
-    #    abort(500)
-
-    credentials = flow.credentials
-    request_session = rq.sessions.Session()
-    cached_session = cachecontrol.CacheControl(request_session)
-    token_request = google.auth.transport.requests.Request(session = cached_session)
-    id_info = id_token.verify_oauth2_token(id_token = credentials._id_token, request = token_request, audience = GOOGLE_CLIENT_ID)
-    session['google_id'] = id_info.get('sub')
-    session['name'] = id_info.get('name')
-    return redirect(url_for('student'))
+    return redirect(auth_flow.step1_get_authorize_url())
 
 @app.route('/logout')
 def logout():
-    #make the logout thing actually work
-    session.clear()
-    
-    print('logged out')
-    #return redirect('https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:5555')
     return redirect('/')
 
+
+@app.route('/oauth2callback', methods = ['GET'])
+def callback():
+    studentData = json.loads(auth_flow.step2_exchange(request.args.get('code')).to_json())
+    #gotta like authorize this or something idrk
+    if studentData['id_token']['hd'] == 'abington.k12.pa.us':
+        return redirect(url_for('student'))
+    return redirect(url_for('login'))
+    
 @app.route('/credits')
 def credits():
     return render_template('credits.html')
 
+ 
 #https://www.youtube.com/watch?v=FKgJEfrhU1E
 #add google auth to create user database
 #how about asking the district for their actual google account
