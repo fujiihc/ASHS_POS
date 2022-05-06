@@ -9,7 +9,8 @@ It contains the definition of routes and views for the application.
 import data as dt
 import pandas as pd
 from flask import Flask, render_template, redirect, url_for, request, session, abort, jsonify
-from oauth2client.client import OAuth2WebServerFlow, GOOGLE_AUTH_URI
+from oauth2client.client import OAuth2WebServerFlow
+from oauth2client import GOOGLE_AUTH_URI
 import json
 
 app = Flask(__name__)
@@ -186,7 +187,6 @@ def search_w_modifiers(keyword):
 #login checker is not working
 
 @app.route('/student', methods = ['POST','GET'])
-@login_is_required
 def student():
     global pathways
     global departments
@@ -224,7 +224,6 @@ def student():
 
 
 @app.route('/requests', methods = ['POST', 'GET'])
-@login_is_required
 def requests():
     global cart
     global cartDF
