@@ -464,8 +464,12 @@
                 url: "/student",
                 data: { "searchBar": document.getElementById("searchBar").value, "searchButton": "" }
             }).done(function (response) {
-                currentData = response; n = 0; currentPage = 1;
-                display(JSON.parse(response));
+                if (response.redirect) {
+                    window.location.href = response.redirect;
+                } else {
+                    currentData = response; n = 0; currentPage = 1;
+                    display(JSON.parse(response));
+                }          
             });
         });
 
@@ -525,8 +529,12 @@
                 url: "/student",
                 data: { "selected": checked, "origin": elementID, "searchBar": document.getElementById("searchBar").value }
             }).done(function (response) {
-                currentData = response; n = 0; currentPage = 1;
-                display(JSON.parse(response));
+                if (response.redirect) {
+                    window.location.href = response.redirect;
+                } else {
+                    currentData = response; n = 0; currentPage = 1;
+                    display(JSON.parse(response));
+                }                
             });
         }
 
