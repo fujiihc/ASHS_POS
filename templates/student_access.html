@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Student Access</title>
+    <title>Public Catalog</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 </head>
@@ -34,7 +34,7 @@
                 <p style="font-size:40px; position:fixed;left:50px; top:95px; z-index:999; color:black;">ASHS</p>
                 <p style="font-size: 15px; position: fixed; left: 80px; top: 125px; z-index: 999; color: black;">Course Catalog</p>
 
-                <form method="post" action="/student" id="search">
+                <form method="post" action="/catalog" id="search">
 
                     <div class="search_box">
 
@@ -52,13 +52,12 @@
                 <div class="sidebar">
                     <p style="padding: 20px 8px 10px 16px; font-family:'Baskerville';font-size:23px;">Refine Results</p>
 
-                    
                     <button class="dropdown" id="pathwayBttn">
                         Pathway
                         <i class="fa fa-caret-down"></i>
                     </button>
 
-                    <form action="/student" id="pathways">
+                    <form action="/catalog" id="pathways">
 
                         <div class="dropdown-container" id="pathwayDDs">
 
@@ -124,7 +123,7 @@
                         <i class="fa fa-caret-down"></i>
                     </button>
 
-                    <form action="/student" id="departments">
+                    <form action="/catalog" id="departments">
                         <div class="dropdown-container">
 
                             <label for="AR" class="checkbox-container">
@@ -199,11 +198,13 @@
                                 <span class="checkmark"></span>
                             </label>
                             <!--
+                                
                             <label for="N/A" class="checkbox-container">
                                 N/A
                                 <input type="checkbox" id="N/A" value="N/A" onclick="checkboxClick(this)">
                                 <span class="checkmark"></span>
-                            </label> 
+                            </label>
+                                
                             -->
                             
 
@@ -216,7 +217,7 @@
                         <i class="fa fa-caret-down"></i>
                     </button>
 
-                    <form action="/student" id="courseLevel">
+                    <form action="/catalog" id="courseLevel">
                         <div class="dropdown-container">
 
                             <label for="ap" class="checkbox-container">
@@ -245,7 +246,7 @@
                         <i class="fa fa-caret-down"></i>
                     </button>
 
-                    <form action="/student" id="courseLength">
+                    <form action="/catalog" id="courseLength">
                         <div class="dropdown-container">
 
                             <label for="semester" class="checkbox-container">
@@ -263,12 +264,12 @@
                         </div>
                     </form>
 
-                    <form action ="/student" id="clear">
+                    <form action="/catalog" id="clear">
                          <button class="dropdown" style="font-size:15px; text-align:center; padding:20px 0px 0px 0px;">
                             Clear All
                         </button>
                     </form>
-                   
+                    
 
                 </div>
                 <div class="mainArea">
@@ -276,7 +277,7 @@
                     <div class="mainSpace">
                         <div id="changePageBar" style="margin-top: 30px; justify-content: space-between; display:flex;">
                             <div>
-                                <button type="submit" class="backBtn" id ="backward"style="color: #761F33; background: none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                <button type="submit" class="backBtn" id="backward" style="color: #761F33; background: none; width: 20px; height: 25px; border: none; cursor: pointer;">
                                     <i class="fa fa-angle-left fa-lg"></i>
                                 </button>
                             </div>
@@ -288,7 +289,7 @@
                             </template>
 
                             <div>
-                                <button type="submit" class="forwardBtn" id ="forward"style="color: #761F33; background:none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                <button type="submit" class="forwardBtn" id="forward" style="color: #761F33; background:none; width: 20px; height: 25px; border: none; cursor: pointer;">
                                     <i class="fa fa-angle-right fa-lg"></i>
                                 </button>
                             </div>
@@ -310,20 +311,22 @@
                         </table>
 
                         <template id="cont">
+                            <!-- what exactly is the point of having multiple tables?-->
                             <table>
+
 
                                 <tr>
                                     <td>
                                         <div style="display: flex; justify-content: space-between;">
-                                            <div class="fa fa-plus" id="##addID##" data-credits="##creditsNum##" onclick="addCourse(this)"></div>
-                                            <div class="course-name" id="##nameID##" data-unique-id="##uniqueId##">##course name##</div>
+                                            <div class="course-name" id="course-name">##course name##</div>
                                         </div>
                                         <div class="descriptions">
+                                            <!--<div>##pathway##</div>-->
+                                            <!--maybe we should display pathway within the dropdown or something-->
 
                                             <div>##depts##</div>
                                             <div>##courseLength##</div>
                                             <div>##courseLevel##</div>
-                                            <div>##credits##</div>
 
                                             <div>
                                                 <button class="viewDescriptionBtn" id="##buttonID##" onclick="descriptionBttn(this)">
@@ -340,111 +343,40 @@
                             </table>
 
                         </template>
-                        <!--render empty search-->
+
+                        <!--need a better way to render null return-->
+
+
 
                         <div class="results" id="results"></div>
                     </div>
 
                 </div>
             </div>
-
-            <template id="courseInCart">
-                <div style="margin-left: 15px; margin-right:15px; font-size: 18px;" id="##classID##">
-                    <div class="fa fa-times" id="##removeID##" data-name-long="##classNME##" data-credits="##creditsNum##" onclick="removeCourse(this)"></div>
-                    <!--https://fontawesome.com/v4.7/icon/times-->
-                    <div class="choicesText">
-                        <div><span title="##longname##">##classname##</span></div>
-                        <div>##credits##</div>
-                    </div>
-                </div>
-            </template>
-
-            <div class="cart">
-                <div class="course-choices" id="course-choices">
-                    <p style="font-size: 20px; margin-left:15px; margin-top:10px;margin-bottom:10px;color:white;">Selected Courses</p>
-                    <div id="course-list">
-
-                    </div>
-                    <div>
-                        <!--Attach AJAX call here-->
-                        <form action="/student" id="viewCourses">
-                            <input type="submit" value="View Selected Courses" style="border:none;" class="viewCoursesBtn" name="viewCoursesBtn" />
-                        </form>
-                    </div>
-                </div>
-                <div class="cartBtn">
-                    <button name="cartBtn" type="submit" class="fa fa-caret-left" onclick="toggleBttn(document.getElementById('course-choices'))"></button>
-                    <!--https://fontawesome.com/v4.7/icon/caret-left-->
-                </div>
-            </div>
-
-        </div>
-        <div class="footer">
-            <p>Abington School District © 2022. All Rights Reserved.</p>
         </div>
     </div>
+    <div class="footer">
+        <p style="font-size:30px;">FOOTER</p>
+        <p style="font-size:16px;">Abington School District © 2022. All Rights Reserved.</p>
+    </div>
+
+    <!--separate our js into separate file in order to maintain consistency?-->
     <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
 
     <script type="text/javascript">
-        //why don't i just remove the action calls in the form and remove the need for
-        //event.preventdefault()??
         var n = 0;
         var currentData;
         var length;
-
-        var num = 0;
-        var coursesInCart = [];
-        var creditTotal = 0;
 
         var currentPage = 1;
 
         $.ajax({
             type: "POST",
-            url: "/student",
+            url: "/catalog",
             data: { "initialized": "1" }
         }).done(function (response) {
-            //console.log(response);
-            currentData = response['data']; n = 0;
-            display(JSON.parse(response['data']))
-
-            try {
-                responseCart = JSON.parse(response['cart'])
-
-                var subKeys = Object.keys(responseCart['ID']);
-
-                for (var i = 0; i < subKeys.length; i++) {
-                    var nameLong = responseCart["longDescription"][subKeys[i]];
-                    coursesInCart[i] = nameLong;
-                    var nameShort = nameLong.substring(0, 5);
-                    var templ = document.getElementById("courseInCart");
-                    var creditsNum = responseCart['credits'][subKeys[i]];
-                    var credits = parseInt(creditsNum);
-
-                    creditTotal += credits;
-
-                    templ.innerHTML = templ.innerHTML.replace("##classID##", "class" + num);
-                    templ.innerHTML = templ.innerHTML.replace("##classname##", nameShort);
-                    templ.innerHTML = templ.innerHTML.replace("##removeID##", "remove" + num);
-                    templ.innerHTML = templ.innerHTML.replace("##classNME##", nameLong);
-                    templ.innerHTML = templ.innerHTML.replace("##longname##", nameLong);
-
-                    templ.innerHTML = templ.innerHTML.replace("##credits##", credits + " credits");
-                    templ.innerHTML = templ.innerHTML.replace("##creditsNum##", creditsNum);
-
-                    document.getElementById("course-list").appendChild(templ.content.cloneNode(true));
-
-                    templ.innerHTML = templ.innerHTML.replace("class" + num, "##classID##");
-                    templ.innerHTML = templ.innerHTML.replace("remove" + num, "##removeID##");
-                    templ.innerHTML = templ.innerHTML.replace(nameLong, "##classNME##");
-                    templ.innerHTML = templ.innerHTML.replace(nameLong, "##longname##");
-                    templ.innerHTML = templ.innerHTML.replace(nameShort, "##classname##");
-
-                    templ.innerHTML = templ.innerHTML.replace(credits + " credits", "##credits##");
-                    templ.innerHTML = templ.innerHTML.replace(creditsNum, "##creditsNum##");
-                    num++;
-                }
-
-            } catch (error) {}
+            currentData = response; n = 0; currentPage = 1;
+            display(JSON.parse(currentData));
         });
 
         $("#backward").click(function () {
@@ -461,7 +393,7 @@
             event.preventDefault();
             $.ajax({
                 type: "POST",
-                url: "/student",
+                url: "/catalog",
                 data: { "searchBar": document.getElementById("searchBar").value, "searchButton": "" }
             }).done(function (response) {
                 if (response.redirect) {
@@ -469,19 +401,6 @@
                 } else {
                     currentData = response; n = 0; currentPage = 1;
                     display(JSON.parse(response));
-                }          
-            });
-        });
-
-        $("#viewCourses").submit(function (event) {
-            event.preventDefault();
-            $.ajax({
-                type: "POST",
-                url: "/student",
-                data: { "editCart": "", "cart": coursesInCart.toString(), "redirect": 'true' }
-            }).done(function (response) {
-                if (response.redirect) {
-                    window.location.href = response.redirect;
                 }
             });
         });
@@ -490,13 +409,12 @@
             event.preventDefault();
             $.ajax({
                 type: "POST",
-                url: "/student",
+                url: "/catalog",
                 data: { "clear": "true" }
             }).done(function (response) {
-                currentData = response['data']; n = 0; currentPage = 1;
+                currentData = response; n = 0; currentPage = 1;
                 $('input[type="checkbox"]:checked').prop('checked', false);
-
-                display(JSON.parse(response['data']));
+                display(JSON.parse(response));
             });
         });
 
@@ -526,7 +444,7 @@
             for (var i = 0; i < checkboxes.length; i++) checked += checkboxes[i].value + "#";
             $.ajax({
                 type: "POST",
-                url: "/student",
+                url: "/catalog",
                 data: { "selected": checked, "origin": elementID, "searchBar": document.getElementById("searchBar").value }
             }).done(function (response) {
                 if (response.redirect) {
@@ -534,27 +452,30 @@
                 } else {
                     currentData = response; n = 0; currentPage = 1;
                     display(JSON.parse(response));
-                }                
+                }
             });
         }
 
         function display(json) {
             $("#results").html("");
             $("#pageNums").html("");
-            
+
             var subKeys = Object.keys(json['ID']);
+
+
             var temp = document.getElementById("cont");
 
             var start = n;
             var end = n + 10;
             length = subKeys.length;
+
             if (end > length) { end = length; }
 
             for (var s = start; s < end; s++) {
                 var longDescription = json['longDescription'][subKeys[s]].toUpperCase();
                 var description = json['description'][subKeys[s]];
                 var dept = json['dept'][subKeys[s]] + ' ';
-                
+
                 var courseLength = json['Length'][subKeys[s]];
 
                 var uniqueId = json['ID'][subKeys[s]];
@@ -615,16 +536,17 @@
             temp.innerHTML = temp.innerHTML.replace(String(pageTotal), "##out##");
         }
 
+
         //VARIABLES
         var theseContainers = document.getElementsByClassName("dropdown-container");
         var dropdownBttns = document.getElementsByClassName("dropdown");
-        const dropdownMap = new Map();
+        const dropdownmMap = new Map();
         var filterTypes = document.getElementsByClassName("filterType");
 
         //CLICKING ON DROPDOWNS
         var onButtonClick = function (event) {
             var thisBttn = event.currentTarget;
-            var container = dropdownMap.get(thisBttn);
+            var container = dropdownmMap.get(thisBttn);
             $(container).toggle();
         };
 
@@ -635,15 +557,17 @@
             ["courseLevel", ""],
             ["courseLength", ""]
         ]);
-
         var checkboxClick = function (element) {
             var filterType = element.parentElement.parentElement.parentElement.id;
             //console.log(filterType);
             //console.log("ID: " + element.id + "      checked: " + element.checked);
-            if (filterTypeBox.get(filterType) != "") filterTypeBox.get(filterType).checked = false;
+            if (filterTypeBox.get(filterType) != "") {
+                filterTypeBox.get(filterType).checked = false;
+            }
             if (filterTypeBox.get(filterType) == element) {
                 filterTypeBox.set(filterType, "");
-            } else {
+            }
+            else {
                 filterTypeBox.set(filterType, element);
             }
             //console.log(filterTypeBox);
@@ -662,79 +586,15 @@
                 }
             }
             lastDescript = descript;
-        }
 
-        //Add course to cart
-        function addCourse(element) {
-            var elementName = element.id;
-            var elNum = elementName.substring(3);
-            var courseName = document.getElementById("name" + elNum);
-            var nameLong = courseName.innerHTML;
-
-            if (coursesInCart.includes(nameLong) == false && creditTotal < 90) {
-                coursesInCart.push(nameLong);
-                $.ajax({
-                    type: "POST",
-                    url: "/student",
-                    data: { "editCart": "", "cart": coursesInCart.toString(), "redirect": 'false' }
-                });
-                var nameShort = nameLong.substring(0, 5);
-                var templ = document.getElementById("courseInCart");
-                var credits = parseInt(element.getAttribute("data-credits"));
-                var creditsNum = element.getAttribute("data-credits");
-
-                creditTotal += credits;
-
-                templ.innerHTML = templ.innerHTML.replace("##classID##", "class" + num);
-                templ.innerHTML = templ.innerHTML.replace("##classname##", nameShort);
-                templ.innerHTML = templ.innerHTML.replace("##removeID##", "remove" + num);
-                templ.innerHTML = templ.innerHTML.replace("##classNME##", nameLong);
-                templ.innerHTML = templ.innerHTML.replace("##longname##", nameLong);
-
-                templ.innerHTML = templ.innerHTML.replace("##credits##", credits + " credits");
-                templ.innerHTML = templ.innerHTML.replace("##creditsNum##", creditsNum);
-
-                document.getElementById("course-list").appendChild(templ.content.cloneNode(true));
-
-                templ.innerHTML = templ.innerHTML.replace("class" + num, "##classID##");
-                templ.innerHTML = templ.innerHTML.replace("remove" + num, "##removeID##");
-                templ.innerHTML = templ.innerHTML.replace(nameLong, "##classNME##");
-                templ.innerHTML = templ.innerHTML.replace(nameLong, "##longname##");
-                templ.innerHTML = templ.innerHTML.replace(nameShort, "##classname##");
-
-                templ.innerHTML = templ.innerHTML.replace(credits + " credits", "##credits##");
-                templ.innerHTML = templ.innerHTML.replace(creditsNum, "##creditsNum##");
-                num++;
-            }
-        }
-
-        function removeCourse(element) {
-            var thisNum = element.id.substring(6);
-            var place = coursesInCart.indexOf(element.getAttribute("data-name-long"));
-            coursesInCart.splice(place, 2);
-            creditTotal -= parseInt(element.getAttribute("data-credits"));
-
-            $.ajax({
-                type: "POST",
-                url: "/student",
-                data: { "editCart": "", "cart": coursesInCart.toString(), "redirect": 'false' }
-            });
-            document.getElementById("class" + thisNum).remove();
-        }
-
-        //TOGGLE BUTTON
-        var toggleBttn = function (elementToBeToggled) {
-            $(elementToBeToggled).toggle();
         }
 
         //Add event listeners to all dropdowns
         for (var i = 0; i < dropdownBttns.length; i++) {
-            dropdownMap.set(dropdownBttns[i], theseContainers[i]);
+            dropdownmMap.set(dropdownBttns[i], theseContainers[i]);
             dropdownBttns[i].addEventListener("click", onButtonClick);
         }
     </script>
-
-
 
 </body>
 </html>
