@@ -22,6 +22,7 @@ oauthFlow = OAuth2WebServerFlow(client_id=GOOGLE_CLIENT_ID, client_secret=GOOGLE
 
 #https://developers.google.com/identity/protocols/oauth2/scopes
 
+#create a login checker for every route
 @app.route('/login')
 def login():
     return redirect(oauthFlow.step1_get_authorize_url())
@@ -91,6 +92,11 @@ def catalog():
             courseLevels = request.form['selected'].split('#')
             keyword = request.form['searchBar']
         elif request.form.get('initialized') == '1' or request.form.get('clear') == 'true':
+            pathways = []
+            departments = []
+            courseLengths = []
+            courseLevels = []
+            keyword = ''
             return df.getDF().to_json()
         elif request.form.get('logoutBtn'):
             return redirect(url_for('logout'))
@@ -161,6 +167,11 @@ def student():
             courseLevels = request.form['selected'].split('#')
             keyword = request.form['searchBar']
         elif request.form.get('initialized') == '1' or request.form.get('clear') == 'true':
+            pathways = []
+            departments = []
+            courseLengths = []
+            courseLevels = []
+            keyword = ''
             return {'data' : df.getDF().to_json(), 'cart' : cartDF.getDF().to_json()}
         elif request.form.get('logoutBtn'):
             return redirect(url_for('logout'))
