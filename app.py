@@ -35,7 +35,7 @@ def logout():
 def callback():
     studentData = json.loads(oauthFlow.step2_exchange(request.args.get('code')).to_json())
     #gotta like authorize this or something idrk
-    print(studentData)
+    #print(studentData)
     if studentData['id_token']['hd'] == 'abington.k12.pa.us':
         return redirect(url_for('student'))
     return redirect(url_for('login'))
