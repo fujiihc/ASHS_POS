@@ -16,7 +16,7 @@ import sqlite3
 #https://flask.palletsprojects.com/en/2.0.x/patterns/sqlite3/
 #https://www.sqlitetutorial.net/sqlite-create-table/
 #https://appdividend.com/2022/01/26/how-to-create-sqlite-database-in-python/
-
+isLoggedIn = False
 
 connection = sqlite3.connect('database.db')
 cursor = connection.cursor()
@@ -59,18 +59,21 @@ def login():
 @app.route('/logout')
 def logout():
     #actually build this thing
+    global isLoggedIn
     isLoggedIn = False
     return redirect('/')
 
 @app.route('/oauth2callback', methods = ['GET'])
 def callback():
+    global isLoggedIn
     studentData = json.loads(oauthFlow.step2_exchange(request.args.get('code')).to_json())
     #gotta like authorize this or something idrk
     print(studentData)
     if studentData['id_token']['hd'] == 'abington.k12.pa.us':
         isLoggedIn = True
         return redirect(url_for('student'))
-    return redirect(url_for('login'))
+    else:
+        return redirect(url_for('login'))
     
 
 pathways = []
@@ -81,7 +84,7 @@ cart = []
 cartDF = dt.data(pd.DataFrame())
 keyword = ''
 easterEgg = 'password1234'
-isLoggedIn = False
+
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 wsgi_app = app.wsgi_app
 
@@ -172,6 +175,7 @@ def search_w_modifiers(keyword):
 
 @app.route('/student', methods = ['POST','GET'])
 def student():
+    global isLoggedIn
     if isLoggedIn:
         global pathways
         global departments
@@ -220,6 +224,7 @@ def student():
 
 @app.route('/requests', methods = ['POST', 'GET'])
 def requests():
+    global isLoggedIn
     if isLoggedIn:
         global cart
         global cartDF
