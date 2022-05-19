@@ -216,7 +216,7 @@ def student():
             return search_w_modifiers(keyword)
         return render_template('student_access.html')
     else:
-        return render_template(url_for('login'))
+        return redirect(url_for('login'))
 
 @app.route('/requests', methods = ['POST', 'GET'])
 def requests():
@@ -235,7 +235,7 @@ def requests():
                 return jsonify(dict(redirect='/student'))
         return render_template('request_courses.html')
     else:
-        return render_template(url_for('login'))
+        return redirect(url_for('login'))
 
 @app.route('/credits')
 def credits():
