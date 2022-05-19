@@ -33,12 +33,12 @@
                 </div>
                 <p style="font-size:40px; position:fixed;left:50px; top:95px; z-index:999; color:black;">ASHS</p>
                 <p style="font-size: 15px; position: fixed; left: 80px; top: 125px; z-index: 999; color: black;">Request Courses</p>
-              </div>
+            </div>
 
             <div class="container">
 
                 <template id="cont">
-                    <div style="margin-right:25px; font-size: 18px;">
+                    <div style="margin-right:25px; margin-left:25px; font-size: 18px;">
                         <div class="choicesText">
                             <div>##name##</div>
                             <div>##credits##</div>
@@ -54,6 +54,15 @@
 
                     </div>
 
+                    <!--<div id="requirements">
+                        <h4>
+                            Requirments:
+                        </h4>
+                        <ul id="requirementsList">
+                            
+                        </ul>
+                    </div>-->
+
                     <div>
                         <form action="/requests" id="return">
                             <input type="submit" value="Go Back" style="margin-left:; border:none;" class="scheduleRequestBtn" name="return" />
@@ -65,58 +74,107 @@
                     </div>
 
                 </div>
-             </div>
+            </div>
 
             <footer class="footer">
                 <p>Abington School District © 2022. All Rights Reserved.</p>
             </footer>
 
-                <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
+            <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
 
-                <script type="text/javascript">
-                    //need initializing AJAX call
-                    var cartContents;
+            <script type="text/javascript">
+                //need initializing AJAX call
+                var cartContents;
+                var classDepartments = ["lol"];
+                var requirements = ["English", "Mathematics", "Science", "Social Studies"];
+                var reqirementPairs = new Map([
+                    ["English", "EN"],
+                    ["Mathematics", "MA"], 
+                    ["Science", "SC"],
+                    ["Social Studies", "SS"],
+                    ["Health", "HP"],
+                    ["Physical Education", "HP"]
+                ]);
+                var gradeReqirements = new Map([]);
+                //populate gradeRequirements
+                for (var i = 0; i < requirements.length; i++) {
+                    gradeReqirements.set(reqirementPairs.get(requirements[i]), false);
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "/requests",
+                    data: { "initialized": "1" }
+                }).done(function (response) {
+                    cartContents = response;
+                    display(JSON.parse(response))
+                    //console.log(cartContents);
+                });
+
+                $("#return").submit(function (event) {
+                    event.preventDefault();
                     $.ajax({
                         type: "POST",
                         url: "/requests",
-                        data: { "initialized": "1" }
+                        data: { "return": '1' }
                     }).done(function (response) {
-                        cartContents = response;
-                        display(JSON.parse(response))
-                    });
-
-                    $("#return").submit(function (event) {
-                        event.preventDefault();
-                        $.ajax({
-                            type: "POST",
-                            url: "/requests",
-                            data: { "return": '1' }
-                        }).done(function (response) {
-                            if (response.redirect) {
-                                window.location.href = response.redirect;
-                            }
-                        });
-                    });
-
-                    function display(json) {
-                        $("#results").html("");
-                        var subKeys = Object.keys(json['ID']);
-                        var temp = document.getElementById("cont");
-
-                        for (var s = 0; s < subKeys.length; s++) {
-                            var longDescription = json['longDescription'][subKeys[s]];
-                            var creds = json['credits'][subKeys[s]];
-
-                            temp.innerHTML = temp.innerHTML.replace("##name##", longDescription);
-                            temp.innerHTML = temp.innerHTML.replace("##credits##", creds);
-
-                            document.getElementById("results").appendChild(temp.content.cloneNode(true));
-
-                            temp.innerHTML = temp.innerHTML.replace(longDescription, "##name##");
-                            temp.innerHTML = temp.innerHTML.replace(creds, "##credits##");
+                        if (response.redirect) {
+                            window.location.href = response.redirect;
                         }
+                    });
+                });
+
+                function display(json) {
+                    $("#results").html("");
+                    var subKeys = Object.keys(json['ID']);
+                    var temp = document.getElementById("cont");
+
+                    for (var s = 0; s < subKeys.length; s++) {
+                        var longDescription = json['longDescription'][subKeys[s]];
+                        var creds = json['credits'][subKeys[s]];
+
+                        //Get Departments
+                        var dept = json['dept'][subKeys[s]];
+                        classDepartments[s] = dept;
+
+                        temp.innerHTML = temp.innerHTML.replace("##name##", longDescription);
+                        temp.innerHTML = temp.innerHTML.replace("##credits##", creds);
+
+                        document.getElementById("results").appendChild(temp.content.cloneNode(true));
+
+                        temp.innerHTML = temp.innerHTML.replace(longDescription, "##name##");
+                        temp.innerHTML = temp.innerHTML.replace(creds, "##credits##");
                     }
-                </script>
+
+                    //Requirements
+                    //console.log(classDepartments.toString());
+                    for (var i = 0; i < requirements.length; i++) {
+                        checkRequirement(reqirementPairs.get(requirements[i]));
+                    }
+                    //console.log([...gradeReqirements]);
+
+                    //Display Requirements
+                    var reqListHTML = document.getElementById("requirementsList");
+                    for (var i = 0; i < requirements.length; i++) {
+                        var node = document.createElement('li');
+                        node.appendChild(document.createTextNode(requirements[i]));
+                        if (gradeReqirements.get(reqirementPairs.get(requirements[i])) == true) {
+                            console.log("you have: " + requirements[i]);
+                            node.style.color = "green";
+                        }
+                        reqListHTML.appendChild(node);
+                    }
+
+                }
+
+                function checkRequirement(requirement) {
+                    if (classDepartments.includes(requirement)) {
+                        gradeReqirements.set(requirement, true);
+
+                    }
+                }
+                
+            </script>
 
 </body>
 </html>
