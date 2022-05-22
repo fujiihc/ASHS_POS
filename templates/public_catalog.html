@@ -18,7 +18,7 @@
 
             <div class="topnav">
                 <div class="ahs-logo">
-                    <img src="{{url_for('static', filename= 'styles/images/horseLogo.png')}}" width="100" height="100" alt="logo">
+                    <img src="{{url_for('static', filename= 'styles/images/ahsLogo.png')}}" width="100" height="100" alt="logo">
                 </div>
                 <form method="post" action="/">
                     <input type="submit" value="Sign Out" class="logoutBtn" name="logoutBtn" />
@@ -198,15 +198,15 @@
                                 <span class="checkmark"></span>
                             </label>
                             <!--
-                                
+
                             <label for="N/A" class="checkbox-container">
                                 N/A
                                 <input type="checkbox" id="N/A" value="N/A" onclick="checkboxClick(this)">
                                 <span class="checkmark"></span>
                             </label>
-                                
+
                             -->
-                            
+
 
                         </div>
                     </form>
@@ -265,11 +265,11 @@
                     </form>
 
                     <form action="/catalog" id="clear">
-                         <button class="dropdown" style="font-size:15px; text-align:center; padding:20px 0px 0px 0px;">
+                        <button class="dropdown" style="font-size:15px; text-align:center; padding:20px 0px 0px 0px;">
                             Clear All
                         </button>
                     </form>
-                    
+
 
                 </div>
                 <div class="mainArea">
@@ -380,12 +380,12 @@
         });
 
         $("#backward").click(function () {
-            if (n >= 10) { n -= 10; currentPage--;}
+            if (n >= 10) { n -= 10; currentPage--; }
             display(JSON.parse(currentData));
         });
 
         $("#forward").click(function () {
-            if ((n + 10) < length) { n += 10; currentPage++;}
+            if ((n + 10) < length) { n += 10; currentPage++; }
             display(JSON.parse(currentData));
         });
 
@@ -396,8 +396,12 @@
                 url: "/catalog",
                 data: { "searchBar": document.getElementById("searchBar").value, "searchButton": "" }
             }).done(function (response) {
-                currentData = response; n = 0; currentPage = 1;
-                display(JSON.parse(response));
+                if (response.redirect) {
+                    window.location.href = response.redirect;
+                } else {
+                    currentData = response; n = 0; currentPage = 1;
+                    display(JSON.parse(response));
+                }
             });
         });
 
