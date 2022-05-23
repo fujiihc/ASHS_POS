@@ -13,14 +13,6 @@ import httplib2
 import json
 import sqlite3
 
-#do i need this?
-import requests
-
-#https://docs.python.org/3/library/sqlite3.html
-#https://flask.palletsprojects.com/en/2.0.x/patterns/sqlite3/
-#https://www.sqlitetutorial.net/sqlite-create-table/
-
-isLoggedIn = False
 pathways = []
 departments = []
 courseLengths = []
@@ -29,6 +21,7 @@ cart = []
 cartDF = data(pd.DataFrame())
 keyword = ''
 easterEgg = 'password1234'
+isLoggedIn = False
 global credentials
 
 GOOGLE_CLIENT_ID = '415583783710-kpg937ob78e3ej719rldcf9or58d3vfa.apps.googleusercontent.com'
@@ -41,7 +34,8 @@ oauthFlow = OAuth2WebServerFlow(client_id=GOOGLE_CLIENT_ID, client_secret=GOOGLE
 app = Flask(__name__)
 
 
-#https://developers.google.com/identity/protocols/oauth2/scopes
+# Make the WSGI interface available at the top level so wfastcgi can get it.
+wsgi_app = app.wsgi_app
 
 #create a login checker for every route
 @app.route('/login')
@@ -50,18 +44,13 @@ def login():
 
 @app.route('/logout')
 def logout():
-    #actually build this thing
+    
     global isLoggedIn
     global credentials
     isLoggedIn = False
 
-
-    #requests.post('https://oauth2.googleapis.com/revoke', params={'token': json.loads(credentials.to_json())['id_token']}, headers = {'content-type': 'application/x-www-form-urlencoded'})
-    #print(credentials.access_token_expired)
-
-    
-    #return redirect('/')
-    return redirect("https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:5555")
+    return redirect('/')
+    #return redirect("https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:5555")
 
 @app.route('/oauth2callback', methods = ['GET'])
 def callback():
@@ -81,10 +70,6 @@ def callback():
     #include the revoke token here
     return redirect(url_for('login'))
     
-
-# Make the WSGI interface available at the top level so wfastcgi can get it.
-wsgi_app = app.wsgi_app
-
 
 @app.route('/', methods = ['POST','GET'])
 def home():
