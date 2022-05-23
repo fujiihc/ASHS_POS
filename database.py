@@ -6,6 +6,7 @@ class database:
         self.name = name
         connection = sqlite3.connect(self.name)
         cursor = connection.cursor()
+        #might need some sort of unique integer id identifier instead of idNum as a String
         cursor.execute('''CREATE TABLE IF NOT EXISTS users(
             idNum TEXT PRIMARY KEY,
             email TEXT NOT NULL UNIQUE,
@@ -15,7 +16,6 @@ class database:
             token TEXT NOT NULL,
             isLoggedIn TEXT NOT NULL,
             counselors TEXT NOT NULL);''')
-
         connection.commit()
         connection.close()
 
@@ -37,6 +37,7 @@ class database:
             cursor.execute('INSERT INTO "users" VALUES (?,?,?,?,?,?,?,?)', valuesList)
             connection.commit()
         except:
+            connection.close()
             return False
         connection.close()
         return True
@@ -48,7 +49,7 @@ class database:
         try:
             cursor.execute('SELECT * FROM "users" WHERE "idNum" = ?', thingy)     
         except:
-            return False
+            pass
         thingy2 = cursor.fetchall()
         connection.close()
         return thingy2
@@ -76,3 +77,33 @@ class database:
             finList.append(row)
         connection.close
         return finList
+
+    def update(self, idNum, column, data):
+        connection = sqlite3.connect(self.name)
+        cursor = connection.cursor()
+        passedData = ''
+        if column == 'isLoggedIn':
+            if data:
+                passedData = 'True'
+            else:
+                passedData = 'False'
+        elif column == 'courses':
+            for num in range(len(data)):
+                passedData += data[num]
+                if not num == len(data) - 1:
+                    passedData += '#'
+        else:
+            passedData = data
+        thingy = (str(passedData), str(idNum))
+
+        try:
+            if column in ['idNum', 'email', 'firstName', 'lastName', 'courses', 'token', 'isLoggedIn', 'counselors']:
+                cursor.execute('UPDATE "users" SET ' + str(column) + ' = ? WHERE "idNum" = ?', thingy)
+                connection.commit()
+            else:
+                return False
+        except:
+            return False
+
+        connection.close()
+        return True
