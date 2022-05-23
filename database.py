@@ -73,7 +73,7 @@ class database:
         finList = []
         for row in cursor.execute('SELECT * FROM "users"'):
             #comment out later
-            print(row)
+            #print(row)
             finList.append(row)
         connection.close
         return finList
