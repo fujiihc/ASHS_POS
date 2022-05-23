@@ -230,7 +230,11 @@ def requestsLink():
 
 @app.route('/credits')
 def credits():
-    return render_template('credits.html')
+    global isLoggedIn
+    if isLoggedIn:
+        return render_template('credits.html')
+    else:
+        return redirect(url_for('login'))
 
 if __name__ == '__main__':
     import os
