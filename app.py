@@ -41,22 +41,6 @@ oauthFlow = OAuth2WebServerFlow(client_id=GOOGLE_CLIENT_ID, client_secret=GOOGLE
 app = Flask(__name__)
 
 
-db.addData('35698', 'fujiihc@gmail.com', 'hiro', 'fujii', ['ap computer science', 'apush', 'lang'], 'fakeToken', True, 'vorchheimer')
-db.addData('46843', 'test@gmail.com', 'meep', 'morp', ['german', 'stat'], 'fakeToken2', False, 'chakler')
-
-db.dataList()
-
-print('\n')
-
-print(db.findData('35698'))
-print(db.findData('00001'))
-db.deleteData('35698')
-
-print('\n')
-
-db.dataList()
-
-
 #https://developers.google.com/identity/protocols/oauth2/scopes
 
 #create a login checker for every route
