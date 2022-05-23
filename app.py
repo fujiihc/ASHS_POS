@@ -198,6 +198,7 @@ def student():
                     cartDF.merge(df.findCourse(item, 'longDescription', True))
                     
                 db.update(userData[0], 'courses', cart)
+                #db.dataList()
                 userData = db.findData(userData[0])[0]
 
                 if request.form['redirect'] == 'true':
@@ -222,6 +223,14 @@ def student():
                 courseLengths = []
                 courseLevels = []
                 keyword = ''
+
+                cart = userData[4].split('#')
+
+                cartDF = data(pd.DataFrame())
+                for item in cart:
+                    cartDF.merge(df.findCourse(item, 'longDescription', True))
+
+                print(cartDF.getDF())
                 return {'data' : df.getDF().to_json(), 'cart' : cartDF.getDF().to_json()}
             elif request.form.get('logoutBtn'):
                 return redirect(url_for('logout'))
