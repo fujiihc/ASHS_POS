@@ -18,7 +18,7 @@
 
             <div class="topnav">
                 <div class="ahs-logo">
-                    <img src="{{url_for('static', filename= 'styles/images/horseLogo.png')}}" width="100" height="100" alt="logo">
+                    <img src="{{url_for('static', filename= 'styles/images/ahsLogo.png')}}" width="100" height="100" alt="logo">
                 </div>
                 <form method="post" action="/">
                     <input type="submit" value="Sign Out" class="logoutBtn" name="logoutBtn" />
@@ -52,7 +52,7 @@
                 <div class="sidebar">
                     <p style="padding: 20px 8px 10px 16px; cursor:auto; font-family:'Baskerville';font-size:23px;">Refine Results</p>
 
-                    
+
                     <button class="dropdown" id="pathwayBttn">
                         Pathway
                         <i class="fa fa-caret-down"></i>
@@ -203,9 +203,9 @@
                                 N/A
                                 <input type="checkbox" id="N/A" value="N/A" onclick="checkboxClick(this)">
                                 <span class="checkmark"></span>
-                            </label> 
+                            </label>
                             -->
-                            
+
 
                         </div>
                     </form>
@@ -263,12 +263,12 @@
                         </div>
                     </form>
 
-                    <form action ="/student" id="clear">
-                         <button class="dropdown" style="font-size:15px; text-align:center; padding:20px 0px 0px 0px;">
+                    <form action="/student" id="clear">
+                        <button class="dropdown" style="font-size:15px; text-align:center; padding:20px 0px 0px 0px;">
                             Clear All
                         </button>
                     </form>
-                   
+
 
                 </div>
                 <div class="mainArea">
@@ -276,7 +276,7 @@
                     <div class="mainSpace">
                         <div id="changePageBar" style="margin-top: 30px; justify-content: space-between; display:flex;">
                             <div>
-                                <button type="submit" class="backBtn" id ="backward"style="color: #761F33; background: none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                <button type="submit" class="backBtn" id="backward" style="color: #761F33; background: none; width: 20px; height: 25px; border: none; cursor: pointer;">
                                     <i class="fa fa-angle-left fa-lg"></i>
                                 </button>
                             </div>
@@ -288,7 +288,7 @@
                             </template>
 
                             <div>
-                                <button type="submit" class="forwardBtn" id ="forward"style="color: #761F33; background:none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                <button type="submit" class="forwardBtn" id="forward" style="color: #761F33; background:none; width: 20px; height: 25px; border: none; cursor: pointer;">
                                     <i class="fa fa-angle-right fa-lg"></i>
                                 </button>
                             </div>
@@ -406,7 +406,7 @@
             //console.log(response);
             currentData = response['data']; n = 0;
             display(JSON.parse(response['data']))
-
+            
             try {
                 responseCart = JSON.parse(response['cart'])
 
@@ -414,8 +414,22 @@
 
                 for (var i = 0; i < subKeys.length; i++) {
                     var nameLong = responseCart["longDescription"][subKeys[i]];
+                    console.log(nameLong);
                     coursesInCart[i] = nameLong;
-                    var nameShort = nameLong.substring(0, 5);
+                    splitName = nameLong.split(" ");
+                    if (splitName[0] == 'HONORS') {
+                        splitName.shift()
+                    } else if (splitName[0] == 'ADVANCED' && splitName[1] == 'PLACEMENT') {
+                        splitName.shift()
+                        splitName.shift()
+                    }
+
+                    var nameShort = ""
+                    for (var i = 0; i < splitName.length; i++) {
+                        nameShort += splitName[i];
+                        if (i != splitName.length - 1) nameShort += " ";
+                    }
+                    console.log(nameShort);
                     var templ = document.getElementById("courseInCart");
                     var creditsNum = responseCart['credits'][subKeys[i]];
                     var credits = parseInt(creditsNum);
@@ -444,16 +458,16 @@
                     num++;
                 }
 
-            } catch (error) {}
+            } catch (error) { }
         });
 
         $("#backward").click(function () {
-            if (n >= 10) { n -= 10; currentPage--;}
+            if (n >= 10) { n -= 10; currentPage--; }
             display(JSON.parse(currentData));
         });
 
         $("#forward").click(function () {
-            if ((n + 10) < length) { n += 10; currentPage++;}
+            if ((n + 10) < length) { n += 10; currentPage++; }
             display(JSON.parse(currentData));
         });
 
@@ -469,7 +483,7 @@
                 } else {
                     currentData = response; n = 0; currentPage = 1;
                     display(JSON.parse(response));
-                }          
+                }
             });
         });
 
@@ -534,14 +548,14 @@
                 } else {
                     currentData = response; n = 0; currentPage = 1;
                     display(JSON.parse(response));
-                }                
+                }
             });
         }
 
         function display(json) {
             $("#results").html("");
             $("#pageNums").html("");
-            
+
             var subKeys = Object.keys(json['ID']);
             var temp = document.getElementById("cont");
 
@@ -554,7 +568,7 @@
                 var longDescription = json['longDescription'][subKeys[s]].toUpperCase();
                 var description = json['description'][subKeys[s]];
                 var dept = json['dept'][subKeys[s]] + ' ';
-                
+
                 var courseLength = json['Length'][subKeys[s]];
 
                 var uniqueId = json['ID'][subKeys[s]];
@@ -678,7 +692,22 @@
                     url: "/student",
                     data: { "editCart": "", "cart": coursesInCart.toString(), "redirect": 'false' }
                 });
-                var nameShort = nameLong.substring(0, 5);
+
+                splitName = nameLong.split(" ");
+                if (splitName[0] == 'HONORS') {
+                    splitName.shift()
+                } else if (splitName[0] == 'ADVANCED' && splitName[1] == 'PLACEMENT') {
+                    splitName.shift()
+                    splitName.shift()
+                }
+
+                var nameShort = ""
+                for (var i = 0; i < splitName.length; i++) {
+                    nameShort += splitName[i];
+                    if (i != splitName.length - 1) nameShort += " ";
+                }
+
+                
                 var templ = document.getElementById("courseInCart");
                 var credits = parseInt(element.getAttribute("data-credits"));
                 var creditsNum = element.getAttribute("data-credits");
@@ -711,7 +740,7 @@
         function removeCourse(element) {
             var thisNum = element.id.substring(6);
             var place = coursesInCart.indexOf(element.getAttribute("data-name-long"));
-            coursesInCart.splice(place, 2);
+            coursesInCart.splice(place, 1);
             creditTotal -= parseInt(element.getAttribute("data-credits"));
 
             $.ajax({
