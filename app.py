@@ -3,51 +3,59 @@ This script runs the application using a development server.
 It contains the definition of routes and views for the application. 
 """
 
-import data as dt
-import user as us
+from data import data
+from database import database
 import pandas as pd
 from flask import Flask, render_template, redirect, url_for, request, session, abort, jsonify
 from oauth2client.client import OAuth2WebServerFlow
 from oauth2client import GOOGLE_AUTH_URI
+import httplib2
 import json
 import sqlite3
+
+#do i need this?
+import requests
 
 #https://docs.python.org/3/library/sqlite3.html
 #https://flask.palletsprojects.com/en/2.0.x/patterns/sqlite3/
 #https://www.sqlitetutorial.net/sqlite-create-table/
-#https://appdividend.com/2022/01/26/how-to-create-sqlite-database-in-python/
+
 isLoggedIn = False
-
-connection = sqlite3.connect('database.db')
-cursor = connection.cursor()
-cursor.execute('''CREATE TABLE IF NOT EXISTS users(
-	idNum INTEGER PRIMARY KEY,
-	email TEXT NOT NULL UNIQUE,
-	firstName TEXT NOT NULL,
-	lastName TEXT NOT NULL,
-	courses TEXT NOT NULL,
-	token TEXT NOT NULL,
-	isLoggedIn BIT Default 0,
-    counselors TEXT NOT NULL
-);''')
-connection.commit()
-connection.close() 
-
-
-
-
-
-
+pathways = []
+departments = []
+courseLengths = []
+courseLevels = []
+cart = []
+cartDF = data(pd.DataFrame())
+keyword = ''
+easterEgg = 'password1234'
+global credentials
 
 GOOGLE_CLIENT_ID = '415583783710-kpg937ob78e3ej719rldcf9or58d3vfa.apps.googleusercontent.com'
 GOOGLE_CLIENT_SECRET = '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'
 
-app = Flask(__name__)
-df = dt.data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna('').astype(str))
-
-
-oauthFlow = OAuth2WebServerFlow(client_id=GOOGLE_CLIENT_ID, client_secret=GOOGLE_CLIENT_SECRET, scope = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'], redirect_uri='http://ddaubenspeck.pythonanywhere.com/oauth2callback', auth_uri=GOOGLE_AUTH_URI + '?hd=' + 'abington.k12.pa.us')
+db = database('database.db')
+df = data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna('').astype(str))
+oauthFlow = OAuth2WebServerFlow(client_id=GOOGLE_CLIENT_ID, client_secret=GOOGLE_CLIENT_SECRET, scope = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'], redirect_uri='http://localhost:5555/oauth2callback', auth_uri=GOOGLE_AUTH_URI + '?hd=' + 'abington.k12.pa.us', revoke_uri='https://oauth2.googleapis.com/revoke')
 #need a revoke uri which i use for logout?
+app = Flask(__name__)
+
+
+db.addData('35698', 'fujiihc@gmail.com', 'hiro', 'fujii', ['ap computer science', 'apush', 'lang'], 'fakeToken', True, 'vorchheimer')
+db.addData('46843', 'test@gmail.com', 'meep', 'morp', ['german', 'stat'], 'fakeToken2', False, 'chakler')
+
+db.dataList()
+
+print('\n')
+
+print(db.findData('35698'))
+print(db.findData('00001'))
+db.deleteData('35698')
+
+print('\n')
+
+db.dataList()
+
 
 #https://developers.google.com/identity/protocols/oauth2/scopes
 
@@ -60,30 +68,35 @@ def login():
 def logout():
     #actually build this thing
     global isLoggedIn
+    global credentials
     isLoggedIn = False
-    return redirect('/')
+
+
+    #requests.post('https://oauth2.googleapis.com/revoke', params={'token': json.loads(credentials.to_json())['id_token']}, headers = {'content-type': 'application/x-www-form-urlencoded'})
+    #print(credentials.access_token_expired)
+
+    
+    #return redirect('/')
+    return redirect("https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:5555")
 
 @app.route('/oauth2callback', methods = ['GET'])
 def callback():
     global isLoggedIn
-    studentData = json.loads(oauthFlow.step2_exchange(request.args.get('code')).to_json())
-    #gotta like authorize this or something idrk
-    print(studentData)
-    if studentData['id_token']['hd'] == 'abington.k12.pa.us':
-        isLoggedIn = True
-        return redirect(url_for('student'))
-    else:
-        return redirect(url_for('login'))
+    global credentials
+    credentials = oauthFlow.step2_exchange(request.args.get('code'))
+    studentData = json.loads(credentials.to_json())
     
-
-pathways = []
-departments = []
-courseLengths = []
-courseLevels = []
-cart = []
-cartDF = dt.data(pd.DataFrame())
-keyword = ''
-easterEgg = 'password1234'
+    print(studentData)
+    try:
+        if studentData['id_token']['hd'] == 'abington.k12.pa.us':
+            isLoggedIn = True
+            #this is where all of the login data should be updated and retrieved
+            return redirect(url_for('student'))
+    except:
+        pass
+    #include the revoke token here
+    return redirect(url_for('login'))
+    
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 wsgi_app = app.wsgi_app
@@ -184,10 +197,14 @@ def student():
         global keyword
         global cart
         global easterEgg
+        global cartDF
 
         if request.method == 'POST':
             if request.form.get('editCart') == '':
                 cart = request.form['cart'].split(',')
+                cartDF = data(pd.DataFrame())
+                for item in cart:
+                    cartDF.merge(df.findCourse(item, 'longDescription', True))
                 if request.form['redirect'] == 'true':
                     return jsonify(dict(redirect='/requests'))
             elif request.form.get('searchButton') == '' and isinstance(request.form.get('searchBar'), str):
@@ -223,7 +240,7 @@ def student():
         return redirect(url_for('login'))
 
 @app.route('/requests', methods = ['POST', 'GET'])
-def requests():
+def requestsLink():
     global isLoggedIn
     if isLoggedIn:
         global cart
@@ -232,7 +249,7 @@ def requests():
             if request.form.get('logoutBtn'):
                 return redirect(url_for('logout'))   
             elif request.form.get('initialized') == '1':
-                cartDF = dt.data(pd.DataFrame())
+                cartDF = data(pd.DataFrame())
                 for item in cart:
                     cartDF.merge(df.findCourse(item, 'longDescription', True))
                 return cartDF.getDF().to_json()
