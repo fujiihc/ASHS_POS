@@ -23,6 +23,7 @@ keyword = ''
 easterEgg = 'password1234'
 isLoggedIn = False
 global credentials
+global userData
 
 GOOGLE_CLIENT_ID = '415583783710-kpg937ob78e3ej719rldcf9or58d3vfa.apps.googleusercontent.com'
 GOOGLE_CLIENT_SECRET = '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'
@@ -37,7 +38,7 @@ app = Flask(__name__)
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 wsgi_app = app.wsgi_app
 
-#create a login checker for every route
+
 @app.route('/login')
 def login():
     return redirect(oauthFlow.step1_get_authorize_url())
@@ -56,14 +57,34 @@ def logout():
 def callback():
     global isLoggedIn
     global credentials
+    global userData
+
     credentials = oauthFlow.step2_exchange(request.args.get('code'))
     studentData = json.loads(credentials.to_json())
     
-    print(studentData)
+    #print(studentData)
+    personalData = studentData['id_token']
     try:
-        if studentData['id_token']['hd'] == 'abington.k12.pa.us':
+        if personalData['hd'] == 'abington.k12.pa.us':
             isLoggedIn = True
-            #this is where all of the login data should be updated and retrieved
+            
+            idNum = personalData['email'].split('@')[0]
+            
+            if len(db.findData(idNum)) == 0:
+                print('new user')
+                email = personalData['email']
+                firstName = personalData['given_name']
+                lastName = personalData['family_name']
+                courses = []
+                token = 'None'
+                counselors = 'None'
+                db.addData(idNum, email, firstName, lastName, courses, token, isLoggedIn, counselors)
+            else:
+                db.update(idNum, 'isLoggedIn', isLoggedIn)
+                print('user exists')
+                
+            userData = db.findData(idNum)[0]
+            
             return redirect(url_for('student'))
     except:
         pass
@@ -167,6 +188,7 @@ def student():
         global cart
         global easterEgg
         global cartDF
+        global userData
 
         if request.method == 'POST':
             if request.form.get('editCart') == '':
@@ -174,6 +196,10 @@ def student():
                 cartDF = data(pd.DataFrame())
                 for item in cart:
                     cartDF.merge(df.findCourse(item, 'longDescription', True))
+                    
+                db.update(userData[0], 'courses', cart)
+                userData = db.findData(userData[0])[0]
+
                 if request.form['redirect'] == 'true':
                     return jsonify(dict(redirect='/requests'))
             elif request.form.get('searchButton') == '' and isinstance(request.form.get('searchBar'), str):
