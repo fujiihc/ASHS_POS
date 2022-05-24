@@ -141,7 +141,8 @@ def catalog():
             return redirect(url_for('logout'))
 
         if keyword == easterEgg:
-                return jsonify(dict(redirect='/credits'))
+            keyword = ''
+            return jsonify(dict(redirect='/credits'))
 
         return search_w_modifiers(keyword)   
 
@@ -236,6 +237,7 @@ def student():
                 return redirect(url_for('logout'))
 
             if keyword == easterEgg:
+                    keyword = ''
                     return jsonify(dict(redirect='/credits'))
 
             return search_w_modifiers(keyword)
