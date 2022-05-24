@@ -6,9 +6,11 @@ It contains the definition of routes and views for the application.
 from data import data
 from database import database
 import pandas as pd
+#remove session?
 from flask import Flask, render_template, redirect, url_for, request, session, abort, jsonify
 from oauth2client.client import OAuth2WebServerFlow
 from oauth2client import GOOGLE_AUTH_URI
+#need httplib2?
 import httplib2
 import json
 import sqlite3
@@ -20,7 +22,7 @@ courseLevels = []
 cart = []
 cartDF = data(pd.DataFrame())
 keyword = ''
-easterEgg = 'password1234'
+easterEgg = 'isawesome'
 isLoggedIn = False
 global credentials
 global userData
@@ -49,7 +51,7 @@ def logout():
     global isLoggedIn
     global credentials
     isLoggedIn = False
-
+    #clear cache and that kind of thing
     return redirect('/')
     #return redirect("https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:5555")
 
@@ -140,7 +142,7 @@ def catalog():
         elif request.form.get('logoutBtn'):
             return redirect(url_for('logout'))
 
-        if keyword == easterEgg:
+        if keyword == 'nileena' + easterEgg or keyword == 'caden' + easterEgg or keyword == 'davan' + easterEgg or 'tyler' + easterEgg:
             keyword = ''
             return jsonify(dict(redirect='/credits'))
 
@@ -236,7 +238,7 @@ def student():
             elif request.form.get('logoutBtn'):
                 return redirect(url_for('logout'))
 
-            if keyword == easterEgg:
+            if keyword == 'nileena' + easterEgg or keyword == 'caden' + easterEgg or keyword == 'davan' + easterEgg or 'tyler' + easterEgg:
                     keyword = ''
                     return jsonify(dict(redirect='/credits'))
 
