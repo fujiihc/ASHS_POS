@@ -230,7 +230,7 @@ def student():
                 for item in cart:
                     cartDF.merge(df.findCourse(item, 'longDescription', True))
 
-                print(cartDF.getDF())
+                #print(cartDF.getDF())
                 return {'data' : df.getDF().to_json(), 'cart' : cartDF.getDF().to_json()}
             elif request.form.get('logoutBtn'):
                 return redirect(url_for('logout'))
