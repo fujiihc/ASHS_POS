@@ -411,10 +411,11 @@
                 responseCart = JSON.parse(response['cart'])
 
                 var subKeys = Object.keys(responseCart['ID']);
-
+                console.log(subKeys);
+                console.log(subKeys.length);
                 for (var i = 0; i < subKeys.length; i++) {
                     var nameLong = responseCart["longDescription"][subKeys[i]];
-                    console.log(nameLong);
+                    //console.log(nameLong);
                     coursesInCart[i] = nameLong;
                     splitName = nameLong.split(" ");
                     if (splitName[0] == 'HONORS') {
@@ -423,13 +424,14 @@
                         splitName.shift()
                         splitName.shift()
                     }
-
+                    
                     var nameShort = ""
-                    for (var i = 0; i < splitName.length; i++) {
-                        nameShort += splitName[i];
-                        if (i != splitName.length - 1) nameShort += " ";
+                    for (var k = 0; k < splitName.length; k++) {
+                        nameShort += splitName[k];
+                        if (k != splitName.length - 1) nameShort += " ";
                     }
                     //console.log(nameShort);
+                    
                     var templ = document.getElementById("courseInCart");
                     var creditsNum = responseCart['credits'][subKeys[i]];
                     var credits = parseInt(creditsNum);
@@ -456,6 +458,7 @@
                     templ.innerHTML = templ.innerHTML.replace(credits + " credits", "##credits##");
                     templ.innerHTML = templ.innerHTML.replace(creditsNum, "##creditsNum##");
                     num++;
+                    
                 }
 
             } catch (error) { }
@@ -702,9 +705,9 @@
                 }
 
                 var nameShort = ""
-                for (var i = 0; i < splitName.length; i++) {
-                    nameShort += splitName[i];
-                    if (i != splitName.length - 1) nameShort += " ";
+                for (var k = 0; k < splitName.length; k++) {
+                    nameShort += splitName[k];
+                    if (k != splitName.length - 1) nameShort += " ";
                 }
 
                 
