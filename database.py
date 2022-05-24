@@ -13,13 +13,11 @@ class database:
             firstName TEXT NOT NULL,
             lastName TEXT NOT NULL,
             courses TEXT NOT NULL,
-            token TEXT NOT NULL,
-            isLoggedIn TEXT NOT NULL,
-            counselors TEXT NOT NULL);''')
+            token TEXT NOT NULL);''')
         connection.commit()
         connection.close()
 
-    def addData(self, idNum, email, firstName, lastName, courses, token, isLoggedIn, counselors):
+    def addData(self, idNum, email, firstName, lastName, courses, token):
         connection = sqlite3.connect(self.name)
         cursor = connection.cursor()
         coursesStr = ''
@@ -27,14 +25,9 @@ class database:
             coursesStr += courses[num]
             if not num == len(courses) - 1:
                 coursesStr += '#'
-        isLoggedInStr = ''
-        if isLoggedIn:
-            isLoggedInStr = 'True'
-        else:
-            isLoggedInStr = 'False'
-        valuesList = (str(idNum),str(email), str(firstName), str(lastName), str(coursesStr), str(token), str(isLoggedInStr), str(counselors))
+        valuesList = (str(idNum),str(email), str(firstName), str(lastName), str(coursesStr), str(token))
         try:
-            cursor.execute('INSERT INTO "users" VALUES (?,?,?,?,?,?,?,?)', valuesList)
+            cursor.execute('INSERT INTO "users" VALUES (?,?,?,?,?,?)', valuesList)
             connection.commit()
         except:
             connection.close()
@@ -82,12 +75,7 @@ class database:
         connection = sqlite3.connect(self.name)
         cursor = connection.cursor()
         passedData = ''
-        if column == 'isLoggedIn':
-            if data:
-                passedData = 'True'
-            else:
-                passedData = 'False'
-        elif column == 'courses':
+        if column == 'courses':
             for num in range(len(data)):
                 passedData += data[num]
                 if not num == len(data) - 1:
@@ -97,7 +85,7 @@ class database:
         thingy = (str(passedData), str(idNum))
 
         try:
-            if column in ['idNum', 'email', 'firstName', 'lastName', 'courses', 'token', 'isLoggedIn', 'counselors']:
+            if column in ['idNum', 'email', 'firstName', 'lastName', 'courses', 'token']:
                 cursor.execute('UPDATE "users" SET ' + str(column) + ' = ? WHERE "idNum" = ?', thingy)
                 connection.commit()
             else:
