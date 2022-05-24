@@ -6,12 +6,9 @@ It contains the definition of routes and views for the application.
 from data import data
 from database import database
 import pandas as pd
-#remove session?
-from flask import Flask, render_template, redirect, url_for, request, session, abort, jsonify
+from flask import Flask, render_template, redirect, url_for, request, abort, jsonify
 from oauth2client.client import OAuth2WebServerFlow
 from oauth2client import GOOGLE_AUTH_URI
-#need httplib2?
-import httplib2
 import json
 import sqlite3
 
@@ -40,6 +37,7 @@ app = Flask(__name__)
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 wsgi_app = app.wsgi_app
 
+import requests
 
 @app.route('/login')
 def login():
@@ -49,11 +47,20 @@ def login():
 def logout():
     
     global isLoggedIn
-    global credentials
-    isLoggedIn = False
-    #clear cache and that kind of thing
-    return redirect('/')
-    #return redirect("https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:5555")
+    if isLoggedIn:
+
+        global credentials
+        global userData
+        isLoggedIn = False
+        #clear cache and that kind of thing
+        requests.post('https://oauth2.googleapis.com/revoke', data={'token': credentials.access_token}, headers = {'content-type': 'application/x-www-form-urlencoded'})
+        db.update(userData[0], 'token', 'None')
+        credentials = ''
+        userData = ''
+
+        return redirect('/')
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/oauth2callback', methods = ['GET'])
 def callback():
@@ -65,6 +72,8 @@ def callback():
     studentData = json.loads(credentials.to_json())
     
     #print(studentData)
+    #https://flask-dance.readthedocs.io/en/latest/logout.html
+
     personalData = studentData['id_token']
     try:
         if personalData['hd'] == 'abington.k12.pa.us':
@@ -78,12 +87,9 @@ def callback():
                 firstName = personalData['given_name']
                 lastName = personalData['family_name']
                 courses = []
-                token = 'None'
-                counselors = 'None'
-                db.addData(idNum, email, firstName, lastName, courses, token, isLoggedIn, counselors)
-            else:
-                db.update(idNum, 'isLoggedIn', isLoggedIn)
-                print('user exists')
+                token = credentials.access_token
+                
+                db.addData(idNum, email, firstName, lastName, courses, token)
                 
             userData = db.findData(idNum)[0]
             
