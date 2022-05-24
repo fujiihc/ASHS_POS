@@ -411,8 +411,7 @@
                 responseCart = JSON.parse(response['cart'])
 
                 var subKeys = Object.keys(responseCart['ID']);
-                console.log(subKeys);
-                console.log(subKeys.length);
+                
                 for (var i = 0; i < subKeys.length; i++) {
                     var nameLong = responseCart["longDescription"][subKeys[i]];
                     //console.log(nameLong);
