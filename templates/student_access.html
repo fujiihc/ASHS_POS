@@ -50,7 +50,7 @@
             </div>
             <div class="container">
                 <div class="sidebar">
-                    <p style="padding: 20px 8px 10px 16px; cursor:auto; font-family:'Baskerville';font-size:23px;">Refine Results</p>
+                    <p style="padding: 20px 8px 10px 16px; cursor: auto; font-family: 'Avenir', Helvetica, sans-serif; font-size: 23px;">Refine Results</p>
 
 
                     <button class="dropdown" id="pathwayBttn">
@@ -118,7 +118,7 @@
 
                         </div>
                     </form>
-
+                    <hr style=" width: 80%; align-self: center; margin: auto; background-color: black; margin-top:11px">
                     <button class="dropdown">
                         Department
                         <i class="fa fa-caret-down"></i>
@@ -199,18 +199,18 @@
                                 <span class="checkmark"></span>
                             </label>
                             <!--
-                            <label for="N/A" class="checkbox-container">
-                                N/A
-                                <input type="checkbox" id="N/A" value="N/A" onclick="checkboxClick(this)">
-                                <span class="checkmark"></span>
-                            </label>
-                            -->
+            <label for="N/A" class="checkbox-container">
+                N/A
+                <input type="checkbox" id="N/A" value="N/A" onclick="checkboxClick(this)">
+                <span class="checkmark"></span>
+            </label>
+            -->
 
 
                         </div>
                     </form>
 
-
+                    <hr style=" width: 80%; align-self: center; margin: auto; background-color: black; margin-top:11px">
                     <button class="dropdown">
                         Course Level
                         <i class="fa fa-caret-down"></i>
@@ -238,7 +238,7 @@
                             </label>
                         </div>
                     </form>
-
+                    <hr style=" width: 80%; align-self: center; margin: auto; background-color: black; margin-top:11px">
 
                     <button class="dropdown">
                         Length
@@ -262,6 +262,7 @@
 
                         </div>
                     </form>
+                    <hr style=" width: 80%; align-self: center; margin: auto; background-color: black; margin-top:11px">
 
                     <form action="/student" id="clear">
                         <button class="dropdown" style="font-size:15px; text-align:center; padding:20px 0px 0px 0px;">
@@ -274,35 +275,16 @@
                 <div class="mainArea">
 
                     <div class="mainSpace">
-                        <div id="changePageBar" style="margin-top: 30px; justify-content: space-between; display:flex;">
-                            <div>
-                                <button type="submit" class="backBtn" id="backward" style="color: #761F33; background: none; width: 20px; height: 25px; border: none; cursor: pointer;">
-                                    <i class="fa fa-angle-left fa-lg"></i>
-                                </button>
-                            </div>
-
-                            <div id="pageNums"></div>
-
-                            <template id="currentPage">
-                                <p>Page ##in## of ##out##</p>
-                            </template>
-
-                            <div>
-                                <button type="submit" class="forwardBtn" id="forward" style="color: #761F33; background:none; width: 20px; height: 25px; border: none; cursor: pointer;">
-                                    <i class="fa fa-angle-right fa-lg"></i>
-                                </button>
-                            </div>
-                        </div>
 
                         <table style="margin-top:20px;">
 
 
                             <tr>
                                 <td style="font-size: 15px; display: flex; justify-content: space-between; color: white; padding-left: 10px; padding-right: 10px; background-color: #761F33;">
-                                    <div>Department</div>
-                                    <div style="padding-right:60px;">Length</div>
-                                    <div style="padding-right: 80px;">Level</div>
-                                    <div style="padding-right: 50px;">Description</div>
+                                    <div style="font-family: 'Avenir', Helvetica, sans-serif;">Department</div>
+                                    <div style="font-family: 'Avenir', Helvetica, sans-serif; padding-right:60px;">Length</div>
+                                    <div style="font-family: 'Avenir', Helvetica, sans-serif; padding-right: 80px;">Level</div>
+                                    <div style="font-family: 'Avenir', Helvetica, sans-serif; padding-right: 50px;">Description</div>
                                 </td>
                             </tr>
 
@@ -314,7 +296,7 @@
 
                                 <tr>
                                     <td>
-                                        <div style="display: flex; justify-content: space-between;">
+                                        <div style="display: flex; justify-content: space-between; color: #761F33">
                                             <div class="fa fa-plus" id="##addID##" data-credits="##creditsNum##" onclick="addCourse(this)"></div>
                                             <div class="course-name" id="##nameID##" data-unique-id="##uniqueId##">##course name##</div>
                                         </div>
@@ -343,6 +325,26 @@
                         <!--render empty search-->
 
                         <div class="results" id="results"></div>
+
+                        <div id="changePageBar" style="margin-top: 30px; justify-content: space-between; display:flex;">
+                            <div>
+                                <button type="submit" class="backBtn" id="backward" style="color: #761F33; background: none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                    <i class="fa fa-angle-left fa-lg"></i>
+                                </button>
+                            </div>
+
+                            <div id="pageNums"></div>
+
+                            <template id="currentPage">
+                                <p>Page ##in## of ##out##</p>
+                            </template>
+
+                            <div>
+                                <button type="submit" class="forwardBtn" id="forward" style="color: #761F33; background:none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                    <i class="fa fa-angle-right fa-lg"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -361,8 +363,8 @@
 
             <div class="cart">
                 <div class="course-choices" id="course-choices">
-                    <p style="font-size: 20px; margin-left:15px; margin-top:10px;margin-bottom:10px;color:white;">Selected Courses</p>
-                    <div id="course-list">
+                    <p style="font-size: 20px; margin-left: 15px; margin-top: 10px; margin-bottom: 10px; color: black; font-family: 'Avenir', Helvetica, sans-serif; ">Selected Courses</p>
+                    <div id="course-list" style="font-family: 'Avenir', Helvetica, sans-serif; ">
 
                     </div>
                     <div>
@@ -372,15 +374,11 @@
                         </form>
                     </div>
                 </div>
-                <div class="cartBtn">
-                    <button name="cartBtn" type="submit" class="fa fa-caret-left" onclick="toggleBttn(document.getElementById('course-choices'))"></button>
-                    <!--https://fontawesome.com/v4.7/icon/caret-left-->
-                </div>
             </div>
 
         </div>
         <div class="footer">
-            <p>Abington School District © 2022. All Rights Reserved.</p>
+            <p style="color:white;">Abington School District © 2022. All Rights Reserved.</p>
         </div>
     </div>
     <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
