@@ -6,7 +6,6 @@ class database:
         self.name = name
         connection = sqlite3.connect(self.name)
         cursor = connection.cursor()
-        #might need some sort of unique integer id identifier instead of idNum as a String
         cursor.execute('''CREATE TABLE IF NOT EXISTS users(
             idNum TEXT PRIMARY KEY,
             email TEXT NOT NULL UNIQUE,
@@ -65,8 +64,7 @@ class database:
         cursor = connection.cursor()
         finList = []
         for row in cursor.execute('SELECT * FROM "users"'):
-            #comment out later
-            #print(row)
+            print(row)
             finList.append(row)
         connection.close
         return finList
