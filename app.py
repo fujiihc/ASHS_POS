@@ -147,7 +147,7 @@ def catalog():
         elif request.form.get('logoutBtn'):
             return redirect(url_for('logout'))
 
-        if keyword == 'nileena' + easterEgg or keyword == 'caden' + easterEgg or keyword == 'davan' + easterEgg or 'tyler' + easterEgg:
+        if keyword == 'nileena' + easterEgg or keyword == 'caden' + easterEgg or keyword == 'davan' + easterEgg or keyword =='tyler' + easterEgg:
             keyword = ''
             return jsonify(dict(redirect='/credits'))
 
@@ -241,7 +241,7 @@ def student():
             elif request.form.get('logoutBtn'):
                 return redirect(url_for('logout'))
 
-            if keyword == 'nileena' + easterEgg or keyword == 'caden' + easterEgg or keyword == 'davan' + easterEgg or 'tyler' + easterEgg:
+            if keyword == 'nileena' + easterEgg or keyword == 'caden' + easterEgg or keyword == 'davan' + easterEgg or keyword == 'tyler' + easterEgg:
                     keyword = ''
                     return jsonify(dict(redirect='/credits'))
 
