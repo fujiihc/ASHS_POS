@@ -52,7 +52,6 @@ def logout():
         global credentials
         global userData
         isLoggedIn = False
-        #clear cache and that kind of thing
         requests.post('https://oauth2.googleapis.com/revoke', data={'token': credentials.access_token}, headers = {'content-type': 'application/x-www-form-urlencoded'})
         db.update(userData[0], 'token', 'None')
         credentials = ''
@@ -94,9 +93,14 @@ def callback():
             userData = db.findData(idNum)[0]
             
             return redirect(url_for('student'))
+        else:
+            requests.post('https://oauth2.googleapis.com/revoke', data={'token': credentials.access_token}, headers = {'content-type': 'application/x-www-form-urlencoded'})
+            credentials = ''
     except:
-        pass
-    #include the revoke token here
+        requests.post('https://oauth2.googleapis.com/revoke', data={'token': credentials.access_token}, headers = {'content-type': 'application/x-www-form-urlencoded'})
+        credentials = ''
+        
+   
     return redirect(url_for('login'))
     
 
