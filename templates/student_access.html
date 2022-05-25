@@ -198,7 +198,7 @@
                                 <input type="checkbox" id="MU" value="MU" onclick="checkboxClick(this)">
                                 <span class="checkmark"></span>
                             </label>
-                            
+
 
 
                         </div>
@@ -348,8 +348,8 @@
                             </table>
 
                         </template>
-                       
-                        
+
+
 
                         <div class="results" id="results"></div>
 
@@ -437,12 +437,12 @@
             //console.log(response);
             currentData = response['data']; n = 0;
             display(JSON.parse(response['data']))
-            
+
             try {
                 responseCart = JSON.parse(response['cart'])
 
                 var subKeys = Object.keys(responseCart['ID']);
-                
+
                 for (var i = 0; i < subKeys.length; i++) {
                     var nameLong = responseCart["longDescription"][subKeys[i]];
                     //console.log(nameLong);
@@ -454,14 +454,14 @@
                         splitName.shift()
                         splitName.shift()
                     }
-                    
+
                     var nameShort = ""
                     for (var k = 0; k < splitName.length; k++) {
                         nameShort += splitName[k];
                         if (k != splitName.length - 1) nameShort += " ";
                     }
                     //console.log(nameShort);
-                    
+
                     var templ = document.getElementById("courseInCart");
                     var creditsNum = responseCart['credits'][subKeys[i]];
                     var credits = parseInt(creditsNum);
@@ -488,7 +488,7 @@
                     templ.innerHTML = templ.innerHTML.replace(credits + " credits", "##credits##");
                     templ.innerHTML = templ.innerHTML.replace(creditsNum, "##creditsNum##");
                     num++;
-                    
+
                 }
 
             } catch (error) { }
@@ -602,10 +602,11 @@
 
             var subKeys = Object.keys(json['ID']);
 
-            if(subKeys.length == 0){
+            if (subKeys.length == 0) {
                 var temp = document.getElementById("noResult");
                 document.getElementById("results").appendChild(temp.content.cloneNode(true));
-            }else{
+                pageTotal = 1;
+            } else {
                 var temp = document.getElementById("cont");
 
                 var start = n;
@@ -669,58 +670,57 @@
                     temp.innerHTML = temp.innerHTML.replace("name" + s, "##nameID##");
                 }
 
-                //Pages Display
-                currentPageBox.style.fontWeight = "normal";
-                currentPageBox.style.background = "none";
-                
-                for (var i = 1; i < 6; i++) {
-                    document.getElementById("pageBox" + i).style.display = "revert";
-                }
-
-                //console.log(currentPage);
                 pageTotal = Math.ceil(subKeys.length / 10);
-                if (currentPage < 4) { currentPageBox = document.getElementById("pageBox" + currentPage); }
-
-                document.getElementById("pageBox5").innerHTML = pageTotal;
-
-                for (var i = 5; i > pageTotal; i--) {
-                    document.getElementById("pageBox" + i).style.display = "none";
-                }
-
-                if (currentPage > 3) {
-                    document.getElementById("pageBox2").innerHTML = "...";
-                    document.getElementById("pageBox3").innerHTML = currentPage;
-                }
-                else {
-                    document.getElementById("pageBox2").innerHTML = "2";
-                    document.getElementById("pageBox3").innerHTML = "3";
-                }
-
-                if (document.getElementById("pageBox3").innerHTML >= (pageTotal - 2)) {
-                    document.getElementById("pageBox4").innerHTML = pageTotal - 1;
-                }
-                else {
-                    document.getElementById("pageBox4").innerHTML = "...";
-                }
-
-                if (currentPage >= (pageTotal - 1)) {
-                    document.getElementById("pageBox3").innerHTML = pageTotal - 2;
-                    currentPageBox = document.getElementById("pageBox4");
-                    if (currentPage == pageTotal) {
-                        currentPageBox = document.getElementById("pageBox5");
-                    }
-                }
-                else if (currentPage > 2) {
-                    currentPageBox = document.getElementById("pageBox3");
-                }
-
-                currentPageBox.style.fontWeight = "bold";
-                currentPageBox.style.background = "lightgrey";
-                
             }
-            
+
+            //Pages Display
+            currentPageBox.style.fontWeight = "normal";
+            currentPageBox.style.background = "none";
+
+            for (var i = 1; i < 6; i++) {
+                document.getElementById("pageBox" + i).style.display = "revert";
+            }
+
+            //console.log(currentPage);
+
+            if (currentPage < 4) { currentPageBox = document.getElementById("pageBox" + currentPage); }
+            document.getElementById("pageBox5").innerHTML = pageTotal;
+
+            for (var i = 5; i > pageTotal; i--) {
+                document.getElementById("pageBox" + i).style.display = "none";
+            }
+
+            if (currentPage > 3) {
+                document.getElementById("pageBox2").innerHTML = "...";
+                document.getElementById("pageBox3").innerHTML = currentPage;
+            }
+            else {
+                document.getElementById("pageBox2").innerHTML = "2";
+                document.getElementById("pageBox3").innerHTML = "3";
+            }
+
+            if (document.getElementById("pageBox3").innerHTML >= (pageTotal - 2)) {
+                document.getElementById("pageBox4").innerHTML = pageTotal - 1;
+            }
+            else {
+                document.getElementById("pageBox4").innerHTML = "...";
+            }
+
+            if (currentPage >= (pageTotal - 1)) {
+                document.getElementById("pageBox3").innerHTML = pageTotal - 2;
+                currentPageBox = document.getElementById("pageBox4");
+                if (currentPage == pageTotal) {
+                    currentPageBox = document.getElementById("pageBox5");
+                }
+            }
+            else if (currentPage > 2) {
+                currentPageBox = document.getElementById("pageBox3");
+            }
+
+            currentPageBox.style.fontWeight = "bold";
+            currentPageBox.style.background = "lightgrey";
         }
-        
+
         //VARIABLES
         var theseContainers = document.getElementsByClassName("dropdown-container");
         var dropdownBttns = document.getElementsByClassName("dropdown");
@@ -799,7 +799,7 @@
                     if (k != splitName.length - 1) nameShort += " ";
                 }
 
-                
+
                 var templ = document.getElementById("courseInCart");
                 var credits = parseInt(element.getAttribute("data-credits"));
                 var creditsNum = element.getAttribute("data-credits");
