@@ -672,6 +672,10 @@
                 //Pages Display
                 currentPageBox.style.fontWeight = "normal";
                 currentPageBox.style.background = "none";
+                
+                for (var i = 1; i < 6; i++) {
+                    document.getElementById("pageBox" + i).style.display = "revert";
+                }
 
                 //console.log(currentPage);
                 pageTotal = Math.ceil(subKeys.length / 10);
