@@ -200,13 +200,13 @@
                             </label>
                             <!--
 
-            <label for="N/A" class="checkbox-container">
-                N/A
-                <input type="checkbox" id="N/A" value="N/A" onclick="checkboxClick(this)">
-                <span class="checkmark"></span>
-            </label>
+                            <label for="N/A" class="checkbox-container">
+                                N/A
+                                <input type="checkbox" id="N/A" value="N/A" onclick="checkboxClick(this)">
+                                <span class="checkmark"></span>
+                            </label>
 
-            -->
+                            -->
 
 
                         </div>
@@ -365,7 +365,7 @@
                                 No Result
                             </div>
                         </template>
-                        
+
                         <div class="results" id="results"></div>
 
                     </div>
@@ -490,10 +490,11 @@
 
             var subKeys = Object.keys(json['ID']);
 
-            if(subKeys.length == 0){
+            if (subKeys.length == 0) {
                 var temp = document.getElementById("noResult");
                 document.getElementById("results").appendChild(temp.content.cloneNode(true));
-            }else{
+                pageTotal = 1;
+            } else {
                 var temp = document.getElementById("cont");
 
                 var start = n;
@@ -555,58 +556,59 @@
                     temp.innerHTML = temp.innerHTML.replace("add" + s, "##addID##");
 
                     temp.innerHTML = temp.innerHTML.replace("name" + s, "##nameID##");
-                }
 
-                //Pages Display
-                currentPageBox.style.fontWeight = "normal";
-                currentPageBox.style.background = "none";
-                
-                for (var i = 1; i < 6; i++) {
-                    document.getElementById("pageBox" + i).style.display = "revert";
+                    pageTotal = Math.ceil(subKeys.length / 10);
                 }
-                
-                //console.log(currentPage);
-                pageTotal = Math.ceil(subKeys.length / 10);
-                if (currentPage < 4) { currentPageBox = document.getElementById("pageBox" + currentPage); }
-
-                document.getElementById("pageBox5").innerHTML = pageTotal;
-
-                for (var i = 5; i > pageTotal; i--) {
-                    document.getElementById("pageBox" + i).style.display = "none";
-                }
-
-                if (currentPage > 3) {
-                    document.getElementById("pageBox2").innerHTML = "...";
-                    document.getElementById("pageBox3").innerHTML = currentPage;
-                }
-                else {
-                    document.getElementById("pageBox2").innerHTML = "2";
-                    document.getElementById("pageBox3").innerHTML = "3";
-                }
-
-                if (document.getElementById("pageBox3").innerHTML >= (pageTotal - 2)) {
-                    document.getElementById("pageBox4").innerHTML = pageTotal - 1;
-                }
-                else {
-                    document.getElementById("pageBox4").innerHTML = "...";
-                }
-
-                if (currentPage >= (pageTotal - 1)) {
-                    document.getElementById("pageBox3").innerHTML = pageTotal - 2;
-                    currentPageBox = document.getElementById("pageBox4");
-                    if (currentPage == pageTotal) {
-                        currentPageBox = document.getElementById("pageBox5");
-                    }
-                }
-                else if (currentPage > 2) {
-                    currentPageBox = document.getElementById("pageBox3");
-                }
-
-                currentPageBox.style.fontWeight = "bold";
-                currentPageBox.style.background = "lightgrey";
-                
             }
-            
+
+            //Pages Display
+            currentPageBox.style.fontWeight = "normal";
+            currentPageBox.style.background = "none";
+
+            for (var i = 1; i < 6; i++) {
+                document.getElementById("pageBox" + i).style.display = "revert";
+            }
+
+            //console.log(currentPage);
+            //pageTotal = Math.ceil(subKeys.length / 10);
+            if (currentPage < 4) { currentPageBox = document.getElementById("pageBox" + currentPage); }
+
+            document.getElementById("pageBox5").innerHTML = pageTotal;
+
+            for (var i = 5; i > pageTotal; i--) {
+                document.getElementById("pageBox" + i).style.display = "none";
+            }
+
+            if (currentPage > 3) {
+                document.getElementById("pageBox2").innerHTML = "...";
+                document.getElementById("pageBox3").innerHTML = currentPage;
+            }
+            else {
+                document.getElementById("pageBox2").innerHTML = "2";
+                document.getElementById("pageBox3").innerHTML = "3";
+            }
+
+            if (document.getElementById("pageBox3").innerHTML >= (pageTotal - 2)) {
+                document.getElementById("pageBox4").innerHTML = pageTotal - 1;
+            }
+            else {
+                document.getElementById("pageBox4").innerHTML = "...";
+            }
+
+            if (currentPage >= (pageTotal - 1)) {
+                document.getElementById("pageBox3").innerHTML = pageTotal - 2;
+                currentPageBox = document.getElementById("pageBox4");
+                if (currentPage == pageTotal) {
+                    currentPageBox = document.getElementById("pageBox5");
+                }
+            }
+            else if (currentPage > 2) {
+                currentPageBox = document.getElementById("pageBox3");
+            }
+
+            currentPageBox.style.fontWeight = "bold";
+            currentPageBox.style.background = "lightgrey";
+
         }
 
 
