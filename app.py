@@ -30,7 +30,6 @@ GOOGLE_CLIENT_SECRET = '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'
 db = database('database.db')
 df = data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna('').astype(str))
 oauthFlow = OAuth2WebServerFlow(client_id=GOOGLE_CLIENT_ID, client_secret=GOOGLE_CLIENT_SECRET, scope = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'], redirect_uri='http://localhost:5555/oauth2callback', auth_uri=GOOGLE_AUTH_URI + '?hd=' + 'abington.k12.pa.us', revoke_uri='https://oauth2.googleapis.com/revoke')
-#need a revoke uri which i use for logout?
 app = Flask(__name__)
 
 
@@ -69,10 +68,6 @@ def callback():
 
     credentials = oauthFlow.step2_exchange(request.args.get('code'))
     studentData = json.loads(credentials.to_json())
-    
-    #print(studentData)
-    #https://flask-dance.readthedocs.io/en/latest/logout.html
-
     personalData = studentData['id_token']
     try:
         if personalData['hd'] == 'abington.k12.pa.us':
@@ -211,7 +206,6 @@ def student():
                     cartDF.merge(df.findCourse(item, 'longDescription', True))
                     
                 db.update(userData[0], 'courses', cart)
-                #db.dataList()
                 userData = db.findData(userData[0])[0]
 
                 if request.form['redirect'] == 'true':
@@ -243,7 +237,6 @@ def student():
                 for item in cart:
                     cartDF.merge(df.findCourse(item, 'longDescription', True))
 
-                #print(cartDF.getDF())
                 return {'data' : df.getDF().to_json(), 'cart' : cartDF.getDF().to_json()}
             elif request.form.get('logoutBtn'):
                 return redirect(url_for('logout'))
