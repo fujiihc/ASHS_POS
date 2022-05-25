@@ -40,7 +40,6 @@ class data:
         return finalList
 
     def merge(self, data2):
-        #merge, remove duplicates
         self.df = pd.concat([self.df, data2.getDF()]).drop_duplicates().reset_index(drop = True)
         return self
         
