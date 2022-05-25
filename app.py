@@ -76,7 +76,7 @@ def callback():
             idNum = personalData['email'].split('@')[0]
             
             if len(db.findData(idNum)) == 0:
-                print('new user')
+                #print('new user')
                 email = personalData['email']
                 firstName = personalData['given_name']
                 lastName = personalData['family_name']
