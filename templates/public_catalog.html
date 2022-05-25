@@ -50,7 +50,7 @@
             </div>
             <div class="container">
                 <div class="sidebar">
-                    <p style="padding: 20px 8px 10px 16px; cursor:auto; font-family:'Baskerville';font-size:23px;">Refine Results</p>
+                    <p style="padding: 20px 8px 10px 16px; cursor: auto; font-family: 'Avenir', Helvetica, sans-serif; font-size: 23px;">Refine Results</p>
 
                     <button class="dropdown" id="pathwayBttn">
                         Pathway
@@ -117,6 +117,7 @@
 
                         </div>
                     </form>
+                    <hr style=" width: 80%; align-self: center; margin: auto; background-color: black; margin-top:11px">
 
                     <button class="dropdown">
                         Department
@@ -199,18 +200,18 @@
                             </label>
                             <!--
 
-                            <label for="N/A" class="checkbox-container">
-                                N/A
-                                <input type="checkbox" id="N/A" value="N/A" onclick="checkboxClick(this)">
-                                <span class="checkmark"></span>
-                            </label>
+            <label for="N/A" class="checkbox-container">
+                N/A
+                <input type="checkbox" id="N/A" value="N/A" onclick="checkboxClick(this)">
+                <span class="checkmark"></span>
+            </label>
 
-                            -->
+            -->
 
 
                         </div>
                     </form>
-
+                    <hr style=" width: 80%; align-self: center; margin: auto; background-color: black; margin-top:11px">
 
                     <button class="dropdown">
                         Course Level
@@ -239,7 +240,7 @@
                             </label>
                         </div>
                     </form>
-
+                    <hr style=" width: 80%; align-self: center; margin: auto; background-color: black; margin-top:11px">
 
                     <button class="dropdown">
                         Length
@@ -263,6 +264,7 @@
 
                         </div>
                     </form>
+                    <hr style=" width: 80%; align-self: center; margin: auto; background-color: black; margin-top:11px">
 
                     <form action="/catalog" id="clear">
                         <button class="dropdown" style="font-size:15px; text-align:center; padding:20px 0px 0px 0px;">
@@ -275,35 +277,16 @@
                 <div class="mainArea">
 
                     <div class="mainSpace">
-                        <div id="changePageBar" style="margin-top: 30px; justify-content: space-between; display:flex;">
-                            <div>
-                                <button type="submit" class="backBtn" id="backward" style="color: #761F33; background: none; width: 20px; height: 25px; border: none; cursor: pointer;">
-                                    <i class="fa fa-angle-left fa-lg"></i>
-                                </button>
-                            </div>
-
-                            <div id="pageNums"></div>
-
-                            <template id="currentPage">
-                                <p>Page ##in## of ##out##</p>
-                            </template>
-
-                            <div>
-                                <button type="submit" class="forwardBtn" id="forward" style="color: #761F33; background:none; width: 20px; height: 25px; border: none; cursor: pointer;">
-                                    <i class="fa fa-angle-right fa-lg"></i>
-                                </button>
-                            </div>
-                        </div>
 
                         <table style="margin-top:20px;">
 
 
                             <tr>
                                 <td style="font-size: 15px; display: flex; justify-content: space-between; color: white; padding-left: 10px; padding-right: 10px; background-color: #761F33;">
-                                    <div>Department</div>
-                                    <div style="padding-right:60px;">Length</div>
-                                    <div style="padding-right: 80px;">Level</div>
-                                    <div style="padding-right: 50px;">Description</div>
+                                    <div style="font-family: 'Avenir', Helvetica, sans-serif;">Department</div>
+                                    <div style="font-family: 'Avenir', Helvetica, sans-serif; padding-right:60px;">Length</div>
+                                    <div style="font-family: 'Avenir', Helvetica, sans-serif; padding-right: 80px;">Level</div>
+                                    <div style="font-family: 'Avenir', Helvetica, sans-serif; padding-right: 50px;">Description</div>
                                 </td>
                             </tr>
 
@@ -349,6 +332,26 @@
 
 
                         <div class="results" id="results"></div>
+
+                        <div id="changePageBar" style="margin-top: 30px; justify-content: space-between; display:flex;">
+                            <div>
+                                <button type="submit" class="backBtn" id="backward" style="color: #761F33; background: none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                    <i class="fa fa-angle-left fa-lg"></i>
+                                </button>
+                            </div>
+
+                            <div id="pageNums"></div>
+
+                            <template id="currentPage">
+                                <p>Page ##in## of ##out##</p>
+                            </template>
+
+                            <div>
+                                <button type="submit" class="forwardBtn" id="forward" style="color: #761F33; background:none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                    <i class="fa fa-angle-right fa-lg"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
