@@ -276,6 +276,38 @@
 
                     <div class="mainSpace">
 
+                        <div id="changePageBar" style="margin-top: 30px; justify-content: space-between; display:flex;">
+                            <table id="pageNumsBar">
+                                <tr>
+                                    <td>
+                                        <button type="submit" class="backBtn" id="fullbackward" style="color: #761F33; background: none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                            <i class="fa fa-angle-left fa-lg"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="backBtn" id="backward" style="color: #761F33; background: none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                            <i class="fa fa-angle-left fa-lg"></i>
+                                        </button>
+                                    </td>
+                                    <td id="pageBox1">1</td>
+                                    <td id="pageBox2">2</td>
+                                    <td id="pageBox3">3</td>
+                                    <td id="pageBox4">...</td>
+                                    <td id="pageBox5">##last##</td>
+                                    <td>
+                                        <button type="submit" class="forwardBtn" id="forward" style="color: #761F33; background:none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                            <i class="fa fa-angle-right fa-lg"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="forwardBtn" id="fullforward" style="color: #761F33; background:none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                            <i class="fa fa-angle-right fa-lg"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
                         <table style="margin-top:20px;">
 
 
@@ -395,6 +427,8 @@
         var creditTotal = 0;
 
         var currentPage = 1;
+        var currentPageBox = document.getElementById("pageBox5");
+        var pageTotal;
 
         $.ajax({
             type: "POST",
@@ -468,6 +502,17 @@
 
         $("#forward").click(function () {
             if ((n + 10) < length) { n += 10; currentPage++; }
+            display(JSON.parse(currentData));
+        });
+
+        $("#fullbackward").click(function () {
+            n = 0; currentPage = 1;
+            display(JSON.parse(currentData));
+        });
+
+        $("#fullforward").click(function () {
+            n = (pageTotal * 10) - 10;
+            currentPage = pageTotal;
             display(JSON.parse(currentData));
         });
 
@@ -619,14 +664,49 @@
                 temp.innerHTML = temp.innerHTML.replace("name" + s, "##nameID##");
             }
 
-            var pageTotal = Math.ceil(subKeys.length / 10);
-            temp = document.getElementById("currentPage");
+            //Pages Display
+            currentPageBox.style.fontWeight = "normal";
+            currentPageBox.style.background = "none";
 
-            temp.innerHTML = temp.innerHTML.replace("##in##", String(currentPage));
-            temp.innerHTML = temp.innerHTML.replace("##out##", String(pageTotal));
-            document.getElementById("pageNums").appendChild(temp.content.cloneNode(true));
-            temp.innerHTML = temp.innerHTML.replace(String(currentPage), "##in##");
-            temp.innerHTML = temp.innerHTML.replace(String(pageTotal), "##out##");
+            //console.log(currentPage);
+            pageTotal = Math.ceil(subKeys.length / 10);
+            if (currentPage < 4) { currentPageBox = document.getElementById("pageBox" + currentPage); }
+
+            document.getElementById("pageBox5").innerHTML = pageTotal;
+
+            for (var i = 5; i > pageTotal; i--) {
+                document.getElementById("pageBox" + i).style.display = "none";
+            }
+
+            if (currentPage > 3) {
+                document.getElementById("pageBox2").innerHTML = "...";
+                document.getElementById("pageBox3").innerHTML = currentPage;
+            }
+            else {
+                document.getElementById("pageBox2").innerHTML = "2";
+                document.getElementById("pageBox3").innerHTML = "3";
+            }
+
+            if (document.getElementById("pageBox3").innerHTML >= (pageTotal - 2)) {
+                document.getElementById("pageBox4").innerHTML = pageTotal - 1;
+            }
+            else {
+                document.getElementById("pageBox4").innerHTML = "...";
+            }
+
+            if (currentPage >= (pageTotal - 1)) {
+                document.getElementById("pageBox3").innerHTML = pageTotal - 2;
+                currentPageBox = document.getElementById("pageBox4");
+                if (currentPage == pageTotal) {
+                    currentPageBox = document.getElementById("pageBox5");
+                }
+            }
+            else if (currentPage > 2) {
+                currentPageBox = document.getElementById("pageBox3");
+            }
+
+            currentPageBox.style.fontWeight = "bold";
+            currentPageBox.style.background = "lightgrey";
         }
 
         //VARIABLES
