@@ -119,15 +119,13 @@
 }
 
 .mainArea {
-	margin: auto;
-	align-self: center;
 	width: 1000px;
 }
 
 	.mainArea .mainSpace {
 		position: absolute;
 		top: 200px;
-		margin-left: 220px;
+		margin-left: 350px;
 		width: 800px;
 	}
 
@@ -177,6 +175,10 @@ table {
 	width: 100%;
 }
 
+	table p {
+		font-family: 'Avenir', Helvetica, sans-serif;
+	}
+
 td, th {
 	border: 1px solid #dddddd;
 	text-align: left;
@@ -196,8 +198,9 @@ tr:hover {
 
 .course-name {
 	font-weight: bold;
-	margin-bottom: 10px;
-	font-size: 20px;
+	margin-bottom: 40px;
+	font-size: 22px;
+	font-family: 'Avenir', Helvetica, sans-serif;
 }
 
 .descriptions {
@@ -207,6 +210,7 @@ tr:hover {
 	justify-content: space-between;
 	margin-left: 10px;
 	margin-right: 10px;
+	font-weight:bolder;
 }
 
 .viewDescriptionBtn {
@@ -216,6 +220,7 @@ tr:hover {
 	border: none;
 	background: none;
 	cursor: pointer;
+	font-weight:bold;
 }
 
 	.viewDescriptionBtn:hover {
@@ -251,24 +256,18 @@ tr:hover {
 
 
 .cart {
-	position: fixed;
-	right: 0px;
-	top: 200px;
-	z-index:200px;
+	position: absolute;
+	top: 220px;
+	margin-left: 1510px;
 }
 
 .course-choices {
 	position: absolute;
 	right: 0px;
-	width: 200px;
+	width: 270px;
+	margin-right: 30px;
 	height: 300px;
-	background-color: black;
-}
-
-.cartBtn {
-	position: absolute;
-	right: 15px;
-	margin-top: 15px;
+	background-color: #CDCDCD;
 }
 
 	.cartBtn .fa {
@@ -363,12 +362,12 @@ tr:hover {
 
 /*SIDEBAR*/
 .sidebar {
-	height: 1200px;
-	width: 220px;
+	height: 1400px;
+	width: 250px;
 	background-color: #CDCDCD;
 	overflow-x: hidden;
 	margin-top: 180px;
-	left: 0px;
+	margin-left: 0px;
 }
 
 	.sidebar p {
@@ -378,7 +377,7 @@ tr:hover {
 	}
 
 	.sidebar .filterType, .dropdown, .sidebar p {
-		padding: 30px 15px 5px 35px;
+		padding: 30px 35px 5px 35px;
 		text-decoration: none;
 		font-size: 17px;
 		color: black;
@@ -484,11 +483,10 @@ label {
 .footer {
 	position: absolute;
 	z-index: 99;
-	left: 0px;
-	right: 0px;
 	height: 90px;
 	background-color: black;
 	width: 100%;
+}
 }
 
 	.footer p {
