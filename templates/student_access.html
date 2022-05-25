@@ -601,113 +601,122 @@
             $("#pageNums").html("");
 
             var subKeys = Object.keys(json['ID']);
-            var temp = document.getElementById("cont");
 
-            var start = n;
-            var end = n + 10;
-            length = subKeys.length;
-            if (end > length) { end = length; }
-
-            for (var s = start; s < end; s++) {
-                var longDescription = json['longDescription'][subKeys[s]].toUpperCase();
-                var description = json['description'][subKeys[s]];
-                var dept = json['dept'][subKeys[s]] + ' ';
-
-                var courseLength = json['Length'][subKeys[s]];
-
-                var uniqueId = json['ID'][subKeys[s]];
-                var creditsNum = json['credits'][subKeys[s]] + ".0";
-                var credits = parseInt(creditsNum);
-
-                temp.innerHTML = temp.innerHTML.replace("##course name##", longDescription);
-
-                temp.innerHTML = temp.innerHTML.replace("##description##", description);
-                temp.innerHTML = temp.innerHTML.replace("##depts##", dept);
-                temp.innerHTML = temp.innerHTML.replace("##courseLength##", courseLength);
-                temp.innerHTML = temp.innerHTML.replace("##credits##", credits + " credits");
-                temp.innerHTML = temp.innerHTML.replace("##creditsNum##", creditsNum);
-                temp.innerHTML = temp.innerHTML.replace("##uniqueId##", uniqueId);
-
-                var levelNum = json['level'][subKeys[s]];
-                var level = "";
-                if (levelNum == "1") level = "Standard/CP";
-                if (levelNum == "2") level = "Honors";
-                if (levelNum == "3") level = "AP";
-
-                temp.innerHTML = temp.innerHTML.replace("##courseLevel##", level);
-
-                temp.innerHTML = temp.innerHTML.replace("##buttonID##", "button" + s);
-                temp.innerHTML = temp.innerHTML.replace("##descID##", "desc" + s);
-
-                temp.innerHTML = temp.innerHTML.replace("##addID##", "add" + s);
-                temp.innerHTML = temp.innerHTML.replace("##nameID##", "name" + s);
-
+            if(subKeys.length == 0){
+                var temp = document.getElementById("noResult");
                 document.getElementById("results").appendChild(temp.content.cloneNode(true));
+            }else{
+                var temp = document.getElementById("cont");
 
-                temp.innerHTML = temp.innerHTML.replace(longDescription, "##course name##");
+                var start = n;
+                var end = n + 10;
+                length = subKeys.length;
 
-                temp.innerHTML = temp.innerHTML.replace(description, "##description##");
-                temp.innerHTML = temp.innerHTML.replace(dept, "##depts##");
-                temp.innerHTML = temp.innerHTML.replace(courseLength, "##courseLength##");
-                temp.innerHTML = temp.innerHTML.replace(credits + " credits", "##credits##");
-                temp.innerHTML = temp.innerHTML.replace(creditsNum, "##creditsNum##");
-                temp.innerHTML = temp.innerHTML.replace(uniqueId, "##uniqueId##");
+                if (end > length) { end = length; }
 
-                temp.innerHTML = temp.innerHTML.replace(level, "##courseLevel##");
+                for (var s = start; s < end; s++) {
+                    var longDescription = json['longDescription'][subKeys[s]].toUpperCase();
+                    var description = json['description'][subKeys[s]];
+                    var dept = json['dept'][subKeys[s]] + ' ';
 
-                temp.innerHTML = temp.innerHTML.replace("button" + s, "##buttonID##");
-                temp.innerHTML = temp.innerHTML.replace("desc" + s, "##descID##");
+                    var courseLength = json['Length'][subKeys[s]];
 
-                temp.innerHTML = temp.innerHTML.replace("add" + s, "##addID##");
+                    var uniqueId = json['ID'][subKeys[s]];
+                    var creditsNum = json['credits'][subKeys[s]] + ".0";
+                    var credits = parseInt(creditsNum);
 
-                temp.innerHTML = temp.innerHTML.replace("name" + s, "##nameID##");
-            }
+                    temp.innerHTML = temp.innerHTML.replace("##course name##", longDescription);
 
-            //Pages Display
-            currentPageBox.style.fontWeight = "normal";
-            currentPageBox.style.background = "none";
+                    temp.innerHTML = temp.innerHTML.replace("##description##", description);
+                    temp.innerHTML = temp.innerHTML.replace("##depts##", dept);
+                    temp.innerHTML = temp.innerHTML.replace("##courseLength##", courseLength);
+                    temp.innerHTML = temp.innerHTML.replace("##credits##", credits + " credits");
+                    temp.innerHTML = temp.innerHTML.replace("##creditsNum##", creditsNum);
+                    temp.innerHTML = temp.innerHTML.replace("##uniqueId##", uniqueId);
 
-            //console.log(currentPage);
-            pageTotal = Math.ceil(subKeys.length / 10);
-            if (currentPage < 4) { currentPageBox = document.getElementById("pageBox" + currentPage); }
+                    var levelNum = json['level'][subKeys[s]];
+                    var level = "";
+                    if (levelNum == "1") level = "Standard/CP";
+                    if (levelNum == "2") level = "Honors";
+                    if (levelNum == "3") level = "AP";
 
-            document.getElementById("pageBox5").innerHTML = pageTotal;
+                    temp.innerHTML = temp.innerHTML.replace("##courseLevel##", level);
 
-            for (var i = 5; i > pageTotal; i--) {
-                document.getElementById("pageBox" + i).style.display = "none";
-            }
+                    temp.innerHTML = temp.innerHTML.replace("##buttonID##", "button" + s);
+                    temp.innerHTML = temp.innerHTML.replace("##descID##", "desc" + s);
 
-            if (currentPage > 3) {
-                document.getElementById("pageBox2").innerHTML = "...";
-                document.getElementById("pageBox3").innerHTML = currentPage;
-            }
-            else {
-                document.getElementById("pageBox2").innerHTML = "2";
-                document.getElementById("pageBox3").innerHTML = "3";
-            }
+                    temp.innerHTML = temp.innerHTML.replace("##addID##", "add" + s);
+                    temp.innerHTML = temp.innerHTML.replace("##nameID##", "name" + s);
 
-            if (document.getElementById("pageBox3").innerHTML >= (pageTotal - 2)) {
-                document.getElementById("pageBox4").innerHTML = pageTotal - 1;
-            }
-            else {
-                document.getElementById("pageBox4").innerHTML = "...";
-            }
+                    document.getElementById("results").appendChild(temp.content.cloneNode(true));
 
-            if (currentPage >= (pageTotal - 1)) {
-                document.getElementById("pageBox3").innerHTML = pageTotal - 2;
-                currentPageBox = document.getElementById("pageBox4");
-                if (currentPage == pageTotal) {
-                    currentPageBox = document.getElementById("pageBox5");
+                    temp.innerHTML = temp.innerHTML.replace(longDescription, "##course name##");
+
+                    temp.innerHTML = temp.innerHTML.replace(description, "##description##");
+                    temp.innerHTML = temp.innerHTML.replace(dept, "##depts##");
+                    temp.innerHTML = temp.innerHTML.replace(courseLength, "##courseLength##");
+                    temp.innerHTML = temp.innerHTML.replace(credits + " credits", "##credits##");
+                    temp.innerHTML = temp.innerHTML.replace(creditsNum, "##creditsNum##");
+                    temp.innerHTML = temp.innerHTML.replace(uniqueId, "##uniqueId##");
+
+                    temp.innerHTML = temp.innerHTML.replace(level, "##courseLevel##");
+
+                    temp.innerHTML = temp.innerHTML.replace("button" + s, "##buttonID##");
+                    temp.innerHTML = temp.innerHTML.replace("desc" + s, "##descID##");
+
+                    temp.innerHTML = temp.innerHTML.replace("add" + s, "##addID##");
+
+                    temp.innerHTML = temp.innerHTML.replace("name" + s, "##nameID##");
                 }
-            }
-            else if (currentPage > 2) {
-                currentPageBox = document.getElementById("pageBox3");
-            }
 
-            currentPageBox.style.fontWeight = "bold";
-            currentPageBox.style.background = "lightgrey";
+                //Pages Display
+                currentPageBox.style.fontWeight = "normal";
+                currentPageBox.style.background = "none";
+
+                //console.log(currentPage);
+                pageTotal = Math.ceil(subKeys.length / 10);
+                if (currentPage < 4) { currentPageBox = document.getElementById("pageBox" + currentPage); }
+
+                document.getElementById("pageBox5").innerHTML = pageTotal;
+
+                for (var i = 5; i > pageTotal; i--) {
+                    document.getElementById("pageBox" + i).style.display = "none";
+                }
+
+                if (currentPage > 3) {
+                    document.getElementById("pageBox2").innerHTML = "...";
+                    document.getElementById("pageBox3").innerHTML = currentPage;
+                }
+                else {
+                    document.getElementById("pageBox2").innerHTML = "2";
+                    document.getElementById("pageBox3").innerHTML = "3";
+                }
+
+                if (document.getElementById("pageBox3").innerHTML >= (pageTotal - 2)) {
+                    document.getElementById("pageBox4").innerHTML = pageTotal - 1;
+                }
+                else {
+                    document.getElementById("pageBox4").innerHTML = "...";
+                }
+
+                if (currentPage >= (pageTotal - 1)) {
+                    document.getElementById("pageBox3").innerHTML = pageTotal - 2;
+                    currentPageBox = document.getElementById("pageBox4");
+                    if (currentPage == pageTotal) {
+                        currentPageBox = document.getElementById("pageBox5");
+                    }
+                }
+                else if (currentPage > 2) {
+                    currentPageBox = document.getElementById("pageBox3");
+                }
+
+                currentPageBox.style.fontWeight = "bold";
+                currentPageBox.style.background = "lightgrey";
+                
+            }
+            
         }
-
+        
         //VARIABLES
         var theseContainers = document.getElementsByClassName("dropdown-container");
         var dropdownBttns = document.getElementsByClassName("dropdown");
