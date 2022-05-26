@@ -11,6 +11,7 @@ from oauth2client.client import OAuth2WebServerFlow
 from oauth2client import GOOGLE_AUTH_URI
 import json
 import sqlite3
+import requests
 
 pathways = []
 departments = []
@@ -36,7 +37,7 @@ app = Flask(__name__)
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 wsgi_app = app.wsgi_app
 
-import requests
+
 
 @app.route('/login')
 def login():
