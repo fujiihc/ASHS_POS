@@ -17,17 +17,18 @@ import json
 import sqlite3
 import requests
 
-pathways = []
-departments = []
-courseLengths = []
-courseLevels = []
-cart = []
-cartDF = data(pd.DataFrame())
-keyword = ''
-easterEgg = 'isawesome'
-isLoggedIn = False
+global pathways
+global departments
+global courseLengths
+global courseLevels
+global cart
+global cartDF
 global credentials
 global userData
+global keyword
+easterEgg = 'isawesome'
+isLoggedIn = False
+
 
 GOOGLE_CLIENT_ID = '415583783710-kpg937ob78e3ej719rldcf9or58d3vfa.apps.googleusercontent.com'
 GOOGLE_CLIENT_SECRET = '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'
