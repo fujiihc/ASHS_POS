@@ -185,7 +185,7 @@ td, th {
 	padding: 13px;
 }
 
-tr:hover {
+.tableTr:hover {
 	background-color: #d4d4d4;
 }
 
