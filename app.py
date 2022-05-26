@@ -3,6 +3,10 @@ This script runs the application using a development server.
 It contains the definition of routes and views for the application. 
 """
 
+#translate student stuff into id codes
+#associate the data with the id numbers
+#remember to add 0
+
 from data import data
 from database import database
 import pandas as pd
@@ -148,7 +152,7 @@ def catalog():
         elif request.form.get('logoutBtn'):
             return redirect(url_for('logout'))
 
-        if keyword == 'nileena' + easterEgg or keyword == 'caden' + easterEgg or keyword == 'davan' + easterEgg or keyword =='tyler' + easterEgg:
+        if keyword == 'nileena' + easterEgg or keyword == 'caden' + easterEgg or keyword == 'davan' + easterEgg or keyword =='tyler' + easterEgg or keyword == 'daub' + easterEgg or keyword == 'hiro' + easterEgg or keyword == 'hirotaka' + easterEgg:
             keyword = ''
             return jsonify(dict(redirect='/credits'))
 
@@ -242,7 +246,7 @@ def student():
             elif request.form.get('logoutBtn'):
                 return redirect(url_for('logout'))
 
-            if keyword == 'nileena' + easterEgg or keyword == 'caden' + easterEgg or keyword == 'davan' + easterEgg or keyword == 'tyler' + easterEgg:
+            if keyword == 'nileena' + easterEgg or keyword == 'caden' + easterEgg or keyword == 'davan' + easterEgg or keyword =='tyler' + easterEgg or keyword == 'daub' + easterEgg or keyword == 'hiro' + easterEgg or keyword == 'hirotaka' + easterEgg:
                     keyword = ''
                     return jsonify(dict(redirect='/credits'))
 
