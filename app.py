@@ -37,11 +37,9 @@ db = database('database.db')
 df = data(pd.read_csv('abCourseData.csv', encoding='cp1252').fillna('').astype(str))
 oauthFlow = OAuth2WebServerFlow(client_id=GOOGLE_CLIENT_ID, client_secret=GOOGLE_CLIENT_SECRET, scope = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'], redirect_uri='http://localhost:5555/oauth2callback', auth_uri=GOOGLE_AUTH_URI + '?hd=' + 'abington.k12.pa.us', revoke_uri='https://oauth2.googleapis.com/revoke')
 app = Flask(__name__)
-
-
-# Make the WSGI interface available at the top level so wfastcgi can get it.
 wsgi_app = app.wsgi_app
 
+# Make the WSGI interface available at the top level so wfastcgi can get it.
 
 
 @app.route('/login')
@@ -87,9 +85,10 @@ def callback():
                 firstName = personalData['given_name']
                 lastName = personalData['family_name']
                 courses = []
+                courseID = []
                 token = credentials.access_token
                 
-                db.addData(idNum, email, firstName, lastName, courses, token)
+                db.addData(idNum, email, firstName, lastName, courses, courseID, token)
                 
             userData = db.findData(idNum)[0]
             
@@ -176,9 +175,7 @@ def search_w_modifiers(keyword):
     for d in departments:
         if d != '':
             toBeSearched = toBeSearched.findCourse(d, 'dept', True)
-        #foundations of innovation
-        #ap seminar and research
-        #work study
+
     for leng in courseLengths:
         if leng != '':
             toBeSearched = toBeSearched.findCourse(leng, 'Length', True)
@@ -203,7 +200,8 @@ def student():
         global easterEgg
         global cartDF
         global userData
-
+        
+        #turn all of these if statements into a method called by both student and catalog
         if request.method == 'POST':
             if request.form.get('editCart') == '':
                 cart = request.form['cart'].split(',')
@@ -212,6 +210,7 @@ def student():
                     cartDF.merge(df.findCourse(item, 'longDescription', True))
                     
                 db.update(userData[0], 'courses', cart)
+                db.update(userData[0], 'courseID', cartDF.getDF()['ID'].tolist())
                 userData = db.findData(userData[0])[0]
 
                 if request.form['redirect'] == 'true':
@@ -278,11 +277,8 @@ def requestsLink():
 
 @app.route('/credits')
 def credits():
-    global isLoggedIn
-    if isLoggedIn:
-        return render_template('credits.html')
-    else:
-        return redirect(url_for('login'))
+    return render_template('credits.html')
+
 
 if __name__ == '__main__':
     import os
