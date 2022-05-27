@@ -12,21 +12,26 @@ class database:
             firstName TEXT NOT NULL,
             lastName TEXT NOT NULL,
             courses TEXT NOT NULL,
+            courseID TEXT NOT NULL,
             token TEXT NOT NULL);''')
         connection.commit()
         connection.close()
 
-    def addData(self, idNum, email, firstName, lastName, courses, token):
+    def addData(self, idNum, email, firstName, lastName, courses, courseID, token):
         connection = sqlite3.connect(self.name)
         cursor = connection.cursor()
         coursesStr = ''
+        courseIDstr = ''
         for num in range(len(courses)):
             coursesStr += courses[num]
+            courseIDstr += courseID[num]
             if not num == len(courses) - 1:
                 coursesStr += '#'
-        valuesList = (str(idNum),str(email), str(firstName), str(lastName), str(coursesStr), str(token))
+                courseIDstr += '#'
+        
+        valuesList = (str(idNum),str(email), str(firstName), str(lastName), str(coursesStr), str(courseIDstr), str(token))
         try:
-            cursor.execute('INSERT INTO "users" VALUES (?,?,?,?,?,?)', valuesList)
+            cursor.execute('INSERT INTO "users" VALUES (?,?,?,?,?,?,?)', valuesList)
             connection.commit()
         except:
             connection.close()
@@ -59,7 +64,7 @@ class database:
             connection.close()
             return False
         
-    def dataList(self):
+    def listData(self):
         connection = sqlite3.connect(self.name)
         cursor = connection.cursor()
         finList = []
@@ -73,7 +78,7 @@ class database:
         connection = sqlite3.connect(self.name)
         cursor = connection.cursor()
         passedData = ''
-        if column == 'courses':
+        if column == 'courses' or column == 'courseID':
             for num in range(len(data)):
                 passedData += data[num]
                 if not num == len(data) - 1:
@@ -83,7 +88,7 @@ class database:
         thingy = (str(passedData), str(idNum))
 
         try:
-            if column in ['idNum', 'email', 'firstName', 'lastName', 'courses', 'token']:
+            if column in ['idNum', 'email', 'firstName', 'lastName', 'courses', 'courseID', 'token']:
                 cursor.execute('UPDATE "users" SET ' + str(column) + ' = ? WHERE "idNum" = ?', thingy)
                 connection.commit()
             else:
