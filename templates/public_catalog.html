@@ -8,31 +8,24 @@
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 </head>
 <body>
-    <div class="ahs-logo">
-        <form method="post" action="/">
-            <input type="image" src="{{url_for('static', filename= 'styles/images/ahsLogo.png')}}" width="100" height="100" alt="logo" />
-        </form>
-    </div>
     <div class="page-container">
         <div class="wrapper">
-
             <div class="topnav">
                 <div class="ahs-logo">
-                    <img src="{{url_for('static', filename= 'styles/images/ahsLogo.png')}}" width="100" height="100" alt="logo">
+                    <form method="post" action="/">
+                        <input type="image" src="{{url_for('static', filename= 'styles/images/mainLogo.png')}}" width="359.085" height="90.576" alt="logo">
+                    </form>
                 </div>
                 <form method="post" action="/">
                     <input type="submit" value="Sign Out" class="logoutBtn" name="logoutBtn" />
                 </form>
-                <p style="font-size:40px;margin-top:20px;">ABINGTON</p>
-                <p style="font-size:20px;">Senior High School</p>
             </div>
 
             <div class="header">
                 <div class="logo">
-                    <img src="{{url_for('static', filename= 'styles/images/ahsLogo.png')}}" width="80" height="80" alt="logo">
+                    <img src="{{url_for('static', filename= 'styles/images/horseLogo.png')}}" width="80" height="80" alt="logo">
                 </div>
-                <p style="font-size:40px; position:fixed;left:50px; top:95px; z-index:999; color:black;">ASHS</p>
-                <p style="font-size: 15px; position: fixed; left: 80px; top: 125px; z-index: 999; color: black;">Course Catalog</p>
+                <p style="font-size: 30px; position: fixed; left: 10px; top: 105px; z-index: 999; color: #761F33; font-family: Arial; width: 400px;">Course Catalog</p>
 
                 <form method="post" action="/catalog" id="search">
 
@@ -49,7 +42,101 @@
 
             </div>
             <div class="container">
-                <div class="sidebar">
+                <div class="mainArea">
+
+                    <div class="mainSpace" style="margin-bottom: 100px; margin-left: 10%; margin-right: 10%; width: unset;">
+
+                        <table style="margin-top:20px;">
+
+
+                            <tr>
+                                <td style="font-size: 15px; display: flex; justify-content: space-between; color: white; padding-left: 10px; padding-right: 10px; background-color: #761F33;">
+                                    <div style="font-family: 'Avenir', Helvetica, sans-serif;">Department</div>
+                                    <div style="font-family: 'Avenir', Helvetica, sans-serif; padding-right:60px;">Length</div>
+                                    <div style="font-family: 'Avenir', Helvetica, sans-serif; padding-right: 80px;">Level</div>
+                                    <div style="font-family: 'Avenir', Helvetica, sans-serif; padding-right: 50px;">Description</div>
+                                </td>
+                            </tr>
+
+
+                        </table>
+
+                        <template id="cont">
+                            <table>
+
+                                <tr class="tableTr">
+                                    <td>
+                                        <div style="display: flex; justify-content: space-between; color: #761F33">
+                                            <div class="course-name" id="course-name">##course name##</div>
+                                        </div>
+                                        <div class="descriptions">
+                                            <!--<div>##pathway##</div>-->
+                                            <!--maybe we should display pathway within the dropdown or something-->
+
+                                            <div>##depts##</div>
+                                            <div>##courseLength##</div>
+                                            <div>##courseLevel##</div>
+
+                                            <div>
+                                                <button class="viewDescriptionBtn" id="##buttonID##" onclick="descriptionBttn(this)">
+                                                    View Description
+                                                    <i class="fa fa-caret-down" style="margin-left:5px;"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="descriptions" id="##descID##" style="display: none; font-weight: normal; text-align: left; margin-top:20px;">##description##</div>
+                                    </td>
+                                </tr>
+
+
+                            </table>
+
+                        </template>
+
+                        <template id="noResult">
+                            <div>
+                                No Result
+                            </div>
+                        </template>
+
+                        <div class="results" id="results"></div>
+
+                        <div id="changePageBar" style="margin-top: 30px; justify-content: space-between; display:flex;">
+                            <table id="pageNumsBar" style=" width: 60%; align-self: center; margin: auto; margin-top:40px;">
+                                <tr>
+                                    <td style="padding-right:10px;">
+                                        <button type="submit" class="backBtn" id="fullbackward" style="color: #761F33; background: none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                            <i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                    <td style="padding-right:60px; padding-left:20px;">
+                                        <button type="submit" class="backBtn" id="backward" style="color: #761F33; background: none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                            <i class="fa fa-angle-left fa-lg"></i>
+                                        </button>
+                                    </td>
+                                    <td id="pageBox1" style="font-family: 'Roboto'; color: #761F33;">1</td>
+                                    <td id="pageBox2" style="font-family: 'Roboto'; color: #761F33;">2</td>
+                                    <td id="pageBox3" style="font-family: 'Roboto'; color: #761F33;">3</td>
+                                    <td id="pageBox4" style="font-family: 'Roboto'; color: #761F33;">...</td>
+                                    <td id="pageBox5" style="font-family: 'Roboto'; color: #761F33;">##last##</td>
+                                    <td style="padding-left:60px; padding-right:20px;">
+                                        <button type="submit" class="forwardBtn" id="forward" style="color: #761F33; background:none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                            <i class="fa fa-angle-right fa-lg"></i>
+                                        </button>
+                                    </td>
+                                    <td style="padding-left:10px;">
+                                        <button type="submit" class="forwardBtn" id="fullforward" style="color: #761F33; background:none; width: 20px; height: 25px; border: none; cursor: pointer;">
+                                            <i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="sidebar" ">
                     <p style="padding: 20px 8px 10px 16px; cursor: auto; font-family: 'Avenir', Helvetica, sans-serif; font-size: 23px;">Refine Results</p>
 
                     <button class="dropdown" id="pathwayBttn">
@@ -117,7 +204,7 @@
 
                         </div>
                     </form>
-                    <hr style=" width: 80%; align-self: center; margin: auto; background-color: black; margin-top:11px">
+                    <hr style=" width: 80%; align-self: center; margin: auto; background-color: black; margin-top:15px">
 
                     <button class="dropdown">
                         Department
@@ -200,13 +287,13 @@
                             </label>
                             <!--
 
-                            <label for="N/A" class="checkbox-container">
-                                N/A
-                                <input type="checkbox" id="N/A" value="N/A" onclick="checkboxClick(this)">
-                                <span class="checkmark"></span>
-                            </label>
+                    <label for="N/A" class="checkbox-container">
+                        N/A
+                        <input type="checkbox" id="N/A" value="N/A" onclick="checkboxClick(this)">
+                        <span class="checkmark"></span>
+                    </label>
 
-                            -->
+                    -->
 
 
                         </div>
@@ -266,107 +353,12 @@
                     </form>
                     <hr style=" width: 80%; align-self: center; margin: auto; background-color: black; margin-top:11px">
 
-                    <form action="/catalog" id="clear">
-                        <button class="dropdown" style="font-size:15px; text-align:center; padding:20px 0px 0px 0px;">
+                    <form action="/catalog" id="clear" style="margin-top:40px;">
+                        <button class="dropdown" style="font-size:15px; text-align:center;">
                             Clear All
                         </button>
                     </form>
 
-
-                </div>
-                <div class="mainArea">
-
-                    <div class="mainSpace">
-
-                        <div id="changePageBar" style="margin-top: 30px; justify-content: space-between; display:flex;">
-                            <table id="pageNumsBar">
-                                <tr>
-                                    <td>
-                                        <button type="submit" class="backBtn" id="fullbackward" style="color: #761F33; background: none; width: 20px; height: 25px; border: none; cursor: pointer;">
-                                            <i class="fa fa-angle-left fa-lg"></i>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button type="submit" class="backBtn" id="backward" style="color: #761F33; background: none; width: 20px; height: 25px; border: none; cursor: pointer;">
-                                            <i class="fa fa-angle-left fa-lg"></i>
-                                        </button>
-                                    </td>
-                                    <td id="pageBox1">1</td>
-                                    <td id="pageBox2">2</td>
-                                    <td id="pageBox3">3</td>
-                                    <td id="pageBox4">...</td>
-                                    <td id="pageBox5">##last##</td>
-                                    <td>
-                                        <button type="submit" class="forwardBtn" id="forward" style="color: #761F33; background:none; width: 20px; height: 25px; border: none; cursor: pointer;">
-                                            <i class="fa fa-angle-right fa-lg"></i>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button type="submit" class="forwardBtn" id="fullforward" style="color: #761F33; background:none; width: 20px; height: 25px; border: none; cursor: pointer;">
-                                            <i class="fa fa-angle-right fa-lg"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
-
-                        <table style="margin-top:20px;">
-
-
-                            <tr>
-                                <td style="font-size: 15px; display: flex; justify-content: space-between; color: white; padding-left: 10px; padding-right: 10px; background-color: #761F33;">
-                                    <div style="font-family: 'Avenir', Helvetica, sans-serif;">Department</div>
-                                    <div style="font-family: 'Avenir', Helvetica, sans-serif; padding-right:60px;">Length</div>
-                                    <div style="font-family: 'Avenir', Helvetica, sans-serif; padding-right: 80px;">Level</div>
-                                    <div style="font-family: 'Avenir', Helvetica, sans-serif; padding-right: 50px;">Description</div>
-                                </td>
-                            </tr>
-
-
-                        </table>
-
-                        <template id="cont">
-                            <table>
-
-                                <tr  class="tableTr">
-                                    <td>
-                                        <div style="display: flex; justify-content: space-between;">
-                                            <div class="course-name" id="course-name">##course name##</div>
-                                        </div>
-                                        <div class="descriptions">
-                                            <!--<div>##pathway##</div>-->
-                                            <!--maybe we should display pathway within the dropdown or something-->
-
-                                            <div>##depts##</div>
-                                            <div>##courseLength##</div>
-                                            <div>##courseLevel##</div>
-
-                                            <div>
-                                                <button class="viewDescriptionBtn" id="##buttonID##" onclick="descriptionBttn(this)">
-                                                    View Description
-                                                    <i class="fa fa-caret-down" style="margin-left:5px;"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="descriptions" id="##descID##" style="display: none;">##description##</div>
-                                    </td>
-                                </tr>
-
-
-                            </table>
-
-                        </template>
-
-                        <template id="noResult">
-                            <div>
-                                No Result
-                            </div>
-                        </template>
-
-                        <div class="results" id="results"></div>
-
-                    </div>
 
                 </div>
             </div>
@@ -560,7 +552,6 @@
 
             //Pages Display
             currentPageBox.style.fontWeight = "normal";
-            currentPageBox.style.background = "none";
 
             for (var i = 1; i < 6; i++) {
                 document.getElementById("pageBox" + i).style.display = "revert";
@@ -603,8 +594,6 @@
             }
 
             currentPageBox.style.fontWeight = "bold";
-            currentPageBox.style.background = "lightgrey";
-
         }
 
 
