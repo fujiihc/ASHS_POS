@@ -7,21 +7,21 @@
 
 .page-container {
 	min-height: 100%;
+	min-width:60%;
 }
 
 .wrapper {
 }
 
 .ahs-logo {
-	position: fixed;
 	left: 10px;
-	top: 3px;
+	margin-top: 3px;
 	z-index: 999;
 }
 
 .logo {
 	position: fixed;
-	left: 60px;
+	left: 40px;
 	top: 100px;
 	z-index: 999;
 }
@@ -68,12 +68,12 @@
 /*home*/
 #bttnBox {
 	align-self: center;
-	border-style: groove;
 	margin: auto;
 	width: 500px;
 	height: unset;
 	background-color: #f2f2f2;
 	font-style: bold;
+	margin-top: 220px;
 	margin-bottom: 200px;
 }
 
@@ -119,29 +119,34 @@
 }
 
 .mainArea {
-	width: 1000px;
+	margin-left: 300px;
+	margin-top: 220px;
 }
 
 	.mainArea .mainSpace {
-		position: absolute;
-		top: 200px;
-		margin-left: 350px;
-		width: 800px;
+		align-self: center;
+		margin: auto;
+		min-width: 600px;
+		max-width: 1200px;
+		margin-bottom: 100px;
+		margin-left: 4vw;
+		width: 780px;
 	}
 
 .search_box {
-	padding-bottom: 20px;
+	margin-left: 400px;
 	z-index: 999999;
 }
 
 	.search_box .input {
-		position: absolute;
-		left: 450px;
-		top: 20px;
-		width: 800px;
+		align-self: center;
+		margin: auto;
+		margin-right: 10%;
+		margin-top: 16px;
+		width: 80%;
+		min-width: 200px;
 		border: none;
-		height: 40px;
-		padding: 10px 20px;
+		padding: 13px 20px;
 		font-size: 18px;
 		background-color: white;
 		font-family: 'Didot';
@@ -149,17 +154,15 @@
 
 	.search_box .btn {
 		position: absolute;
-		left: 1250px;
 		top: 4.5px;
-		right: 0px;
-		width: 60px;
-		height: 60px;
+		margin-left: 50px;
+		left: 80%;
 	}
 
 		.search_box .btn .fas {
 			color: #ffffff;
-			width: 40px;
-			height: 40px;
+			width: 50px;
+			height: 50px;
 			background: #761F33;
 			border: none;
 			cursor: pointer;
@@ -173,6 +176,8 @@ table {
 	font-family: arial, sans-serif;
 	border-collapse: collapse;
 	width: 100%;
+	border: 0.5px solid;
+	border-color: #CDCDCD;
 }
 
 	table p {
@@ -181,8 +186,10 @@ table {
 
 td, th {
 	border: 1px solid #dddddd;
-	text-align: left;
+	text-align: center;
 	padding: 13px;
+	border: none;
+	background-color: #E6E6E6;
 }
 
 .tableTr:hover {
@@ -200,6 +207,7 @@ td, th {
 	font-weight: bold;
 	margin-bottom: 40px;
 	font-size: 22px;
+	text-align:left;
 	font-family: 'Avenir', Helvetica, sans-serif;
 }
 
@@ -254,11 +262,14 @@ td, th {
 		color: #761F33;
 	}
 
+.cartArea {
+	margin-left: 1370px;
+}
 
 .cart {
 	position: absolute;
 	top: 220px;
-	margin-left: 1510px;
+	margin-left: 8vw;
 }
 
 .course-choices {
@@ -296,11 +307,10 @@ td, th {
 #bttnBox {
 	height: 400px;
 	align-self: center;
-	border-style: groove;
 	margin: auto;
 	margin-top: 220px;
 	width: 500px;
-	background-color: #f2f2f2;
+	background-color: #E6E6E6;
 	margin-bottom: 200px;
 }
 
@@ -362,12 +372,13 @@ td, th {
 
 /*SIDEBAR*/
 .sidebar {
-	height: 1400px;
-	width: 250px;
+	overflow-y: hidden;
+	height: 1900px;
+	position: absolute;
 	background-color: #CDCDCD;
+	width: 300px;
 	overflow-x: hidden;
-	margin-top: 180px;
-	margin-left: 0px;
+	top: 180px;
 }
 
 	.sidebar p {
@@ -481,12 +492,12 @@ label {
 
 /*FOOTER*/
 .footer {
-	position: absolute;
-	z-index: 99;
+	z-index: 999999;
 	height: 90px;
+	position: absolute;
 	background-color: black;
 	width: 100%;
-}
+	top: 2050px;
 }
 
 	.footer p {
@@ -518,6 +529,7 @@ label {
 	right: 8px;
 	top: 8px;
 	font-family: "Roboto",Arial,sans-serif;
+	border-color: #E6E6E6;
 	border-radius: 4px;
 	cursor: pointer;
 	padding: 8px 15px 8px;
