@@ -10,19 +10,26 @@
 <body>
     <div class="topnav">
         <div class="ahs-logo">
-            <img src="{{url_for('static', filename= 'styles/images/ahsLogo.png')}}" width="100" height="100" alt="logo">
+            <form method="post" action="/">
+                <input type="image" src="{{url_for('static', filename= 'styles/images/mainLogo.png')}}" width="359.085" height="90.576" alt="logo">
+            </form>
         </div>
         <form method="post" action="/">
             <input type="submit" value="Sign Out" class="logoutBtn" name="logoutBtn" />
         </form>
-        <p style="font-size:40px;margin-top:20px;">ABINGTON</p>
-        <p style="font-size:20px;">Senior High School</p>
+    </div>
+
+    <div class="header">
+        <div class="logo">
+            <img src="{{url_for('static', filename= 'styles/images/horseLogo.png')}}" width="80" height="80" alt="logo">
+        </div>
+        <p style="font-size: 30px; position: fixed; left: 10px; top: 105px; z-index: 999; color: #761F33; font-family: Arial; width: 400px;">Program of Study</p>
     </div>
     <div class="wrapper">
         <div class="container">
-            <div id="bttnBox" style="margin-top:180px;">
+            <div id="bttnBox" style="margin-top:250px;">
 
-                <h1 style="margin-top:20px;margin-bottom:20px; text-align:center;font-size: 40px;">Welcome</h1>
+                <h1 style="padding-top:20px; margin-top:20px;margin-bottom:20px; text-align:center;font-size: 40px;">Welcome</h1>
                 <p style="font-weight: bold; text-align:center; margin-bottom: 10px;">Sign in to select courses</p>
                 <div>
                     <div class="homebtn">
@@ -62,7 +69,7 @@
         </div>
     </div>
 
-    <div class="footer">
+    <div class="footer" style="top:800px;">
         <p style="font-size:30px;">FOOTER</p>
         <p style="font-size:16px;">Abington School District © 2022. All Rights Reserved.</p>
     </div>
