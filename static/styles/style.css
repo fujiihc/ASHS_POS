@@ -144,7 +144,6 @@
 		margin-right: 10%;
 		margin-top: 16px;
 		width: 80%;
-		min-width: 200px;
 		border: none;
 		padding: 13px 20px;
 		font-size: 18px;
@@ -277,7 +276,9 @@ td, th {
 	right: 0px;
 	width: 270px;
 	margin-right: 30px;
-	height: 450px;
+	min-height: 400px;
+	padding-bottom: 50px;
+	height: unset;
 	background-color: #CDCDCD;
 }
 
@@ -361,7 +362,7 @@ td, th {
 	height: 30px;
 	width: 150px;
 	position: absolute;
-	bottom:10px;
+	bottom:20px;
 	margin-left: 60px;
 }
 
@@ -372,7 +373,7 @@ td, th {
 /*SIDEBAR*/
 .sidebar {
 	overflow-y: hidden;
-	height: 1900px;
+	height: 1800px;
 	position: absolute;
 	background-color: #CDCDCD;
 	width: 300px;
@@ -493,10 +494,10 @@ label {
 .footer {
 	z-index: 999999;
 	height: 90px;
+	bottom: 0;
 	position: absolute;
 	background-color: black;
 	width: 100%;
-	top: 2050px;
 }
 
 	.footer p {
