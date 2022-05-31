@@ -495,7 +495,7 @@ label {
 	z-index: 999999;
 	height: 90px;
 	bottom: 0;
-	position: absolute;
+	position: relative;
 	background-color: black;
 	width: 100%;
 }
