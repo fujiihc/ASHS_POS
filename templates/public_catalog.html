@@ -388,11 +388,13 @@
 
         function pageBoxClick(element) {
             var num = element.innerHTML;
-            //console.log("num: " + num + "   n: " + n + "   currentPage: " + currentPage);
-            currentPage = num;
-            n = (num * 10) - 10;
-            //console.log("APRES - num: " + num + "   n: " + n + "   currentPage: " + currentPage);
-            display(JSON.parse(currentData));
+            if (num != "...") {
+                //console.log("num: " + num + "   n: " + n + "   currentPage: " + currentPage);
+                currentPage = num;
+                n = (num * 10) - 10;
+                //console.log("APRES - num: " + num + "   n: " + n + "   currentPage: " + currentPage);
+                display(JSON.parse(currentData));
+            }
         }
 
         $("#backward").click(function () {
