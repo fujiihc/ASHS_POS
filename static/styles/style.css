@@ -537,3 +537,7 @@ label {
 	.logoutBtn:hover {
 		background-color: #CDCDCD
 	}
+
+.pageBox{
+	cursor: pointer;
+}
