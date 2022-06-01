@@ -99,7 +99,10 @@
                     data: { "initialized": "1" }
                 }).done(function (response) {
                     cartContents = response;
-                    display(JSON.parse(response))
+                    try{
+                        display(JSON.parse(response))
+                    }catch(error){}
+                    
                     //console.log(cartContents);
                 });
 
