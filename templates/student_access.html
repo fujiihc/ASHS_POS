@@ -117,7 +117,13 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <div class="descriptions" id="##descID##" style="display:none; font-weight: normal; text-align: left; margin-top: 20px;">##description##</div>
+                                        <div class="descriptions" id="##descID##" style="display:none; font-weight: normal; text-align: left; margin-top: 20px;">
+
+                                            ##description##
+                                            <br />
+                                            <br />
+                                            ##preRecs##
+                                        </div>
                                     </td>
                                 </tr>
 
@@ -380,7 +386,7 @@
             </div>
 
             <template id="courseInCart">
-                <div style="margin-left: 14px; margin-right:14px; font-size: 18px;" id="##classID##">
+                <div style="margin-left: 15px; margin-right:15px; font-size: 18px;" id="##classID##">
                     <div class="fa fa-times" id="##removeID##" data-name-long="##classNME##" data-credits="##creditsNum##" onclick="removeCourse(this)"></div>
                     <!--https://fontawesome.com/v4.7/icon/times-->
                     <div class="choicesText">
@@ -625,10 +631,13 @@
                     var uniqueId = json['ID'][subKeys[s]];
                     var creditsNum = json['credits'][subKeys[s]] + ".0";
                     var credits = parseInt(creditsNum);
+                    var preRec = json['preRequisite'][subKeys[s]];
 
                     temp.innerHTML = temp.innerHTML.replace("##course name##", longDescription);
 
                     temp.innerHTML = temp.innerHTML.replace("##description##", description);
+                    temp.innerHTML = temp.innerHTML.replace("##preRecs##", preRec);
+
                     temp.innerHTML = temp.innerHTML.replace("##depts##", dept);
                     temp.innerHTML = temp.innerHTML.replace("##courseLength##", courseLength);
                     temp.innerHTML = temp.innerHTML.replace("##credits##", credits + " credits");
@@ -654,6 +663,7 @@
                     temp.innerHTML = temp.innerHTML.replace(longDescription, "##course name##");
 
                     temp.innerHTML = temp.innerHTML.replace(description, "##description##");
+                    temp.innerHTML = temp.innerHTML.replace(preRec, "##preRecs##");
                     temp.innerHTML = temp.innerHTML.replace(dept, "##depts##");
                     temp.innerHTML = temp.innerHTML.replace(courseLength, "##courseLength##");
                     temp.innerHTML = temp.innerHTML.replace(credits + " credits", "##credits##");
@@ -669,11 +679,12 @@
 
                     temp.innerHTML = temp.innerHTML.replace("name" + s, "##nameID##");
                 }
-
                 pageTotal = Math.ceil(subKeys.length / 10);
             }
 
             //Pages Display
+            //console.log("BEFORE - n: " + n + "   currentPage: " + currentPage + "   currentPageBox: " + currentPageBox.id);
+
             currentPageBox.style.fontWeight = "normal"; //reset text format
 
             for (var i = 1; i < 6; i++) { //bring back hidden pageBoxes
@@ -721,6 +732,8 @@
             }
 
             currentPageBox.style.fontWeight = "bold";
+
+            //console.log("AFTER - n: " + n + "   currentPage: " + currentPage + "   currentPageBox: " + currentPageBox.id);
         }
 
         //VARIABLES
