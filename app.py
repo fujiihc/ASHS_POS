@@ -112,7 +112,7 @@ def home():
         elif request.form.get('studentAccess'):
             return redirect(url_for('login'))
         elif request.form.get('adminAccess'):
-            return redirect(url_for('admin'))
+            pass
         elif request.form.get('logoutBtn'):
             return redirect(url_for('logout'))
     return render_template('home.html')
