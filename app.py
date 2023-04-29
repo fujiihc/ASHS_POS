@@ -29,7 +29,7 @@ global keyword
 easterEgg = 'isawesome'
 isLoggedIn = False
 
-
+#deprecated
 GOOGLE_CLIENT_ID = '415583783710-kpg937ob78e3ej719rldcf9or58d3vfa.apps.googleusercontent.com'
 GOOGLE_CLIENT_SECRET = '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'
 
